@@ -150,6 +150,8 @@ function App() {
         <HeroSection
           onApplyClick={handleApplyClick}
           onCalcClick={() => scrollToSection('emi-calc')}
+          onSelectCategory={handleCategorySelect}
+          onSelectProduct={handleSelectProduct}
         />
 
         {/* 2. Loan Search / Enquiry Section */}
