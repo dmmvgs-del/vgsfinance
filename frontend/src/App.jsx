@@ -125,7 +125,7 @@ function App() {
 
   // If Admin view is active
   if (currentView === 'admin') {
-    return <AdminDashboard onSwitchToWebsite={() => setCurrentView('website')} />;
+    return <AdminDashboard onSwitchToWebsite={() => handleSwitchView('website')} />;
   }
 
   // Public Landing Website view (Home Page Scope)
@@ -135,7 +135,7 @@ function App() {
       {/* Top Header & Navigation */}
       <Navbar
         currentView={currentView}
-        setCurrentView={setCurrentView}
+        setCurrentView={handleSwitchView}
         onApplyClick={handleApplyClick}
       />
 
@@ -266,7 +266,7 @@ function App() {
             <div className="font-bold text-white uppercase tracking-wider text-xs mb-3">Management Portal</div>
             <p>Access loan administration and lead processing desk:</p>
             <button
-              onClick={() => setCurrentView('admin')}
+              onClick={() => handleSwitchView('admin')}
               className="mt-1 px-4 py-2 bg-slate-900 hover:bg-slate-800 text-indigo-400 border border-slate-700 rounded-xl font-bold cursor-pointer transition-all"
             >
               🔒 Admin Dashboard Login
