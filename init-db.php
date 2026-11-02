@@ -46,3 +46,4 @@ try {
         'database' => $dbname
     ], JSON_PRETTY_PRINT);
 }
+
