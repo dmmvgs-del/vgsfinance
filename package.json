@@ -1,0 +1,11 @@
+{
+  "name": "vgsfinance",
+  "version": "1.0.0",
+  "private": true,
+  "description": "VGS Finance project",
+  "scripts": {
+    "backend": "npm --prefix backend run dev",
+    "frontend": "npm --prefix frontend run dev",
+    "install:all": "npm --prefix backend install && npm --prefix frontend install"
+  }
+}
