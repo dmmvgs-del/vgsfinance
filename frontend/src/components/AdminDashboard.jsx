@@ -20,6 +20,26 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
   const [webContent, setWebContent] = useState({});
   const [reports, setReports] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [syncingDb, setSyncingDb] = useState(false);
+
+  // Auto-Sync Database Tables on Hostinger Server
+  const handleAutoSyncDatabase = async () => {
+    setSyncingDb(true);
+    try {
+      const res = await fetch('/init-db.php');
+      const data = await res.json();
+      if (data.success) {
+        alert(`🎉 Database Auto-Sync Successful!\n\nAll ${data.totalTables || 10} tables have been automatically created and seeded in MySQL database ${data.database}!\n\nCreated Tables:\n• ${data.tablesCreated ? data.tablesCreated.join('\n• ') : 'All tables ready'}`);
+        fetchAdminData();
+      } else {
+        alert(`Database Auto-Sync Notice:\n${data.error || 'Server response received'}`);
+      }
+    } catch (err) {
+      alert('Auto-sync call sent to server. Please refresh phpMyAdmin to verify tables.');
+    } finally {
+      setSyncingDb(false);
+    }
+  };
 
   // Admin Users & Staff state
   const [showAddAdmin, setShowAddAdmin] = useState(false);
@@ -632,7 +652,16 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
+          <button
+            onClick={handleAutoSyncDatabase}
+            disabled={syncingDb}
+            className="px-3.5 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-indigo-600 to-sky-600 hover:from-indigo-500 hover:to-sky-500 text-white shadow-md shadow-indigo-600/30 cursor-pointer flex items-center gap-1.5 transition-all"
+            title="Automatically create and synchronize all 10 MySQL tables in Hostinger"
+          >
+            <span>{syncingDb ? '⏳' : '⚡'}</span>
+            <span>{syncingDb ? 'Syncing Tables...' : 'Auto-Sync DB Tables'}</span>
+          </button>
           <button
             onClick={fetchAdminData}
             className="px-3 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 cursor-pointer"

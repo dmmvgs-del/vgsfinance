@@ -79,6 +79,10 @@ function App() {
 
   useEffect(() => {
     fetchLandingData();
+    // Auto-sync MySQL database tables in production if needed
+    if (!import.meta.env.DEV) {
+      fetch('/init-db.php').catch(() => {});
+    }
   }, []);
 
   const scrollToSection = (id) => {
