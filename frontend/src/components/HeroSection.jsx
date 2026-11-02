@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function HeroSection({
   onApplyClick,
@@ -11,19 +11,104 @@ export default function HeroSection({
     name: '',
     phone: '',
     email: '',
-    city: 'Hyderabad',
+    city: 'Visakhapatnam',
     experience: '1-3 Years',
     profession: 'Financial Advisor / DSA'
   });
   const [partnerSubmitted, setPartnerSubmitted] = useState(false);
 
-  const [activeSupermarketShelf, setActiveSupermarketShelf] = useState(null);
+  // Carousel state
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const carouselSlides = [
+    {
+      id: 'supermarket',
+      tag: "India's #1 Multi-Bank Marketplace",
+      headlinePrefix: 'The ',
+      headlineAccent: 'Right Loan.',
+      headlineSuffix: ' The Right Bank.',
+      headlineSecondLine: 'The Right Way.',
+      accentColor: 'text-[#f5a623]',
+      description:
+        'Compare 16+ loan categories and offers from 15+ partner banks — with expert guidance at every step.',
+      primaryCta: 'Explore Loan Options ➔',
+      primaryAction: () => handleAvailLoan('Loan Supermarket', 'all'),
+      primaryBg: 'bg-[#f5a623] hover:bg-[#e0961b] text-slate-950 font-black shadow-lg shadow-amber-500/30',
+      secondaryCta: 'Talk to an Expert',
+      secondaryIcon: '🎧',
+      secondaryAction: () => setPartnerModalOpen(true),
+      badgeText: 'Instant In-Principle Sanction in 2 Hours',
+      badgeColor: 'bg-amber-400/20 text-amber-300 border-amber-400/30'
+    },
+    {
+      id: 'fast-approval',
+      tag: 'Express Digital Disbursement',
+      headlinePrefix: 'Fast Approvals. ',
+      headlineAccent: 'Lowest Rates.',
+      headlineSuffix: '',
+      headlineSecondLine: 'Zero Hidden Charges.',
+      accentColor: 'text-emerald-400',
+      description:
+        'Get 100% paperless KYC approval with attractive rates starting from 8.4% p.a. and doorstep advisor support.',
+      primaryCta: 'Check Instant Eligibility ➔',
+      primaryAction: () => {
+        const el = document.getElementById('eligibility-checker');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        else if (onApplyClick) onApplyClick();
+      },
+      primaryBg: 'bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black shadow-lg shadow-emerald-500/30',
+      secondaryCta: 'Calculate EMI',
+      secondaryIcon: '🧮',
+      secondaryAction: onCalcClick || (() => {}),
+      badgeText: 'Over ₹250+ Crores Disbursed Nationwide',
+      badgeColor: 'bg-emerald-400/20 text-emerald-300 border-emerald-400/30'
+    },
+    {
+      id: 'high-value',
+      tag: 'High Quantum Business & Property Loans',
+      headlinePrefix: 'Unlock High Value ',
+      headlineAccent: 'Property & Business',
+      headlineSuffix: '',
+      headlineSecondLine: 'Loans Up To ₹10 Cr.',
+      accentColor: 'text-sky-400',
+      description:
+        'Tailored mortgage and working capital limits with maximum tenure up to 30 years and multi-bank sanction options.',
+      primaryCta: 'Avail Low Rate Loan ➔',
+      primaryAction: () => handleAvailLoan('Loan Against Property', 'cat-mortgage'),
+      primaryBg: 'bg-sky-400 hover:bg-sky-300 text-slate-950 font-black shadow-lg shadow-sky-500/30',
+      secondaryCta: 'Join as Freelancer',
+      secondaryIcon: '🤝',
+      secondaryAction: () => setPartnerModalOpen(true),
+      badgeText: '15+ Top PSU, Private & NBFC Partners',
+      badgeColor: 'bg-sky-400/20 text-sky-300 border-sky-400/30'
+    }
+  ];
+
+  // Carousel Autoplay Timer (5 seconds)
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % carouselSlides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [isPaused, carouselSlides.length]);
+
+  const handleNextSlide = () => {
+    setActiveSlide((prev) => (prev + 1) % carouselSlides.length);
+  };
+
+  const handlePrevSlide = () => {
+    setActiveSlide((prev) => (prev - 1 + carouselSlides.length) % carouselSlides.length);
+  };
 
   const handleAvailLoan = (loanType, categoryId) => {
-    if (onSelectCategory && categoryId) {
+    if (onSelectCategory && categoryId && categoryId !== 'all') {
       onSelectCategory(categoryId);
-    } else if (onApplyClick) {
-      onApplyClick();
+    } else {
+      const el = document.getElementById('products');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      else if (onApplyClick) onApplyClick();
     }
   };
 
@@ -37,311 +122,368 @@ export default function HeroSection({
     }, 2500);
   };
 
+  // 6 Core loan cards matching reference image
+  const loanCards = [
+    {
+      title: 'Personal Loan',
+      description: 'For your personal needs like medical, travel, marriage & more.',
+      catId: 'cat-personal',
+      rate: 'From 10.5%',
+      iconSvg: (
+        <svg className="w-8 h-8" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="22" fill="#FEF3C7" />
+          <path d="M16 19C16 14.5817 19.5817 11 24 11C28.4183 11 32 14.5817 32 19V20H16V19Z" fill="#D97706" />
+          <path d="M12 21C12 20.4477 12.4477 20 13 20H35C35.5523 20 36 20.4477 36 21V33C36 37.4183 32.4183 41 28 41H20C15.5817 41 12 37.4183 12 33V21Z" fill="#F59E0B" />
+          <circle cx="24" cy="30" r="4.5" fill="#FEF3C7" />
+          <path d="M22 28H26M22 30H26M23 28V32" stroke="#B45309" strokeWidth="1.5" strokeLinecap="round" />
+        </svg>
+      )
+    },
+    {
+      title: 'Business Loan',
+      description: 'Tailored financial solutions to grow and expand your business.',
+      catId: 'cat-business',
+      rate: 'From 11.5%',
+      iconSvg: (
+        <svg className="w-8 h-8" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="16" width="32" height="24" rx="4" fill="#92400E" />
+          <rect x="6" y="20" width="36" height="20" rx="4" fill="#B45309" />
+          <path d="M18 16V12C18 10.8954 18.8954 10 20 10H28C29.1046 10 30 10.8954 30 12V16" stroke="#78350F" strokeWidth="3" />
+          <rect x="22" y="24" width="4" height="4" rx="1" fill="#FEF3C7" />
+          <line x1="6" y1="26" x2="42" y2="26" stroke="#78350F" strokeWidth="2" />
+        </svg>
+      )
+    },
+    {
+      title: 'Home Loan',
+      description: 'Make your dream home a reality with attractive loan offers.',
+      catId: 'cat-home',
+      rate: 'From 8.4%',
+      iconSvg: (
+        <svg className="w-8 h-8" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 8L8 22H14V38H34V22H40L24 8Z" fill="#EF4444" />
+          <rect x="18" y="26" width="12" height="12" rx="1" fill="#FEF2F2" />
+          <rect x="20" y="28" width="8" height="10" fill="#DC2626" />
+          <path d="M24 8L8 22H14L24 13L34 22H40L24 8Z" fill="#B91C1C" />
+          <rect x="30" y="12" width="4" height="7" fill="#7F1D1D" />
+        </svg>
+      )
+    },
+    {
+      title: 'Doctor Loan',
+      description: 'Special loan solutions for doctors and healthcare professionals.',
+      catId: 'cat-professional',
+      rate: 'Special APR',
+      iconSvg: (
+        <svg className="w-8 h-8" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="20" fill="#E0F2FE" />
+          <path d="M16 14V24C16 28.4183 19.5817 32 24 32C28.4183 32 32 28.4183 32 24V14" stroke="#0284C7" strokeWidth="3.5" strokeLinecap="round" />
+          <circle cx="16" cy="14" r="2.5" fill="#0369A1" />
+          <circle cx="32" cy="14" r="2.5" fill="#0369A1" />
+          <path d="M24 32V38C24 39.1046 24.8954 40 26 40H28" stroke="#0284C7" strokeWidth="3.5" strokeLinecap="round" />
+          <circle cx="30" cy="40" r="3" fill="#0369A1" />
+        </svg>
+      )
+    },
+    {
+      title: 'Education Loan',
+      description: 'Fund higher education in India or abroad with ease.',
+      catId: 'cat-education',
+      rate: 'From 9.5%',
+      iconSvg: (
+        <svg className="w-8 h-8" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="24,10 42,19 24,28 6,19" fill="#1E40AF" />
+          <path d="M12 22.5V32C12 32 17 37 24 37C31 37 36 32 36 32V22.5" stroke="#1E40AF" strokeWidth="3" fill="none" />
+          <line x1="39" y1="20.5" x2="39" y2="34" stroke="#F59E0B" strokeWidth="2.5" strokeLinecap="round" />
+          <circle cx="39" cy="35" r="2" fill="#D97706" />
+        </svg>
+      )
+    },
+    {
+      title: 'Loan Against Property',
+      description: 'Unlock the value of your property for business or personal needs.',
+      catId: 'cat-mortgage',
+      rate: 'From 8.9%',
+      iconSvg: (
+        <svg className="w-8 h-8" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="12" y="8" width="24" height="32" rx="3" fill="#E2E8F0" stroke="#94A3B8" strokeWidth="2" />
+          <line x1="18" y1="16" x2="30" y2="16" stroke="#64748B" strokeWidth="2" strokeLinecap="round" />
+          <line x1="18" y1="22" x2="30" y2="22" stroke="#64748B" strokeWidth="2" strokeLinecap="round" />
+          <line x1="18" y1="28" x2="26" y2="28" stroke="#64748B" strokeWidth="2" strokeLinecap="round" />
+          <path d="M26 26L36 35H32V42H28V37H24V42H20V35H16L26 26Z" fill="#10B981" />
+        </svg>
+      )
+    }
+  ];
+
+  const currentSlideData = carouselSlides[activeSlide];
+
   return (
-    <section id="hero" className="relative overflow-hidden font-sans">
+    <section id="hero" className="relative font-sans select-none overflow-hidden">
       
       {/* =========================================================================
-          HERO ROYAL BLUE BACKGROUND WITH SUBTLE SUPERMARKET PATTERN
+          1. HERO CAROUSEL BANNER (Dark Navy Gradient with 3D Holographic Bank & Advisor)
          ========================================================================= */}
-      <div className="bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-800 text-white pt-10 pb-16 px-4 sm:px-6 lg:px-8 relative shadow-2xl">
-        
-        {/* Subtle geometric grid background */}
-        <div className="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:24px_24px]"></div>
+      <div
+        className="relative bg-gradient-to-r from-[#031533] via-[#082855] to-[#041a3d] text-white pt-10 sm:pt-14 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 shadow-2xl transition-all duration-700 overflow-hidden"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        {/* Subtle glowing ambient background orbs & mesh */}
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute bottom-0 left-10 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none"></div>
 
-        <div className="max-w-7xl mx-auto space-y-8 relative z-10">
+        <div className="max-w-7xl mx-auto relative z-10">
           
-          {/* =========================================================================
-              1. SUB-HERO ACTION BUTTONS (Join as Freelancer / Apply Now)
-             ========================================================================= */}
-          <div className="flex items-center justify-center gap-3">
-            <button
-              onClick={() => setPartnerModalOpen(true)}
-              className="px-5 py-2 rounded-xl text-xs sm:text-sm font-bold border-2 border-white/80 hover:bg-white hover:text-blue-700 text-white transition-all shadow-md cursor-pointer flex items-center gap-1.5"
-            >
-              <span>🤝</span> Join as Freelancer
-            </button>
-            <button
-              onClick={onApplyClick}
-              className="px-6 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white text-blue-800 hover:bg-slate-100 transition-all shadow-md cursor-pointer flex items-center gap-1.5"
-            >
-              <span>🚀</span> Apply Now
-            </button>
-          </div>
-
-          {/* =========================================================================
-              2. HERO MAIN HEADLINE (VGS is a Loans Super Market!)
-             ========================================================================= */}
-          <div className="text-center space-y-2">
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white drop-shadow-md">
-              VGS is a{' '}
-              <span className="relative inline-block text-amber-300">
-                Loans Super Market!
-                {/* Curved underline brush accent stroke */}
-                <svg
-                  className="absolute -bottom-2.5 left-0 w-full h-3 text-amber-300"
-                  viewBox="0 0 250 12"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M3 8.5C65.5 2.5 160.5 1.5 247 9.5"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </span>
-            </h1>
-            <p className="text-xs sm:text-sm text-blue-100 font-medium max-w-2xl mx-auto pt-2">
-              Explore 16+ loan categories, compare interest rates across 15+ partner banks, and get 2-hour in-principle sanction.
-            </p>
-          </div>
-
-          {/* =========================================================================
-              3. SPLIT HERO CONTENT: 4 LOAN CARDS (LEFT) + 3D SUPERMARKET VISUAL (RIGHT)
-             ========================================================================= */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-4">
+          {/* Main Hero Grid: Left Content (Carousel Slides) + Right 3D Visual */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
-            {/* ---------------------------------------------------------------------
-                LEFT SIDE: 4 CORE LOAN CARDS (White Cards with Circular Blue Icons)
-               --------------------------------------------------------------------- */}
-            <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* -------------------------------------------------------------------
+                LEFT COLUMN: DYNAMIC CAROUSEL SLIDE CONTENT
+               ------------------------------------------------------------------- */}
+            <div className="lg:col-span-7 space-y-6 sm:space-y-7 animate-fade-in">
               
-              {/* Card 1: Personal Loan */}
-              <div
-                onClick={() => handleAvailLoan('Personal Loan', 'cat-personal')}
-                className="bg-white rounded-3xl p-5 sm:p-6 text-slate-800 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 group cursor-pointer border border-blue-100 flex flex-col justify-between space-y-3"
-              >
-                <div className="flex items-start gap-3.5">
-                  <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center text-xl shrink-0 shadow-md group-hover:scale-110 transition-transform">
-                    💰
-                  </div>
-                  <div>
-                    <h3 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-blue-600 transition-colors">
-                      Personal Loan
-                    </h3>
-                    <p className="text-xs text-slate-500 mt-0.5 leading-snug">
-                      For all your needs upto 1cr
-                    </p>
-                  </div>
-                </div>
-                <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
-                  <span className="text-[11px] font-black text-blue-700 group-hover:text-blue-800 uppercase tracking-wider flex items-center gap-1">
-                    AVAIL PERSONAL NOW! <span className="font-bold">»</span>
-                  </span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 font-bold">From 10.5%</span>
-                </div>
+              {/* Category / Supermarket Live Badge */}
+              <div className="flex items-center gap-2">
+                <span className={`inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-black tracking-wide border uppercase backdrop-blur-md ${currentSlideData.badgeColor}`}>
+                  <span className="w-2 h-2 rounded-full bg-current animate-ping"></span>
+                  {currentSlideData.tag}
+                </span>
+                <span className="text-[11px] text-slate-400 hidden sm:inline">
+                  • {currentSlideData.badgeText}
+                </span>
               </div>
 
-              {/* Card 2: Business Loan */}
-              <div
-                onClick={() => handleAvailLoan('Business Loan', 'cat-business')}
-                className="bg-white rounded-3xl p-5 sm:p-6 text-slate-800 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 group cursor-pointer border border-blue-100 flex flex-col justify-between space-y-3"
-              >
-                <div className="flex items-start gap-3.5">
-                  <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center text-xl shrink-0 shadow-md group-hover:scale-110 transition-transform">
-                    💼
-                  </div>
-                  <div>
-                    <h3 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-blue-600 transition-colors">
-                      Business Loan
-                    </h3>
-                    <p className="text-xs text-slate-500 mt-0.5 leading-snug">
-                      Tailored financial solutions for your business needs
-                    </p>
-                  </div>
-                </div>
-                <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
-                  <span className="text-[11px] font-black text-blue-700 group-hover:text-blue-800 uppercase tracking-wider flex items-center gap-1">
-                    AVAIL BUSINESS NOW! <span className="font-bold">»</span>
+              {/* Main Headline with dynamic golden/color accents */}
+              <div className="space-y-1">
+                <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-black tracking-tight leading-[1.15] text-white drop-shadow-md">
+                  <span>{currentSlideData.headlinePrefix}</span>
+                  <span className={currentSlideData.accentColor}>
+                    {currentSlideData.headlineAccent}
                   </span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 font-bold">From 11.5%</span>
-                </div>
-              </div>
-
-              {/* Card 3: Professional Loan (Doctor/CA) */}
-              <div
-                onClick={() => handleAvailLoan('Professional Loan', 'cat-professional')}
-                className="bg-white rounded-3xl p-5 sm:p-6 text-slate-800 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 group cursor-pointer border border-blue-100 flex flex-col justify-between space-y-3"
-              >
-                <div className="flex items-start gap-3.5">
-                  <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center text-xl shrink-0 shadow-md group-hover:scale-110 transition-transform">
-                    🩺
-                  </div>
-                  <div>
-                    <h3 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-blue-600 transition-colors leading-tight">
-                      Professional Loan <span className="text-xs font-bold text-blue-600 block">(Doctor/CA)</span>
-                    </h3>
-                    <p className="text-xs text-slate-500 mt-0.5 leading-snug">
-                      Financial Solution for Professional needs.
-                    </p>
-                  </div>
-                </div>
-                <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
-                  <span className="text-[11px] font-black text-blue-700 group-hover:text-blue-800 uppercase tracking-wider flex items-center gap-1">
-                    AVAIL PROFESSIONAL NOW! <span className="font-bold">»</span>
-                  </span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 font-bold">From 9.99%</span>
-                </div>
-              </div>
-
-              {/* Card 4: Home Loan */}
-              <div
-                onClick={() => handleAvailLoan('Home Loan', 'cat-home')}
-                className="bg-white rounded-3xl p-5 sm:p-6 text-slate-800 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 group cursor-pointer border border-blue-100 flex flex-col justify-between space-y-3"
-              >
-                <div className="flex items-start gap-3.5">
-                  <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center text-xl shrink-0 shadow-md group-hover:scale-110 transition-transform">
-                    🏠
-                  </div>
-                  <div>
-                    <h3 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-blue-600 transition-colors">
-                      Home Loan
-                    </h3>
-                    <p className="text-xs text-slate-500 mt-0.5 leading-snug">
-                      Make your dream home a reality
-                    </p>
-                  </div>
-                </div>
-                <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
-                  <span className="text-[11px] font-black text-blue-700 group-hover:text-blue-800 uppercase tracking-wider flex items-center gap-1">
-                    AVAIL HOME NOW! <span className="font-bold">»</span>
-                  </span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 font-bold">From 8.4%</span>
-                </div>
-              </div>
-
-            </div>
-
-            {/* ---------------------------------------------------------------------
-                RIGHT SIDE: ISOMETRIC 3D LOAN SUPERMARKET STORE VISUALIZATION
-               --------------------------------------------------------------------- */}
-            <div className="lg:col-span-6 relative flex items-center justify-center">
-              
-              {/* Store Wrapper Box */}
-              <div className="relative w-full max-w-lg bg-gradient-to-b from-blue-500/20 to-blue-900/60 p-6 rounded-3xl border border-white/20 backdrop-blur-md shadow-2xl">
+                  <span>{currentSlideData.headlineSuffix}</span>
+                  <br />
+                  <span className="text-white">{currentSlideData.headlineSecondLine}</span>
+                </h1>
                 
-                {/* Top Badge */}
-                <div className="flex justify-between items-center pb-4 border-b border-white/20">
-                  <span className="text-xs font-bold uppercase tracking-wider text-amber-300 flex items-center gap-1.5">
-                    <span>🛒</span> Physical & Digital Supermarket Walk-Through
-                  </span>
-                  <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-white/20 text-white font-bold">
-                    Multi-Aisle Comparison
-                  </span>
-                </div>
+                <p className="text-sm sm:text-base text-slate-300 font-medium max-w-xl pt-2 sm:pt-3 leading-relaxed">
+                  {currentSlideData.description}
+                </p>
+              </div>
 
-                {/* Isometric Department Aisles Showcase Grid */}
-                <div className="py-6 grid grid-cols-3 gap-2.5 sm:gap-3 text-center">
-                  
-                  {/* Shelf 1: Personal Loan */}
-                  <div
-                    onClick={() => setActiveSupermarketShelf('Personal')}
-                    className="p-3 rounded-2xl bg-gradient-to-b from-emerald-600 to-emerald-800 border-2 border-emerald-400 text-white shadow-lg cursor-pointer hover:scale-105 transition-all space-y-1"
-                  >
-                    <span className="text-xl block">👤</span>
-                    <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider block">
-                      PERSONAL LOAN
-                    </span>
-                    <span className="text-[9px] px-1.5 py-0.2 rounded bg-black/30 font-mono block">From 10.5%</span>
-                  </div>
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center gap-3.5 pt-1">
+                {/* Primary Action Button (Golden Amber Pill in reference image) */}
+                <button
+                  onClick={currentSlideData.primaryAction}
+                  className={`px-6 sm:px-8 py-3.5 rounded-xl text-sm sm:text-base font-black transition-all transform hover:-translate-y-0.5 cursor-pointer flex items-center gap-2 ${currentSlideData.primaryBg}`}
+                >
+                  <span>{currentSlideData.primaryCta}</span>
+                </button>
 
-                  {/* Shelf 2: Business Loan */}
-                  <div
-                    onClick={() => setActiveSupermarketShelf('Business')}
-                    className="p-3 rounded-2xl bg-gradient-to-b from-rose-600 to-rose-800 border-2 border-rose-400 text-white shadow-lg cursor-pointer hover:scale-105 transition-all space-y-1"
-                  >
-                    <span className="text-xl block">🏢</span>
-                    <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider block">
-                      BUSINESS LOAN
-                    </span>
-                    <span className="text-[9px] px-1.5 py-0.2 rounded bg-black/30 font-mono block">From 11.5%</span>
-                  </div>
+                {/* Secondary Action Button (Headset / Outlined Pill) */}
+                <button
+                  onClick={currentSlideData.secondaryAction}
+                  className="px-5 sm:px-7 py-3.5 rounded-xl text-sm sm:text-base font-bold text-white bg-slate-900/60 hover:bg-slate-800/80 border border-slate-700/80 backdrop-blur-md transition-all transform hover:-translate-y-0.5 cursor-pointer flex items-center gap-2 shadow-md"
+                >
+                  <span className="text-base">{currentSlideData.secondaryIcon}</span>
+                  <span>{currentSlideData.secondaryCta}</span>
+                </button>
+              </div>
 
-                  {/* Shelf 3: Doctor Loan */}
-                  <div
-                    onClick={() => setActiveSupermarketShelf('Doctor')}
-                    className="p-3 rounded-2xl bg-gradient-to-b from-fuchsia-600 to-purple-800 border-2 border-fuchsia-400 text-white shadow-lg cursor-pointer hover:scale-105 transition-all space-y-1"
-                  >
-                    <span className="text-xl block">🩺</span>
-                    <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider block">
-                      DOCTOR LOAN
-                    </span>
-                    <span className="text-[9px] px-1.5 py-0.2 rounded bg-black/30 font-mono block">Special APR</span>
-                  </div>
-
-                  {/* Shelf 4: Home Loan */}
-                  <div
-                    onClick={() => setActiveSupermarketShelf('Home')}
-                    className="p-3 rounded-2xl bg-gradient-to-b from-cyan-600 to-blue-800 border-2 border-cyan-400 text-white shadow-lg cursor-pointer hover:scale-105 transition-all space-y-1"
-                  >
-                    <span className="text-xl block">🏠</span>
-                    <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider block">
-                      HOME LOAN
-                    </span>
-                    <span className="text-[9px] px-1.5 py-0.2 rounded bg-black/30 font-mono block">From 8.4%</span>
-                  </div>
-
-                  {/* Shelf 5: Mortgage Loan */}
-                  <div
-                    onClick={() => setActiveSupermarketShelf('Mortgage')}
-                    className="p-3 rounded-2xl bg-gradient-to-b from-amber-600 to-amber-800 border-2 border-amber-400 text-white shadow-lg cursor-pointer hover:scale-105 transition-all space-y-1"
-                  >
-                    <span className="text-xl block">🏛️</span>
-                    <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider block">
-                      MORTGAGE LOAN
-                    </span>
-                    <span className="text-[9px] px-1.5 py-0.2 rounded bg-black/30 font-mono block">High Quantum</span>
-                  </div>
-
-                  {/* Shelf 6: Overdraft / CC */}
-                  <div
-                    onClick={() => setActiveSupermarketShelf('Overdraft')}
-                    className="p-3 rounded-2xl bg-gradient-to-b from-teal-600 to-emerald-800 border-2 border-teal-400 text-white shadow-lg cursor-pointer hover:scale-105 transition-all space-y-1"
-                  >
-                    <span className="text-xl block">📈</span>
-                    <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider block">
-                      OVER DRAFT LOAN
-                    </span>
-                    <span className="text-[9px] px-1.5 py-0.2 rounded bg-black/30 font-mono block">Revolving Limit</span>
-                  </div>
-
-                </div>
-
-                {/* Shopper & Cart Graphic Banner */}
-                <div className="bg-slate-900/90 rounded-2xl p-4 border border-white/20 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-xl bg-amber-400 text-slate-900 flex items-center justify-center text-2xl font-bold shadow-md">
-                      🛒
-                    </div>
-                    <div>
-                      <h4 className="text-xs sm:text-sm font-black text-white">
-                        VGS LOAN SUPER MARKET
-                      </h4>
-                      <p className="text-[11px] text-slate-300">
-                        Add preferred loans to your cart & compare sanction rates
-                      </p>
-                    </div>
-                  </div>
+              {/* Carousel Navigation Controls (Dots & Arrows) */}
+              <div className="flex items-center gap-4 pt-2">
+                {/* Arrow Controls */}
+                <div className="flex items-center gap-2">
                   <button
-                    onClick={onCalcClick}
-                    className="px-3 py-1.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs shrink-0 cursor-pointer transition-all shadow-md"
+                    onClick={handlePrevSlide}
+                    aria-label="Previous Slide"
+                    className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center text-xs font-bold transition-colors cursor-pointer border border-white/10"
                   >
-                    Calculate 🧮
+                    ❮
+                  </button>
+                  <button
+                    onClick={handleNextSlide}
+                    aria-label="Next Slide"
+                    className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center text-xs font-bold transition-colors cursor-pointer border border-white/10"
+                  >
+                    ❯
                   </button>
                 </div>
 
-                {activeSupermarketShelf && (
-                  <div className="mt-3 p-3 rounded-xl bg-blue-900/90 border border-amber-300/40 text-xs text-white flex justify-between items-center animate-fade-in">
-                    <span>Selected Aisle: <strong>{activeSupermarketShelf} Loan</strong></span>
+                {/* Slide Indicators (Pills & Dots) */}
+                <div className="flex items-center gap-2">
+                  {carouselSlides.map((s, idx) => (
                     <button
-                      onClick={() => handleAvailLoan(activeSupermarketShelf)}
-                      className="px-2.5 py-1 rounded bg-amber-400 text-slate-950 font-bold text-[10px] cursor-pointer"
-                    >
-                      Avail Now ➔
-                    </button>
+                      key={s.id}
+                      onClick={() => setActiveSlide(idx)}
+                      aria-label={`Slide ${idx + 1}`}
+                      className={`h-2 rounded-full transition-all cursor-pointer ${
+                        activeSlide === idx
+                          ? 'w-7 bg-amber-400'
+                          : 'w-2 bg-white/30 hover:bg-white/60'
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <span className="text-[11px] text-slate-400 font-mono ml-2">
+                  0{activeSlide + 1} / 0{carouselSlides.length}
+                </span>
+              </div>
+
+            </div>
+
+            {/* -------------------------------------------------------------------
+                RIGHT COLUMN: 3D HOLOGRAPHIC DIGITAL BANK + FINANCIAL ADVISOR
+               ------------------------------------------------------------------- */}
+            <div className="lg:col-span-5 relative flex items-center justify-center">
+              
+              {/* Outer Glowing Stage Container */}
+              <div className="relative w-full max-w-md sm:max-w-lg aspect-[4/3] sm:aspect-square flex items-center justify-center">
+                
+                {/* Ambient Glows */}
+                <div className="absolute inset-4 bg-gradient-to-tr from-blue-600/30 to-amber-400/20 rounded-3xl blur-2xl"></div>
+
+                {/* Glassmorphic 3D Holographic Showcase Card */}
+                <div className="relative w-full h-full rounded-3xl bg-gradient-to-b from-blue-900/40 via-slate-900/60 to-slate-950/90 border border-blue-400/30 backdrop-blur-md p-4 sm:p-6 shadow-2xl flex flex-col justify-between overflow-hidden">
+                  
+                  {/* Floating Rupee Hologram Badge */}
+                  <div className="absolute top-4 right-4 z-20">
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-400 to-amber-200 border-2 border-white/80 text-slate-950 font-black text-2xl flex items-center justify-center shadow-xl shadow-amber-500/40 animate-bounce">
+                      ₹
+                    </div>
                   </div>
-                )}
+
+                  {/* 3D Bank Architecture Hologram Illustration */}
+                  <div className="relative w-full flex-1 flex items-center justify-center">
+                    
+                    <svg
+                      className="w-full h-full max-h-64 sm:max-h-72 drop-shadow-[0_10px_20px_rgba(0,180,255,0.3)]"
+                      viewBox="0 0 400 300"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <defs>
+                        <linearGradient id="bankGrad" x1="0" y1="0" x2="1" y2="1">
+                          <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.9" />
+                          <stop offset="50%" stopColor="#1d4ed8" stopOpacity="0.8" />
+                          <stop offset="100%" stopColor="#0f172a" stopOpacity="0.9" />
+                        </linearGradient>
+                        <linearGradient id="goldCurve" x1="0" y1="1" x2="1" y2="0">
+                          <stop offset="0%" stopColor="#fbbf24" />
+                          <stop offset="100%" stopColor="#34d399" />
+                        </linearGradient>
+                        <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+                          <feGaussianBlur stdDeviation="6" result="blur" />
+                          <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                        </filter>
+                      </defs>
+
+                      {/* Holographic Platform / Isometric Grid Base */}
+                      <ellipse cx="200" cy="250" rx="170" ry="40" fill="url(#bankGrad)" opacity="0.35" />
+                      <ellipse cx="200" cy="250" rx="140" ry="30" stroke="#38bdf8" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.7" />
+
+                      {/* 3D Glass Screen Backdrop */}
+                      <rect x="50" y="40" width="220" height="190" rx="16" fill="#0f2b5c" fillOpacity="0.5" stroke="#38bdf8" strokeWidth="1.5" />
+                      <line x1="70" y1="70" x2="110" y2="70" stroke="#38bdf8" strokeWidth="2.5" strokeLinecap="round" opacity="0.8" />
+                      <line x1="70" y1="85" x2="130" y2="85" stroke="#93c5fd" strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
+
+                      {/* 3D Bank Temple Building */}
+                      <g transform="translate(60, 60)">
+                        {/* Pediment (Triangle Roof) */}
+                        <polygon points="100,20 180,60 20,60" fill="url(#bankGrad)" stroke="#38bdf8" strokeWidth="2" />
+                        <rect x="70" y="38" width="60" height="15" rx="3" fill="#0284c7" />
+                        <text x="100" y="49" textAnchor="middle" fill="#ffffff" fontSize="9" fontWeight="900" letterSpacing="1">
+                          BANK
+                        </text>
+
+                        {/* Frieze & Architrave */}
+                        <rect x="25" y="60" width="150" height="10" fill="#1e40af" stroke="#60a5fa" strokeWidth="1" />
+
+                        {/* Classical Greek Pillars (4 Columns with 3D cylindrical lighting) */}
+                        <rect x="35" y="70" width="16" height="70" rx="2" fill="#38bdf8" fillOpacity="0.8" stroke="#93c5fd" strokeWidth="1" />
+                        <rect x="70" y="70" width="16" height="70" rx="2" fill="#38bdf8" fillOpacity="0.8" stroke="#93c5fd" strokeWidth="1" />
+                        <rect x="110" y="70" width="16" height="70" rx="2" fill="#38bdf8" fillOpacity="0.8" stroke="#93c5fd" strokeWidth="1" />
+                        <rect x="145" y="70" width="16" height="70" rx="2" fill="#38bdf8" fillOpacity="0.8" stroke="#93c5fd" strokeWidth="1" />
+
+                        {/* Steps Base */}
+                        <rect x="20" y="140" width="160" height="8" fill="#1e3a8a" stroke="#60a5fa" strokeWidth="1" />
+                        <rect x="10" y="148" width="180" height="10" fill="#172554" stroke="#3b82f6" strokeWidth="1" />
+                      </g>
+
+                      {/* Upward Rising Trajectory Growth Chart Line */}
+                      <path
+                        d="M80 220 Q 150 190 200 150 T 320 80"
+                        fill="none"
+                        stroke="url(#goldCurve)"
+                        strokeWidth="4"
+                        strokeLinecap="round"
+                        filter="url(#neonGlow)"
+                      />
+                      {/* Arrowhead on chart */}
+                      <polygon points="320,70 330,85 315,88" fill="#34d399" />
+                      
+                      {/* Chart Data Node Bulbs */}
+                      <circle cx="150" cy="180" r="4.5" fill="#fbbf24" stroke="#ffffff" strokeWidth="1.5" />
+                      <circle cx="200" cy="150" r="4.5" fill="#fbbf24" stroke="#ffffff" strokeWidth="1.5" />
+                      <circle cx="260" cy="115" r="4.5" fill="#34d399" stroke="#ffffff" strokeWidth="1.5" />
+
+                      {/* Professional Female Financial Advisor Vector Rendering */}
+                      <g transform="translate(250, 45)">
+                        {/* Warm Golden Aura behind Advisor */}
+                        <circle cx="65" cy="100" r="60" fill="#f59e0b" opacity="0.25" filter="url(#neonGlow)" />
+                        
+                        {/* Advisor Hair (Back) */}
+                        <path d="M40 50 C40 20, 90 20, 90 50 C95 85, 95 110, 85 130 C75 110, 45 110, 40 50 Z" fill="#1c1917" />
+                        
+                        {/* Advisor Neck & Collar */}
+                        <rect x="58" y="70" width="14" height="20" rx="2" fill="#e0a98b" />
+                        <polygon points="50,85 65,105 58,85" fill="#ffffff" />
+                        <polygon points="80,85 65,105 72,85" fill="#ffffff" />
+
+                        {/* Advisor Face */}
+                        <ellipse cx="65" cy="55" rx="18" ry="22" fill="#f2bba2" />
+                        {/* Eyes, Smile, Eyebrows */}
+                        <ellipse cx="58" cy="52" rx="2" ry="1.5" fill="#292524" />
+                        <ellipse cx="72" cy="52" rx="2" ry="1.5" fill="#292524" />
+                        <path d="M60 64 Q65 70 70 64" stroke="#b91c1c" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+                        <path d="M54 47 Q58 45 62 47" stroke="#1c1917" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+                        <path d="M68 47 Q72 45 76 47" stroke="#1c1917" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+                        
+                        {/* Advisor Hair (Front Wave / Stylized) */}
+                        <path d="M45 45 C50 30, 80 30, 85 45 C80 35, 55 35, 45 45 Z" fill="#292524" />
+
+                        {/* Advisor Suit Jacket (Navy Business Blazer) */}
+                        <path d="M40 85 C30 110, 30 170, 30 190 L100 190 C100 170, 100 110, 90 85 L75 105 L65 135 L55 105 Z" fill="#0f172a" />
+                        {/* Lapels */}
+                        <polygon points="40,85 55,105 52,145 35,130" fill="#1e293b" />
+                        <polygon points="90,85 75,105 78,145 95,130" fill="#1e293b" />
+                        
+                        {/* Crossed Arms */}
+                        <path d="M35 140 Q65 170 95 140 Q65 155 35 140" fill="#0f172a" stroke="#334155" strokeWidth="1" />
+                        
+                        {/* Gold Lapel Pin Badge */}
+                        <circle cx="48" cy="115" r="3" fill="#fbbf24" stroke="#ffffff" strokeWidth="0.5" />
+                        {/* Gold Wristwatch */}
+                        <rect x="42" y="152" width="7" height="4" rx="1" fill="#f59e0b" />
+                      </g>
+                    </svg>
+
+                  </div>
+
+                  {/* Bottom Strip Inside 3D Card */}
+                  <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-300">
+                    <span className="flex items-center gap-1.5 font-bold text-amber-300">
+                      <span>✓</span> ISO 9001:2015 Certified Advisory
+                    </span>
+                    <span className="text-[10px] text-sky-400 font-mono font-bold">
+                      15+ Partner Banks
+                    </span>
+                  </div>
+
+                </div>
 
               </div>
 
@@ -350,50 +492,44 @@ export default function HeroSection({
           </div>
 
           {/* =========================================================================
-              4. BOTTOM CATEGORY ICONS RIBBON (Quick Loan Category Icons)
+              2. FOUR METRICS PILL BAR (Directly under Hero Carousel as in reference)
              ========================================================================= */}
-          <div className="pt-6 border-t border-white/10 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-center text-xs text-blue-100 font-bold">
-            
-            <a
-              href="#products"
-              className="flex items-center gap-2 p-2 rounded-2xl hover:bg-white/10 transition-colors"
-            >
-              <span className="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center text-base">🏠</span>
-              <span>Property Finance</span>
-            </a>
+          <div className="mt-8 sm:mt-12 bg-[#0a2347] border border-blue-500/25 rounded-2xl shadow-xl p-3 sm:p-4 backdrop-blur-md">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 divide-y md:divide-y-0 md:divide-x divide-white/10 text-center">
+              
+              {/* Metric 1 */}
+              <div className="flex items-center justify-center gap-2.5 sm:gap-3 py-1 px-2">
+                <span className="text-xl sm:text-2xl text-amber-400">🏛️</span>
+                <span className="text-xs sm:text-sm font-black text-white tracking-wide">
+                  15+ Banking Partners
+                </span>
+              </div>
 
-            <a
-              href="#partners"
-              className="flex items-center gap-2 p-2 rounded-2xl hover:bg-white/10 transition-colors"
-            >
-              <span className="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center text-base">🏦</span>
-              <span>15+ Partner Banks</span>
-            </a>
+              {/* Metric 2 */}
+              <div className="flex items-center justify-center gap-2.5 sm:gap-3 py-1 px-2">
+                <span className="text-xl sm:text-2xl text-amber-400">📚</span>
+                <span className="text-xs sm:text-sm font-black text-white tracking-wide">
+                  16+ Loan Categories
+                </span>
+              </div>
 
-            <a
-              href="#products"
-              className="flex items-center gap-2 p-2 rounded-2xl hover:bg-white/10 transition-colors"
-            >
-              <span className="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center text-base">💻</span>
-              <span>100% Digital Process</span>
-            </a>
+              {/* Metric 3 */}
+              <div className="flex items-center justify-center gap-2.5 sm:gap-3 py-1 px-2 pt-2 md:pt-1">
+                <span className="text-xl sm:text-2xl text-amber-400">🧑‍💼</span>
+                <span className="text-xs sm:text-sm font-black text-white tracking-wide">
+                  Expert Assistance
+                </span>
+              </div>
 
-            <a
-              href="#products"
-              className="flex items-center gap-2 p-2 rounded-2xl hover:bg-white/10 transition-colors"
-            >
-              <span className="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center text-base">📝</span>
-              <span>Instant Cheque Disbursal</span>
-            </a>
+              {/* Metric 4 */}
+              <div className="flex items-center justify-center gap-2.5 sm:gap-3 py-1 px-2 pt-2 md:pt-1">
+                <span className="text-xl sm:text-2xl text-amber-400">⚡</span>
+                <span className="text-xs sm:text-sm font-black text-white tracking-wide">
+                  Quick In-Principle Decisions
+                </span>
+              </div>
 
-            <a
-              href="#products"
-              className="flex items-center gap-2 p-2 rounded-2xl hover:bg-white/10 transition-colors"
-            >
-              <span className="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center text-base">🪙</span>
-              <span>Gold & Asset Pledge</span>
-            </a>
-
+            </div>
           </div>
 
         </div>
@@ -401,7 +537,165 @@ export default function HeroSection({
       </div>
 
       {/* =========================================================================
-          5. FLOATING ACTION BADGES (WhatsApp on Left & AI Assistant on Right)
+          3. SUB-HERO SECTION: "Find a loan that fits your goals" (Light Background)
+         ========================================================================= */}
+      <div className="bg-[#f4f7fb] text-slate-800 py-10 sm:py-14 px-4 sm:px-6 lg:px-8 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto space-y-7">
+          
+          {/* Section Header */}
+          <div className="flex items-center gap-3">
+            <span className="w-1.5 h-7 sm:h-8 bg-blue-600 rounded-full inline-block"></span>
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+              Find a loan that fits{' '}
+              <span className="text-[#c58a27] underline decoration-amber-400 decoration-4 underline-offset-4">
+                your goals
+              </span>
+            </h2>
+          </div>
+
+          {/* Dual-Panel Grid: 6 Loan Cards (Left) + Compare Loan Options Widget (Right) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
+            
+            {/* -------------------------------------------------------------------
+                LEFT PANEL (8 Cols): 6 WHITE ROUNDED LOAN CARDS (2 rows x 3 cols)
+               ------------------------------------------------------------------- */}
+            <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5">
+              {loanCards.map((card, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => handleAvailLoan(card.title, card.catId)}
+                  className="bg-white rounded-2xl sm:rounded-3xl p-5 border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer flex flex-col justify-between space-y-4"
+                >
+                  <div className="space-y-3">
+                    {/* Icon & Title Row */}
+                    <div className="flex items-center gap-3">
+                      <div className="w-11 h-11 rounded-2xl bg-slate-50 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform shadow-inner">
+                        {card.iconSvg}
+                      </div>
+                      <h3 className="text-base font-black text-slate-900 group-hover:text-blue-600 transition-colors leading-tight">
+                        {card.title}
+                      </h3>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-xs text-slate-500 leading-relaxed font-medium">
+                      {card.description}
+                    </p>
+                  </div>
+
+                  {/* Card Footer: Rate tag & Circular Arrow Button */}
+                  <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+                    <span className="text-[11px] font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full">
+                      {card.rate}
+                    </span>
+                    <span className="w-7 h-7 rounded-full bg-slate-100 group-hover:bg-blue-600 text-slate-600 group-hover:text-white flex items-center justify-center text-xs font-black transition-colors shadow-sm">
+                      ➔
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* -------------------------------------------------------------------
+                RIGHT PANEL (4 Cols): DARK BLUE "COMPARE LOAN OPTIONS" WIDGET
+               ------------------------------------------------------------------- */}
+            <div className="lg:col-span-4 bg-[#0c244d] rounded-3xl p-6 sm:p-7 text-white shadow-xl border border-blue-900/60 flex flex-col justify-between space-y-5">
+              
+              {/* Widget Header */}
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl">📊</span>
+                  <h3 className="text-lg sm:text-xl font-black text-white">
+                    Compare loan options
+                  </h3>
+                </div>
+                <p className="text-xs text-slate-300 font-medium leading-relaxed">
+                  Check interest rates, eligibility and benefits across top banks — all in one place.
+                </p>
+              </div>
+
+              {/* 3 Vibrant Rounded Gradient Action Buttons */}
+              <div className="space-y-3">
+                
+                {/* 1. Personal Loan (Emerald Gradient) */}
+                <button
+                  onClick={() => handleAvailLoan('Personal Loan', 'cat-personal')}
+                  className="w-full p-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white shadow-lg shadow-emerald-900/40 transition-all transform hover:-translate-y-0.5 flex items-center justify-between cursor-pointer group"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-sm font-black">
+                      👤
+                    </div>
+                    <div className="text-left">
+                      <div className="text-xs sm:text-sm font-black">Personal Loan</div>
+                      <div className="text-[11px] text-emerald-100 font-medium">From 10.5% p.a.</div>
+                    </div>
+                  </div>
+                  <span className="w-7 h-7 rounded-full bg-white/20 group-hover:bg-white group-hover:text-emerald-700 flex items-center justify-center text-xs font-black transition-colors">
+                    ➔
+                  </span>
+                </button>
+
+                {/* 2. Business Loan (Magenta / Berry Gradient) */}
+                <button
+                  onClick={() => handleAvailLoan('Business Loan', 'cat-business')}
+                  className="w-full p-3.5 rounded-2xl bg-gradient-to-r from-pink-600 via-fuchsia-600 to-purple-700 hover:from-pink-500 hover:to-purple-600 text-white shadow-lg shadow-fuchsia-900/40 transition-all transform hover:-translate-y-0.5 flex items-center justify-between cursor-pointer group"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-sm font-black">
+                      💼
+                    </div>
+                    <div className="text-left">
+                      <div className="text-xs sm:text-sm font-black">Business Loan</div>
+                      <div className="text-[11px] text-pink-100 font-medium">From 11.5% p.a.</div>
+                    </div>
+                  </div>
+                  <span className="w-7 h-7 rounded-full bg-white/20 group-hover:bg-white group-hover:text-purple-700 flex items-center justify-center text-xs font-black transition-colors">
+                    ➔
+                  </span>
+                </button>
+
+                {/* 3. Doctor Loan (Indigo / Purple Gradient) */}
+                <button
+                  onClick={() => handleAvailLoan('Doctor Loan', 'cat-professional')}
+                  className="w-full p-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-700 hover:from-indigo-500 hover:to-purple-600 text-white shadow-lg shadow-indigo-900/40 transition-all transform hover:-translate-y-0.5 flex items-center justify-between cursor-pointer group"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-sm font-black">
+                      🩺
+                    </div>
+                    <div className="text-left">
+                      <div className="text-xs sm:text-sm font-black">Doctor Loan</div>
+                      <div className="text-[11px] text-indigo-100 font-medium">Special APR</div>
+                    </div>
+                  </div>
+                  <span className="w-7 h-7 rounded-full bg-white/20 group-hover:bg-white group-hover:text-indigo-700 flex items-center justify-center text-xs font-black transition-colors">
+                    ➔
+                  </span>
+                </button>
+
+              </div>
+
+              {/* Bottom Supermarket Footnote */}
+              <div className="pt-3 border-t border-white/10 text-center">
+                <a
+                  href="#products"
+                  className="text-xs text-amber-300 hover:text-amber-200 font-bold flex items-center justify-center gap-1.5 transition-colors"
+                >
+                  <span>🛒 View All 16+ Categories in Supermarket</span>
+                  <span>»</span>
+                </a>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      {/* =========================================================================
+          4. FLOATING ACTION BADGES (WhatsApp on Left & AI Assistant on Right)
          ========================================================================= */}
       
       {/* Floating WhatsApp Desk on Bottom Left */}
@@ -433,7 +727,7 @@ export default function HeroSection({
       </div>
 
       {/* =========================================================================
-          6. MODAL: JOIN AS FREELANCER / DSA PARTNER
+          5. MODAL: JOIN AS FREELANCER / DSA PARTNER
          ========================================================================= */}
       {partnerModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">

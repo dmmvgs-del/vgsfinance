@@ -1,12 +1,23 @@
 // SDLC Step 6 – Automated End-to-End Test Suite for VGS Finance
 // Tests Backend APIs, Form Validations, Loan Lifecycle, Follow-up, and Financial Institution Routing
 
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = 'http://127.0.0.1:5000';
 
 async function runTests() {
   console.log('====================================================');
   console.log('🧪 RUNNING SDLC STEP 6 AUTOMATED VERIFICATION SUITE');
   console.log('====================================================\n');
+
+  // Ensure server is up (in-process fallback if not reachable in sandbox)
+  let activeServer = null;
+  try {
+    const check = await fetch(`${BASE_URL}/api/health`);
+    if (!check.ok) throw new Error();
+  } catch (err) {
+    console.log('🔄 Bootstrapping in-process server for verification suite...');
+    const { startServer } = require('../backend/server.js');
+    activeServer = await startServer();
+  }
 
   let passed = 0;
   let failed = 0;
@@ -357,7 +368,12 @@ async function runTests() {
   console.log(`📊 TEST RESULTS: ${passed} PASSED, ${failed} FAILED`);
   console.log('====================================================\n');
 
+  if (activeServer) {
+    activeServer.close();
+  }
+
   if (failed > 0) process.exit(1);
+  process.exit(0);
 }
 
 runTests();

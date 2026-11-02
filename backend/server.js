@@ -1050,8 +1050,11 @@ async function startServer() {
   try {
     console.log('🔄 Initializing database and synchronizing tables/columns...');
     await initDB();
-    app.listen(PORT, () => {
-      console.log(`🏦 VGS Finance Lead Management Server running on http://localhost:${PORT}`);
+    return new Promise((resolve) => {
+      const server = app.listen(PORT, () => {
+        console.log(`🏦 VGS Finance Lead Management Server running on http://localhost:${PORT}`);
+        resolve(server);
+      });
     });
   } catch (err) {
     console.error('❌ Failed to start server:', err);
@@ -1059,4 +1062,8 @@ async function startServer() {
   }
 }
 
-startServer();
+if (require.main === module) {
+  startServer();
+}
+
+module.exports = { app, startServer, initDB };
