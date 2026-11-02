@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { API_BASE_URL } from '../config/api';
 
 export default function AdminDashboard({ onSwitchToWebsite }) {
   // Admin Authentication State
@@ -111,14 +112,14 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
     setLoading(true);
     try {
       const [leadsRes, prodsRes, catsRes, partnersRes, reportsRes, custRes, adminsRes, contentRes] = await Promise.all([
-        fetch('http://localhost:5000/api/leads'),
-        fetch('http://localhost:5000/api/products'),
-        fetch('http://localhost:5000/api/categories'),
-        fetch('http://localhost:5000/api/partners'),
-        fetch('http://localhost:5000/api/reports/summary'),
-        fetch('http://localhost:5000/api/customers'),
-        fetch('http://localhost:5000/api/admin/users'),
-        fetch('http://localhost:5000/api/content')
+        fetch(`${API_BASE_URL}/api/leads`),
+        fetch(`${API_BASE_URL}/api/products`),
+        fetch(`${API_BASE_URL}/api/categories`),
+        fetch(`${API_BASE_URL}/api/partners`),
+        fetch(`${API_BASE_URL}/api/reports/summary`),
+        fetch(`${API_BASE_URL}/api/customers`),
+        fetch(`${API_BASE_URL}/api/admin/users`),
+        fetch(`${API_BASE_URL}/api/content`)
       ]);
 
       if (leadsRes.ok) setLeads((await leadsRes.json()).data);
@@ -141,7 +142,7 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
     setAuthLoading(true);
     setAuthError('');
     try {
-      const res = await fetch('http://localhost:5000/api/auth/login', {
+      const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(authForm)
@@ -176,7 +177,7 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
   // Phase 4: Maintain Customer Enquiry Status
   const handleUpdateStatus = async (leadId, newStatus) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/leads/${leadId}/status`, {
+      const res = await fetch(`${API_BASE_URL}/api/leads/${leadId}/status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus })
@@ -193,7 +194,7 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
     if (!selectedLead || !followUpNotes) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/leads/${selectedLead.id}/follow-up`, {
+      const res = await fetch(`${API_BASE_URL}/api/leads/${selectedLead.id}/follow-up`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -218,7 +219,7 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
   const handleCreateProduct = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/products', {
+      const res = await fetch(`${API_BASE_URL}/api/products`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newProductForm)
@@ -235,7 +236,7 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
   const handleCreateCategory = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/categories', {
+      const res = await fetch(`${API_BASE_URL}/api/categories`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newCategoryForm)
@@ -252,7 +253,7 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
   const handleCreatePartner = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/partners', {
+      const res = await fetch(`${API_BASE_URL}/api/partners`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newPartnerForm)
@@ -269,7 +270,7 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
   const handleDeletePartner = async (id) => {
     if (!confirm('Are you sure you want to remove this partner institution?')) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/partners/${id}`, { method: 'DELETE' });
+      const res = await fetch(`${API_BASE_URL}/api/partners/${id}`, { method: 'DELETE' });
       if (res.ok) fetchAdminData();
     } catch (err) {
       console.error('Delete partner error:', err);
@@ -279,7 +280,7 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
   const handleCreateAdmin = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/admin/users', {
+      const res = await fetch(`${API_BASE_URL}/api/admin/users`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newAdminForm)
@@ -299,7 +300,7 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
 
   const handleToggleAdminStatus = async (id, currentStatus) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/admin/users/${id}/status`, {
+      const res = await fetch(`${API_BASE_URL}/api/admin/users/${id}/status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ isActive: !currentStatus })
@@ -313,7 +314,7 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
   const handleSaveWebContent = async (key, updatedContent) => {
     try {
       setCmsSaveStatus('Saving changes...');
-      const res = await fetch(`http://localhost:5000/api/content/${key}`, {
+      const res = await fetch(`${API_BASE_URL}/api/content/${key}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ content: updatedContent })
@@ -331,7 +332,7 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
   const handleTestOtpSend = async () => {
     try {
       setOtpVerifyResult(null);
-      const res = await fetch('http://localhost:5000/api/otp/send', {
+      const res = await fetch(`${API_BASE_URL}/api/otp/send`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ phone: otpTestPhone, purpose: 'ADMIN_DESK_TEST' })
@@ -346,7 +347,7 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
 
   const handleTestOtpVerify = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/otp/verify', {
+      const res = await fetch(`${API_BASE_URL}/api/otp/verify`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ phone: otpTestPhone, otp: otpVerifyCode })
@@ -360,7 +361,7 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
 
   const handleTestWhatsApp = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/notifications/whatsapp-business', {
+      const res = await fetch(`${API_BASE_URL}/api/notifications/whatsapp-business`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -378,7 +379,7 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
 
   const handleTestEmail = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/notifications/email-dispatch', {
+      const res = await fetch(`${API_BASE_URL}/api/notifications/email-dispatch`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -397,7 +398,7 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
 
   const handleTestCibil = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/financial/check-cibil', {
+      const res = await fetch(`${API_BASE_URL}/api/financial/check-cibil`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ pan: cibilTestPan, phone: '+91 99887 76655', fullName: 'Raghavendra Rao' })
@@ -411,7 +412,7 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
 
   const handleTestPan = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/financial/verify-pan', {
+      const res = await fetch(`${API_BASE_URL}/api/financial/verify-pan`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ panNumber: panTestNumber, expectedName: 'Raghavendra Rao' })
@@ -425,7 +426,7 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
 
   const handleTestBank = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/financial/verify-bank', {
+      const res = await fetch(`${API_BASE_URL}/api/financial/verify-bank`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ accountNumber: bankTestAcc, ifscCode: bankTestIfsc, accountHolderName: 'Raghavendra Rao' })
@@ -463,7 +464,7 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
     if (!bankRoutingLead) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/leads/${bankRoutingLead.id}/assign-bank`, {
+      const res = await fetch(`${API_BASE_URL}/api/leads/${bankRoutingLead.id}/assign-bank`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(bankRoutingForm)

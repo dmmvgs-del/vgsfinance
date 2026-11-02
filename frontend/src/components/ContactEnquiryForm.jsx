@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { API_BASE_URL } from '../config/api';
 
 export default function ContactEnquiryForm({ selectedProduct, prefillData, onLeadSubmitted }) {
   const [formData, setFormData] = useState({
@@ -45,7 +46,7 @@ export default function ContactEnquiryForm({ selectedProduct, prefillData, onLea
     setErrorMessage(null);
 
     try {
-      const res = await fetch('http://localhost:5000/api/leads', {
+      const res = await fetch(`${API_BASE_URL}/api/leads`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

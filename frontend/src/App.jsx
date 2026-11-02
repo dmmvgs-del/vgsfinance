@@ -17,6 +17,7 @@ import ContactEnquiryForm from './components/ContactEnquiryForm';
 import AboutCompany from './components/AboutCompany';
 import AdminDashboard from './components/AdminDashboard';
 import LoanDetailsPage from './components/LoanDetailsPage';
+import { API_BASE_URL } from './config/api';
 
 function App() {
   const [currentView, setCurrentView] = useState('website'); // 'website' | 'admin'
@@ -35,7 +36,7 @@ function App() {
   // Fetch landing page bundle
   const fetchLandingData = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/public/landing-data');
+      const res = await fetch(`${API_BASE_URL}/api/public/landing-data`);
       if (res.ok) {
         const json = await res.json();
         setLandingData(json.data);

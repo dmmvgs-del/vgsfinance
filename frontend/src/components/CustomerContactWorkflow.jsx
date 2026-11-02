@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { API_BASE_URL } from '../config/api';
 
 const workflowSteps = [
   {
@@ -66,7 +67,7 @@ export default function CustomerContactWorkflow({ onSelectProductClick }) {
     setTrackedLead(null);
 
     try {
-      const res = await fetch(`http://localhost:5000/api/leads/track/${encodeURIComponent(searchQuery.trim())}`);
+      const res = await fetch(`${API_BASE_URL}/api/leads/track/${encodeURIComponent(searchQuery.trim())}`);
       const json = await res.json();
 
       if (res.ok && json.success) {

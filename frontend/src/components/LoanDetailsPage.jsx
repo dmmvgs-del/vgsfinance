@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { API_BASE_URL } from '../config/api';
 
 export default function LoanDetailsPage({
   product,
@@ -117,7 +118,7 @@ export default function LoanDetailsPage({
     if (!quickName || !quickPhone) return;
     
     // Fire to backend lead creation API
-    fetch('http://localhost:5000/api/leads', {
+    fetch(`${API_BASE_URL}/api/leads`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
