@@ -20,7 +20,14 @@ import LoanDetailsPage from './components/LoanDetailsPage';
 import { API_BASE_URL } from './config/api';
 
 function App() {
-  const [currentView, setCurrentView] = useState('website'); // 'website' | 'admin'
+  const [currentView, setCurrentView] = useState(() => {
+    if (typeof window !== 'undefined') {
+      if (window.location.hash === '#admin' || window.location.search.includes('view=admin')) {
+        return 'admin';
+      }
+    }
+    return 'website';
+  });
   const [landingData, setLandingData] = useState({
     categories: [],
     products: [],
@@ -32,6 +39,30 @@ function App() {
   const [prefillData, setPrefillData] = useState(null);
   const [selectedCategoryFilter, setSelectedCategoryFilter] = useState('all');
   const [searchFilterData, setSearchFilterData] = useState(null);
+
+  // Sync hash changes with currentView
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === '#admin') {
+        setCurrentView('admin');
+      } else if (window.location.hash === '#website' || window.location.hash === '') {
+        setCurrentView('website');
+      }
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const handleSwitchView = (view) => {
+    setCurrentView(view);
+    if (view === 'admin') {
+      window.location.hash = 'admin';
+    } else {
+      if (window.location.hash === '#admin') {
+        window.location.hash = '';
+      }
+    }
+  };
 
   // Fetch landing page bundle
   const fetchLandingData = async () => {
