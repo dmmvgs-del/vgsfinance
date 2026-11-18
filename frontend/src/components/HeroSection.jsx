@@ -10,6 +10,8 @@ import cardPersonalLoan from '../assets/card-personal-loan.jpg';
 import cardBusinessLoan from '../assets/card-business-loan.jpg';
 import cardEducationLoan from '../assets/card-education-loan.jpg';
 import cardPropertyLoan from '../assets/card-property-loan.jpg';
+import cardCarLoan from '../assets/card-car-loan.jpg';
+import cardGoldLoan from '../assets/card-gold-loan.jpg';
 
 export default function HeroSection({
   onApplyClick,
@@ -364,6 +366,35 @@ export default function HeroSection({
           <path d="M35 30L37 32L41 27" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       )
+    },
+    {
+      title: 'Car & Vehicle Loan',
+      description: 'Drive home your dream car or two-wheeler with 90% on-road funding, zero foreclosure charges, and fast 24-hour sanctions.',
+      catId: 'cat-vehicle',
+      imgSrc: cardCarLoan,
+      iconSvg: (
+        <svg className="w-12 h-12" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="28" cy="28" r="22" fill="#E0F2FE" />
+          <path d="M16 34L20 24H36L40 34H16Z" fill="#0A5C80" />
+          <circle cx="21" cy="36" r="4" fill="#041E2B" />
+          <circle cx="35" cy="36" r="4" fill="#041E2B" />
+          <rect x="23" y="26" width="10" height="5" rx="1" fill="#7DD3FC" />
+        </svg>
+      )
+    },
+    {
+      title: 'Gold Loan',
+      description: 'Get immediate high-value cash against gold jewelry with doorstep evaluation, lowest per-gram interest rates, and bank-grade vault security.',
+      catId: 'cat-gold',
+      imgSrc: cardGoldLoan,
+      iconSvg: (
+        <svg className="w-12 h-12" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="28" cy="28" r="22" fill="#FEF3C7" />
+          <rect x="18" y="24" width="20" height="12" rx="2" fill="#F59E0B" />
+          <circle cx="28" cy="20" r="6" fill="#FBBF24" stroke="#D97706" strokeWidth="1.5" />
+          <text x="28" y="24" textAnchor="middle" fill="#78350F" fontSize="8" fontWeight="bold">₹</text>
+        </svg>
+      )
     }
   ];
 
@@ -657,16 +688,16 @@ export default function HeroSection({
             </p>
           </div>
 
-          {/* 6 Loan Cards Grid (Centered Clean Design matching media_1794984519245_3f603f31.png) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+          {/* Loan Cards Grid (4 Cards Per Row: 2 Rows x 4 Columns) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 items-stretch">
             {loanCards.map((card, idx) => (
               <div
                 key={idx}
                 onClick={() => handleAvailLoan(card.title, card.catId)}
-                className="bg-white rounded-3xl sm:rounded-[32px] p-7 sm:p-9 shadow-md shadow-slate-200/50 hover:shadow-2xl hover:shadow-slate-300/60 hover:-translate-y-2 transition-all duration-300 border border-slate-100/90 flex flex-col items-center text-center cursor-pointer group"
+                className="bg-white rounded-3xl p-6 sm:p-7 shadow-md shadow-slate-200/50 hover:shadow-2xl hover:shadow-slate-300/60 hover:-translate-y-2 transition-all duration-300 border border-slate-100/90 flex flex-col items-center text-center cursor-pointer group"
               >
                 {/* Centered Large Friendly 3D Illustration Icon */}
-                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl flex items-center justify-center mb-5 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl flex items-center justify-center mb-4 sm:mb-5 group-hover:scale-110 transition-transform duration-300">
                   {card.imgSrc ? (
                     <img
                       src={card.imgSrc}
@@ -679,12 +710,12 @@ export default function HeroSection({
                 </div>
 
                 {/* Centered Bold Title */}
-                <h3 className="text-lg sm:text-xl font-black text-[#041E2B] group-hover:text-[#0A5C80] transition-colors mb-2.5 text-center leading-snug">
+                <h3 className="text-base sm:text-lg font-black text-[#041E2B] group-hover:text-[#0A5C80] transition-colors mb-2 text-center leading-snug">
                   {card.title}
                 </h3>
 
                 {/* Centered Description Paragraph */}
-                <p className="text-xs sm:text-sm text-slate-500 leading-relaxed font-normal text-center max-w-xs">
+                <p className="text-xs sm:text-[13px] text-slate-500 leading-relaxed font-normal text-center">
                   {card.description}
                 </p>
               </div>
