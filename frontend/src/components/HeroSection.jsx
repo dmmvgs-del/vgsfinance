@@ -293,24 +293,6 @@ export default function HeroSection({
 
         <div className="max-w-7xl mx-auto relative z-10">
 
-          {/* 5 LOAN CATEGORY SELECTOR PILLS (Home, Education, Business, Health, Personal) */}
-          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-2.5 mb-8">
-            {carouselSlides.map((slide, idx) => (
-              <button
-                key={slide.id}
-                onClick={() => setActiveSlide(idx)}
-                className={`px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer flex items-center gap-2 shadow-sm ${
-                  activeSlide === idx
-                    ? 'bg-[#0A5C80] text-white shadow-md shadow-[#0A5C80]/30 scale-105 ring-2 ring-[#0A5C80]/40'
-                    : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200/90'
-                }`}
-              >
-                <span className="text-base">{slide.icon}</span>
-                <span>{slide.name}</span>
-              </button>
-            ))}
-          </div>
-
           {/* MAIN 2-COLUMN HERO GRID */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
 
