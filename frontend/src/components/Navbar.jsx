@@ -25,7 +25,7 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
          ========================================================================= */}
       <div className="bg-[#041E2B] text-slate-300 text-xs border-b border-[#0A5C80]/30 font-sans relative z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center py-2 gap-2">
-          
+
           <div className="hidden md:flex items-center gap-2 text-[11px] text-[#6EA928] font-bold">
             <span className="w-2 h-2 rounded-full bg-[#6EA928] animate-pulse"></span>
             <span>India's Leading Multi-Bank Loan Supermarket & Financial Services</span>
@@ -62,7 +62,7 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
       <header className="sticky top-0 z-50 shadow-xl font-sans bg-[#061D28]/95 backdrop-blur-md border-b border-[#0A5C80]/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            
+
             {/* Left: Brand Logo & Title */}
             <div
               className="flex items-center gap-3 cursor-pointer select-none"
@@ -87,15 +87,30 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
 
             {/* Desktop Navigation Links */}
             <div className="hidden lg:flex items-center gap-7 text-xs font-bold text-slate-200">
-              
+
               <a
                 href="#hero"
-                className="hover:text-[#6EA928] transition-colors py-2 border-b-2 border-[#6EA928] text-[#6EA928]"
+                onClick={(e) => {
+                  if (currentView !== 'website') {
+                    e.preventDefault();
+                    setCurrentView('website');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }
+                }}
+                className={`hover:text-[#6EA928] transition-colors py-2 ${
+                  currentView === 'website' ? 'border-b-2 border-[#6EA928] text-[#6EA928]' : ''
+                }`}
               >
                 Home
               </a>
 
-              <a href="#about" className="hover:text-[#6EA928] transition-colors py-2">
+              <a
+                href="#about"
+                onClick={() => {
+                  if (currentView !== 'website') setCurrentView('website');
+                }}
+                className="hover:text-[#6EA928] transition-colors py-2"
+              >
                 About us
               </a>
 
@@ -107,7 +122,13 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
               >
                 <button
                   type="button"
-                  className="hover:text-[#6EA928] transition-colors py-2 flex items-center gap-1 cursor-pointer"
+                  onClick={() => {
+                    setCurrentView('services');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className={`hover:text-[#6EA928] transition-colors py-2 flex items-center gap-1 cursor-pointer ${
+                    currentView === 'services' ? 'border-b-2 border-[#6EA928] text-[#6EA928]' : ''
+                  }`}
                 >
                   <span>Services</span>
                   <span className="text-[10px] text-[#6EA928]">▼</span>
@@ -115,16 +136,30 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
 
                 {servicesDropdownOpen && (
                   <div className="absolute top-full left-0 w-64 bg-[#041E2B] border border-[#0A5C80]/40 rounded-2xl p-2.5 shadow-2xl space-y-1 z-50">
+                    <button
+                      onClick={() => {
+                        setServicesDropdownOpen(false);
+                        setCurrentView('services');
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className="w-full text-left flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold text-[#6EA928] hover:bg-[#0A5C80]/30 transition-colors cursor-pointer border-b border-slate-700/50 pb-2 mb-1"
+                    >
+                      <span>🌟</span>
+                      <span>View All 16+ Categories ➔</span>
+                    </button>
                     {loanServices.map((srv, idx) => (
-                      <a
+                      <button
                         key={idx}
-                        href={srv.href}
-                        onClick={() => setServicesDropdownOpen(false)}
-                        className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs text-slate-300 hover:text-white hover:bg-[#0A5C80]/30 transition-colors"
+                        onClick={() => {
+                          setServicesDropdownOpen(false);
+                          setCurrentView('services');
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                        className="w-full text-left flex items-center gap-2 px-3 py-2 rounded-xl text-xs text-slate-300 hover:text-white hover:bg-[#0A5C80]/30 transition-colors cursor-pointer"
                       >
                         <span className="text-base">{srv.icon}</span>
                         <span>{srv.name}</span>
-                      </a>
+                      </button>
                     ))}
                   </div>
                 )}
@@ -211,9 +246,38 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
           <div className="lg:hidden border-t border-[#0A5C80]/30 bg-[#061D28] px-4 py-4 space-y-3">
-            <a href="#hero" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-sm text-[#6EA928] font-bold">Home</a>
-            <a href="#about" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-sm text-slate-300 font-medium">About us</a>
-            <a href="#featured-products" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-sm text-slate-300 font-medium">Services & Products</a>
+            <a
+              href="#hero"
+              onClick={(e) => {
+                e.preventDefault();
+                setMobileMenuOpen(false);
+                setCurrentView('website');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="block py-2 text-sm text-[#6EA928] font-bold"
+            >
+              Home
+            </a>
+            <a
+              href="#about"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                if (currentView !== 'website') setCurrentView('website');
+              }}
+              className="block py-2 text-sm text-slate-300 font-medium"
+            >
+              About us
+            </a>
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setCurrentView('services');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="block w-full text-left py-2 text-sm text-slate-300 font-medium hover:text-[#6EA928]"
+            >
+              Services & All Loan Categories
+            </button>
             <a href="#emi-calc" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-sm text-slate-300 font-medium">EMI Calculator</a>
             <a href="#contact-enquiry" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-sm text-slate-300 font-medium">Contact us</a>
             <div className="pt-2 flex flex-col gap-2">

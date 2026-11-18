@@ -17,7 +17,8 @@ export default function HeroSection({
   onApplyClick,
   onCalcClick,
   onSelectCategory,
-  onSelectProduct
+  onSelectProduct,
+  onGoToServices
 }) {
   const [partnerModalOpen, setPartnerModalOpen] = useState(false);
   const [partnerFormData, setPartnerFormData] = useState({
@@ -604,11 +605,7 @@ export default function HeroSection({
             </div>
 
           </div>
-
-
-
         </div>
-
       </div>
 
       {/* =========================================================================
@@ -722,7 +719,19 @@ export default function HeroSection({
             ))}
           </div>
 
-
+          {/* Explore All Services & Loan Categories Button */}
+          <div className="text-center pt-8 sm:pt-10">
+            <button
+              onClick={() => {
+                if (onGoToServices) onGoToServices();
+                else window.location.hash = 'services';
+              }}
+              className="inline-flex items-center gap-3 px-8 sm:px-10 py-3.5 sm:py-4 rounded-full bg-[#0A5C80] hover:bg-[#6EA928] text-white font-black text-sm sm:text-base transition-all duration-300 shadow-xl shadow-[#0A5C80]/20 hover:shadow-[#6EA928]/35 hover:-translate-y-1 cursor-pointer group"
+            >
+              <span>Explore All Services & Loan Categories</span>
+              <span className="text-lg group-hover:translate-x-1.5 transition-transform duration-300">➔</span>
+            </button>
+          </div>
 
         </div>
       </div>

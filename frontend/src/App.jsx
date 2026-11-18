@@ -15,6 +15,7 @@ import ContactEnquiryForm from './components/ContactEnquiryForm';
 import AboutCompany from './components/AboutCompany';
 import AdminDashboard from './components/AdminDashboard';
 import LoanDetailsPage from './components/LoanDetailsPage';
+import ServicesPage from './components/ServicesPage';
 import { API_BASE_URL } from './config/api';
 import logoImg from './assets/Logo.jpeg';
 
@@ -23,6 +24,9 @@ function App() {
     if (typeof window !== 'undefined') {
       if (window.location.hash === '#admin' || window.location.search.includes('view=admin')) {
         return 'admin';
+      }
+      if (window.location.hash === '#services' || window.location.search.includes('view=services')) {
+        return 'services';
       }
     }
     return 'website';
@@ -44,8 +48,11 @@ function App() {
     const handleHashChange = () => {
       if (window.location.hash === '#admin') {
         setCurrentView('admin');
-      } else if (window.location.hash === '#website' || window.location.hash === '') {
-        setCurrentView('website');
+      } else if (window.location.hash === '#services') {
+        setCurrentView('services');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (window.location.hash === '#website' || window.location.hash === '' || (!window.location.hash.includes('admin') && !window.location.hash.includes('services'))) {
+        setCurrentView((prev) => (prev === 'admin' || prev === 'services' ? 'website' : prev));
       }
     };
     window.addEventListener('hashchange', handleHashChange);
@@ -56,10 +63,14 @@ function App() {
     setCurrentView(view);
     if (view === 'admin') {
       window.location.hash = 'admin';
+    } else if (view === 'services') {
+      window.location.hash = 'services';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      if (window.location.hash === '#admin') {
+      if (window.location.hash === '#admin' || window.location.hash === '#services') {
         window.location.hash = '';
       }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -131,6 +142,21 @@ function App() {
     return <AdminDashboard onSwitchToWebsite={() => handleSwitchView('website')} />;
   }
 
+  // If Services view is active
+  if (currentView === 'services') {
+    return (
+      <ServicesPage
+        categories={landingData.categories || []}
+        products={landingData.products || []}
+        onSwitchToHome={() => handleSwitchView('website')}
+        onSwitchToAdmin={() => handleSwitchView('admin')}
+        onSelectProduct={handleSelectProduct}
+        onApplyClick={handleApplyClick}
+        onLeadSubmitted={fetchLandingData}
+      />
+    );
+  }
+
   // Public Landing Website view (Home Page Scope)
   return (
     <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-[#6EA928] selection:text-white">
@@ -151,6 +177,7 @@ function App() {
           onCalcClick={() => scrollToSection('emi-calc')}
           onSelectCategory={handleCategorySelect}
           onSelectProduct={handleSelectProduct}
+          onGoToServices={() => handleSwitchView('services')}
         />
 
         {/* 2. Loan Search / Enquiry Section */}
