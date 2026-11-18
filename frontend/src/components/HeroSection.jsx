@@ -265,32 +265,6 @@ export default function HeroSection({
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
-        {/* Abstract Flowing Organic Curved Ribbons in Company Logo Colors (#6EA928 & #0A5C80) */}
-        <svg
-          className="absolute left-0 bottom-10 w-72 sm:w-[480px] h-36 pointer-events-none opacity-80 z-0"
-          viewBox="0 0 500 160"
-          fill="none"
-        >
-          <path
-            d="M -40,130 C 80,40 180,140 320,60 C 420,0 480,50 540,30"
-            stroke="#6EA928"
-            strokeWidth="3.5"
-            strokeLinecap="round"
-          />
-        </svg>
-        <svg
-          className="absolute right-0 top-1/2 -translate-y-12 sm:-translate-y-16 w-72 sm:w-[500px] h-40 pointer-events-none opacity-80 z-0"
-          viewBox="0 0 500 160"
-          fill="none"
-        >
-          <path
-            d="M 60,60 C 160,20 280,110 380,70 C 440,40 480,90 540,75"
-            stroke="#0A5C80"
-            strokeWidth="3.5"
-            strokeLinecap="round"
-          />
-        </svg>
-
         <div className="max-w-7xl mx-auto relative z-10">
 
           {/* MAIN 2-COLUMN HERO GRID */}
@@ -343,12 +317,60 @@ export default function HeroSection({
             </div>
 
             {/* -----------------------------------------------------------------
-                RIGHT COLUMN (5 cols): LOGO BRAND COLORS OVAL PHOTO FRAME WITH HIGHLIGHTED TOP CURVE
+                RIGHT COLUMN (5 cols): LOGO BRAND COLORS OVAL PHOTO FRAME WITH FLANKING CURVES
                ----------------------------------------------------------------- */}
             <div className="lg:col-span-5 flex flex-col items-center justify-center relative">
 
+              {/* Decorative Flanking Curved Lines (ONLY FOR THE IMAGE - As Circled in Reference) */}
+
+              {/* Left Flanking Curved Lines (Green #6EA928 Duo) */}
+              <svg
+                className="absolute -left-6 sm:-left-12 md:-left-16 top-1/2 -translate-y-8 sm:-translate-y-4 w-28 sm:w-40 md:w-48 h-48 sm:h-60 pointer-events-none z-0"
+                viewBox="0 0 160 220"
+                fill="none"
+              >
+                {/* Primary Left Curved Line */}
+                <path
+                  d="M 155,65 C 120,115 70,165 15,188"
+                  stroke="#6EA928"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                />
+                {/* Secondary Left Parallel Curved Line */}
+                <path
+                  d="M 142,30 C 105,80 55,128 8,148"
+                  stroke="#6EA928"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                  opacity="0.8"
+                />
+              </svg>
+
+              {/* Right Flanking Curved Lines (Teal Blue #0A5C80 & Green #6EA928 Duo) */}
+              <svg
+                className="absolute -right-6 sm:-right-12 md:-right-16 top-1/2 -translate-y-24 sm:-translate-y-20 w-28 sm:w-40 md:w-48 h-48 sm:h-60 pointer-events-none z-0"
+                viewBox="0 0 170 200"
+                fill="none"
+              >
+                {/* Primary Right Curved Line (Connects to Oval Mid-Right Edge) */}
+                <path
+                  d="M 5,95 C 45,98 85,55 155,18"
+                  stroke="#0A5C80"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                />
+                {/* Secondary Right Curved Line */}
+                <path
+                  d="M 22,130 C 65,130 105,85 165,38"
+                  stroke="#6EA928"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                  opacity="0.85"
+                />
+              </svg>
+
               {/* The Soft Oval Ring Frame with Highlighted Top Curve (Matches Reference Image) */}
-              <div className="relative w-80 h-64 sm:w-[420px] sm:h-[340px] md:w-[480px] md:h-[390px] rounded-[50%] pt-6 sm:pt-7 md:pt-8 px-3.5 sm:px-4 md:px-5 pb-2.5 sm:pb-3 bg-gradient-to-tr from-[#0A5C80] via-[#0E7490] to-[#6EA928] shadow-2xl shadow-[#0A5C80]/30 transition-transform duration-500 hover:scale-[1.02]">
+              <div className="relative z-10 w-80 h-64 sm:w-[420px] sm:h-[340px] md:w-[480px] md:h-[390px] rounded-[50%] pt-6 sm:pt-7 md:pt-8 px-3.5 sm:px-4 md:px-5 pb-2.5 sm:pb-3 bg-gradient-to-tr from-[#0A5C80] via-[#0E7490] to-[#6EA928] shadow-2xl shadow-[#0A5C80]/30 transition-transform duration-500 hover:scale-[1.02]">
 
                 {/* Top Curve Highlight Arc / Sheen */}
                 <div className="absolute top-1 sm:top-1.5 left-1/4 right-1/4 h-1.5 sm:h-2 bg-white/40 rounded-full blur-[0.5px] pointer-events-none"></div>
