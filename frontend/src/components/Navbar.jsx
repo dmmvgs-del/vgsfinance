@@ -18,12 +18,12 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
   ];
 
   return (
-    <header className="font-sans relative">
-      
+    <>
       {/* =========================================================================
           1. TOP UTILITY BAR (Non-Sticky Announcement / Contact Info Banner)
+             Scrolls away naturally with the page as requested
          ========================================================================= */}
-      <div className="bg-[#041E2B] text-slate-300 text-xs border-b border-[#0A5C80]/30">
+      <div className="bg-[#041E2B] text-slate-300 text-xs border-b border-[#0A5C80]/30 font-sans relative z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center py-2 gap-2">
           
           <div className="hidden md:flex items-center gap-2 text-[11px] text-[#6EA928] font-bold">
@@ -57,9 +57,9 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
       </div>
 
       {/* =========================================================================
-          2. MAIN NAVIGATION BAR (Sticky to Top of Viewport)
+          2. MAIN NAVIGATION BAR (Sticky to Top of Viewport Across Entire Website)
          ========================================================================= */}
-      <nav className="sticky top-0 z-50 bg-[#061D28]/95 backdrop-blur-md border-b border-[#0A5C80]/30 shadow-xl">
+      <header className="sticky top-0 z-50 shadow-xl font-sans bg-[#061D28]/95 backdrop-blur-md border-b border-[#0A5C80]/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             
@@ -239,7 +239,7 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
           </div>
         )}
 
-      </nav>
-    </header>
+      </header>
+    </>
   );
 }
