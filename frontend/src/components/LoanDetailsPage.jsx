@@ -55,6 +55,639 @@ const defaultHealthcareSubOptions = [
   }
 ];
 
+// Rich Category Loan Profiles Registry (Ensures every loan category has authentic sub-options, rates, features & checklists)
+const categoryLoanProfiles = {
+  'cat-doctor': {
+    name: 'Doctor & Medical Loan Solutions',
+    tagline: 'Specialized financing for doctors, emergency medical treatments, health insurance bills, and clinic setups.',
+    categoryName: 'Doctor & Medical Loan',
+    icon: '🩺',
+    rate: 9.50,
+    minAmount: 50000,
+    maxAmount: 20000000,
+    minTenure: 12,
+    maxTenure: 84,
+    processingFee: '0.75% + GST',
+    turnaround: '2 - 24 Hours',
+    features: [
+      'Fast 2-hour hospital clearance & direct hospital NEFT disbursal',
+      'Covers health insurance co-pays, deductibles & non-covered therapies',
+      'Special high-ticket unsecured capital up to ₹75 Lakhs for Doctors & Dentists',
+      'Up to 85% machinery invoice financing up to ₹2 Crores for medical diagnostic equipment',
+      'Minimal documentation with paperless digital KYC verification',
+      'Flexible repayment tenures from 12 to 84 months with zero prepayment penalties'
+    ],
+    eligibility: {
+      minAge: 21,
+      maxAge: 68,
+      minIncome: 25000,
+      employmentType: 'Salaried, Self-Employed & Registered Doctors',
+      minCibilScore: 680
+    },
+    documents: [
+      'Aadhaar Card, PAN Card & Current Address Proof',
+      'Hospital Admission Estimate / Proforma Invoice / Medical Treatment Bills',
+      'Last 6 Months Bank Statement & Latest 3 Months Salary Slips (for salaried)',
+      'Medical Degree / MCI / DCI State Registration Certificate (for Doctor loans)',
+      'Equipment Quotation / Proforma Invoice from authorized OEM dealer (for Equipment loans)'
+    ],
+    subOptions: defaultHealthcareSubOptions
+  },
+  'cat-home': {
+    name: 'Home & Housing Loan Solutions',
+    tagline: 'Explore tailored home financing solutions across 15+ partner banks with subsidized rates and flexible 30-year tenures.',
+    categoryName: 'Home Loan',
+    icon: '🏠',
+    rate: 8.40,
+    minAmount: 500000,
+    maxAmount: 50000000,
+    minTenure: 12,
+    maxTenure: 360,
+    processingFee: '0.50% + GST',
+    turnaround: '24 - 48 Hours',
+    features: [
+      'Affordable interest rates starting from 8.40% p.a. with 15+ partner banks',
+      'Flexible loan repayment tenures extending up to 30 years (360 months)',
+      'High sanction quantum up to ₹ 5 Crores with up to 90% property value funding',
+      'PMAY interest subsidy benefits and tax deductions under Section 80C & 24(b)',
+      'Special home loan balance transfer facility with instant cash top-up',
+      'Minimal documentation with door-step legal verification and fast sanction'
+    ],
+    eligibility: {
+      minAge: 21,
+      maxAge: 65,
+      minIncome: 25000,
+      employmentType: 'Salaried, Self-Employed Professionals & Business Owners',
+      minCibilScore: 700
+    },
+    documents: [
+      'Aadhaar Card, PAN Card & Passport-size Photographs',
+      'Last 6 Months Bank Account Statements (all active accounts)',
+      'Latest 3 Months Salary Slips & Form 16 / 2 Years ITR with Computations',
+      'Registered Sale Agreement / Allotment Letter from Builder or Seller',
+      'Approved Building Layout Plan, Encumbrance Certificate (13-30 yrs) & Possession Letter'
+    ],
+    subOptions: [
+      {
+        id: 'opt-home-purchase',
+        title: 'New Flat & Villa Purchase Loan',
+        icon: '🏡',
+        tag: 'READY & UNDER-CONSTRUCTION',
+        description: 'Funding for ready-to-move apartments, independent houses, gated communities, and builder flats.',
+        rate: 'From 8.40% p.a.',
+        limit: 'Up to ₹ 1.5 Crores',
+        tenure: 'Up to 30 Years',
+        defaultAmount: 3500000,
+        benefits: ['Tax Benefits under 80C & 24b', 'Subsidized PMAY Schemes', 'Zero Foreclosure Fee']
+      },
+      {
+        id: 'opt-plot-construction',
+        title: 'Plot Purchase & Construction Loan',
+        icon: '🏗️',
+        tag: 'COMPOSITE HOUSING',
+        description: 'Composite loan to buy approved residential plots and construct your custom architect-designed home.',
+        rate: 'From 8.65% p.a.',
+        limit: 'Up to ₹ 1 Crore',
+        tenure: 'Up to 25 Years',
+        defaultAmount: 2500000,
+        benefits: ['Stage-Wise Disbursals', 'Approved Municipal Layouts', 'Extended Construction Window']
+      },
+      {
+        id: 'opt-home-renovation',
+        title: 'Home Renovation & Extension Loan',
+        icon: '🔨',
+        tag: 'INTERIORS & UPGRADES',
+        description: 'Funds for interior design, floor extension, modular kitchens, solar roof installation, and home repairs.',
+        rate: 'From 8.75% p.a.',
+        limit: 'Up to ₹ 35 Lakhs',
+        tenure: 'Up to 15 Years',
+        defaultAmount: 800000,
+        benefits: ['Quick Paperless Verification', 'Minimal Margin Money', 'Immediate Sanctions']
+      },
+      {
+        id: 'opt-home-bt',
+        title: 'Home Loan Balance Transfer + Top-Up',
+        icon: '🔄',
+        tag: 'LOWER YOUR EXISTING EMI',
+        description: 'Switch your high-interest existing home loan from other banks and unlock additional low-cost top-up cash.',
+        rate: 'From 8.35% p.a.',
+        limit: 'Up to ₹ 2 Crores',
+        tenure: 'Up to 30 Years',
+        defaultAmount: 3000000,
+        benefits: ['Save ₹ Thousands on Monthly EMI', 'Additional Cash Top-Up', 'Zero Switching Hassle']
+      }
+    ]
+  },
+  'cat-personal': {
+    name: 'Personal Loan Solutions',
+    tagline: 'Instant paperless credit for life milestones, travel, weddings, and urgent requirements with 2-hour transfer.',
+    categoryName: 'Personal Loan',
+    icon: '👤',
+    rate: 10.50,
+    minAmount: 50000,
+    maxAmount: 2500000,
+    minTenure: 12,
+    maxTenure: 60,
+    processingFee: '1.0% + GST',
+    turnaround: '2 - 4 Hours',
+    features: [
+      '100% Paperless & digital KYC verification with same-day loan disbursal',
+      'No collateral, security, or guarantor required for salaried employees',
+      'Loan amounts up to ₹ 25 Lakhs with transparent fixed interest rates',
+      'Flexible tenures from 12 to 60 months tailored to your monthly budget',
+      'Option to consolidate high-interest credit card debts into one affordable EMI',
+      'Minimal eligibility criteria with quick digital bank statement analysis'
+    ],
+    eligibility: {
+      minAge: 21,
+      maxAge: 60,
+      minIncome: 20000,
+      employmentType: 'Salaried Employees & Self-Employed Professionals',
+      minCibilScore: 680
+    },
+    documents: [
+      'Aadhaar Card, PAN Card & Current Address Verification',
+      'Last 3 Months Salary Slips & Bank Statement showing salary credits',
+      'Employment ID card or appointment letter',
+      'Form 16 or Latest Year ITR'
+    ],
+    subOptions: [
+      {
+        id: 'opt-instant-personal',
+        title: 'Instant Cash Personal Loan',
+        icon: '⚡',
+        tag: 'SAME-DAY DISBURSAL',
+        description: 'Instant paperless funds transferred directly into your salary account with zero branch visits.',
+        rate: 'From 10.50% p.a.',
+        limit: 'Up to ₹ 15 Lakhs',
+        tenure: '12 - 60 Months',
+        defaultAmount: 300000,
+        benefits: ['100% Digital KYC', 'No Collateral Needed', 'Direct Bank NEFT in 2 Hours']
+      },
+      {
+        id: 'opt-wedding',
+        title: 'Wedding & Family Celebration Loan',
+        icon: '💍',
+        tag: 'SPECIAL MILESTONES',
+        description: 'Stress-free funding for wedding venues, jewelry, catering, photography, and honeymoon travel.',
+        rate: 'From 10.75% p.a.',
+        limit: 'Up to ₹ 25 Lakhs',
+        tenure: '12 - 60 Months',
+        defaultAmount: 500000,
+        benefits: ['High Sanction Quantum', 'Flexible EMI Choices', 'Quick Documentation']
+      },
+      {
+        id: 'opt-travel',
+        title: 'Holiday & Vacation Travel Loan',
+        icon: '✈️',
+        tag: 'EXPLORE THE WORLD',
+        description: 'Finance your dream domestic or international holiday package, flights, and foreign exchange.',
+        rate: 'From 11.00% p.a.',
+        limit: 'Up to ₹ 10 Lakhs',
+        tenure: '12 - 36 Months',
+        defaultAmount: 250000,
+        benefits: ['Instant Approval', 'Budget-Friendly EMIs', 'Direct Travel Agent Disbursal']
+      },
+      {
+        id: 'opt-debt-consolidation',
+        title: 'Debt Consolidation & Credit Card Balance Loan',
+        icon: '💳',
+        tag: 'SAVE HIGH INTEREST',
+        description: 'Combine multiple credit card dues and high-interest personal debts into one single affordable monthly EMI.',
+        rate: 'From 10.25% p.a.',
+        limit: 'Up to ₹ 20 Lakhs',
+        tenure: '12 - 60 Months',
+        defaultAmount: 400000,
+        benefits: ['Improve CIBIL Score', 'Single Monthly Payment', 'Halve Your Interest Expense']
+      }
+    ]
+  },
+  'cat-business': {
+    name: 'Business & Working Capital Solutions',
+    tagline: 'Supercharge your commercial enterprise with collateral-free working capital, trade lines, and machinery loans.',
+    categoryName: 'Business Loan',
+    icon: '💼',
+    rate: 11.50,
+    minAmount: 100000,
+    maxAmount: 5000000,
+    minTenure: 12,
+    maxTenure: 84,
+    processingFee: '1.25% + GST',
+    turnaround: '24 - 48 Hours',
+    features: [
+      'Unsecured working capital loans up to ₹ 50 Lakhs without pledging property',
+      'Fast 48-hour approval based on banking cashflows and GST returns',
+      'Flexible CC/OD credit facilities where interest is charged only on drawn amounts',
+      'Govt. CGTMSE credit guarantee coverage for eligible MSME manufacturing units',
+      'Machinery, plant, and diagnostic equipment loans with flexible balloon EMIs',
+      'Overdraft limits with smooth annual renewal and trade overdraft features'
+    ],
+    eligibility: {
+      minAge: 24,
+      maxAge: 65,
+      minIncome: 40000,
+      employmentType: 'Proprietorship, Partnership, Pvt Ltd, MSME & Traders',
+      minCibilScore: 680
+    },
+    documents: [
+      'PAN Card of Business entity & All Promoters / Partners',
+      'GST Registration Certificate & 12 Months GSTR-3B filings',
+      'Last 12 Months Current Account Bank Statements',
+      'Last 2 Years Audited Balance Sheet & Profit and Loss statements with CA certification',
+      'Business Vintage Proof (Shop & Establishment License, Trade License, MSME Udyam)'
+    ],
+    subOptions: [
+      {
+        id: 'opt-working-capital',
+        title: 'Unsecured Business Working Capital',
+        icon: '📈',
+        tag: 'COLLATERAL-FREE UP TO ₹50L',
+        description: 'Instant trade finance for inventory restocking, supplier payments, and day-to-day liquidity.',
+        rate: 'From 11.50% p.a.',
+        limit: 'Up to ₹ 50 Lakhs',
+        tenure: '12 - 60 Months',
+        defaultAmount: 1000000,
+        benefits: ['Zero Asset Hypothecation', 'GST-Based Fast Appraisal', '48-Hour Disbursal']
+      },
+      {
+        id: 'opt-cc-od',
+        title: 'Revolving Cash Credit (CC) & Overdraft (OD)',
+        icon: '🔄',
+        tag: 'PAY ONLY ON UTILIZATION',
+        description: 'Flexible revolving credit line against inventory and receivables with annual renewal facility.',
+        rate: 'From 11.25% p.a.',
+        limit: 'Up to ₹ 1 Crore',
+        tenure: 'Annual Renewal',
+        defaultAmount: 2500000,
+        benefits: ['Interest on Daily Balance Only', 'Sub-Limits for BG & LC', 'Smooth Cashflow Support']
+      },
+      {
+        id: 'opt-msme-term',
+        title: 'MSME Machinery & Enterprise Expansion Loan',
+        icon: '🏭',
+        tag: 'SCALE UP MANUFACTURING',
+        description: 'Term loans to purchase factory equipment, expand warehouse facilities, or launch new product lines.',
+        rate: 'From 11.00% p.a.',
+        limit: 'Up to ₹ 2 Crores',
+        tenure: '24 - 84 Months',
+        defaultAmount: 2000000,
+        benefits: ['Long Repayment Horizon', 'Govt Subsidized CGTMSE Coverage', 'Custom Repayment Plans']
+      },
+      {
+        id: 'opt-gst-trade',
+        title: 'GST Invoice Trade Financing',
+        icon: '🧾',
+        tag: 'RECEIVABLES DISCOUNTING',
+        description: 'Unlock working capital trapped in unpaid buyer invoices with immediate invoice discounting lines.',
+        rate: 'From 11.75% p.a.',
+        limit: 'Up to ₹ 75 Lakhs',
+        tenure: '30 - 180 Days',
+        defaultAmount: 1500000,
+        benefits: ['Instant 80-90% Invoice Advance', 'No Fixed Asset Mortgage', 'Zero Balance Sheet Stress']
+      }
+    ]
+  },
+  'cat-education': {
+    name: 'Education Loan Solutions',
+    tagline: 'Fund higher education across premier domestic and global universities with flexible moratorium repayments.',
+    categoryName: 'Education Loan',
+    icon: '🎓',
+    rate: 9.50,
+    minAmount: 100000,
+    maxAmount: 10000000,
+    minTenure: 12,
+    maxTenure: 180,
+    processingFee: '0.50% + GST',
+    turnaround: '48 - 72 Hours',
+    features: [
+      'Comprehensive 100% coverage for tuition fees, living expenses, books, and flights',
+      'Collateral-free loans up to ₹ 50 Lakhs for top tier-1 global universities',
+      'Repayment moratorium: EMIs begin only 6 to 12 months after course completion',
+      'Income tax deduction benefits on total interest paid under Section 80E',
+      'Fast sanction letter to assist in student visa processing and embassy interviews',
+      'Preferential interest rate concessions for female students'
+    ],
+    eligibility: {
+      minAge: 18,
+      maxAge: 35,
+      minIncome: 20000,
+      employmentType: 'Students with Co-Borrower (Parents / Guardian / Spouse)',
+      minCibilScore: 680
+    },
+    documents: [
+      'Admission Letter / Offer Letter from University / College with fee structure',
+      'Academic Mark Sheets (10th, 12th, Degree) & Entrance Exam Scores (GRE, GMAT, IELTS, CAT)',
+      'Aadhaar Card, PAN Card & Passport of Student and Co-Borrower',
+      'Co-Borrower Income Proof (Salary Slips, Bank Statements, 2 Years ITR)',
+      'Collateral Property Documents (for loans above ₹ 75 Lakhs)'
+    ],
+    subOptions: [
+      {
+        id: 'opt-overseas-study',
+        title: 'Overseas Higher Education Loan (USA, UK, Canada, Australia)',
+        icon: '🌍',
+        tag: 'GLOBAL UNIVERSITIES',
+        description: 'Full financial support for tuition, campus accommodation, flight travel, health insurance, and living stipend.',
+        rate: 'From 9.50% p.a.',
+        limit: 'Up to ₹ 1.5 Crores',
+        tenure: 'Up to 15 Years',
+        defaultAmount: 4000000,
+        benefits: ['Pre-Visa Sanction Letter', 'Forex Card & Airfare Coverage', 'Course + 1 Year Moratorium']
+      },
+      {
+        id: 'opt-domestic-premier',
+        title: 'Domestic Premier Institute Loan (IITs, IIMs, AIIMS, BITS)',
+        icon: '🏛️',
+        tag: '100% COLLATERAL-FREE',
+        description: 'Unsecured financing for India’s top engineering, management, and medical institutions with zero margin money.',
+        rate: 'From 8.50% p.a.',
+        limit: 'Up to ₹ 50 Lakhs',
+        tenure: 'Up to 15 Years',
+        defaultAmount: 2000000,
+        benefits: ['Zero Collateral Required', 'Prime Subsidized Rates', 'Instant Digital Sanction']
+      },
+      {
+        id: 'opt-skill-executive',
+        title: 'Executive MBA & Tech Certification Loan',
+        icon: '💻',
+        tag: 'UPSKILLING & CAREER GROWTH',
+        description: 'Financing for working professionals taking executive master degrees, data science, AI, and fintech bootcamps.',
+        rate: 'From 10.00% p.a.',
+        limit: 'Up to ₹ 25 Lakhs',
+        tenure: 'Up to 5 Years',
+        defaultAmount: 800000,
+        benefits: ['Fast 24-Hr Approval', 'No Co-Borrower Needed for Salaried', 'Tax Benefit under 80E']
+      },
+      {
+        id: 'opt-aviation-special',
+        title: 'Aviation, Pilot & Commercial Training Loan',
+        icon: '✈️',
+        tag: 'SPECIALIZED VOCATIONAL',
+        description: 'High-ticket funding for Commercial Pilot License (CPL), merchant navy, and specialized vocational academies.',
+        rate: 'From 10.50% p.a.',
+        limit: 'Up to ₹ 60 Lakhs',
+        tenure: 'Up to 10 Years',
+        defaultAmount: 3000000,
+        benefits: ['Flying Hours Cost Coverage', 'Extended Moratorium', 'Step-Up Repayment Options']
+      }
+    ]
+  },
+  'cat-mortgage': {
+    name: 'Loan Against Property & Mortgage Solutions',
+    tagline: 'Unlock maximum equity from your residential, commercial, or industrial properties with low interest rates.',
+    categoryName: 'Loan Against Property',
+    icon: '🏢',
+    rate: 9.15,
+    minAmount: 1000000,
+    maxAmount: 150000000,
+    minTenure: 12,
+    maxTenure: 180,
+    processingFee: '0.75% + GST',
+    turnaround: '3 - 5 Days',
+    features: [
+      'High-quantum loan sanction up to ₹ 15 Crores against property value',
+      'Much lower interest rates and EMIs compared to unsecured personal or business loans',
+      'Flexible tenures up to 15 years with comfortable reducing-balance EMIs',
+      'Mortgage residential houses, flats, commercial offices, or industrial plots',
+      'Lease Rental Discounting (LRD) to monetize monthly corporate tenant rentals',
+      'Retain complete ownership and usage rights of your pledged property'
+    ],
+    eligibility: {
+      minAge: 23,
+      maxAge: 68,
+      minIncome: 35000,
+      employmentType: 'Salaried, Self-Employed, Business Owners & Property Holders',
+      minCibilScore: 700
+    },
+    documents: [
+      'Registered Title Deed / Sale Deed / Conveyance Deed of Property',
+      'Approved Sanction Plan, Building Completion / Occupancy Certificate',
+      'Last 13-30 Years Encumbrance Certificate (EC) and Latest Property Tax Receipts',
+      'Identity & Address Proofs of all co-owners and applicants',
+      'Income Proof: 3 Years ITR with Computation, 6 Months Bank Statements'
+    ],
+    subOptions: [
+      {
+        id: 'opt-res-lap',
+        title: 'Residential Property Mortgage Loan (LAP)',
+        icon: '🏠',
+        tag: 'MAX VALUE UP TO 70% LTV',
+        description: 'Pledge self-occupied or rented residential house/flat for personal or business capital needs.',
+        rate: 'From 9.15% p.a.',
+        limit: 'Up to ₹ 3 Crores',
+        tenure: 'Up to 15 Years',
+        defaultAmount: 2500000,
+        benefits: ['Substantially Lower Interest than Personal Loans', 'Extended 15-Year Repayment', 'Retain Property Ownership']
+      },
+      {
+        id: 'opt-comm-lap',
+        title: 'Commercial Property & Office Space Mortgage',
+        icon: '🏬',
+        tag: 'RETAIL & CORPORATE SPACES',
+        description: 'High-ticket financing against owned commercial shops, corporate offices, clinics, and showrooms.',
+        rate: 'From 9.40% p.a.',
+        limit: 'Up to ₹ 5 Crores',
+        tenure: 'Up to 15 Years',
+        defaultAmount: 5000000,
+        benefits: ['High Sanction Caps', 'Balloon EMI Options', 'Overdraft Facility Linked']
+      },
+      {
+        id: 'opt-industrial-lap',
+        title: 'Industrial Plot, Factory & Warehouse LAP',
+        icon: '🏭',
+        tag: 'MANUFACTURING & LOGISTICS',
+        description: 'Unlock substantial equity from industrial plots, manufacturing godowns, and warehouse premises.',
+        rate: 'From 9.75% p.a.',
+        limit: 'Up to ₹ 10 Crores',
+        tenure: 'Up to 12 Years',
+        defaultAmount: 7500000,
+        benefits: ['Specialized Industrial Valuation', 'Fast Legal Clearance', 'Working Capital Top-Up']
+      },
+      {
+        id: 'opt-lease-rental',
+        title: 'Lease Rental Discounting (LRD)',
+        icon: '📑',
+        tag: 'TERM LOAN AGAINST RENTALS',
+        description: 'Monetize future rental cash flows from corporate tenants in your commercial property into instant lump-sum capital.',
+        rate: 'From 8.95% p.a.',
+        limit: 'Up to ₹ 15 Crores',
+        tenure: 'Up to Lease Duration',
+        defaultAmount: 10000000,
+        benefits: ['Direct Rent Escrow Payment', 'High Quantum Loan', 'Subsidized Prime Rates']
+      }
+    ]
+  },
+  'cat-car': {
+    name: 'Car & Automobile Loan Solutions',
+    tagline: 'Fast-track funding with special dealer tie-ups across Maruti, Hyundai, Kia, Tata, Mahindra & Honda.',
+    categoryName: 'Car Loan',
+    icon: '🚗',
+    rate: 8.85,
+    minAmount: 100000,
+    maxAmount: 5000000,
+    minTenure: 12,
+    maxTenure: 84,
+    processingFee: '0.50% + GST',
+    turnaround: '4 - 24 Hours',
+    features: [
+      'Up to 95% on-road funding covering vehicle cost, registration & insurance',
+      'Special 0.35% interest rate discount for Green Electric Vehicles (EVs)',
+      'Pre-approved instant auto loans for salaried individuals with minimal paperwork',
+      'Flexible tenures extending up to 7 years (84 months) for low monthly payments',
+      'Exclusive dealer discounts and priority delivery tie-ups across major auto brands',
+      'Certified pre-owned used car loans up to 80% valuation with simple ownership transfer'
+    ],
+    eligibility: {
+      minAge: 21,
+      maxAge: 65,
+      minIncome: 20000,
+      employmentType: 'Salaried Employees, Self-Employed & Business Professionals',
+      minCibilScore: 680
+    },
+    documents: [
+      'Aadhaar Card, PAN Card & Current Address Verification',
+      'Proforma Invoice / Quotation from authorized car dealer',
+      'Last 3 Months Salary Slips & 6 Months Bank Statement (Salaried)',
+      'Last 2 Years ITR with Computation & Bank Statements (Self-Employed)',
+      'Driving License / Voter ID'
+    ],
+    subOptions: [
+      {
+        id: 'opt-new-car',
+        title: 'New Car Purchase Loan',
+        icon: '🚘',
+        tag: 'UP TO 95% ON-ROAD FUNDING',
+        description: 'Drive home your brand-new personal car with on-road funding, dealer discounts, and low EMIs.',
+        rate: 'From 8.85% p.a.',
+        limit: 'Up to ₹ 50 Lakhs',
+        tenure: '12 - 84 Months',
+        defaultAmount: 600000,
+        benefits: ['Covers Road Tax & Insurance', 'Exclusive Tie-Up Discounts', 'Zero Foreclosure after 2 Years']
+      },
+      {
+        id: 'opt-used-car',
+        title: 'Certified Pre-Owned Used Car Loan',
+        icon: '🚙',
+        tag: 'SECOND-HAND CAR DEALS',
+        description: 'Quick financing for pre-owned cars from authorized certified pre-owned dealerships or direct sellers.',
+        rate: 'From 10.50% p.a.',
+        limit: 'Up to ₹ 25 Lakhs',
+        tenure: '12 - 60 Months',
+        defaultAmount: 400000,
+        benefits: ['Fast RTO Ownership Transfer Assistance', 'Up to 80% Valuation', 'Immediate Sanction']
+      },
+      {
+        id: 'opt-ev-car',
+        title: 'Green Electric Vehicle (EV) Car Loan',
+        icon: '⚡',
+        tag: 'ECO-FRIENDLY SPECIAL',
+        description: 'Concessional auto loans for electric cars (Tata Nexon EV, Mahindra XUV400, MG ZS EV, BYD).',
+        rate: 'From 8.50% p.a.',
+        limit: 'Up to ₹ 40 Lakhs',
+        tenure: '12 - 84 Months',
+        defaultAmount: 800000,
+        benefits: ['Special 0.35% Green Rate Concession', 'Subsidized Processing Charges', 'Fast Digital Sanction']
+      },
+      {
+        id: 'opt-two-wheeler',
+        title: 'Two-Wheeler & Superbike Loan',
+        icon: '🏍️',
+        tag: 'SCOOTERS & MOTORCYCLES',
+        description: 'Same-day paperless financing for commuter motorcycles, electric scooters, and premium superbikes.',
+        rate: 'From 9.99% p.a.',
+        limit: 'Up to ₹ 8 Lakhs',
+        tenure: '12 - 48 Months',
+        defaultAmount: 120000,
+        benefits: ['Minimal Documentation', 'Low Down-Payment Schemes', 'Instant Showroom Delivery']
+      }
+    ]
+  },
+  'cat-gold': {
+    name: 'Gold Loan & Sovereign Pledge Solutions',
+    tagline: 'Instant liquidity in 15 minutes against your 18k-24k gold jewelry with certified safety and zero CIBIL check.',
+    categoryName: 'Gold Loan',
+    icon: '🪙',
+    rate: 8.50,
+    minAmount: 20000,
+    maxAmount: 3000000,
+    minTenure: 3,
+    maxTenure: 36,
+    processingFee: 'Zero to 0.25%',
+    turnaround: '15 - 30 Minutes',
+    features: [
+      'Cash in hand or instant bank transfer in under 15 minutes',
+      'No income proof, salary slip, or CIBIL score verification required',
+      'Lowest per-gram interest starting from 8.50% p.a. with multiple repayment schemes',
+      'Bullet repayment option: pay principal and interest together at the end of the tenure',
+      'Revolving overdraft against gold: pay interest only on cash utilized',
+      '100% insured, bank-grade digital vault storage for your valuable ornaments'
+    ],
+    eligibility: {
+      minAge: 18,
+      maxAge: 75,
+      minIncome: 0,
+      employmentType: 'Any Individual owning 18k to 24k Gold Ornaments',
+      minCibilScore: 300
+    },
+    documents: [
+      'Aadhaar Card or Voter ID (for photo and address identification)',
+      'PAN Card or Form 60',
+      'Passport-size Photograph',
+      'Gold Ornaments for on-the-spot electronic karat testing'
+    ],
+    subOptions: [
+      {
+        id: 'opt-instant-gold',
+        title: 'Instant 15-Minute Gold Loan',
+        icon: '🪙',
+        tag: 'DOORSTEP OR BRANCH DISBURSAL',
+        description: 'Immediate cash or instant NEFT transfer against gold ornaments with certified karat evaluation.',
+        rate: 'From 8.50% p.a.',
+        limit: 'Up to ₹ 30 Lakhs',
+        tenure: '3 - 36 Months',
+        defaultAmount: 200000,
+        benefits: ['Zero CIBIL Score Requirement', 'Bank-Grade Vault Security', 'Lowest Per-Gram Interest']
+      },
+      {
+        id: 'opt-doorstep-gold',
+        title: 'Doorstep VIP Gold Evaluation Loan',
+        icon: '🛵',
+        tag: 'AT YOUR HOME PRIVACY',
+        description: 'Our certified evaluation officer visits your home, tests your jewelry safely, and transfers cash instantly.',
+        rate: 'From 8.75% p.a.',
+        limit: 'Up to ₹ 20 Lakhs',
+        tenure: '6 - 24 Months',
+        defaultAmount: 350000,
+        benefits: ['Complete Privacy & Security', 'Insured Transit & Safe Vaults', 'Digital Weighing Machine']
+      },
+      {
+        id: 'opt-overdraft-gold',
+        title: 'Gold Overdraft Credit Line (Pay-Per-Use)',
+        icon: '🔄',
+        tag: 'INTEREST ONLY ON DRAWN CASH',
+        description: 'Revolving credit facility against gold where interest is payable only on the amount drawn for the days used.',
+        rate: 'From 9.00% p.a.',
+        limit: 'Up to ₹ 50 Lakhs',
+        tenure: '12 Months (Renewable)',
+        defaultAmount: 500000,
+        benefits: ['Withdraw & Repay Any Time', 'ATM Card / UPI Linked', 'Maximum Interest Savings']
+      },
+      {
+        id: 'opt-bullet-gold',
+        title: 'Bullet Repayment Gold Loan',
+        icon: '🎯',
+        tag: 'PAY PRINCIPAL & INTEREST AT END',
+        description: 'Zero monthly EMIs! Repay principal and interest together at the end of the loan tenure.',
+        rate: 'From 8.80% p.a.',
+        limit: 'Up to ₹ 25 Lakhs',
+        tenure: '6 - 12 Months',
+        defaultAmount: 300000,
+        benefits: ['No Monthly Payment Stress', 'Highest Loan-to-Value (LTV)', 'Instant Gold Return upon Closure']
+      }
+    ]
+  }
+};
+
 export default function LoanDetailsPage({
   product = {},
   categories = [],
@@ -67,64 +700,61 @@ export default function LoanDetailsPage({
 }) {
   // Normalize fields so nothing can ever be blank or missing!
   const rawProduct = product || {};
-  const prodName = rawProduct.name || rawProduct.title || 'Doctor & Medical Loan Solutions';
-  const prodTagline = rawProduct.tagline || rawProduct.description || 'Specialized financing for doctors, emergency medical treatments, health insurance bills, and clinic setups.';
-  const prodRate = typeof rawProduct.interestRate === 'number' ? rawProduct.interestRate : 9.50;
-  const prodMinAmount = Number(rawProduct.minAmount) || 50000;
-  const prodMaxAmount = Number(rawProduct.maxAmount) || 20000000;
-  const prodMinTenure = Number(rawProduct.minTenure) || 12;
-  const prodMaxTenure = Number(rawProduct.maxTenure) || 84;
-  const prodProcessingFee = rawProduct.processingFee || '0.75% + GST';
-  const prodTurnaround = rawProduct.turnaroundTime || '2 - 24 Hours';
-  const prodId = rawProduct.id || 'VGS-DOC-MED-01';
 
-  // Category determination
-  const isDoctorOrMedical = prodName.toLowerCase().includes('doctor') || prodName.toLowerCase().includes('medical') || rawProduct.categoryId === 'cat-doctor' || rawProduct.catId === 'cat-doctor';
+  // Infer matching profile from categoryId, catId, or product title keywords
+  const catKey = (() => {
+    const rawCatId = rawProduct.categoryId || rawProduct.catId || '';
+    if (rawCatId && categoryLoanProfiles[rawCatId]) return rawCatId;
+    const nameLower = (rawProduct.name || rawProduct.title || '').toLowerCase();
+    if (nameLower.includes('home') || nameLower.includes('house') || nameLower.includes('housing')) return 'cat-home';
+    if (nameLower.includes('business') || nameLower.includes('working capital') || nameLower.includes('msme')) return 'cat-business';
+    if (nameLower.includes('personal')) return 'cat-personal';
+    if (nameLower.includes('education') || nameLower.includes('study')) return 'cat-education';
+    if (nameLower.includes('property') || nameLower.includes('mortgage') || nameLower.includes('lap')) return 'cat-mortgage';
+    if (nameLower.includes('car') || nameLower.includes('vehicle') || nameLower.includes('auto')) return 'cat-car';
+    if (nameLower.includes('gold')) return 'cat-gold';
+    if (nameLower.includes('doctor') || nameLower.includes('medical') || nameLower.includes('health')) return 'cat-doctor';
+    return 'cat-doctor';
+  })();
 
-  const category = categories.find(c => c.id === (rawProduct.categoryId || rawProduct.catId)) || {
-    name: isDoctorOrMedical ? 'Doctor & Medical Loan' : (rawProduct.categoryName || 'Doctor & Medical Loan'),
-    icon: isDoctorOrMedical ? '🩺' : '💼'
+  const matchedProfile = categoryLoanProfiles[catKey] || categoryLoanProfiles['cat-doctor'];
+
+  const prodName = rawProduct.name || rawProduct.title || matchedProfile.name;
+  const prodTagline = rawProduct.tagline || rawProduct.description || matchedProfile.tagline;
+  const prodRate = typeof rawProduct.interestRate === 'number' ? rawProduct.interestRate : matchedProfile.rate;
+  const prodMinAmount = Number(rawProduct.minAmount) || matchedProfile.minAmount;
+  const prodMaxAmount = Number(rawProduct.maxAmount) || matchedProfile.maxAmount;
+  const prodMinTenure = Number(rawProduct.minTenure) || matchedProfile.minTenure;
+  const prodMaxTenure = Number(rawProduct.maxTenure) || matchedProfile.maxTenure;
+  const prodProcessingFee = rawProduct.processingFee || matchedProfile.processingFee;
+  const prodTurnaround = rawProduct.turnaroundTime || matchedProfile.turnaround;
+  const prodId = rawProduct.id || `VGS-${catKey.toUpperCase()}-01`;
+
+  const category = categories.find(c => c.id === (rawProduct.categoryId || rawProduct.catId || catKey)) || {
+    name: rawProduct.categoryName || matchedProfile.categoryName,
+    icon: matchedProfile.icon
   };
 
-  // Sub options list: if provided on product, use it; otherwise fallback to defaultHealthcareSubOptions
+  // Sub options list: if provided on product, use it; otherwise fallback to matched category options
   const prodSubOptions = (rawProduct.subOptions && rawProduct.subOptions.length > 0)
     ? rawProduct.subOptions
     : (rawProduct.options && rawProduct.options.length > 0)
       ? rawProduct.options
-      : defaultHealthcareSubOptions;
+      : matchedProfile.subOptions;
 
   const prodFeatures = (rawProduct.features && rawProduct.features.length > 0)
     ? rawProduct.features
-    : [
-      'Fast 2-hour hospital clearance & direct hospital NEFT disbursal',
-      'Covers health insurance co-pays, deductibles & non-covered therapies',
-      'Special high-ticket unsecured capital up to ₹75 Lakhs for Doctors & Dentists',
-      'Up to 85% machinery invoice financing up to ₹2 Crores for medical diagnostic equipment',
-      'Minimal documentation with paperless digital KYC verification',
-      'Flexible repayment tenures from 12 to 84 months with zero prepayment penalties'
-    ];
+    : matchedProfile.features;
 
-  const prodEligibility = rawProduct.eligibility || {
-    minAge: 21,
-    maxAge: 68,
-    minIncome: 25000,
-    employmentType: 'Salaried, Self-Employed & Registered Doctors',
-    minCibilScore: 680
-  };
+  const prodEligibility = rawProduct.eligibility || matchedProfile.eligibility;
 
   const prodDocuments = (rawProduct.documentsRequired && rawProduct.documentsRequired.length > 0)
     ? rawProduct.documentsRequired
-    : [
-      'Aadhaar Card, PAN Card & Current Address Proof',
-      'Hospital Admission Estimate / Proforma Invoice / Medical Treatment Bills',
-      'Last 6 Months Bank Statement & Latest 3 Months Salary Slips (for salaried)',
-      'Medical Degree / MCI / DCI State Registration Certificate (for Doctor loans)',
-      'Equipment Quotation / Proforma Invoice from authorized OEM dealer (for Equipment loans)'
-    ];
+    : matchedProfile.documents;
 
   // State for Embedded Live EMI Calculator
   const [calcAmount, setCalcAmount] = useState(
-    Math.max(prodMinAmount, Math.min(prodMaxAmount, 300000))
+    Math.max(prodMinAmount, Math.min(prodMaxAmount, matchedProfile.minAmount || 300000))
   );
   const [calcRate, setCalcRate] = useState(prodRate);
   const [calcTenureMonths, setCalcTenureMonths] = useState(
@@ -136,7 +766,7 @@ export default function LoanDetailsPage({
     if (rawProduct && Object.keys(rawProduct).length > 0) {
       if (typeof rawProduct.interestRate === 'number') setCalcRate(rawProduct.interestRate);
       if (rawProduct.minAmount && rawProduct.maxAmount) {
-        setCalcAmount(Math.max(rawProduct.minAmount, Math.min(rawProduct.maxAmount, 300000)));
+        setCalcAmount(Math.max(rawProduct.minAmount, Math.min(rawProduct.maxAmount, matchedProfile.minAmount || 300000)));
       }
     }
   }, [product]);
@@ -154,6 +784,7 @@ export default function LoanDetailsPage({
 
   // State for Quick Enquiry Modal inside Loan Details
   const [showQuickModal, setShowQuickModal] = useState(false);
+  const [selectedSubOptionTitle, setSelectedSubOptionTitle] = useState('');
   const [quickName, setQuickName] = useState('');
   const [quickPhone, setQuickPhone] = useState('');
   const [quickCity, setQuickCity] = useState('');
@@ -460,6 +1091,7 @@ export default function LoanDetailsPage({
                     <button
                       onClick={() => {
                         if (opt.defaultAmount) setCalcAmount(opt.defaultAmount);
+                        setSelectedSubOptionTitle(opt.title);
                         setShowQuickModal(true);
                       }}
                       className="py-2.5 px-2 rounded-xl bg-[#0A5C80] hover:bg-[#6EA928] text-white font-bold text-xs shadow-md shadow-[#0A5C80]/15 hover:shadow-[#6EA928]/30 transition-all cursor-pointer text-center"
@@ -1095,7 +1727,10 @@ export default function LoanDetailsPage({
                   <span>🚀</span> Apply with this EMI ({formatCurrency(emiResults.monthlyEmi)}/mo)
                 </button>
                 <button
-                  onClick={() => setShowQuickModal(true)}
+                  onClick={() => {
+                    setSelectedSubOptionTitle('');
+                    setShowQuickModal(true);
+                  }}
                   className="w-full py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold text-xs cursor-pointer transition-colors"
                 >
                   💬 Have Questions? Request Callback
@@ -1222,7 +1857,10 @@ export default function LoanDetailsPage({
 
               <div className="pt-4">
                 <button
-                  onClick={() => setShowQuickModal(true)}
+                  onClick={() => {
+                    setSelectedSubOptionTitle('');
+                    setShowQuickModal(true);
+                  }}
                   className="w-full py-4 rounded-2xl bg-[#0A5C80] hover:bg-[#074763] text-white font-black text-sm uppercase tracking-wider shadow-md shadow-[#0A5C80]/25 cursor-pointer transition-all flex items-center justify-center gap-2"
                 >
                   <span>📞</span> Request Instant Callback
@@ -1321,15 +1959,23 @@ export default function LoanDetailsPage({
           QUICK ENQUIRY MODAL (Triggered by 'Enquire Now')
          ========================================================================= */}
       {showQuickModal && (
-        <div className="fixed inset-0 z-60 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-white border border-slate-200 max-w-md w-full rounded-3xl p-6 sm:p-7 shadow-2xl space-y-5 relative animate-scale-up text-slate-900">
+        <div
+          className="fixed inset-0 z-[100] bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto"
+          onClick={() => setShowQuickModal(false)}
+        >
+          <div
+            className="bg-white border border-slate-200 max-w-md w-full rounded-3xl p-6 sm:p-7 shadow-2xl space-y-5 relative z-[101] animate-scale-up text-slate-900 my-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
 
             <div className="flex justify-between items-start">
               <div>
                 <span className="px-2.5 py-0.5 rounded-full bg-sky-100 border border-sky-300 text-[#0A5C80] text-[10px] font-bold uppercase tracking-wider">
                   Quick Callback Request
                 </span>
-                <h3 className="text-lg font-black text-slate-900 mt-1">Enquire for {prodName}</h3>
+                <h3 className="text-lg font-black text-slate-900 mt-1">
+                  Enquire for {selectedSubOptionTitle || prodName}
+                </h3>
                 <p className="text-xs text-slate-500">Our loan manager will call you within 15 minutes.</p>
               </div>
               <button
@@ -1386,7 +2032,9 @@ export default function LoanDetailsPage({
                 <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-[11px] text-slate-600 space-y-1">
                   <div className="flex justify-between">
                     <span>Selected Loan:</span>
-                    <span className="text-slate-900 font-bold">{prodName}</span>
+                    <span className="text-slate-900 font-bold truncate max-w-[200px]">
+                      {selectedSubOptionTitle ? `${prodName} • ${selectedSubOptionTitle}` : prodName}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span>Calculated EMI:</span>

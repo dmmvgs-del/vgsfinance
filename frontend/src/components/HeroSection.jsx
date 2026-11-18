@@ -377,10 +377,44 @@ export default function HeroSection({
       ]
     },
     home: {
-      badge: '🏠 Housing & Real Estate Finance',
+      id: 'prod-cat-home',
+      name: 'Home & Housing Loan Solutions',
       title: 'Home & Housing Loan Solutions',
-      description: 'Explore tailored home financing solutions across 15+ partner banks with subsidized rates:',
+      categoryName: 'Home Loan',
+      categoryId: 'cat-home',
       catId: 'cat-home',
+      badge: '🏠 Housing & Real Estate Finance',
+      tagline: 'Explore tailored home financing solutions across 15+ partner banks with subsidized rates and flexible 30-year tenures.',
+      description: 'Explore tailored home financing solutions across 15+ partner banks with subsidized rates:',
+      interestRate: 8.40,
+      minAmount: 500000,
+      maxAmount: 50000000,
+      minTenure: 12,
+      maxTenure: 360,
+      processingFee: '0.50% + GST',
+      turnaroundTime: '24 - 48 Hours',
+      features: [
+        'Affordable interest rates starting from 8.40% p.a. with 15+ partner banks',
+        'Flexible loan repayment tenures extending up to 30 years (360 months)',
+        'High sanction quantum up to ₹ 5 Crores with up to 90% property value funding',
+        'PMAY interest subsidy benefits and tax deductions under Section 80C & 24(b)',
+        'Special home loan balance transfer facility with instant cash top-up',
+        'Minimal documentation with door-step legal verification and fast sanction'
+      ],
+      eligibility: {
+        minAge: 21,
+        maxAge: 65,
+        minIncome: 25000,
+        employmentType: 'Salaried, Self-Employed Professionals & Business Owners',
+        minCibilScore: 700
+      },
+      documentsRequired: [
+        'Aadhaar Card, PAN Card & Passport-size Photographs',
+        'Last 6 Months Bank Account Statements (all active accounts)',
+        'Latest 3 Months Salary Slips & Form 16 / 2 Years ITR with Computations',
+        'Registered Sale Agreement / Allotment Letter from Builder or Seller',
+        'Approved Building Layout Plan, Encumbrance Certificate (13-30 yrs) & Possession Letter'
+      ],
       options: [
         {
           id: 'opt-home-purchase',
@@ -433,10 +467,43 @@ export default function HeroSection({
       ]
     },
     personal: {
-      badge: '👤 Instant Retail & Lifestyle Credit',
+      id: 'prod-cat-personal',
+      name: 'Personal Loan Solutions',
       title: 'Personal Loan Solutions',
-      description: 'Quick digital credit lines for all your planned milestones and unexpected expenses:',
+      categoryName: 'Personal Loan',
+      categoryId: 'cat-personal',
       catId: 'cat-personal',
+      badge: '👤 Instant Retail & Lifestyle Credit',
+      tagline: 'Instant paperless credit for life milestones, travel, weddings, and urgent requirements with 2-hour transfer.',
+      description: 'Quick digital credit lines for all your planned milestones and unexpected expenses:',
+      interestRate: 10.50,
+      minAmount: 50000,
+      maxAmount: 2500000,
+      minTenure: 12,
+      maxTenure: 60,
+      processingFee: '1.0% + GST',
+      turnaroundTime: '2 - 4 Hours',
+      features: [
+        '100% Paperless & digital KYC verification with same-day loan disbursal',
+        'No collateral, security, or guarantor required for salaried employees',
+        'Loan amounts up to ₹ 25 Lakhs with transparent fixed interest rates',
+        'Flexible tenures from 12 to 60 months tailored to your monthly budget',
+        'Option to consolidate high-interest credit card debts into one affordable EMI',
+        'Minimal eligibility criteria with quick digital bank statement analysis'
+      ],
+      eligibility: {
+        minAge: 21,
+        maxAge: 60,
+        minIncome: 20000,
+        employmentType: 'Salaried Employees & Self-Employed Professionals',
+        minCibilScore: 680
+      },
+      documentsRequired: [
+        'Aadhaar Card, PAN Card & Current Address Verification',
+        'Last 3 Months Salary Slips & Bank Statement showing salary credits',
+        'Employment ID card or appointment letter',
+        'Form 16 or Latest Year ITR'
+      ],
       options: [
         {
           id: 'opt-instant-personal',
@@ -489,10 +556,44 @@ export default function HeroSection({
       ]
     },
     business: {
-      badge: '🏢 Enterprise Capital & Trade Growth',
+      id: 'prod-cat-business',
+      name: 'Business & Working Capital Solutions',
       title: 'Business & Working Capital Solutions',
-      description: 'Power your retail, wholesale, manufacturing, or service business to next-level growth:',
+      categoryName: 'Business Loan',
+      categoryId: 'cat-business',
       catId: 'cat-business',
+      badge: '🏢 Enterprise Capital & Trade Growth',
+      tagline: 'Supercharge your commercial enterprise with collateral-free working capital, trade lines, and machinery loans.',
+      description: 'Power your retail, wholesale, manufacturing, or service business to next-level growth:',
+      interestRate: 11.50,
+      minAmount: 100000,
+      maxAmount: 5000000,
+      minTenure: 12,
+      maxTenure: 84,
+      processingFee: '1.25% + GST',
+      turnaroundTime: '24 - 48 Hours',
+      features: [
+        'Unsecured working capital loans up to ₹ 50 Lakhs without pledging property',
+        'Fast 48-hour approval based on banking cashflows and GST returns',
+        'Flexible CC/OD credit facilities where interest is charged only on drawn amounts',
+        'Govt. CGTMSE credit guarantee coverage for eligible MSME manufacturing units',
+        'Machinery, plant, and diagnostic equipment loans with flexible balloon EMIs',
+        'Overdraft limits with smooth annual renewal and trade overdraft features'
+      ],
+      eligibility: {
+        minAge: 24,
+        maxAge: 65,
+        minIncome: 40000,
+        employmentType: 'Proprietorship, Partnership, Pvt Ltd, MSME & Traders',
+        minCibilScore: 680
+      },
+      documentsRequired: [
+        'PAN Card of Business entity & All Promoters / Partners',
+        'GST Registration Certificate & 12 Months GSTR-3B filings',
+        'Last 12 Months Current Account Bank Statements',
+        'Last 2 Years Audited Balance Sheet & Profit and Loss statements with CA certification',
+        'Business Vintage Proof (Shop & Establishment License, Trade License, MSME Udyam)'
+      ],
       options: [
         {
           id: 'opt-working-capital',
@@ -545,10 +646,44 @@ export default function HeroSection({
       ]
     },
     education: {
-      badge: '🎓 Global Higher Education Financing',
+      id: 'prod-cat-education',
+      name: 'Education & Study Abroad Solutions',
       title: 'Education & Study Abroad Solutions',
-      description: '100% course funding for university admissions across India and 30+ countries:',
+      categoryName: 'Education Loan',
+      categoryId: 'cat-education',
       catId: 'cat-education',
+      badge: '🎓 Global Higher Education Financing',
+      tagline: '100% course funding for premier university admissions across India and 30+ countries with moratorium repayment.',
+      description: '100% course funding for university admissions across India and 30+ countries:',
+      interestRate: 9.50,
+      minAmount: 100000,
+      maxAmount: 10000000,
+      minTenure: 12,
+      maxTenure: 180,
+      processingFee: '0.50% + GST',
+      turnaroundTime: '48 - 72 Hours',
+      features: [
+        'Comprehensive 100% coverage for tuition fees, living expenses, books, and flights',
+        'Collateral-free loans up to ₹ 50 Lakhs for top tier-1 global universities',
+        'Repayment moratorium: EMIs begin only 6 to 12 months after course completion',
+        'Income tax deduction benefits on total interest paid under Section 80E',
+        'Fast sanction letter to assist in student visa processing and embassy interviews',
+        'Preferential interest rate concessions for female students'
+      ],
+      eligibility: {
+        minAge: 18,
+        maxAge: 35,
+        minIncome: 20000,
+        employmentType: 'Students with Co-Borrower (Parents / Guardian / Spouse)',
+        minCibilScore: 680
+      },
+      documentsRequired: [
+        'Admission Letter / Offer Letter from University / College with fee structure',
+        'Academic Mark Sheets (10th, 12th, Degree) & Entrance Exam Scores (GRE, GMAT, IELTS, CAT)',
+        'Aadhaar Card, PAN Card & Passport of Student and Co-Borrower',
+        'Co-Borrower Income Proof (Salary Slips, Bank Statements, 2 Years ITR)',
+        'Collateral Property Documents (for loans above ₹ 75 Lakhs)'
+      ],
       options: [
         {
           id: 'opt-study-abroad',
@@ -601,10 +736,44 @@ export default function HeroSection({
       ]
     },
     property: {
-      badge: '🏢 High-Value Mortgage & Asset Liquidity',
+      id: 'prod-cat-mortgage',
+      name: 'Loan Against Property & Mortgage Solutions',
       title: 'Loan Against Property & Mortgage Solutions',
-      description: 'Unlock maximum equity from your residential, commercial, or industrial properties:',
+      categoryName: 'Loan Against Property',
+      categoryId: 'cat-mortgage',
       catId: 'cat-mortgage',
+      badge: '🏢 High-Value Mortgage & Asset Liquidity',
+      tagline: 'Unlock maximum equity from your residential, commercial, or industrial properties with low interest rates.',
+      description: 'Unlock maximum equity from your residential, commercial, or industrial properties:',
+      interestRate: 9.15,
+      minAmount: 1000000,
+      maxAmount: 150000000,
+      minTenure: 12,
+      maxTenure: 180,
+      processingFee: '0.75% + GST',
+      turnaroundTime: '3 - 5 Days',
+      features: [
+        'High-quantum loan sanction up to ₹ 15 Crores against property value',
+        'Much lower interest rates and EMIs compared to unsecured personal or business loans',
+        'Flexible tenures up to 15 years with comfortable reducing-balance EMIs',
+        'Mortgage residential houses, flats, commercial offices, or industrial plots',
+        'Lease Rental Discounting (LRD) to monetize monthly corporate tenant rentals',
+        'Retain complete ownership and usage rights of your pledged property'
+      ],
+      eligibility: {
+        minAge: 23,
+        maxAge: 68,
+        minIncome: 35000,
+        employmentType: 'Salaried, Self-Employed, Business Owners & Property Holders',
+        minCibilScore: 700
+      },
+      documentsRequired: [
+        'Registered Title Deed / Sale Deed / Conveyance Deed of Property',
+        'Approved Sanction Plan, Building Completion / Occupancy Certificate',
+        'Last 13-30 Years Encumbrance Certificate (EC) and Latest Property Tax Receipts',
+        'Identity & Address Proofs of all co-owners and applicants',
+        'Income Proof: 3 Years ITR with Computation, 6 Months Bank Statements'
+      ],
       options: [
         {
           id: 'opt-res-lap',
@@ -657,10 +826,44 @@ export default function HeroSection({
       ]
     },
     car: {
-      badge: '🚗 Fast Auto Financing & Vehicle Loans',
+      id: 'prod-cat-car',
+      name: 'Car & Automobile Loan Solutions',
       title: 'Car & Automobile Loan Solutions',
-      description: 'Fast-track funding with special dealer tie-ups across Maruti, Hyundai, Kia, Tata, Mahindra & Honda:',
+      categoryName: 'Car Loan',
+      categoryId: 'cat-car',
       catId: 'cat-car',
+      badge: '🚗 Fast Auto Financing & Vehicle Loans',
+      tagline: 'Fast-track funding with special dealer tie-ups across Maruti, Hyundai, Kia, Tata, Mahindra & Honda.',
+      description: 'Fast-track funding with special dealer tie-ups across Maruti, Hyundai, Kia, Tata, Mahindra & Honda:',
+      interestRate: 8.85,
+      minAmount: 100000,
+      maxAmount: 5000000,
+      minTenure: 12,
+      maxTenure: 84,
+      processingFee: '0.50% + GST',
+      turnaroundTime: '4 - 24 Hours',
+      features: [
+        'Up to 95% on-road funding covering vehicle cost, registration & insurance',
+        'Special 0.35% interest rate discount for Green Electric Vehicles (EVs)',
+        'Pre-approved instant auto loans for salaried individuals with minimal paperwork',
+        'Flexible tenures extending up to 7 years (84 months) for low monthly payments',
+        'Exclusive dealer discounts and priority delivery tie-ups across major auto brands',
+        'Certified pre-owned used car loans up to 80% valuation with simple ownership transfer'
+      ],
+      eligibility: {
+        minAge: 21,
+        maxAge: 65,
+        minIncome: 20000,
+        employmentType: 'Salaried Employees, Self-Employed & Business Professionals',
+        minCibilScore: 680
+      },
+      documentsRequired: [
+        'Aadhaar Card, PAN Card & Current Address Verification',
+        'Proforma Invoice / Quotation from authorized car dealer',
+        'Last 3 Months Salary Slips & 6 Months Bank Statement (Salaried)',
+        'Last 2 Years ITR with Computation & Bank Statements (Self-Employed)',
+        'Driving License / Voter ID'
+      ],
       options: [
         {
           id: 'opt-new-car',
@@ -713,10 +916,43 @@ export default function HeroSection({
       ]
     },
     gold: {
-      badge: '🪙 Instant Cash Against Gold Jewelry',
+      id: 'prod-cat-gold',
+      name: 'Gold Loan & Sovereign Pledge Solutions',
       title: 'Gold Loan & Sovereign Pledge Solutions',
-      description: 'Get immediate high-value funds in 15 minutes against your 18k-24k gold jewelry:',
+      categoryName: 'Gold Loan',
+      categoryId: 'cat-gold',
       catId: 'cat-gold',
+      badge: '🪙 Instant Cash Against Gold Jewelry',
+      tagline: 'Instant liquidity in 15 minutes against your 18k-24k gold jewelry with certified safety and zero CIBIL check.',
+      description: 'Get immediate high-value funds in 15 minutes against your 18k-24k gold jewelry:',
+      interestRate: 8.50,
+      minAmount: 20000,
+      maxAmount: 3000000,
+      minTenure: 3,
+      maxTenure: 36,
+      processingFee: 'Zero to 0.25%',
+      turnaroundTime: '15 - 30 Minutes',
+      features: [
+        'Cash in hand or instant bank transfer in under 15 minutes',
+        'No income proof, salary slip, or CIBIL score verification required',
+        'Lowest per-gram interest starting from 8.50% p.a. with multiple repayment schemes',
+        'Bullet repayment option: pay principal and interest together at the end of the tenure',
+        'Revolving overdraft against gold: pay interest only on cash utilized',
+        '100% insured, bank-grade digital vault storage for your valuable ornaments'
+      ],
+      eligibility: {
+        minAge: 18,
+        maxAge: 75,
+        minIncome: 0,
+        employmentType: 'Any Individual owning 18k to 24k Gold Ornaments',
+        minCibilScore: 300
+      },
+      documentsRequired: [
+        'Aadhaar Card or Voter ID (for photo and address identification)',
+        'PAN Card or Form 60',
+        'Passport-size Photograph',
+        'Gold Ornaments for on-the-spot electronic karat testing'
+      ],
       options: [
         {
           id: 'opt-instant-gold',
@@ -774,11 +1010,11 @@ export default function HeroSection({
     const raw = (card.modalKey && relatedOptionsData[card.modalKey]) || {};
     const productData = {
       id: raw.id || `prod-${card.catId || 'general'}`,
-      name: raw.name || raw.title || card.title || 'Doctor & Medical Loan Solutions',
-      title: raw.title || raw.name || card.title || 'Doctor & Medical Loan Solutions',
-      categoryName: raw.categoryName || card.title || 'Doctor & Medical Loan',
-      categoryId: raw.catId || raw.categoryId || card.catId || 'cat-doctor',
-      badge: raw.badge || '🏥 Specialized Doctor & Medical Financing',
+      name: raw.name || raw.title || card.title || 'Loan Solutions',
+      title: raw.title || raw.name || card.title || 'Loan Solutions',
+      categoryName: raw.categoryName || card.title || 'Loan Category',
+      categoryId: raw.catId || raw.categoryId || card.catId || 'cat-general',
+      badge: raw.badge || '💼 VGS Verified Lending Network',
       tagline: raw.tagline || raw.description || card.description,
       description: raw.description || card.description,
       interestRate: typeof raw.interestRate === 'number' ? raw.interestRate : 9.50,
@@ -789,25 +1025,24 @@ export default function HeroSection({
       processingFee: raw.processingFee || '0.75% + GST',
       turnaroundTime: raw.turnaroundTime || '2 - 24 Hours',
       features: raw.features || [
-        'Doctor & Clinic Practice Loan up to ₹75 Lakhs without collateral',
-        'Emergency Medical Treatment Loan with instant 2-hour hospital clearance',
-        'Health Insurance & Hospitalization Loan covering deductibles & non-covered therapies',
-        'Medical Equipment & Diagnostic Loan up to ₹2 Crores with 85% invoice funding'
+        'Multi-bank rate comparison with transparent approval norms',
+        'Competitive interest rates with monthly reducing balance calculation',
+        'Paperless digital verification with minimal documentation requirements',
+        'Dedicated VGS loan manager assistance until successful bank disbursal'
       ],
       subOptions: raw.subOptions || raw.options || [],
       options: raw.options || raw.subOptions || [],
       eligibility: raw.eligibility || {
         minAge: 21,
-        maxAge: 68,
+        maxAge: 65,
         minIncome: 25000,
-        employmentType: 'Salaried, Self-Employed & Registered Doctors',
+        employmentType: 'Salaried & Self-Employed Individuals',
         minCibilScore: 680
       },
       documentsRequired: raw.documentsRequired || [
         'Aadhaar Card, PAN Card & Current Address Proof',
-        'Hospital Admission Estimate / Proforma Invoice / Medical Treatment Bills',
-        'Last 6 Months Bank Statement & Latest 3 Months Salary Slips',
-        'Medical Degree / MCI / DCI State Registration Certificate'
+        'Last 6 Months Bank Statement & Latest 3 Months Income / Salary Proof',
+        'Relevant Asset / Purpose Documents based on selected facility'
       ]
     };
 
