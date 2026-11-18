@@ -350,6 +350,44 @@ export default function HeroSection({
                 </button>
               </div>
 
+              {/* SLIDE PROGRESS CONTROLS (Positioned directly under CTA buttons) */}
+              <div className="flex items-center justify-center sm:justify-start gap-3 pt-3">
+                <button
+                  onClick={handlePrevSlide}
+                  aria-label="Previous Slide"
+                  className="w-8 h-8 rounded-full bg-white hover:bg-[#0A5C80] hover:text-white text-[#0A5C80] flex items-center justify-center text-xs font-bold transition-all border border-[#0A5C80]/30 cursor-pointer shadow-sm hover:scale-105"
+                >
+                  ❮
+                </button>
+
+                <div className="flex items-center gap-1.5">
+                  {carouselSlides.map((s, idx) => (
+                    <button
+                      key={s.id}
+                      onClick={() => setActiveSlide(idx)}
+                      aria-label={`Slide ${idx + 1}`}
+                      className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                        activeSlide === idx
+                          ? 'w-7 bg-gradient-to-r from-[#0A5C80] to-[#6EA928]'
+                          : 'w-2 bg-slate-300 hover:bg-[#0A5C80]/50'
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  onClick={handleNextSlide}
+                  aria-label="Next Slide"
+                  className="w-8 h-8 rounded-full bg-white hover:bg-[#6EA928] hover:text-white text-[#0A5C80] flex items-center justify-center text-xs font-bold transition-all border border-[#0A5C80]/30 cursor-pointer shadow-sm hover:scale-105"
+                >
+                  ❯
+                </button>
+
+                <span className="text-xs text-[#0A5C80] font-bold font-mono ml-2">
+                  0{activeSlide + 1} / 0{carouselSlides.length}
+                </span>
+              </div>
+
 
 
             </div>
@@ -459,43 +497,7 @@ export default function HeroSection({
 
           </div>
 
-          {/* SLIDE PROGRESS CONTROLS (Dots & Next/Prev in Logo Brand Colors) */}
-          <div className="flex items-center justify-center gap-3 pt-8">
-            <button
-              onClick={handlePrevSlide}
-              aria-label="Previous Slide"
-              className="w-9 h-9 rounded-full bg-white hover:bg-[#0A5C80] hover:text-white text-[#0A5C80] flex items-center justify-center text-xs font-bold transition-all border border-[#0A5C80]/30 cursor-pointer shadow-sm"
-            >
-              ❮
-            </button>
 
-            <div className="flex items-center gap-2">
-              {carouselSlides.map((s, idx) => (
-                <button
-                  key={s.id}
-                  onClick={() => setActiveSlide(idx)}
-                  aria-label={`Slide ${idx + 1}`}
-                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                    activeSlide === idx
-                      ? 'w-8 bg-gradient-to-r from-[#0A5C80] to-[#6EA928]'
-                      : 'w-2.5 bg-slate-200 hover:bg-[#0A5C80]/40'
-                  }`}
-                />
-              ))}
-            </div>
-
-            <button
-              onClick={handleNextSlide}
-              aria-label="Next Slide"
-              className="w-9 h-9 rounded-full bg-white hover:bg-[#6EA928] hover:text-white text-[#0A5C80] flex items-center justify-center text-xs font-bold transition-all border border-[#0A5C80]/30 cursor-pointer shadow-sm"
-            >
-              ❯
-            </button>
-
-            <span className="text-xs text-[#0A5C80] font-bold font-mono ml-2">
-              0{activeSlide + 1} / 0{carouselSlides.length}
-            </span>
-          </div>
 
         </div>
 
