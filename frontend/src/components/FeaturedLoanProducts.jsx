@@ -14,9 +14,6 @@ export default function FeaturedLoanProducts({ products, onApplyProduct, onViewD
             <h2 className="text-3xl sm:text-4xl font-extrabold text-[#041E2B] tracking-tight">
               Featured Loan Products
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 md:whitespace-nowrap">
-              Hand-picked high-approval loan products with transparent terms, low processing charges, and instant sanction facilities.
-            </p>
           </div>
           <a
             href="#contact-enquiry"

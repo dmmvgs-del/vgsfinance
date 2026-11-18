@@ -219,7 +219,7 @@ function App() {
 
   const handleCategorySelect = (catId) => {
     setSelectedCategoryFilter(catId);
-    scrollToSection('featured-products');
+    scrollToSection('loan-search');
   };
 
   const handleSearchFilter = (filter) => {
@@ -352,16 +352,6 @@ function App() {
         />
 
 
-        {/* 4. Featured Loan Products */}
-        <FeaturedLoanProducts
-          products={landingData.products || []}
-          onApplyProduct={handleSelectProduct}
-          onViewDetails={(prod) => {
-            setDetailedProduct(prod);
-            handleSwitchView('loan-details');
-          }}
-        />
-
         {/* Interactive Financial Decision Tools */}
         <EmiCalculator
           onApplyWithCalculation={handleApplyWithCalculation}
@@ -380,7 +370,7 @@ function App() {
 
         {/* 6. Customer Contact & Loan Lifecycle Tracker */}
         <CustomerContactWorkflow
-          onSelectProductClick={() => scrollToSection('featured-products')}
+          onSelectProductClick={() => scrollToSection('loan-search')}
         />
 
         {/* 6. Financial Partner Section */}
