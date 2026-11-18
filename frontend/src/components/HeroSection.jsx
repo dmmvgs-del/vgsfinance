@@ -279,14 +279,14 @@ export default function HeroSection({
           />
         </svg>
         <svg
-          className="absolute right-0 top-12 w-72 sm:w-[500px] h-40 pointer-events-none opacity-75 z-0"
+          className="absolute right-0 top-1/2 -translate-y-12 sm:-translate-y-16 w-72 sm:w-[500px] h-40 pointer-events-none opacity-80 z-0"
           viewBox="0 0 500 160"
           fill="none"
         >
           <path
-            d="M -40,80 C 120,150 260,20 380,100 C 440,140 480,60 540,80"
+            d="M 60,60 C 160,20 280,110 380,70 C 440,40 480,90 540,75"
             stroke="#0A5C80"
-            strokeWidth="3"
+            strokeWidth="3.5"
             strokeLinecap="round"
           />
         </svg>
@@ -343,15 +343,18 @@ export default function HeroSection({
             </div>
 
             {/* -----------------------------------------------------------------
-                RIGHT COLUMN (5 cols): LOGO BRAND COLORS CIRCULAR PHOTO FRAME
+                RIGHT COLUMN (5 cols): LOGO BRAND COLORS OVAL PHOTO FRAME WITH HIGHLIGHTED TOP CURVE
                ----------------------------------------------------------------- */}
             <div className="lg:col-span-5 flex flex-col items-center justify-center relative">
 
-              {/* The Organic Circular Ring Frame in Logo Brand Colors (Royal Teal Blue & Leaf Green) */}
-              <div className="relative w-72 h-72 sm:w-88 sm:h-88 md:w-[420px] md:h-[420px] rounded-full p-3 sm:p-4 bg-gradient-to-tr from-[#0A5C80] via-[#0E7490] to-[#6EA928] shadow-2xl shadow-[#0A5C80]/30">
+              {/* The Soft Oval Ring Frame with Highlighted Top Curve (Matches Reference Image) */}
+              <div className="relative w-80 h-64 sm:w-[420px] sm:h-[340px] md:w-[480px] md:h-[390px] rounded-[50%] pt-6 sm:pt-7 md:pt-8 px-3.5 sm:px-4 md:px-5 pb-2.5 sm:pb-3 bg-gradient-to-tr from-[#0A5C80] via-[#0E7490] to-[#6EA928] shadow-2xl shadow-[#0A5C80]/30 transition-transform duration-500 hover:scale-[1.02]">
 
-                {/* Inner White Ring & Circular Photo Viewport */}
-                <div className="relative w-full h-full rounded-full overflow-hidden bg-white border-4 border-white shadow-inner">
+                {/* Top Curve Highlight Arc / Sheen */}
+                <div className="absolute top-1 sm:top-1.5 left-1/4 right-1/4 h-1.5 sm:h-2 bg-white/40 rounded-full blur-[0.5px] pointer-events-none"></div>
+
+                {/* Inner White Ring & Oval Photo Viewport */}
+                <div className="relative w-full h-full rounded-[50%] overflow-hidden bg-white border-4 border-white shadow-inner">
                   {carouselSlides.map((slide, idx) => {
                     const isActive = activeSlide === idx;
                     return (
@@ -384,13 +387,13 @@ export default function HeroSection({
                 </div>
 
                 {/* Floating Top-Right Rate Pill Badge */}
-                <div className="absolute top-2 right-2 sm:top-4 sm:right-4 z-20 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#0A5C80] text-white text-xs sm:text-sm font-black shadow-xl border-2 border-white flex items-center gap-1.5 animate-bounce">
+                <div className="absolute -top-2 right-2 sm:top-1 sm:right-4 z-20 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#0A5C80] text-white text-xs sm:text-sm font-black shadow-xl border-2 border-white flex items-center gap-1.5 animate-bounce">
                   <span>💰</span>
                   <span>{currentSlideData.rate}</span>
                 </div>
 
                 {/* Floating Bottom-Left Feature Pill Badge */}
-                <div className="absolute bottom-3 left-3 sm:bottom-6 sm:left-4 z-20 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white text-[#041E2B] text-xs sm:text-sm font-bold shadow-xl border border-slate-200/90 flex items-center gap-2">
+                <div className="absolute -bottom-2 left-2 sm:bottom-1 sm:left-4 z-20 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white text-[#041E2B] text-xs sm:text-sm font-bold shadow-xl border border-slate-200/90 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-[#6EA928] animate-ping"></span>
                   <span>{currentSlideData.featureTag}</span>
                 </div>
