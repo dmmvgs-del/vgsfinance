@@ -461,39 +461,17 @@ export default function HeroSection({
                     {/* Gradient Overlay for Crisp Text Readability */}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#041E2B]/90 via-[#041E2B]/40 to-transparent"></div>
 
-                    {/* Banner Content Overlay */}
-                    <div className="absolute inset-0 p-3.5 sm:p-5 flex flex-col justify-between z-20 text-white">
-                      {/* Top Badges */}
-                      <div className="flex justify-between items-start gap-2">
-                        <span className="px-2.5 py-1 rounded-full bg-[#E8F5D4] text-[#0A5C80] text-[10px] font-black uppercase tracking-wide shadow-sm">
-                          {slide.tag}
-                        </span>
-                        <span className="px-2.5 py-1 rounded-full bg-[#0A5C80] text-white text-[11px] font-black shadow-md border border-white/20">
-                          💰 {slide.rate}
-                        </span>
-                      </div>
-
-                      {/* Bottom Headline & Action Button */}
-                      <div className="space-y-1.5">
+                    {/* Banner Content Overlay (Clean, no floating badges or buttons matching reference) */}
+                    <div className="absolute inset-0 p-3.5 sm:p-5 flex flex-col justify-end z-20 text-white">
+                      {/* Bottom Headline */}
+                      <div className="space-y-1 mb-2">
                         <h2 className="text-sm sm:text-lg font-black text-white leading-tight drop-shadow-md">
                           {slide.preAccent}
                           <span className="text-[#7DD3FC]">{slide.highlightWord1} </span>
                           <span className="text-[#A3E635]">{slide.highlightWord2}</span>
                         </h2>
-                        <div className="flex items-center justify-between pt-0.5">
-                          <span className="text-[10px] sm:text-xs text-slate-200 font-medium truncate max-w-[65%]">
-                            {slide.featureTag}
-                          </span>
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleAvailLoan(slide.name, slide.catId);
-                            }}
-                            className="px-3 py-1 rounded-full bg-[#6EA928] hover:bg-[#5A8B1F] text-white text-[10px] sm:text-xs font-black shadow-md flex items-center gap-1 cursor-pointer"
-                          >
-                            <span>Apply</span>
-                            <span>➔</span>
-                          </button>
+                        <div className="text-[10px] sm:text-xs text-slate-200 font-medium truncate">
+                          {slide.featureTag} • {slide.rate}
                         </div>
                       </div>
                     </div>
