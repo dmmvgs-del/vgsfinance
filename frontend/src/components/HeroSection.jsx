@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import heroCoinGrowthSprout from '../assets/hero-coin-growth-sprout.jpg';
+import heroInvestmentGrowth from '../assets/hero-investment-growth.jpg';
 import heroDigitalBank from '../assets/hero-digital-bank.jpg';
 import heroHomeFamily from '../assets/hero-home-family.jpg';
 import heroBusinessGrowth from '../assets/hero-business-growth.jpg';
@@ -37,6 +39,32 @@ export default function HeroSection({
 
   const carouselSlides = [
     {
+      id: 'investment-advisory',
+      image: heroCoinGrowthSprout,
+      panoramicImage: heroInvestmentGrowth,
+      tag: "VGS FINANCIAL SERVICES • MULTI-BANK LOAN SUPERMARKET",
+      headlinePrefix: 'WE PROVIDE ',
+      headlineAccent: 'FINANCIAL & LOAN ADVISORY!',
+      headlineSuffix: '',
+      headlineSecondLine: 'Nurture Wealth & Loans.',
+      accentColor: 'text-[#94CF45]',
+      description:
+        'Compare 16+ loan categories and offers from 15+ partner banks with transparent rates starting from 8.4% p.a., customized tenures, and dedicated expert guidance to accelerate your financial growth.',
+      primaryCta: 'CONTACT US',
+      primaryAction: () => setPartnerModalOpen(true),
+      primaryHasCircleBadge: true,
+      primaryBg: 'bg-gradient-to-r from-[#0A5C80] to-[#084E6D] hover:from-[#084E6D] hover:to-[#0A5C80] text-white font-black shadow-lg shadow-[#0A5C80]/40 border border-[#3D9EBF]/40',
+      secondaryCta: 'EXPLORE LOANS',
+      secondaryIcon: '➔',
+      secondaryAction: () => handleAvailLoan('Loan Supermarket', 'all'),
+      secondaryBg: 'bg-[#6EA928] hover:bg-[#5A8B1F] text-white font-black shadow-lg shadow-[#6EA928]/30 border border-[#94CF45]/40',
+      badgeText: 'Nurturing Wealth & Business Expansion',
+      badgeColor: 'bg-[#6EA928]/20 text-[#94CF45] border-[#6EA928]/40',
+      highlightTag: 'Financial Advisory',
+      floatingBadge1: { icon: '🌱', title: 'Seed to Scale', subtitle: 'Capital Growth from 8.4%' },
+      floatingBadge2: { icon: '💰', title: '₹250+ Cr Disbursed', subtitle: '15+ Banking Partners' }
+    },
+    {
       id: 'supermarket',
       image: heroDigitalBank,
       tag: "India's #1 Multi-Bank Marketplace",
@@ -47,7 +75,7 @@ export default function HeroSection({
       accentColor: 'text-[#6EA928]',
       description:
         'Compare 16+ loan categories and offers from 15+ partner banks — with expert guidance at every step.',
-      primaryCta: 'Explore Loan Options ➔',
+      primaryCta: 'EXPLORE LOANS',
       primaryAction: () => handleAvailLoan('Loan Supermarket', 'all'),
       primaryBg: 'bg-[#6EA928] hover:bg-[#5A8B1F] text-white font-black shadow-lg shadow-[#6EA928]/30',
       secondaryCta: 'Talk to an Expert',
@@ -264,6 +292,12 @@ export default function HeroSection({
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
+        {/* Top Architectural Skewed Accent Bar */}
+        <div className="absolute top-0 left-1/3 w-36 h-2 bg-[#0A5C80] transform -skew-x-12 hidden md:block z-20"></div>
+
+        {/* Bottom Left Modern Geometric White Slant Cut (Matches reference image) */}
+        <div className="absolute -bottom-0.5 left-0 w-36 sm:w-64 h-8 sm:h-12 bg-white [clip-path:polygon(0_100%,100%_100%,0_0)] pointer-events-none z-20"></div>
+
         {/* Subtle glowing ambient background orbs & mesh */}
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#0A5C80]/20 rounded-full blur-3xl pointer-events-none"></div>
         <div className="absolute bottom-0 left-10 w-80 h-80 bg-[#6EA928]/15 rounded-full blur-3xl pointer-events-none"></div>
@@ -307,20 +341,33 @@ export default function HeroSection({
                 </p>
               </div>
 
-              {/* Action Buttons */}
+              {/* Action Buttons (Matches Pill Button & Circular Badge in Reference Image) */}
               <div className="flex flex-wrap items-center gap-3.5 pt-1">
                 {/* Primary Action Button */}
                 <button
                   onClick={currentSlideData.primaryAction}
-                  className={`px-6 sm:px-8 py-3.5 rounded-xl text-sm sm:text-base font-black transition-all transform hover:-translate-y-0.5 cursor-pointer flex items-center gap-2 ${currentSlideData.primaryBg}`}
+                  className={`group px-7 py-3.5 rounded-full text-sm sm:text-base font-black transition-all transform hover:-translate-y-0.5 cursor-pointer flex items-center gap-2.5 shadow-xl ${currentSlideData.primaryBg}`}
                 >
                   <span>{currentSlideData.primaryCta}</span>
+                  {currentSlideData.primaryHasCircleBadge ? (
+                    <>
+                      <span className="text-base group-hover:translate-x-1 transition-transform">➔</span>
+                      <span className="w-6 h-6 rounded-full bg-white/20 border border-white/40 flex items-center justify-center text-xs ml-1">
+                        🌐
+                      </span>
+                    </>
+                  ) : (
+                    <span className="group-hover:translate-x-1 transition-transform">➔</span>
+                  )}
                 </button>
 
-                {/* Secondary Action Button (Headset / Outlined Pill) */}
+                {/* Secondary Action Button */}
                 <button
                   onClick={currentSlideData.secondaryAction}
-                  className="px-5 sm:px-7 py-3.5 rounded-xl text-sm sm:text-base font-bold text-white bg-[#041E2B]/80 hover:bg-[#0A5C80]/40 border border-[#0A5C80]/60 backdrop-blur-md transition-all transform hover:-translate-y-0.5 cursor-pointer flex items-center gap-2 shadow-md"
+                  className={`px-6 sm:px-7 py-3.5 rounded-full text-sm sm:text-base font-bold text-white transition-all transform hover:-translate-y-0.5 cursor-pointer flex items-center gap-2 shadow-md ${
+                    currentSlideData.secondaryBg ||
+                    'bg-[#041E2B]/80 hover:bg-[#0A5C80]/40 border border-[#0A5C80]/60 backdrop-blur-md'
+                  }`}
                 >
                   <span className="text-base text-[#6EA928]">{currentSlideData.secondaryIcon}</span>
                   <span>{currentSlideData.secondaryCta}</span>
@@ -465,8 +512,8 @@ export default function HeroSection({
                   {/* Interactive Bottom Control & Thumbnail Preview Bar */}
                   <div className="pt-2.5 px-1 flex items-center justify-between text-xs">
                     
-                    {/* Interactive 4-Thumbnail Switcher */}
-                    <div className="flex items-center gap-2">
+                    {/* Interactive 5-Thumbnail Switcher */}
+                    <div className="flex items-center gap-1.5 sm:gap-2">
                       {carouselSlides.map((slide, idx) => (
                         <button
                           key={slide.id}
@@ -481,7 +528,7 @@ export default function HeroSection({
                           <img
                             src={slide.image}
                             alt={slide.tag}
-                            className="w-10 h-7 sm:w-12 sm:h-8 object-cover"
+                            className="w-8 h-6 sm:w-10 sm:h-7 object-cover"
                           />
                           {activeSlide === idx && (
                             <div className="absolute inset-0 bg-[#6EA928]/20 pointer-events-none"></div>
