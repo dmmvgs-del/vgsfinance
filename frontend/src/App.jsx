@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import LoanSearchSection from './components/LoanSearchSection';
-import FeaturedLoanProducts from './components/FeaturedLoanProducts';
+import LoanProcessSteps from './components/LoanProcessSteps';
 import WhyChooseUs from './components/WhyChooseUs';
 import EmiCalculator from './components/EmiCalculator';
 import EligibilityChecker from './components/EligibilityChecker';
@@ -349,6 +349,11 @@ function App() {
           categories={landingData.categories || []}
           onSearchFilter={handleSearchFilter}
           onQuickApply={handleQuickApply}
+        />
+
+        {/* 3. Fast Loan Disbursal 3-Step Process Flow (30 Mins - 6 Hours) */}
+        <LoanProcessSteps
+          onApplyClick={handleApplyClick}
         />
 
 
