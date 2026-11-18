@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import LoanSearchSection from './components/LoanSearchSection';
-import PopularCategoriesSection from './components/PopularCategoriesSection';
 import FeaturedLoanProducts from './components/FeaturedLoanProducts';
 import WhyChooseUs from './components/WhyChooseUs';
 import LoanProducts from './components/LoanProducts';
@@ -162,11 +161,6 @@ function App() {
           onQuickApply={handleQuickApply}
         />
 
-        {/* 3. Popular Loan Categories */}
-        <PopularCategoriesSection
-          categories={landingData.categories || []}
-          onSelectCategory={handleCategorySelect}
-        />
 
         {/* 4. Featured Loan Products */}
         <FeaturedLoanProducts
