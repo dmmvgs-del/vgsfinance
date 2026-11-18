@@ -19,6 +19,94 @@ import ServicesPage from './components/ServicesPage';
 import { API_BASE_URL } from './config/api';
 import logoImg from './assets/Logo.jpeg';
 
+const defaultMedicalLoanProduct = {
+  id: 'prod-medical-comprehensive',
+  name: 'Medical & Healthcare Loan Solutions',
+  categoryName: 'Medical Loan',
+  categoryId: 'cat-doctor',
+  badge: '🏥 Specialized Healthcare & Medical Financing',
+  tagline: 'Comprehensive financing for emergency medical treatments, health insurance bills, clinic setups, and diagnostic equipment.',
+  description: 'Our Medical & Healthcare Loan program offers swift financial relief when health emergencies arise or when medical practitioners need capital to expand their practice. Covering everything from immediate surgical admissions and insurance co-pay deductibles to doctor clinic setups and advanced medical equipment acquisitions.',
+  interestRate: 9.50,
+  minAmount: 50000,
+  maxAmount: 20000000,
+  minTenure: 12,
+  maxTenure: 84,
+  processingFee: '0.75% + GST',
+  features: [
+    'Fast 2-hour hospital clearance & direct hospital NEFT disbursal',
+    'Covers health insurance co-pays, deductibles & non-covered therapies',
+    'Special high-ticket unsecured capital up to ₹75 Lakhs for Doctors & Dentists',
+    'Up to 85% machinery invoice financing up to ₹2 Crores for medical diagnostic equipment',
+    'Minimal documentation with paperless digital KYC verification',
+    'Flexible repayment tenures from 12 to 84 months with zero prepayment penalties'
+  ],
+  subOptions: [
+    {
+      id: 'opt-emergency',
+      title: 'Emergency Medical Treatment Loan',
+      icon: '🚑',
+      tag: 'FAST 2-HR CLEARANCE',
+      description: 'Immediate funds for urgent hospital admissions, surgeries, critical care, and medical procedures with direct hospital disbursal.',
+      rate: 'From 9.50% p.a.',
+      limit: 'Up to ₹ 15 Lakhs',
+      tenure: '12 - 48 Months',
+      defaultAmount: 300000,
+      benefits: ['Direct Hospital NEFT Disbursal', 'Minimal Paperwork in 2 Hours', 'Zero Prepayment Penalty']
+    },
+    {
+      id: 'opt-insurance',
+      title: 'Health Insurance & Hospitalization Loan',
+      icon: '🛡️',
+      tag: 'COVERS DEDUCTIBLES',
+      description: 'Financing for insurance co-pays, hospital room upgrades, non-covered therapies, post-discharge medicines, and deductibles.',
+      rate: 'From 9.00% p.a.',
+      limit: 'Up to ₹ 10 Lakhs',
+      tenure: '12 - 36 Months',
+      defaultAmount: 200000,
+      benefits: ['No Collateral Required', 'Cashless Hospital Assistance', 'Low Pocket-Friendly EMIs']
+    },
+    {
+      id: 'opt-doctor',
+      title: 'Doctor & Clinic Practice Loan',
+      icon: '🩺',
+      tag: 'FOR DOCTORS & DENTISTS',
+      description: 'High-ticket unsecured capital for MBBS, MD, MS, BDS practitioners to establish, expand, or renovate private clinics.',
+      rate: 'From 9.99% p.a.',
+      limit: 'Up to ₹ 75 Lakhs',
+      tenure: '12 - 84 Months',
+      defaultAmount: 1500000,
+      benefits: ['Exclusive Practitioner Rates', 'Doorstep Document Pickup', 'Fast-Track Sanctions']
+    },
+    {
+      id: 'opt-equipment',
+      title: 'Medical Equipment & Diagnostic Loan',
+      icon: '🔬',
+      tag: 'MACHINERY & LAB ASSETS',
+      description: 'Asset financing for ultrasound units, digital X-Ray machines, dental chairs, pathology lab tools, and ICU monitors.',
+      rate: 'From 10.25% p.a.',
+      limit: 'Up to ₹ 2 Crores',
+      tenure: '24 - 84 Months',
+      defaultAmount: 2500000,
+      benefits: ['Up to 85% Machine Invoice Value', 'Flexible Balloon EMIs', 'OEM Dealer Partnerships']
+    }
+  ],
+  eligibility: {
+    minAge: 21,
+    maxAge: 68,
+    minIncome: 25000,
+    employmentType: 'Salaried, Self-Employed & Registered Doctors',
+    minCibilScore: 680
+  },
+  documentsRequired: [
+    'Aadhaar Card, PAN Card & Current Address Proof',
+    'Hospital Admission Estimate / Proforma Invoice / Medical Treatment Bills',
+    'Last 6 Months Bank Statement & Latest 3 Months Salary Slips (for salaried)',
+    'Medical Degree / MCI / DCI State Registration Certificate (for Doctor loans)',
+    'Equipment Quotation / Proforma Invoice from authorized OEM dealer (for Equipment loans)'
+  ]
+};
+
 function App() {
   const [currentView, setCurrentView] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -27,6 +115,9 @@ function App() {
       }
       if (window.location.hash === '#services' || window.location.search.includes('view=services')) {
         return 'services';
+      }
+      if (window.location.hash === '#loan-details' || window.location.hash === '#details' || window.location.search.includes('view=details')) {
+        return 'loan-details';
       }
     }
     return 'website';
@@ -51,8 +142,11 @@ function App() {
       } else if (window.location.hash === '#services') {
         setCurrentView('services');
         window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else if (window.location.hash === '#website' || window.location.hash === '' || (!window.location.hash.includes('admin') && !window.location.hash.includes('services'))) {
-        setCurrentView((prev) => (prev === 'admin' || prev === 'services' ? 'website' : prev));
+      } else if (window.location.hash === '#loan-details' || window.location.hash === '#details') {
+        setCurrentView('loan-details');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (window.location.hash === '#website' || window.location.hash === '' || (!window.location.hash.includes('admin') && !window.location.hash.includes('services') && !window.location.hash.includes('details'))) {
+        setCurrentView((prev) => (prev === 'admin' || prev === 'services' || prev === 'loan-details' ? 'website' : prev));
       }
     };
     window.addEventListener('hashchange', handleHashChange);
@@ -66,8 +160,11 @@ function App() {
     } else if (view === 'services') {
       window.location.hash = 'services';
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (view === 'loan-details') {
+      window.location.hash = 'loan-details';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      if (window.location.hash === '#admin' || window.location.hash === '#services') {
+      if (window.location.hash === '#admin' || window.location.hash === '#services' || window.location.hash === '#loan-details' || window.location.hash === '#details') {
         window.location.hash = '';
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -173,10 +270,47 @@ function App() {
         onSwitchToHome={() => handleSwitchView('website')}
         onSwitchToAdmin={() => handleSwitchView('admin')}
         onSelectProduct={handleSelectProduct}
+        onViewDetails={(prod) => {
+          setDetailedProduct(prod);
+          handleSwitchView('loan-details');
+        }}
         onApplyClick={handleApplyClick}
         onLeadSubmitted={fetchLandingData}
         initialSearchFilter={searchFilterData}
         initialCategoryId={selectedCategoryFilter}
+      />
+    );
+  }
+
+  // If Dedicated Loan Details Page view is active
+  if (currentView === 'loan-details') {
+    return (
+      <LoanDetailsPage
+        product={detailedProduct || defaultMedicalLoanProduct}
+        categories={landingData.categories || []}
+        onSwitchToHome={() => handleSwitchView('website')}
+        onSwitchToServices={() => handleSwitchView('services')}
+        onSwitchToAdmin={() => handleSwitchView('admin')}
+        onClose={() => handleSwitchView('website')}
+        onApplyNow={(data) => {
+          setSelectedProduct(data.product);
+          setPrefillData({
+            requestedAmount: data.requestedAmount,
+            tenureMonths: data.tenureMonths,
+            monthlyEmi: data.monthlyEmi,
+            productName: data.product?.name
+          });
+          handleSwitchView('website');
+          setTimeout(() => scrollToSection('contact-enquiry'), 100);
+        }}
+        onEnquireNow={(data) => {
+          setPrefillData({
+            requestedAmount: data?.requestedAmount,
+            productName: data?.product?.name || (detailedProduct || defaultMedicalLoanProduct).name
+          });
+          handleSwitchView('website');
+          setTimeout(() => scrollToSection('quick-enquiry'), 100);
+        }}
       />
     );
   }
@@ -203,6 +337,10 @@ function App() {
           onSelectProduct={handleSelectProduct}
           onGoToServices={() => handleSwitchView('services')}
           onQuickApply={handleQuickApply}
+          onViewDetails={(prod) => {
+            setDetailedProduct(prod);
+            handleSwitchView('loan-details');
+          }}
         />
 
         {/* 2. Loan Search / Enquiry Section */}
@@ -217,7 +355,10 @@ function App() {
         <FeaturedLoanProducts
           products={landingData.products || []}
           onApplyProduct={handleSelectProduct}
-          onViewDetails={(prod) => setDetailedProduct(prod)}
+          onViewDetails={(prod) => {
+            setDetailedProduct(prod);
+            handleSwitchView('loan-details');
+          }}
         />
 
         {/* Interactive Financial Decision Tools */}
@@ -356,28 +497,6 @@ function App() {
           </div>
         </div>
       </footer>
-
-      {/* Dedicated Loan Details Page & 13-Section Specification Modal */}
-      {detailedProduct && (
-        <LoanDetailsPage
-          product={detailedProduct}
-          categories={landingData.categories || []}
-          onClose={() => setDetailedProduct(null)}
-          onApplyNow={(data) => {
-            setSelectedProduct(data.product);
-            setPrefillData({
-              requestedAmount: data.requestedAmount,
-              tenureMonths: data.tenureMonths,
-              monthlyEmi: data.monthlyEmi
-            });
-            setDetailedProduct(null);
-            scrollToSection('contact-enquiry');
-          }}
-          onEnquireNow={() => {
-            scrollToSection('quick-enquiry');
-          }}
-        />
-      )}
 
     </div>
   );

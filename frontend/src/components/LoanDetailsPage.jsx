@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import Navbar from './Navbar';
+import logoImg from '../assets/Logo.jpeg';
 import { API_BASE_URL } from '../config/api';
 
 export default function LoanDetailsPage({
@@ -6,7 +8,10 @@ export default function LoanDetailsPage({
   categories = [],
   onClose,
   onApplyNow,
-  onEnquireNow
+  onEnquireNow,
+  onSwitchToHome,
+  onSwitchToServices,
+  onSwitchToAdmin
 }) {
   if (!product) return null;
 
@@ -140,50 +145,43 @@ export default function LoanDetailsPage({
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/95 backdrop-blur-xl animate-fade-in flex flex-col">
+    <div className="min-h-screen bg-slate-950 text-white flex flex-col font-sans selection:bg-[#6EA928] selection:text-white">
       
-      {/* =========================================================================
-          TOP STICKY HEADER & BREADCRUMB
-         ========================================================================= */}
-      <header className="sticky top-0 z-30 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 px-4 sm:px-8 py-3.5 flex items-center justify-between shadow-2xl">
-        <div className="flex items-center gap-3">
-          <button
-            onClick={onClose}
-            className="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer border border-slate-700"
-          >
-            <span>←</span> Back to Loan Marketplace
-          </button>
-          <div className="hidden sm:flex items-center gap-2 text-xs text-slate-400">
-            <span>/</span>
-            <span>{category.name}</span>
-            <span>/</span>
-            <span className="text-white font-bold truncate max-w-xs">{product.name}</span>
-          </div>
-        </div>
+      {/* 1. TOP NAVBAR */}
+      <Navbar
+        currentView="loan-details"
+        setCurrentView={(view) => {
+          if (view === 'website') (onSwitchToHome || onClose)();
+          else if (view === 'services') (onSwitchToServices || onClose)();
+          else if (view === 'admin') (onSwitchToAdmin || onClose)();
+        }}
+        onApplyClick={handleApplyClick}
+      />
 
-        {/* Quick Conversion CTA in Header */}
-        <div className="flex items-center gap-2.5">
+      {/* 2. SUB-NAV / BREADCRUMB STRIP */}
+      <div className="bg-[#03151F] border-b border-[#0A5C80]/40 px-4 sm:px-8 py-3 flex flex-wrap items-center justify-between gap-3 text-xs">
+        <div className="flex items-center gap-2">
           <button
-            onClick={() => setShowQuickModal(true)}
-            className="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-sky-400 border border-sky-500/30 text-xs font-bold transition-all cursor-pointer flex items-center gap-1"
+            onClick={onSwitchToHome || onClose}
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#0A5C80] hover:bg-[#6EA928] text-white font-bold transition-all shadow-md cursor-pointer"
           >
-            <span>📞</span> Enquire Now
+            <span>←</span> Back to Home
           </button>
           <button
-            onClick={handleApplyClick}
-            className="px-4 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-black shadow-lg shadow-emerald-500/20 transition-all cursor-pointer flex items-center gap-1"
+            onClick={onSwitchToServices || onClose}
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-bold transition-colors cursor-pointer"
           >
-            <span>🚀</span> Apply Now
-          </button>
-          <button
-            onClick={onClose}
-            className="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center text-sm font-bold cursor-pointer ml-1"
-            title="Close Loan Details"
-          >
-            ✕
+            <span>🏪</span> All Loan Services
           </button>
         </div>
-      </header>
+        <div className="flex items-center gap-1.5 text-xs text-slate-400">
+          <span className="text-[#6EA928] font-bold">VGS Finance</span>
+          <span>/</span>
+          <span className="text-slate-300 font-medium">{category.name || 'Services'}</span>
+          <span>/</span>
+          <span className="text-white font-bold truncate max-w-xs">{product.name}</span>
+        </div>
+      </div>
 
       {/* =========================================================================
           MAIN LOAN DETAILS CONTENT WRAPPER (13 SECTIONS)
@@ -258,6 +256,110 @@ export default function LoanDetailsPage({
             </div>
           </div>
         </section>
+
+        {/* =========================================================================
+            SPECIALIZED LOAN SUB-OPTIONS SHOWCASE (e.g. Medical: Emergency, Health Insurance, Doctor Clinic, Equipment)
+           ========================================================================= */}
+        {product.subOptions && product.subOptions.length > 0 && (
+          <section className="bg-gradient-to-br from-[#041E2B] via-slate-900 to-[#041E2B] border border-[#0A5C80]/40 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-6">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3 border-b border-[#0A5C80]/30 pb-4">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8F5D4] text-[#466E18] text-[11px] font-black uppercase tracking-wider mb-2">
+                  <span>🏥</span> Specialized Variants & Purpose-Specific Financing
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+                  Related Specialized Loan Options
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-300">
+                  Select your specific requirement below to simulate live EMIs or request instant fast-track callback:
+                </p>
+              </div>
+              <span className="text-xs font-bold px-3 py-1.5 rounded-full bg-slate-800 text-[#6EA928] border border-slate-700 shrink-0">
+                {product.subOptions.length} Specialized Facilities
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {product.subOptions.map((opt) => (
+                <div
+                  key={opt.id}
+                  className="bg-slate-950/80 border border-slate-800 hover:border-[#6EA928] rounded-2xl p-5 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between space-y-4 group"
+                >
+                  <div className="space-y-3">
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex items-center gap-2.5">
+                        <span className="text-2xl p-2 rounded-xl bg-slate-900 border border-slate-800 shadow-sm group-hover:scale-110 transition-transform">
+                          {opt.icon}
+                        </span>
+                        <div>
+                          <h3 className="text-sm sm:text-base font-black text-white group-hover:text-[#6EA928] transition-colors leading-tight">
+                            {opt.title}
+                          </h3>
+                          <span className="text-[10px] font-black text-[#6EA928] uppercase tracking-wide">
+                            {opt.tag}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <p className="text-xs text-slate-300 leading-relaxed font-normal">
+                      {opt.description}
+                    </p>
+
+                    {/* Financial Specs */}
+                    <div className="grid grid-cols-3 gap-2 bg-slate-900 rounded-xl p-2.5 border border-slate-800 text-[11px]">
+                      <div>
+                        <span className="text-[9px] uppercase font-bold text-slate-500 block">Interest Rate</span>
+                        <span className="font-black text-[#6EA928]">{opt.rate}</span>
+                      </div>
+                      <div>
+                        <span className="text-[9px] uppercase font-bold text-slate-500 block">Sanction Limit</span>
+                        <span className="font-black text-white">{opt.limit}</span>
+                      </div>
+                      <div>
+                        <span className="text-[9px] uppercase font-bold text-slate-500 block">Tenure</span>
+                        <span className="font-bold text-slate-300">{opt.tenure}</span>
+                      </div>
+                    </div>
+
+                    {/* Bullet Benefits */}
+                    <div className="space-y-1 pt-1">
+                      {opt.benefits.map((b, bIdx) => (
+                        <div key={bIdx} className="flex items-center gap-1.5 text-[11px] text-slate-300">
+                          <span className="text-[#6EA928] font-bold">✔</span>
+                          <span>{b}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Sub-option Actions */}
+                  <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-800/80">
+                    <button
+                      onClick={() => {
+                        if (opt.defaultAmount) setCalcAmount(opt.defaultAmount);
+                        const el = document.getElementById('details-emi-calc');
+                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                      className="py-2.5 px-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white font-bold text-xs transition-colors cursor-pointer text-center"
+                    >
+                      🧮 Calculate EMI
+                    </button>
+                    <button
+                      onClick={() => {
+                        if (opt.defaultAmount) setCalcAmount(opt.defaultAmount);
+                        setShowQuickModal(true);
+                      }}
+                      className="py-2.5 px-2 rounded-xl bg-[#0A5C80] hover:bg-[#6EA928] text-white font-bold text-xs shadow-md shadow-[#0A5C80]/15 hover:shadow-[#6EA928]/30 transition-all cursor-pointer text-center"
+                    >
+                      ⚡ 1-Click Fast Enquiry
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* =========================================================================
             SECTION 2 & 3: LOAN DESCRIPTION & KEY BENEFITS
@@ -1200,6 +1302,46 @@ export default function LoanDetailsPage({
           </div>
         </div>
       )}
+
+      {/* Corporate Footer */}
+      <footer className="bg-[#041E2B] text-slate-300 py-12 px-4 sm:px-6 lg:px-8 border-t border-[#0A5C80]/30 mt-12">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-3">
+            <img src={logoImg} alt="VGS Finance" className="w-12 h-12 object-contain rounded-xl bg-white p-1" />
+            <div>
+              <div className="text-base font-black text-white">VGS FINANCIAL SERVICES</div>
+              <div className="text-xs text-[#6EA928] font-bold">LOAN SUPER MARKET • ISO COMPLIANT</div>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-bold text-slate-300">
+            <button onClick={onSwitchToHome || onClose} className="hover:text-[#6EA928] transition-colors cursor-pointer">
+              Home
+            </button>
+            <button onClick={onSwitchToServices || onClose} className="hover:text-[#6EA928] transition-colors cursor-pointer">
+              All Loan Services
+            </button>
+            <button onClick={onSwitchToAdmin} className="hover:text-[#6EA928] transition-colors cursor-pointer">
+              Admin Portal
+            </button>
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto mt-8 pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-slate-500">
+          <div>© 2026 VGS Finance & Loans Management System. All rights reserved.</div>
+          <div className="text-slate-400">
+            Engineered & Maintained by{' '}
+            <a
+              href="https://www.ascendmedialabs.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold text-[#6EA928] hover:underline"
+            >
+              Ascend Media Labs (Visakhapatnam)
+            </a>
+          </div>
+        </div>
+      </footer>
 
     </div>
   );

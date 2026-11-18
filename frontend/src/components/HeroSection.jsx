@@ -19,10 +19,10 @@ export default function HeroSection({
   onSelectCategory,
   onSelectProduct,
   onGoToServices,
-  onQuickApply
+  onQuickApply,
+  onViewDetails
 }) {
   const [partnerModalOpen, setPartnerModalOpen] = useState(false);
-  const [activeCategoryModal, setActiveCategoryModal] = useState(null);
   const [partnerFormData, setPartnerFormData] = useState({
     name: '',
     phone: '',
@@ -688,34 +688,31 @@ export default function HeroSection({
   };
 
   const handleCardClick = (card) => {
-    if (card.modalKey && relatedOptionsData[card.modalKey]) {
-      setActiveCategoryModal(card.modalKey);
+    const productData = (card.modalKey && relatedOptionsData[card.modalKey]) || {
+      id: `prod-${card.catId || 'general'}`,
+      name: card.title,
+      categoryName: card.title,
+      categoryId: card.catId,
+      tagline: card.description,
+      interestRate: 9.50,
+      minAmount: 50000,
+      maxAmount: 5000000,
+      minTenure: 12,
+      maxTenure: 60,
+      processingFee: '1.0% + GST',
+      features: [
+        'Lowest market interest rates with fast approval',
+        'Minimal paperless verification and digital KYC',
+        'Flexible repayment tenures and pre-closure options'
+      ]
+    };
+
+    if (onViewDetails) {
+      onViewDetails(productData);
+    } else if (onSelectProduct) {
+      onSelectProduct(productData);
     } else {
       handleAvailLoan(card.title, card.catId);
-    }
-  };
-
-  const handleSelectSubOption = (option, category) => {
-    setActiveCategoryModal(null);
-    if (onQuickApply) {
-      onQuickApply({
-        categoryId: category.catId,
-        requestedAmount: option.defaultAmount || 500000,
-        productName: option.title
-      });
-    } else if (onSelectProduct) {
-      onSelectProduct({ name: option.title, categoryId: category.catId });
-    } else {
-      handleAvailLoan(option.title, category.catId);
-    }
-  };
-
-  const handleExploreInSupermarket = (catId) => {
-    setActiveCategoryModal(null);
-    if (onGoToServices) {
-      onGoToServices();
-    } else {
-      window.location.hash = 'services';
     }
   };
 
@@ -1324,7 +1321,7 @@ export default function HeroSection({
 
                 {/* Interactive Click Pill */}
                 <div className="mt-4 pt-3 border-t border-slate-100 w-full flex items-center justify-center gap-1.5 text-xs font-bold text-[#0A5C80] group-hover:text-[#6EA928] transition-colors">
-                  <span>Explore Options</span>
+                  <span>View In-Detail Specs & Options</span>
                   <span className="text-sm group-hover:translate-x-1 transition-transform">➔</span>
                 </div>
               </div>
@@ -1456,125 +1453,6 @@ export default function HeroSection({
               </form>
             )}
 
-          </div>
-        </div>
-      )}
-
-      {/* =========================================================================
-          6. MODAL: RELATED LOAN OPTIONS MODAL (e.g. Medical Loan -> Emergency, Health Insurance, Doctor, Equipment)
-         ========================================================================= */}
-      {activeCategoryModal && relatedOptionsData[activeCategoryModal] && (
-        <div
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-5 overflow-y-auto"
-          onClick={() => setActiveCategoryModal(null)}
-        >
-          <div
-            className="bg-white border border-slate-200 rounded-3xl max-w-4xl w-full p-5 sm:p-8 shadow-2xl space-y-6 relative animate-scale-up my-auto text-left"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Modal Header */}
-            <div className="flex justify-between items-start border-b border-slate-100 pb-4 pr-10">
-              <div className="space-y-1.5">
-                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8F5D4] text-[#466E18] border border-[#6EA928]/35 text-[11px] font-black uppercase tracking-wider">
-                  {relatedOptionsData[activeCategoryModal].badge}
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-black text-[#041E2B] tracking-tight">
-                  {relatedOptionsData[activeCategoryModal].title}
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-500 font-medium">
-                  {relatedOptionsData[activeCategoryModal].description}
-                </p>
-              </div>
-
-              {/* Close Button */}
-              <button
-                onClick={() => setActiveCategoryModal(null)}
-                className="absolute right-5 top-5 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 flex items-center justify-center font-bold text-base transition-colors cursor-pointer"
-                aria-label="Close Modal"
-              >
-                ✕
-              </button>
-            </div>
-
-            {/* 4 Related Loan Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {relatedOptionsData[activeCategoryModal].options.map((opt) => (
-                <div
-                  key={opt.id}
-                  className="bg-slate-50/70 hover:bg-white border border-slate-200/90 hover:border-[#6EA928] rounded-2xl p-5 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between space-y-4 group"
-                >
-                  <div className="space-y-3">
-                    <div className="flex items-start justify-between gap-2">
-                      <div className="flex items-center gap-2.5">
-                        <span className="text-2xl p-2 rounded-xl bg-white border border-slate-200 shadow-sm group-hover:scale-110 transition-transform">
-                          {opt.icon}
-                        </span>
-                        <div>
-                          <h4 className="text-sm font-black text-[#041E2B] group-hover:text-[#0A5C80] transition-colors leading-tight">
-                            {opt.title}
-                          </h4>
-                          <span className="text-[10px] font-black text-[#466E18] uppercase tracking-wide">
-                            {opt.tag}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
-                      {opt.description}
-                    </p>
-
-                    {/* Financial Specs */}
-                    <div className="grid grid-cols-3 gap-2 bg-white rounded-xl p-2.5 border border-slate-200/80 text-[11px]">
-                      <div>
-                        <span className="text-[9px] uppercase font-bold text-slate-400 block">Interest Rate</span>
-                        <span className="font-black text-[#6EA928]">{opt.rate}</span>
-                      </div>
-                      <div>
-                        <span className="text-[9px] uppercase font-bold text-slate-400 block">Sanction Limit</span>
-                        <span className="font-black text-slate-800">{opt.limit}</span>
-                      </div>
-                      <div>
-                        <span className="text-[9px] uppercase font-bold text-slate-400 block">Tenure</span>
-                        <span className="font-bold text-slate-700">{opt.tenure}</span>
-                      </div>
-                    </div>
-
-                    {/* Bullet Benefits */}
-                    <div className="space-y-1 pt-1">
-                      {opt.benefits.map((b, bIdx) => (
-                        <div key={bIdx} className="flex items-center gap-1.5 text-[11px] text-slate-600">
-                          <span className="text-[#6EA928] font-bold">✔</span>
-                          <span>{b}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Apply Button */}
-                  <button
-                    onClick={() => handleSelectSubOption(opt, relatedOptionsData[activeCategoryModal])}
-                    className="w-full py-2.5 rounded-xl bg-[#0A5C80] hover:bg-[#6EA928] text-white font-bold text-xs shadow-md shadow-[#0A5C80]/15 hover:shadow-[#6EA928]/30 transition-all cursor-pointer flex items-center justify-center gap-1.5 group-hover:translate-x-0.5"
-                  >
-                    <span>⚡ 1-Click Fast Enquiry</span>
-                    <span>➔</span>
-                  </button>
-                </div>
-              ))}
-            </div>
-
-            {/* Bottom Supermarket Redirect */}
-            <div className="border-t border-slate-100 pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-              <span className="text-slate-500 font-medium text-center sm:text-left">
-                Want to compare all partner bank rates and complete documentation checklists?
-              </span>
-              <button
-                onClick={() => handleExploreInSupermarket(relatedOptionsData[activeCategoryModal].catId)}
-                className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-[#E8F5D4] text-[#0A5C80] hover:text-[#466E18] font-bold border border-slate-200 transition-colors cursor-pointer shrink-0"
-              >
-                Compare in Full Supermarket ➔
-              </button>
-            </div>
           </div>
         </div>
       )}

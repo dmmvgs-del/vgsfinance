@@ -11,6 +11,7 @@ export default function ServicesPage({
   onSwitchToHome,
   onSwitchToAdmin,
   onSelectProduct,
+  onViewDetails,
   onApplyClick,
   onLeadSubmitted,
   initialSearchFilter = null,
@@ -72,7 +73,7 @@ export default function ServicesPage({
         products={products}
         categories={categories}
         onSelectProduct={onSelectProduct}
-        onViewDetails={onSelectProduct}
+        onViewDetails={onViewDetails || onSelectProduct}
         initialCategoryId={selectedCategoryFilter}
         searchFilter={searchFilterData}
       />
