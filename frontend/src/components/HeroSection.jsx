@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import heroCoinGrowthSprout from '../assets/hero-coin-growth-sprout.jpg';
-import heroInvestmentGrowth from '../assets/hero-investment-growth.jpg';
-import heroDigitalBank from '../assets/hero-digital-bank.jpg';
-import heroHomeFamily from '../assets/hero-home-family.jpg';
-import heroBusinessGrowth from '../assets/hero-business-growth.jpg';
-import heroCorporateCapital from '../assets/hero-corporate-capital.jpg';
+import loanHome from '../assets/loan-home.jpg';
+import loanEducation from '../assets/loan-education.jpg';
+import loanBusiness from '../assets/loan-business.jpg';
+import loanHealth from '../assets/loan-health.jpg';
+import loanPersonal from '../assets/loan-personal.jpg';
 
 export default function HeroSection({
   onApplyClick,
@@ -39,121 +38,94 @@ export default function HeroSection({
 
   const carouselSlides = [
     {
-      id: 'investment-advisory',
-      image: heroInvestmentGrowth,
-      tag: "VGS FINANCIAL SERVICES • MULTI-BANK LOAN SUPERMARKET",
-      headlinePrefix: 'WE PROVIDE ',
-      headlineAccent: 'FINANCIAL & LOAN ADVISORY!',
-      headlineSuffix: '',
-      headlineSecondLine: 'Nurture Wealth & Loans.',
-      accentColor: 'text-[#94CF45]',
+      id: 'home',
+      name: 'Home Loan',
+      icon: '🏠',
+      image: loanHome,
+      catId: 'cat-home',
+      tag: 'For The Happy Life',
+      preAccent: 'Join In A ',
+      highlightWord1: 'Trustable',
+      highlightColor1: 'text-[#F59E0B]',
+      highlightWord2: 'Home Finance',
+      highlightColor2: 'text-[#6EA928]',
       description:
-        'Compare 16+ loan categories and offers from 15+ partner banks with transparent rates starting from 8.4% p.a., customized tenures, and dedicated expert guidance to accelerate your financial growth.',
-      primaryCta: 'CONTACT US',
-      primaryAction: () => setPartnerModalOpen(true),
-      primaryHasCircleBadge: true,
-      primaryBg: 'bg-gradient-to-r from-[#0A5C80] to-[#084E6D] hover:from-[#084E6D] hover:to-[#0A5C80] text-white font-black shadow-lg shadow-[#0A5C80]/40 border border-[#3D9EBF]/40',
-      secondaryCta: 'EXPLORE LOANS',
-      secondaryIcon: '➔',
-      secondaryAction: () => handleAvailLoan('Loan Supermarket', 'all'),
-      secondaryBg: 'bg-[#6EA928] hover:bg-[#5A8B1F] text-white font-black shadow-lg shadow-[#6EA928]/30 border border-[#94CF45]/40',
-      badgeText: 'Nurturing Wealth & Business Expansion',
-      badgeColor: 'bg-[#6EA928]/20 text-[#94CF45] border-[#6EA928]/40',
-      highlightTag: 'Financial Advisory',
-      floatingBadge1: { icon: '🌱', title: 'Seed to Scale', subtitle: 'Capital Growth from 8.4%' },
-      floatingBadge2: { icon: '💰', title: '₹250+ Cr Disbursed', subtitle: '15+ Banking Partners' }
+        'Our reliable housing loan services are designed to safeguard your family and turn your dream home into reality. With interest rates starting from 8.4% p.a., up to 30 years flexible tenure, and 15+ partner banks, secure your future with complete confidence.',
+      rate: 'From 8.40% p.a.',
+      featureTag: 'Up to ₹5 Cr • 30 Yrs Tenure',
+      primaryCta: 'Apply for Home Loan ➔'
     },
     {
-      id: 'supermarket',
-      image: heroDigitalBank,
-      tag: "India's #1 Multi-Bank Marketplace",
-      headlinePrefix: 'The ',
-      headlineAccent: 'Right Loan.',
-      headlineSuffix: ' The Right Bank.',
-      headlineSecondLine: 'The Right Way.',
-      accentColor: 'text-[#6EA928]',
+      id: 'education',
+      name: 'Education Loan',
+      icon: '🎓',
+      image: loanEducation,
+      catId: 'cat-education',
+      tag: 'Fuel Academic Dreams',
+      preAccent: 'Empower Your ',
+      highlightWord1: 'Global',
+      highlightColor1: 'text-[#F59E0B]',
+      highlightWord2: 'Education',
+      highlightColor2: 'text-[#6EA928]',
       description:
-        'Compare 16+ loan categories and offers from 15+ partner banks — with expert guidance at every step.',
-      primaryCta: 'EXPLORE LOANS',
-      primaryAction: () => handleAvailLoan('Loan Supermarket', 'all'),
-      primaryBg: 'bg-[#6EA928] hover:bg-[#5A8B1F] text-white font-black shadow-lg shadow-[#6EA928]/30',
-      secondaryCta: 'Talk to an Expert',
-      secondaryIcon: '🎧',
-      secondaryAction: () => setPartnerModalOpen(true),
-      badgeText: 'Instant In-Principle Sanction in 2 Hours',
-      badgeColor: 'bg-[#6EA928]/20 text-[#94CF45] border-[#6EA928]/40',
-      highlightTag: '15+ Partner Banks',
-      floatingBadge1: { icon: '🏛️', title: '15+ Banking Partners', subtitle: 'SBI, HDFC, ICICI, Axis' },
-      floatingBadge2: { icon: '⚡', title: '2 Hr In-Principle', subtitle: '100% Paperless KYC' }
+        'Fund higher education across top premier universities in India and abroad. Enjoy 100% tuition coverage, collateral-free sanctions up to ₹50 Lakhs, and student-friendly moratorium repayments.',
+      rate: 'From 9.50% p.a.',
+      featureTag: '100% Tuition & Living Expenses',
+      primaryCta: 'Apply for Education Loan ➔'
     },
     {
-      id: 'home-loans',
-      image: heroHomeFamily,
-      tag: 'Dream Home & Construction Loans',
-      headlinePrefix: 'Your Dream Home. ',
-      headlineAccent: 'Lowest Rates.',
-      headlineSuffix: '',
-      headlineSecondLine: 'Starting @ 8.4% p.a.',
-      accentColor: 'text-[#94CF45]',
+      id: 'business',
+      name: 'Business Loan',
+      icon: '💼',
+      image: loanBusiness,
+      catId: 'cat-business',
+      tag: 'Scale Your Enterprise',
+      preAccent: 'Grow With ',
+      highlightWord1: 'Smart',
+      highlightColor1: 'text-[#F59E0B]',
+      highlightWord2: 'Business Capital',
+      highlightColor2: 'text-[#6EA928]',
       description:
-        'Make your dream home a reality with transparent sanctions up to ₹5 Crores, up to 30 years tenure & doorstep advisor support.',
-      primaryCta: 'Check Home Loan Rates ➔',
-      primaryAction: () => handleAvailLoan('Home Loan', 'cat-home'),
-      primaryBg: 'bg-[#6EA928] hover:bg-[#5A8B1F] text-white font-black shadow-lg shadow-[#6EA928]/30',
-      secondaryCta: 'Calculate EMI',
-      secondaryIcon: '🧮',
-      secondaryAction: onCalcClick || (() => { }),
-      badgeText: 'Tenure up to 30 Yrs • PMAY Subsidy Support',
-      badgeColor: 'bg-[#6EA928]/20 text-[#94CF45] border-[#6EA928]/40',
-      highlightTag: 'Home Loan @ 8.4%',
-      floatingBadge1: { icon: '🏡', title: 'Home Loans', subtitle: 'Starting From 8.40% p.a.' },
-      floatingBadge2: { icon: '🔑', title: 'Sanction up to ₹5 Cr', subtitle: 'Doorstep Documentation' }
+        'Supercharge your business with collateral-free working capital, equipment finance, and MSME trade credit lines up to ₹50 Lakhs with 48-hour digital approval and minimal paperwork.',
+      rate: 'From 11.50% p.a.',
+      featureTag: 'Collateral-Free up to ₹50L',
+      primaryCta: 'Apply for Business Loan ➔'
     },
     {
-      id: 'business-growth',
-      image: heroBusinessGrowth,
-      tag: 'MSME & Business Growth Capital',
-      headlinePrefix: 'Scale Your Business. ',
-      headlineAccent: 'Fuel Vision.',
-      headlineSuffix: '',
-      headlineSecondLine: 'Collateral-Free up to ₹50L.',
-      accentColor: 'text-[#6EA928]',
+      id: 'health',
+      name: 'Health Related Loan',
+      icon: '🏥',
+      image: loanHealth,
+      catId: 'cat-professional',
+      tag: 'Care When It Matters',
+      preAccent: 'Protect With ',
+      highlightWord1: 'Emergency',
+      highlightColor1: 'text-[#F59E0B]',
+      highlightWord2: 'Medical Loans',
+      highlightColor2: 'text-[#6EA928]',
       description:
-        'Working capital limits, equipment purchase, and machinery loans designed for modern entrepreneurs and SMEs with 48-hr fast disbursal.',
-      primaryCta: 'Avail Business Loan ➔',
-      primaryAction: () => handleAvailLoan('Business Loan', 'cat-business'),
-      primaryBg: 'bg-[#0A5C80] hover:bg-[#084E6D] text-white font-black shadow-lg shadow-[#0A5C80]/30',
-      secondaryCta: 'Join as Freelancer',
-      secondaryIcon: '🤝',
-      secondaryAction: () => setPartnerModalOpen(true),
-      badgeText: 'Over ₹250+ Crores Disbursed to MSMEs',
-      badgeColor: 'bg-[#0A5C80]/20 text-[#85C7DF] border-[#0A5C80]/40',
-      highlightTag: 'Collateral-Free MSME',
-      floatingBadge1: { icon: '📈', title: 'Up to ₹50 Lakhs', subtitle: 'Unsecured Business Loan' },
-      floatingBadge2: { icon: '🚀', title: '48 Hr Disbursal', subtitle: 'CGTMSE Coverage' }
+        'Never compromise on healthcare, emergency medical procedures, or clinic equipment financing. Benefit from fast 2-hour digital clearance, preferential APR, and flexible repayment EMIs.',
+      rate: 'Special Medical APR',
+      featureTag: 'Instant 2-Hr Clearance',
+      primaryCta: 'Apply for Medical Loan ➔'
     },
     {
-      id: 'corporate-capital',
-      image: heroCorporateCapital,
-      tag: 'High-Value Corporate & Property Finance',
-      headlinePrefix: 'Unlock High Value ',
-      headlineAccent: 'Property & Corporate',
-      headlineSuffix: '',
-      headlineSecondLine: 'Loans Up To ₹10 Cr.',
-      accentColor: 'text-[#85C7DF]',
+      id: 'personal',
+      name: 'Personal Loan',
+      icon: '👤',
+      image: loanPersonal,
+      catId: 'cat-personal',
+      tag: 'Celebrate Life Milestones',
+      preAccent: 'Achieve With ',
+      highlightWord1: 'Instant',
+      highlightColor1: 'text-[#F59E0B]',
+      highlightWord2: 'Personal Finance',
+      highlightColor2: 'text-[#6EA928]',
       description:
-        'Tailored mortgages, loan against commercial/residential property, and debt syndication with maximum loan-to-value and multi-bank sanction options.',
-      primaryCta: 'Avail Mortgage Loan ➔',
-      primaryAction: () => handleAvailLoan('Loan Against Property', 'cat-mortgage'),
-      primaryBg: 'bg-gradient-to-r from-[#0A5C80] to-[#6EA928] hover:opacity-90 text-white font-black shadow-lg shadow-[#0A5C80]/30',
-      secondaryCta: 'Talk to an Expert',
-      secondaryIcon: '🎧',
-      secondaryAction: () => setPartnerModalOpen(true),
-      badgeText: 'PSU, Private & NBFC Consortium',
-      badgeColor: 'bg-[#0A5C80]/20 text-[#94CF45] border-[#6EA928]/40',
-      highlightTag: 'Up to ₹10 Crores',
-      floatingBadge1: { icon: '🏢', title: 'Mortgage Loan', subtitle: 'LAP Up to ₹10 Cr' },
-      floatingBadge2: { icon: '📊', title: 'Lowest Spreads', subtitle: 'Consortium Sanctions' }
+        'Instant paperless personal loans for weddings, travel, renovations, or unexpected life needs. Get digital KYC approval with rates from 10.5% p.a. and direct bank transfer in 2 hours.',
+      rate: 'From 10.50% p.a.',
+      featureTag: 'Paperless Digital KYC',
+      primaryCta: 'Apply for Personal Loan ➔'
     }
   ];
 
@@ -284,86 +256,237 @@ export default function HeroSection({
     <section id="hero" className="relative font-sans select-none overflow-hidden">
 
       {/* =========================================================================
-          1. HERO CAROUSEL BANNER: ULTRA-PREMIUM CLEAN FULL-BLEED VISUAL SHOWCASE
+          1. HERO SECTION: CLEAN MODERN 2-COLUMN DESIGN (Matching Reference Image)
+             Left: Category Tabs, Two-Tone Headline, Benefits, Action Buttons, Ratings
+             Right: Golden-Amber Organic Circular Photo Frame with 5 Loan Visuals
          ========================================================================= */}
       <div
-        className="relative w-full h-[460px] sm:h-[520px] lg:h-[580px] xl:h-[620px] overflow-hidden select-none bg-[#031824]"
+        className="relative bg-gradient-to-b from-white via-slate-50/70 to-white pt-8 sm:pt-12 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden select-none"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
-        {/* Full-Bleed Complete Background Image Stack (100% Unobscured Artwork) */}
-        <div className="absolute inset-0 w-full h-full overflow-hidden">
-          {carouselSlides.map((slide, idx) => {
-            const isActive = activeSlide === idx;
-            return (
-              <div
+        {/* Abstract Flowing Organic Curved Ribbons (Matches Reference Image) */}
+        <svg
+          className="absolute left-0 bottom-10 w-72 sm:w-[480px] h-36 pointer-events-none opacity-80 z-0"
+          viewBox="0 0 500 160"
+          fill="none"
+        >
+          <path
+            d="M -40,130 C 80,40 180,140 320,60 C 420,0 480,50 540,30"
+            stroke="#6EA928"
+            strokeWidth="3.5"
+            strokeLinecap="round"
+          />
+        </svg>
+        <svg
+          className="absolute right-0 top-12 w-72 sm:w-[500px] h-40 pointer-events-none opacity-75 z-0"
+          viewBox="0 0 500 160"
+          fill="none"
+        >
+          <path
+            d="M -40,80 C 120,150 260,20 380,100 C 440,140 480,60 540,80"
+            stroke="#F59E0B"
+            strokeWidth="3"
+            strokeLinecap="round"
+          />
+        </svg>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+
+          {/* 5 LOAN CATEGORY SELECTOR PILLS (Home, Education, Business, Health, Personal) */}
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-2.5 mb-8">
+            {carouselSlides.map((slide, idx) => (
+              <button
                 key={slide.id}
-                className={`absolute inset-0 w-full h-full transition-all duration-1000 ease-in-out ${
-                  isActive
-                    ? 'opacity-100 scale-100 z-10 pointer-events-auto'
-                    : 'opacity-0 scale-105 z-0 pointer-events-none'
+                onClick={() => setActiveSlide(idx)}
+                className={`px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer flex items-center gap-2 shadow-sm ${
+                  activeSlide === idx
+                    ? 'bg-[#0A5C80] text-white shadow-md shadow-[#0A5C80]/30 scale-105 ring-2 ring-[#0A5C80]/40'
+                    : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200/90'
                 }`}
               >
-                {/* Clean, Full-Resolution Image with Subtle Ken Burns Slow Pan/Zoom */}
-                <div className={`w-full h-full overflow-hidden ${isActive ? 'animate-ken-burns' : ''}`}>
-                  <img
-                    src={slide.image}
-                    alt={slide.tag}
-                    className="w-full h-full object-cover object-center"
-                    loading="eager"
-                  />
+                <span className="text-base">{slide.icon}</span>
+                <span>{slide.name}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* MAIN 2-COLUMN HERO GRID */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+
+            {/* -----------------------------------------------------------------
+                LEFT COLUMN (7 cols): TYPOGRAPHY, BENEFITS & ACTION BUTTONS
+               ----------------------------------------------------------------- */}
+            <div className="lg:col-span-7 space-y-6 animate-fade-in text-center sm:text-left">
+
+              {/* Tag / Pre-Title */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E8F5D4] border border-[#6EA928]/30 text-[#0A5C80] text-xs font-black tracking-wide uppercase">
+                <span className="w-2 h-2 rounded-full bg-[#6EA928] animate-ping"></span>
+                <span>{currentSlideData.tag}</span>
+              </div>
+
+              {/* Main Two-Tone Headline (Matches Reference Image) */}
+              <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-black tracking-tight leading-[1.14] text-[#041E2B]">
+                <span>{currentSlideData.preAccent}</span>
+                <span className={currentSlideData.highlightColor1}>{currentSlideData.highlightWord1} </span>
+                <span className={currentSlideData.highlightColor2}>{currentSlideData.highlightWord2}</span>
+              </h1>
+
+              {/* Description Paragraph */}
+              <p className="text-sm sm:text-base text-slate-600 font-medium max-w-xl leading-relaxed mx-auto sm:mx-0">
+                {currentSlideData.description}
+              </p>
+
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 pt-2">
+                {/* Primary Button */}
+                <button
+                  onClick={() => handleAvailLoan(currentSlideData.name, currentSlideData.catId)}
+                  className="px-7 sm:px-8 py-3.5 rounded-full text-sm sm:text-base font-black bg-[#6EA928] hover:bg-[#5A8B1F] text-white shadow-lg shadow-[#6EA928]/35 transition-all transform hover:-translate-y-0.5 cursor-pointer flex items-center gap-2"
+                >
+                  <span>{currentSlideData.primaryCta}</span>
+                </button>
+
+                {/* Secondary Button */}
+                <button
+                  onClick={onCalcClick || (() => {})}
+                  className="px-6 sm:px-7 py-3.5 rounded-full text-sm sm:text-base font-bold bg-white hover:bg-slate-50 text-[#0A5C80] border-2 border-[#0A5C80] shadow-sm transition-all transform hover:-translate-y-0.5 cursor-pointer flex items-center gap-2"
+                >
+                  <span>🧮 Calculate EMI</span>
+                </button>
+              </div>
+
+              {/* Social Proof & Ratings (Matches Reference Image) */}
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 pt-3 text-xs sm:text-sm text-slate-600">
+                <div className="flex items-center gap-1.5 font-bold text-slate-800">
+                  <div className="flex items-center text-[#F59E0B] text-base">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                  </div>
+                  <span>10K+ 4.8 Star Rating</span>
+                </div>
+                <span className="text-slate-300 hidden sm:inline">•</span>
+                <div className="flex items-center gap-1.5 font-semibold text-[#0A5C80]">
+                  <span>🏛️ 15+ Partner Banks</span>
+                </div>
+                <span className="text-slate-300 hidden sm:inline">•</span>
+                <div className="flex items-center gap-1.5 font-semibold text-[#6EA928]">
+                  <span>⚡ 2-Hr Disbursal</span>
+                </div>
+              </div>
+
+            </div>
+
+            {/* -----------------------------------------------------------------
+                RIGHT COLUMN (5 cols): GOLDEN ORGANIC CIRCULAR PHOTO FRAME
+               ----------------------------------------------------------------- */}
+            <div className="lg:col-span-5 flex flex-col items-center justify-center relative">
+
+              {/* The Golden-Orange Organic Circular Ring Frame (Matches Reference Image) */}
+              <div className="relative w-72 h-72 sm:w-88 sm:h-88 md:w-[420px] md:h-[420px] rounded-full p-3 sm:p-4 bg-gradient-to-tr from-[#F59E0B] via-[#FBBF24] to-[#6EA928] shadow-2xl shadow-amber-500/25">
+
+                {/* Inner White Ring & Circular Photo Viewport */}
+                <div className="relative w-full h-full rounded-full overflow-hidden bg-white border-4 border-white shadow-inner">
+                  {carouselSlides.map((slide, idx) => {
+                    const isActive = activeSlide === idx;
+                    return (
+                      <div
+                        key={slide.id}
+                        className={`absolute inset-0 w-full h-full transition-all duration-700 ease-in-out ${
+                          isActive
+                            ? 'opacity-100 scale-100 z-10 pointer-events-auto'
+                            : 'opacity-0 scale-95 z-0 pointer-events-none'
+                        }`}
+                      >
+                        <img
+                          src={slide.image}
+                          alt={slide.name}
+                          className="w-full h-full object-cover object-center"
+                          loading="eager"
+                        />
+                      </div>
+                    );
+                  })}
                 </div>
 
-                {/* Ultra-subtle bottom vignette to blend softly into the bar below */}
-                <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#031824] to-transparent pointer-events-none"></div>
+                {/* Green Pulse Play/Sanction Center Button (Matches Reference Image) */}
+                <div
+                  onClick={() => handleAvailLoan(currentSlideData.name, currentSlideData.catId)}
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-[#6EA928] hover:bg-[#5A8B1F] text-white flex items-center justify-center text-lg shadow-xl shadow-[#6EA928]/50 animate-pulse cursor-pointer border-2 border-white transition-transform hover:scale-110"
+                  title="Check Instant Loan Offer"
+                >
+                  ▶
+                </div>
+
+                {/* Floating Top-Right Rate Pill Badge */}
+                <div className="absolute top-2 right-2 sm:top-4 sm:right-4 z-20 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#0A5C80] text-white text-xs sm:text-sm font-black shadow-xl border-2 border-white flex items-center gap-1.5 animate-bounce">
+                  <span>💰</span>
+                  <span>{currentSlideData.rate}</span>
+                </div>
+
+                {/* Floating Bottom-Left Feature Pill Badge */}
+                <div className="absolute bottom-3 left-3 sm:bottom-6 sm:left-4 z-20 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-white text-[#041E2B] text-xs sm:text-sm font-bold shadow-xl border border-slate-200/90 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#6EA928] animate-ping"></span>
+                  <span>{currentSlideData.featureTag}</span>
+                </div>
+
               </div>
-            );
-          })}
-        </div>
 
-        {/* Minimal Glassmorphic Left Arrow */}
-        <button
-          onClick={handlePrevSlide}
-          aria-label="Previous Slide"
-          className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/35 hover:bg-[#6EA928] text-white flex items-center justify-center text-sm sm:text-base font-bold transition-all border border-white/20 backdrop-blur-md cursor-pointer opacity-80 hover:opacity-100 shadow-xl"
-        >
-          ❮
-        </button>
+              {/* Star Rating Under Circular Frame (Matches Reference Image) */}
+              <div className="flex items-center gap-1.5 pt-4 text-xs font-bold text-slate-700">
+                <span className="text-[#F59E0B] text-sm">★★★★★</span>
+                <span>10K+ 4.8 Star Rating</span>
+              </div>
 
-        {/* Minimal Glassmorphic Right Arrow */}
-        <button
-          onClick={handleNextSlide}
-          aria-label="Next Slide"
-          className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/35 hover:bg-[#6EA928] text-white flex items-center justify-center text-sm sm:text-base font-bold transition-all border border-white/20 backdrop-blur-md cursor-pointer opacity-80 hover:opacity-100 shadow-xl"
-        >
-          ❯
-        </button>
+            </div>
 
-        {/* Minimal Glassmorphic Slide Indicator Pills (Bottom Center) */}
-        <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 z-20 flex items-center gap-2 px-4 py-2 rounded-full bg-black/40 backdrop-blur-md border border-white/20 shadow-xl">
-          {carouselSlides.map((s, idx) => (
+          </div>
+
+          {/* SLIDE PROGRESS CONTROLS (Dots & Next/Prev) */}
+          <div className="flex items-center justify-center gap-3 pt-8">
             <button
-              key={s.id}
-              onClick={() => setActiveSlide(idx)}
-              aria-label={`Slide ${idx + 1}`}
-              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                activeSlide === idx
-                  ? 'w-7 bg-[#6EA928]'
-                  : 'w-2 bg-white/50 hover:bg-white/80'
-              }`}
-            />
-          ))}
-          <span className="text-[11px] text-white/80 font-mono ml-2 pl-2 border-l border-white/20">
-            0{activeSlide + 1} / 0{carouselSlides.length}
-          </span>
+              onClick={handlePrevSlide}
+              aria-label="Previous Slide"
+              className="w-9 h-9 rounded-full bg-slate-100 hover:bg-[#6EA928] hover:text-white text-slate-700 flex items-center justify-center text-xs font-bold transition-all border border-slate-200 cursor-pointer shadow-sm"
+            >
+              ❮
+            </button>
+
+            <div className="flex items-center gap-1.5">
+              {carouselSlides.map((s, idx) => (
+                <button
+                  key={s.id}
+                  onClick={() => setActiveSlide(idx)}
+                  aria-label={`Slide ${idx + 1}`}
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                    activeSlide === idx
+                      ? 'w-7 bg-[#6EA928]'
+                      : 'w-2 bg-slate-300 hover:bg-slate-400'
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={handleNextSlide}
+              aria-label="Next Slide"
+              className="w-9 h-9 rounded-full bg-slate-100 hover:bg-[#6EA928] hover:text-white text-slate-700 flex items-center justify-center text-xs font-bold transition-all border border-slate-200 cursor-pointer shadow-sm"
+            >
+              ❯
+            </button>
+
+            <span className="text-xs text-slate-400 font-mono ml-2">
+              0{activeSlide + 1} / 0{carouselSlides.length}
+            </span>
+          </div>
+
         </div>
 
       </div>
 
       {/* =========================================================================
-          2. FOUR METRICS PILL BAR (Directly under Hero Carousel)
+          2. FOUR METRICS PILL BAR (Directly under Hero Section)
          ========================================================================= */}
-      <div className="bg-[#031824] px-4 sm:px-6 lg:px-8 pb-8 pt-2">
+      <div className="bg-white px-4 sm:px-6 lg:px-8 pb-8 pt-2">
         <div className="max-w-7xl mx-auto">
           <div className="bg-[#041E2B] border border-[#0A5C80]/35 rounded-2xl shadow-xl p-3 sm:p-4 backdrop-blur-md">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 divide-y md:divide-y-0 md:divide-x divide-[#0A5C80]/30 text-center">
