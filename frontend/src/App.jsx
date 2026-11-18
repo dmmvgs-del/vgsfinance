@@ -189,7 +189,7 @@ function App() {
     fetchLandingData();
     // Auto-sync MySQL database tables in production if needed
     if (!import.meta.env.DEV) {
-      fetch('/init-db.php').catch(() => {});
+      fetch('/init-db.php').catch(() => { });
     }
   }, []);
 
@@ -319,7 +319,7 @@ function App() {
   // Public Landing Website view (Home Page Scope)
   return (
     <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-[#6EA928] selection:text-white">
-      
+
       {/* Top Header & Navigation */}
       <Navbar
         currentView={currentView}
@@ -329,7 +329,7 @@ function App() {
 
       {/* Main Home Page Content */}
       <main className="flex-1 space-y-0 bg-white">
-        
+
         {/* 1. Hero Banner */}
         <HeroSection
           onApplyClick={handleApplyClick}
@@ -415,7 +415,7 @@ function App() {
       {/* Footer */}
       <footer className="border-t border-[#0A5C80]/30 bg-[#041E2B] py-12 text-slate-400 text-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
-          
+
           <div className="space-y-3">
             <div className="flex items-center gap-2.5">
               <img

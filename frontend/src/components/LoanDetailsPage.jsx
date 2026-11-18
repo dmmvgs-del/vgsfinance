@@ -96,13 +96,13 @@ export default function LoanDetailsPage({
   const prodFeatures = (rawProduct.features && rawProduct.features.length > 0)
     ? rawProduct.features
     : [
-        'Fast 2-hour hospital clearance & direct hospital NEFT disbursal',
-        'Covers health insurance co-pays, deductibles & non-covered therapies',
-        'Special high-ticket unsecured capital up to ₹75 Lakhs for Doctors & Dentists',
-        'Up to 85% machinery invoice financing up to ₹2 Crores for medical diagnostic equipment',
-        'Minimal documentation with paperless digital KYC verification',
-        'Flexible repayment tenures from 12 to 84 months with zero prepayment penalties'
-      ];
+      'Fast 2-hour hospital clearance & direct hospital NEFT disbursal',
+      'Covers health insurance co-pays, deductibles & non-covered therapies',
+      'Special high-ticket unsecured capital up to ₹75 Lakhs for Doctors & Dentists',
+      'Up to 85% machinery invoice financing up to ₹2 Crores for medical diagnostic equipment',
+      'Minimal documentation with paperless digital KYC verification',
+      'Flexible repayment tenures from 12 to 84 months with zero prepayment penalties'
+    ];
 
   const prodEligibility = rawProduct.eligibility || {
     minAge: 21,
@@ -115,12 +115,12 @@ export default function LoanDetailsPage({
   const prodDocuments = (rawProduct.documentsRequired && rawProduct.documentsRequired.length > 0)
     ? rawProduct.documentsRequired
     : [
-        'Aadhaar Card, PAN Card & Current Address Proof',
-        'Hospital Admission Estimate / Proforma Invoice / Medical Treatment Bills',
-        'Last 6 Months Bank Statement & Latest 3 Months Salary Slips (for salaried)',
-        'Medical Degree / MCI / DCI State Registration Certificate (for Doctor loans)',
-        'Equipment Quotation / Proforma Invoice from authorized OEM dealer (for Equipment loans)'
-      ];
+      'Aadhaar Card, PAN Card & Current Address Proof',
+      'Hospital Admission Estimate / Proforma Invoice / Medical Treatment Bills',
+      'Last 6 Months Bank Statement & Latest 3 Months Salary Slips (for salaried)',
+      'Medical Degree / MCI / DCI State Registration Certificate (for Doctor loans)',
+      'Equipment Quotation / Proforma Invoice from authorized OEM dealer (for Equipment loans)'
+    ];
 
   // State for Embedded Live EMI Calculator
   const [calcAmount, setCalcAmount] = useState(
@@ -233,7 +233,7 @@ export default function LoanDetailsPage({
   const handleQuickEnquirySubmit = (e) => {
     e.preventDefault();
     if (!quickName || !quickPhone) return;
-    
+
     // Fire to backend lead creation API
     fetch(`${API_BASE_URL}/api/leads`, {
       method: 'POST',
@@ -257,8 +257,8 @@ export default function LoanDetailsPage({
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white flex flex-col font-sans selection:bg-[#6EA928] selection:text-white">
-      
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-800 flex flex-col font-sans selection:bg-[#6EA928] selection:text-white">
+
       {/* 1. TOP NAVBAR */}
       <Navbar
         currentView="loan-details"
@@ -271,27 +271,27 @@ export default function LoanDetailsPage({
       />
 
       {/* 2. SUB-NAV / BREADCRUMB STRIP */}
-      <div className="bg-[#03151F] border-b border-[#0A5C80]/40 px-4 sm:px-8 py-3 flex flex-wrap items-center justify-between gap-3 text-xs">
+      <div className="bg-white border-b border-slate-200 px-4 sm:px-8 py-3 flex flex-wrap items-center justify-between gap-3 text-xs shadow-xs">
         <div className="flex items-center gap-2">
           <button
             onClick={onSwitchToHome || onClose}
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#0A5C80] hover:bg-[#6EA928] text-white font-bold transition-all shadow-md cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#0A5C80] hover:bg-[#6EA928] text-white font-bold transition-all shadow-sm cursor-pointer"
           >
             <span>←</span> Back to Home
           </button>
           <button
             onClick={onSwitchToServices || onClose}
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-bold transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold border border-slate-200 transition-colors cursor-pointer"
           >
             <span>🏪</span> All Loan Services
           </button>
         </div>
-        <div className="flex items-center gap-1.5 text-xs text-slate-400">
+        <div className="flex items-center gap-1.5 text-xs text-slate-500">
           <span className="text-[#6EA928] font-bold">VGS Finance</span>
           <span>/</span>
-          <span className="text-slate-300 font-medium">{category.name || 'Doctor & Medical Loan'}</span>
+          <span className="text-slate-600 font-medium">{category.name || 'Doctor & Medical Loan'}</span>
           <span>/</span>
-          <span className="text-white font-bold truncate max-w-xs">{prodName}</span>
+          <span className="text-slate-900 font-bold truncate max-w-xs">{prodName}</span>
         </div>
       </div>
 
@@ -299,68 +299,68 @@ export default function LoanDetailsPage({
           MAIN LOAN DETAILS CONTENT WRAPPER (13 SECTIONS)
          ========================================================================= */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
-        
+
         {/* =========================================================================
             SECTION 1: LOAN NAME & PRODUCT BANNER
            ========================================================================= */}
-        <section className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
-          
+        <section className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-sm relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
           <div className="relative z-10 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
             <div className="space-y-3 max-w-3xl">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-black uppercase tracking-wider flex items-center gap-1">
+                <span className="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-[#466E18] text-xs font-black uppercase tracking-wider flex items-center gap-1">
                   <span>{category.icon || '🩺'}</span> {category.name}
                 </span>
-                <span className="px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-bold">
+                <span className="px-3 py-1 rounded-full bg-sky-50 border border-sky-200 text-[#0A5C80] text-xs font-bold">
                   Product ID: {prodId}
                 </span>
-                <span className="px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-bold">
+                <span className="px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold">
                   Verified Lending Partner Network
                 </span>
               </div>
 
               {/* 1. LOAN NAME */}
-              <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+              <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
                 {prodName}
               </h1>
 
               {/* Tagline / Subtitle */}
-              <p className="text-base sm:text-lg text-slate-300 font-medium leading-relaxed">
+              <p className="text-base sm:text-lg text-slate-600 font-medium leading-relaxed">
                 {prodTagline}
               </p>
             </div>
 
             {/* Quick Hero Financial Metrics Badge */}
-            <div className="bg-slate-950/80 border border-emerald-500/30 rounded-3xl p-6 text-center shrink-0 w-full lg:w-72 shadow-xl space-y-3">
+            <div className="bg-gradient-to-br from-emerald-50/80 via-white to-sky-50/60 border border-emerald-200 rounded-3xl p-6 text-center shrink-0 w-full lg:w-72 shadow-md space-y-3">
               <div>
-                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                   Interest Rate from
                 </span>
-                <span className="text-4xl font-black text-emerald-400 block tracking-tight">
-                  {prodRate}% <span className="text-sm font-normal text-slate-300">p.a.</span>
+                <span className="text-4xl font-black text-[#466E18] block tracking-tight">
+                  {prodRate}% <span className="text-sm font-normal text-slate-600">p.a.</span>
                 </span>
-                <span className="text-[10px] text-emerald-500/90 font-medium block mt-0.5">
+                <span className="text-[10px] text-emerald-800 font-semibold block mt-0.5">
                   Monthly Reducing Balance Formula
                 </span>
               </div>
-              
-              <div className="pt-3 border-t border-slate-800 flex justify-around text-xs">
+
+              <div className="pt-3 border-t border-slate-200 flex justify-around text-xs">
                 <div>
                   <span className="text-slate-500 block text-[10px]">Processing Fee</span>
-                  <span className="text-white font-bold">{prodProcessingFee}</span>
+                  <span className="text-slate-900 font-bold">{prodProcessingFee}</span>
                 </div>
-                <div className="border-r border-slate-800"></div>
+                <div className="border-r border-slate-200"></div>
                 <div>
                   <span className="text-slate-500 block text-[10px]">Sanction Turnaround</span>
-                  <span className="text-sky-400 font-bold">{prodTurnaround}</span>
+                  <span className="text-[#0A5C80] font-bold">{prodTurnaround}</span>
                 </div>
               </div>
 
               <div className="pt-2">
                 <button
                   onClick={handleApplyClick}
-                  className="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-emerald-500/20 cursor-pointer transition-all"
+                  className="w-full py-3 rounded-xl bg-[#6EA928] hover:bg-[#5A8B1F] text-white font-black text-xs uppercase tracking-wider shadow-md shadow-[#6EA928]/30 cursor-pointer transition-all"
                 >
                   🚀 Instant Application
                 </button>
@@ -373,38 +373,38 @@ export default function LoanDetailsPage({
             SPECIALIZED LOAN SUB-OPTIONS SHOWCASE (e.g. Medical: Emergency, Health Insurance, Doctor Clinic, Equipment)
            ========================================================================= */}
         {prodSubOptions && prodSubOptions.length > 0 && (
-          <section className="bg-gradient-to-br from-[#041E2B] via-slate-900 to-[#041E2B] border border-[#0A5C80]/40 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-6">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3 border-b border-[#0A5C80]/30 pb-4">
+          <section className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-sm space-y-6">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3 border-b border-slate-200 pb-4">
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8F5D4] text-[#466E18] text-[11px] font-black uppercase tracking-wider mb-2">
                   <span>🏥</span> Specialized Variants & Purpose-Specific Financing
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
                   Related Specialized Loan Options
                 </h2>
-                <p className="text-xs sm:text-sm text-slate-300">
+                <p className="text-xs sm:text-sm text-slate-600">
                   Select your specific requirement below to simulate live EMIs or request instant fast-track callback:
                 </p>
               </div>
-              <span className="text-xs font-bold px-3 py-1.5 rounded-full bg-slate-800 text-[#6EA928] border border-slate-700 shrink-0">
+              <span className="text-xs font-bold px-3 py-1.5 rounded-full bg-slate-100 text-[#466E18] border border-slate-200 shrink-0">
                 {prodSubOptions.length} Specialized Facilities
               </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {prodSubOptions.map((opt) => (
                 <div
                   key={opt.id}
-                  className="bg-slate-950/80 border border-slate-800 hover:border-[#6EA928] rounded-2xl p-5 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between space-y-4 group"
+                  className="bg-slate-50/70 hover:bg-white border border-slate-200 hover:border-[#6EA928] rounded-2xl p-5 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between space-y-4 group"
                 >
                   <div className="space-y-3">
                     <div className="flex items-start justify-between gap-2">
                       <div className="flex items-center gap-2.5">
-                        <span className="text-2xl p-2 rounded-xl bg-slate-900 border border-slate-800 shadow-sm group-hover:scale-110 transition-transform">
+                        <span className="text-2xl p-2.5 rounded-xl bg-white border border-slate-200 shadow-xs group-hover:scale-110 transition-transform">
                           {opt.icon}
                         </span>
                         <div>
-                          <h3 className="text-sm sm:text-base font-black text-white group-hover:text-[#6EA928] transition-colors leading-tight">
+                          <h3 className="text-sm sm:text-base font-black text-slate-900 group-hover:text-[#466E18] transition-colors leading-tight">
                             {opt.title}
                           </h3>
                           <span className="text-[10px] font-black text-[#6EA928] uppercase tracking-wide">
@@ -414,30 +414,30 @@ export default function LoanDetailsPage({
                       </div>
                     </div>
 
-                    <p className="text-xs text-slate-300 leading-relaxed font-normal">
+                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
                       {opt.description}
                     </p>
 
                     {/* Financial Specs */}
-                    <div className="grid grid-cols-3 gap-2 bg-slate-900 rounded-xl p-2.5 border border-slate-800 text-[11px]">
+                    <div className="grid grid-cols-3 gap-2 bg-white rounded-xl p-3 border border-slate-200 text-[11px]">
                       <div>
                         <span className="text-[9px] uppercase font-bold text-slate-500 block">Interest Rate</span>
-                        <span className="font-black text-[#6EA928]">{opt.rate}</span>
+                        <span className="font-black text-[#466E18]">{opt.rate}</span>
                       </div>
                       <div>
                         <span className="text-[9px] uppercase font-bold text-slate-500 block">Sanction Limit</span>
-                        <span className="font-black text-white">{opt.limit}</span>
+                        <span className="font-black text-slate-900">{opt.limit}</span>
                       </div>
                       <div>
                         <span className="text-[9px] uppercase font-bold text-slate-500 block">Tenure</span>
-                        <span className="font-bold text-slate-300">{opt.tenure}</span>
+                        <span className="font-bold text-slate-700">{opt.tenure}</span>
                       </div>
                     </div>
 
                     {/* Bullet Benefits */}
-                    <div className="space-y-1 pt-1">
+                    <div className="space-y-1.5 pt-1">
                       {opt.benefits.map((b, bIdx) => (
-                        <div key={bIdx} className="flex items-center gap-1.5 text-[11px] text-slate-300">
+                        <div key={bIdx} className="flex items-center gap-1.5 text-[11px] text-slate-700">
                           <span className="text-[#6EA928] font-bold">✔</span>
                           <span>{b}</span>
                         </div>
@@ -446,14 +446,14 @@ export default function LoanDetailsPage({
                   </div>
 
                   {/* Sub-option Actions */}
-                  <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-800/80">
+                  <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-200">
                     <button
                       onClick={() => {
                         if (opt.defaultAmount) setCalcAmount(opt.defaultAmount);
                         const el = document.getElementById('details-emi-calc');
                         if (el) el.scrollIntoView({ behavior: 'smooth' });
                       }}
-                      className="py-2.5 px-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white font-bold text-xs transition-colors cursor-pointer text-center"
+                      className="py-2.5 px-2 rounded-xl bg-white hover:bg-slate-100 text-slate-700 hover:text-slate-900 font-bold text-xs border border-slate-300 shadow-xs transition-colors cursor-pointer text-center"
                     >
                       🧮 Calculate EMI
                     </button>
@@ -477,46 +477,46 @@ export default function LoanDetailsPage({
             SECTION 2 & 3: LOAN DESCRIPTION & KEY BENEFITS
            ========================================================================= */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          
+
           {/* 2. LOAN DESCRIPTION */}
-          <section className="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-5 shadow-xl">
+          <section className="lg:col-span-7 bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-5 shadow-sm">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-6 bg-emerald-500 rounded-full"></span>
-              <h2 className="text-xl sm:text-2xl font-black text-white">
+              <span className="w-2.5 h-6 bg-[#6EA928] rounded-full"></span>
+              <h2 className="text-xl sm:text-2xl font-black text-slate-900">
                 2. Loan Description & Comprehensive Overview
               </h2>
             </div>
-            
-            <div className="text-sm text-slate-300 space-y-4 leading-relaxed font-normal">
+
+            <div className="text-sm text-slate-600 space-y-4 leading-relaxed font-normal">
               <p>
-                The <strong className="text-white">{prodName}</strong> is structured by VGS Finance & Loans to cater to eligible borrowers seeking immediate, transparent capital. Backed by top-tier banking partners and premier Non-Banking Financial Companies (NBFCs), this loan product ensures transparent pricing with no hidden charges.
+                The <strong className="text-slate-900">{prodName}</strong> is structured by VGS Finance & Loans to cater to eligible borrowers seeking immediate, transparent capital. Backed by top-tier banking partners and premier Non-Banking Financial Companies (NBFCs), this loan product ensures transparent pricing with no hidden charges.
               </p>
               <p>
                 Whether you need funds for emergency financial needs, debt consolidation, business working capital, capacity expansion, medical treatments, or asset acquisition, this facility offers swift processing with minimal documentation and customizable repayment tenures.
               </p>
-              
-              <div className="p-4 rounded-2xl bg-slate-950/70 border border-slate-800 space-y-2">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-400">
+
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-[#466E18]">
                   🎯 Primary Borrowing Purposes:
                 </h4>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs text-slate-300 pt-1">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs text-slate-700 pt-1">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-emerald-400">✔</span> Working Capital
+                    <span className="text-[#6EA928] font-bold">✔</span> Working Capital
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <span className="text-emerald-400">✔</span> Asset Purchase
+                    <span className="text-[#6EA928] font-bold">✔</span> Asset Purchase
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <span className="text-emerald-400">✔</span> Debt Consolidation
+                    <span className="text-[#6EA928] font-bold">✔</span> Debt Consolidation
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <span className="text-emerald-400">✔</span> Business Expansion
+                    <span className="text-[#6EA928] font-bold">✔</span> Business Expansion
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <span className="text-emerald-400">✔</span> Emergency Medical
+                    <span className="text-[#6EA928] font-bold">✔</span> Emergency Medical
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <span className="text-emerald-400">✔</span> Home Renovation
+                    <span className="text-[#6EA928] font-bold">✔</span> Home Renovation
                   </div>
                 </div>
               </div>
@@ -524,10 +524,10 @@ export default function LoanDetailsPage({
           </section>
 
           {/* 3. KEY BENEFITS */}
-          <section className="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-5 shadow-xl">
+          <section className="lg:col-span-5 bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-5 shadow-sm">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-6 bg-sky-500 rounded-full"></span>
-              <h2 className="text-xl sm:text-2xl font-black text-white">
+              <span className="w-2.5 h-6 bg-[#0A5C80] rounded-full"></span>
+              <h2 className="text-xl sm:text-2xl font-black text-slate-900">
                 3. Key Benefits & Value Highlights
               </h2>
             </div>
@@ -536,12 +536,12 @@ export default function LoanDetailsPage({
               {prodFeatures.map((feat, idx) => (
                 <div
                   key={idx}
-                  className="p-3 rounded-2xl bg-slate-950/60 border border-slate-800 hover:border-slate-700 flex items-start gap-3 transition-colors"
+                  className="p-3 rounded-2xl bg-slate-50 border border-slate-200 hover:border-slate-300 flex items-start gap-3 transition-colors"
                 >
-                  <div className="w-7 h-7 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
+                  <div className="w-7 h-7 rounded-lg bg-emerald-100 border border-emerald-200 text-[#466E18] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
                     ✓
                   </div>
-                  <span className="text-xs sm:text-sm text-slate-200 font-medium">
+                  <span className="text-xs sm:text-sm text-slate-700 font-medium">
                     {feat}
                   </span>
                 </div>
@@ -554,108 +554,108 @@ export default function LoanDetailsPage({
         {/* =========================================================================
             SECTION 4, 5, 6: LOAN AMOUNT, INTEREST RATE, AND TENURE INFORMATION
            ========================================================================= */}
-        <section className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl space-y-6">
+        <section className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-6 bg-amber-500 rounded-full"></span>
-            <h2 className="text-xl sm:text-2xl font-black text-white">
+            <h2 className="text-xl sm:text-2xl font-black text-slate-900">
               Financial Specifications (Amount, Rates & Tenure)
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            
+
             {/* 4. LOAN AMOUNT INFORMATION */}
-            <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 space-y-4">
+            <div className="bg-slate-50/80 border border-slate-200 rounded-2xl p-5 space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
                   4. Loan Amount Info
                 </span>
                 <span className="text-lg">💰</span>
               </div>
               <div className="space-y-1">
-                <span className="text-2xl font-black text-white block">
+                <span className="text-2xl font-black text-slate-900 block">
                   {formatCurrency(prodMinAmount)} - {formatCurrency(prodMaxAmount)}
                 </span>
-                <span className="text-xs text-slate-400 block">
+                <span className="text-xs text-slate-500 block">
                   Sanction quantum based on income profile & eligibility
                 </span>
               </div>
-              <div className="pt-3 border-t border-slate-800/80 space-y-1.5 text-xs text-slate-300">
+              <div className="pt-3 border-t border-slate-200 space-y-1.5 text-xs text-slate-600">
                 <div className="flex justify-between">
-                  <span className="text-slate-400">Minimum Quantum:</span>
-                  <span className="font-bold text-white">{formatCurrency(prodMinAmount)}</span>
+                  <span className="text-slate-500">Minimum Quantum:</span>
+                  <span className="font-bold text-slate-900">{formatCurrency(prodMinAmount)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-400">Maximum Limit:</span>
-                  <span className="font-bold text-white">{formatCurrency(prodMaxAmount)}</span>
+                  <span className="text-slate-500">Maximum Limit:</span>
+                  <span className="font-bold text-slate-900">{formatCurrency(prodMaxAmount)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-400">Indicative LTV:</span>
-                  <span className="font-bold text-emerald-400">Up to 85% - 95%</span>
+                  <span className="text-slate-500">Indicative LTV:</span>
+                  <span className="font-bold text-[#466E18]">Up to 85% - 95%</span>
                 </div>
               </div>
             </div>
 
             {/* 5. INTEREST RATE INFORMATION */}
-            <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 space-y-4">
+            <div className="bg-slate-50/80 border border-slate-200 rounded-2xl p-5 space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
                   5. Interest Rate Info
                 </span>
                 <span className="text-lg">📈</span>
               </div>
               <div className="space-y-1">
-                <span className="text-2xl font-black text-emerald-400 block">
-                  {prodRate}% <span className="text-xs font-normal text-slate-300">p.a.</span>
+                <span className="text-2xl font-black text-[#466E18] block">
+                  {prodRate}% <span className="text-xs font-normal text-slate-600">p.a.</span>
                 </span>
-                <span className="text-xs text-slate-400 block">
+                <span className="text-xs text-slate-500 block">
                   Monthly Reducing Balance Calculation Method
                 </span>
               </div>
-              <div className="pt-3 border-t border-slate-800/80 space-y-1.5 text-xs text-slate-300">
+              <div className="pt-3 border-t border-slate-200 space-y-1.5 text-xs text-slate-600">
                 <div className="flex justify-between">
-                  <span className="text-slate-400">Rate Structure:</span>
-                  <span className="font-bold text-white">Floating / Fixed (Repo-Linked)</span>
+                  <span className="text-slate-500">Rate Structure:</span>
+                  <span className="font-bold text-slate-900">Floating / Fixed (Repo-Linked)</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-400">Processing Fee:</span>
-                  <span className="font-bold text-amber-400">{prodProcessingFee}</span>
+                  <span className="text-slate-500">Processing Fee:</span>
+                  <span className="font-bold text-amber-600">{prodProcessingFee}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-400">Foreclosure Charges:</span>
-                  <span className="font-bold text-slate-300">Nil for individual floating</span>
+                  <span className="text-slate-500">Foreclosure Charges:</span>
+                  <span className="font-bold text-slate-700">Nil for individual floating</span>
                 </div>
               </div>
             </div>
 
             {/* 6. TENURE INFORMATION */}
-            <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 space-y-4">
+            <div className="bg-slate-50/80 border border-slate-200 rounded-2xl p-5 space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
                   6. Tenure Information
                 </span>
                 <span className="text-lg">⏳</span>
               </div>
               <div className="space-y-1">
-                <span className="text-2xl font-black text-sky-400 block">
+                <span className="text-2xl font-black text-[#0A5C80] block">
                   {prodMinTenure} - {prodMaxTenure} Months
                 </span>
-                <span className="text-xs text-slate-400 block">
+                <span className="text-xs text-slate-500 block">
                   Flexible tenure window ({(prodMinTenure / 12).toFixed(1)} to {(prodMaxTenure / 12).toFixed(0)} Years)
                 </span>
               </div>
-              <div className="pt-3 border-t border-slate-800/80 space-y-1.5 text-xs text-slate-300">
+              <div className="pt-3 border-t border-slate-200 space-y-1.5 text-xs text-slate-600">
                 <div className="flex justify-between">
-                  <span className="text-slate-400">Repayment Mode:</span>
-                  <span className="font-bold text-white">Monthly NACH / Auto-Debit</span>
+                  <span className="text-slate-500">Repayment Mode:</span>
+                  <span className="font-bold text-slate-900">Monthly NACH / Auto-Debit</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-400">Tenure Extension:</span>
-                  <span className="font-bold text-white">Available on request</span>
+                  <span className="text-slate-500">Tenure Extension:</span>
+                  <span className="font-bold text-slate-900">Available on request</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-400">Part-Prepayment:</span>
-                  <span className="font-bold text-emerald-400">Allowed anytime</span>
+                  <span className="text-slate-500">Part-Prepayment:</span>
+                  <span className="font-bold text-[#466E18]">Allowed anytime</span>
                 </div>
               </div>
             </div>
@@ -667,74 +667,74 @@ export default function LoanDetailsPage({
             SECTION 7 & 8: BASIC ELIGIBILITY & REQUIRED DOCUMENTS
            ========================================================================= */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          
+
           {/* 7. BASIC ELIGIBILITY */}
-          <section className="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-5 shadow-xl flex flex-col justify-between">
+          <section className="lg:col-span-5 bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-5 shadow-sm flex flex-col justify-between">
             <div className="space-y-4">
               <div className="flex items-center gap-2">
-                <span className="w-2.5 h-6 bg-teal-500 rounded-full"></span>
-                <h2 className="text-xl sm:text-2xl font-black text-white">
+                <span className="w-2.5 h-6 bg-teal-600 rounded-full"></span>
+                <h2 className="text-xl sm:text-2xl font-black text-slate-900">
                   7. Basic Eligibility Criteria
                 </h2>
               </div>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-600">
                 Lenders evaluate your credit capacity and repaying ability based on these parameters:
               </p>
 
               <div className="space-y-3">
-                <div className="p-3.5 rounded-2xl bg-slate-950/70 border border-slate-800 flex justify-between items-center text-xs">
-                  <span className="text-slate-400 font-medium">Eligible Age Bracket</span>
-                  <span className="font-bold text-white">
+                <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex justify-between items-center text-xs">
+                  <span className="text-slate-600 font-medium">Eligible Age Bracket</span>
+                  <span className="font-bold text-slate-900">
                     {prodEligibility?.minAge || 21} - {prodEligibility?.maxAge || 65} Years
                   </span>
                 </div>
 
-                <div className="p-3.5 rounded-2xl bg-slate-950/70 border border-slate-800 flex justify-between items-center text-xs">
-                  <span className="text-slate-400 font-medium">Minimum Monthly Net Income</span>
-                  <span className="font-bold text-emerald-400">
+                <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex justify-between items-center text-xs">
+                  <span className="text-slate-600 font-medium">Minimum Monthly Net Income</span>
+                  <span className="font-bold text-[#466E18]">
                     {formatCurrency(prodEligibility?.minIncome || 25000)} / Month
                   </span>
                 </div>
 
-                <div className="p-3.5 rounded-2xl bg-slate-950/70 border border-slate-800 flex justify-between items-center text-xs">
-                  <span className="text-slate-400 font-medium">Employment Profiles</span>
-                  <span className="font-bold text-slate-200 text-right max-w-[55%] truncate">
+                <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex justify-between items-center text-xs">
+                  <span className="text-slate-600 font-medium">Employment Profiles</span>
+                  <span className="font-bold text-slate-800 text-right max-w-[55%] truncate">
                     {prodEligibility?.employmentType || 'Salaried / Self-Employed'}
                   </span>
                 </div>
 
-                <div className="p-3.5 rounded-2xl bg-slate-950/70 border border-slate-800 flex justify-between items-center text-xs">
-                  <span className="text-slate-400 font-medium">Minimum CIBIL Score</span>
-                  <span className="font-extrabold text-sky-400">
+                <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex justify-between items-center text-xs">
+                  <span className="text-slate-600 font-medium">Minimum CIBIL Score</span>
+                  <span className="font-extrabold text-[#0A5C80]">
                     {prodEligibility?.minCibilScore ? `${prodEligibility.minCibilScore}+` : '680+ (Good Track)'}
                   </span>
                 </div>
 
-                <div className="p-3.5 rounded-2xl bg-slate-950/70 border border-slate-800 flex justify-between items-center text-xs">
-                  <span className="text-slate-400 font-medium">FOIR Capacity (Fixed Obligation)</span>
-                  <span className="font-bold text-amber-300">
+                <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex justify-between items-center text-xs">
+                  <span className="text-slate-600 font-medium">FOIR Capacity (Fixed Obligation)</span>
+                  <span className="font-bold text-amber-700">
                     Up to 50% of Monthly Net Income
                   </span>
                 </div>
               </div>
             </div>
 
-            <div className="p-3 rounded-xl bg-slate-950/90 border border-slate-800 text-[11px] text-slate-400">
+            <div className="p-3 rounded-xl bg-amber-50 border border-amber-200 text-[11px] text-amber-800">
               💡 <em>Pro Tip: Co-borrowers (spouse or parents) can be added to enhance your eligible loan amount.</em>
             </div>
           </section>
 
           {/* 8. REQUIRED DOCUMENTS */}
-          <section className="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-5 shadow-xl">
+          <section className="lg:col-span-7 bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-5 shadow-sm">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-6 bg-indigo-500 rounded-full"></span>
-              <h2 className="text-xl sm:text-2xl font-black text-white">
+              <span className="w-2.5 h-6 bg-indigo-600 rounded-full"></span>
+              <h2 className="text-xl sm:text-2xl font-black text-slate-900">
                 8. Required Documents Checklist
               </h2>
             </div>
 
             {/* Document Tabs */}
-            <div className="flex flex-wrap gap-2 border-b border-slate-800 pb-3">
+            <div className="flex flex-wrap gap-2 border-b border-slate-200 pb-3">
               {[
                 { id: 'salaried', label: '💼 Salaried Applicants' },
                 { id: 'business', label: '🏢 Self-Employed / Business' },
@@ -744,11 +744,10 @@ export default function LoanDetailsPage({
                 <button
                   key={tab.id}
                   onClick={() => setActiveDocTab(tab.id)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                    activeDocTab === tab.id
-                      ? 'bg-emerald-500 text-slate-950 shadow-md'
-                      : 'bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700'
-                  }`}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${activeDocTab === tab.id
+                      ? 'bg-[#0A5C80] text-white shadow-sm'
+                      : 'bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200 border border-slate-200'
+                    }`}
                 >
                   {tab.label}
                 </button>
@@ -767,9 +766,9 @@ export default function LoanDetailsPage({
                     'Employer ID card or appointment letter',
                     'Current residential address proof (Utility bill/Rent agreement)'
                   ].map((doc, idx) => (
-                    <div key={idx} className="p-3 rounded-xl bg-slate-950/70 border border-slate-800 flex items-start gap-2">
-                      <span className="text-emerald-400 font-bold">✔</span>
-                      <span className="text-slate-300">{doc}</span>
+                    <div key={idx} className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-2">
+                      <span className="text-[#6EA928] font-bold">✔</span>
+                      <span className="text-slate-700">{doc}</span>
                     </div>
                   ))}
                 </div>
@@ -785,9 +784,9 @@ export default function LoanDetailsPage({
                     'Udyam Registration / Shop & Establishment Certificate',
                     'Memorandum of Association (MoA) / Partnership Deed'
                   ].map((doc, idx) => (
-                    <div key={idx} className="p-3 rounded-xl bg-slate-950/70 border border-slate-800 flex items-start gap-2">
-                      <span className="text-emerald-400 font-bold">✔</span>
-                      <span className="text-slate-300">{doc}</span>
+                    <div key={idx} className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-2">
+                      <span className="text-[#6EA928] font-bold">✔</span>
+                      <span className="text-slate-700">{doc}</span>
                     </div>
                   ))}
                 </div>
@@ -803,9 +802,9 @@ export default function LoanDetailsPage({
                     'Vehicle proforma invoice (for auto/commercial vehicle)',
                     'Gold purity hallmarking slip (for Gold loans)'
                   ].map((doc, idx) => (
-                    <div key={idx} className="p-3 rounded-xl bg-slate-950/70 border border-slate-800 flex items-start gap-2">
-                      <span className="text-emerald-400 font-bold">✔</span>
-                      <span className="text-slate-300">{doc}</span>
+                    <div key={idx} className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-2">
+                      <span className="text-[#6EA928] font-bold">✔</span>
+                      <span className="text-slate-700">{doc}</span>
                     </div>
                   ))}
                 </div>
@@ -821,9 +820,9 @@ export default function LoanDetailsPage({
                     'Cancelled cheque for NACH e-mandate registration',
                     'Signature verification from bank if signature mismatch'
                   ].map((doc, idx) => (
-                    <div key={idx} className="p-3 rounded-xl bg-slate-950/70 border border-slate-800 flex items-start gap-2">
-                      <span className="text-emerald-400 font-bold">✔</span>
-                      <span className="text-slate-300">{doc}</span>
+                    <div key={idx} className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-2">
+                      <span className="text-[#6EA928] font-bold">✔</span>
+                      <span className="text-slate-700">{doc}</span>
                     </div>
                   ))}
                 </div>
@@ -832,13 +831,13 @@ export default function LoanDetailsPage({
 
             {/* Custom Product-Specific Document Requirements */}
             {prodDocuments && prodDocuments.length > 0 && (
-              <div className="pt-3 border-t border-slate-800/80">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-2">
+              <div className="pt-3 border-t border-slate-200">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 block mb-2">
                   📌 Specific Requirements for {prodName}:
                 </span>
                 <div className="flex flex-wrap gap-1.5">
                   {prodDocuments.map((doc, i) => (
-                    <span key={i} className="px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs font-medium">
+                    <span key={i} className="px-2.5 py-1 rounded-lg bg-emerald-50 border border-emerald-200 text-[#466E18] text-xs font-medium">
                       • {doc}
                     </span>
                   ))}
@@ -852,15 +851,15 @@ export default function LoanDetailsPage({
         {/* =========================================================================
             SECTION 9: LOAN PROCESS INFORMATION (5-STEP ROADMAP)
            ========================================================================= */}
-        <section className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-xl space-y-8">
+        <section className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-sm space-y-8">
           <div className="text-left max-w-2xl space-y-2">
-            <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-[#466E18] text-xs font-bold uppercase tracking-wider">
               <span>⚡</span> Fast-Track Loan Workflow
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
               9. Loan Process Information & Journey Roadmap
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400">
+            <p className="text-xs sm:text-sm text-slate-600">
               From online enquiry to direct account credit in 5 seamless, transparent steps:
             </p>
           </div>
@@ -905,23 +904,23 @@ export default function LoanDetailsPage({
             ].map((st, idx) => (
               <div
                 key={idx}
-                className="bg-slate-950/80 border border-slate-800 hover:border-emerald-500/50 rounded-2xl p-5 space-y-3 relative group transition-all"
+                className="bg-slate-50 border border-slate-200 hover:border-[#6EA928] hover:bg-white rounded-2xl p-5 space-y-3 relative group transition-all shadow-xs hover:shadow-md"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-2xl">{st.icon}</span>
-                  <span className="text-xs font-black px-2 py-0.5 rounded-full bg-slate-800 text-emerald-400 border border-slate-700">
+                  <span className="text-xs font-black px-2 py-0.5 rounded-full bg-slate-200 text-slate-800 border border-slate-300">
                     Step {st.step}
                   </span>
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">
+                  <h3 className="text-sm font-bold text-slate-900 group-hover:text-[#466E18] transition-colors">
                     {st.title}
                   </h3>
-                  <span className="text-[10px] font-bold text-sky-400 block mt-0.5">
+                  <span className="text-[10px] font-bold text-[#0A5C80] block mt-0.5">
                     {st.badge}
                   </span>
                 </div>
-                <p className="text-xs text-slate-400 leading-relaxed">
+                <p className="text-xs text-slate-600 leading-relaxed">
                   {st.desc}
                 </p>
               </div>
@@ -932,38 +931,38 @@ export default function LoanDetailsPage({
         {/* =========================================================================
             SECTION 10: INTERACTIVE EMI CALCULATOR WITH AMORTIZATION BREAKDOWN
            ========================================================================= */}
-        <section id="details-emi-calc" className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-800 pb-5">
+        <section id="details-emi-calc" className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-sm space-y-8">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-200 pb-5">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-2">
+              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#E8F5D4] text-[#466E18] text-xs font-bold uppercase tracking-wider mb-2">
                 <span>🧮</span> Mathematical Reducing Engine
               </div>
-              <h2 className="text-2xl sm:text-3xl font-black text-white">
+              <h2 className="text-2xl sm:text-3xl font-black text-slate-900">
                 10. Interactive EMI Calculator for {prodName}
               </h2>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-600">
                 Simulate monthly installment, interest liability, and complete repayment summary:
               </p>
             </div>
-            
+
             <div className="text-right">
-              <span className="text-xs text-slate-400 block font-medium">Estimated Monthly EMI</span>
-              <span className="text-3xl font-black text-emerald-400 font-mono tracking-tight">
-                {formatCurrency(emiResults.monthlyEmi)} <span className="text-xs font-normal text-slate-300">/ mo</span>
+              <span className="text-xs text-slate-500 block font-medium">Estimated Monthly EMI</span>
+              <span className="text-3xl font-black text-[#466E18] font-mono tracking-tight">
+                {formatCurrency(emiResults.monthlyEmi)} <span className="text-xs font-normal text-slate-500">/ mo</span>
               </span>
             </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            
+
             {/* Sliders Column */}
             <div className="lg:col-span-7 space-y-6">
-              
+
               {/* Slider 1: Loan Amount */}
               <div className="space-y-2">
                 <div className="flex justify-between items-center text-xs">
-                  <label className="font-bold text-slate-300">1. Required Loan Amount:</label>
-                  <span className="font-black text-white font-mono text-sm bg-slate-950 px-3 py-1 rounded-xl border border-slate-800">
+                  <label className="font-bold text-slate-700">1. Required Loan Amount:</label>
+                  <span className="font-black text-slate-900 font-mono text-sm bg-slate-100 px-3 py-1 rounded-xl border border-slate-200">
                     {formatCurrency(calcAmount)}
                   </span>
                 </div>
@@ -974,7 +973,7 @@ export default function LoanDetailsPage({
                   step="25000"
                   value={calcAmount}
                   onChange={(e) => setCalcAmount(Number(e.target.value))}
-                  className="w-full accent-emerald-500 cursor-pointer h-2 bg-slate-800 rounded-lg"
+                  className="w-full accent-[#6EA928] cursor-pointer h-2 bg-slate-200 rounded-lg"
                 />
                 <div className="flex justify-between text-[11px] text-slate-500">
                   <span>Min: {formatCurrency(prodMinAmount)}</span>
@@ -985,8 +984,8 @@ export default function LoanDetailsPage({
               {/* Slider 2: Interest Rate */}
               <div className="space-y-2">
                 <div className="flex justify-between items-center text-xs">
-                  <label className="font-bold text-slate-300">2. Annual Interest Rate (% p.a.):</label>
-                  <span className="font-black text-emerald-400 font-mono text-sm bg-slate-950 px-3 py-1 rounded-xl border border-slate-800">
+                  <label className="font-bold text-slate-700">2. Annual Interest Rate (% p.a.):</label>
+                  <span className="font-black text-[#466E18] font-mono text-sm bg-slate-100 px-3 py-1 rounded-xl border border-slate-200">
                     {calcRate}% p.a.
                   </span>
                 </div>
@@ -997,7 +996,7 @@ export default function LoanDetailsPage({
                   step="0.1"
                   value={calcRate}
                   onChange={(e) => setCalcRate(Number(e.target.value))}
-                  className="w-full accent-emerald-500 cursor-pointer h-2 bg-slate-800 rounded-lg"
+                  className="w-full accent-[#6EA928] cursor-pointer h-2 bg-slate-200 rounded-lg"
                 />
                 <div className="flex justify-between text-[11px] text-slate-500">
                   <span>6.5% p.a.</span>
@@ -1009,8 +1008,8 @@ export default function LoanDetailsPage({
               {/* Slider 3: Loan Tenure */}
               <div className="space-y-2">
                 <div className="flex justify-between items-center text-xs">
-                  <label className="font-bold text-slate-300">3. Repayment Tenure:</label>
-                  <span className="font-black text-sky-400 font-mono text-sm bg-slate-950 px-3 py-1 rounded-xl border border-slate-800">
+                  <label className="font-bold text-slate-700">3. Repayment Tenure:</label>
+                  <span className="font-black text-[#0A5C80] font-mono text-sm bg-slate-100 px-3 py-1 rounded-xl border border-slate-200">
                     {calcTenureMonths} Months ({(calcTenureMonths / 12).toFixed(1)} Years)
                   </span>
                 </div>
@@ -1021,7 +1020,7 @@ export default function LoanDetailsPage({
                   step="6"
                   value={calcTenureMonths}
                   onChange={(e) => setCalcTenureMonths(Number(e.target.value))}
-                  className="w-full accent-sky-500 cursor-pointer h-2 bg-slate-800 rounded-lg"
+                  className="w-full accent-[#0A5C80] cursor-pointer h-2 bg-slate-200 rounded-lg"
                 />
                 <div className="flex justify-between text-[11px] text-slate-500">
                   <span>Min: {prodMinTenure} Months</span>
@@ -1032,12 +1031,12 @@ export default function LoanDetailsPage({
               {/* Visual Breakdown Bar */}
               <div className="space-y-2 pt-2">
                 <div className="flex justify-between text-xs font-bold">
-                  <span className="text-emerald-400">Principal: {emiResults.principalPercent}%</span>
-                  <span className="text-amber-400">Total Interest: {emiResults.interestPercent}%</span>
+                  <span className="text-[#466E18]">Principal: {emiResults.principalPercent}%</span>
+                  <span className="text-amber-700">Total Interest: {emiResults.interestPercent}%</span>
                 </div>
-                <div className="w-full h-3 rounded-full bg-slate-800 overflow-hidden flex">
+                <div className="w-full h-3 rounded-full bg-slate-200 overflow-hidden flex">
                   <div
-                    className="bg-emerald-500 h-full transition-all duration-300"
+                    className="bg-[#6EA928] h-full transition-all duration-300"
                     style={{ width: `${emiResults.principalPercent}%` }}
                   ></div>
                   <div
@@ -1050,37 +1049,37 @@ export default function LoanDetailsPage({
             </div>
 
             {/* Repayment Summary Column */}
-            <div className="lg:col-span-5 bg-slate-950 rounded-2xl p-6 border border-slate-800 flex flex-col justify-between space-y-4">
+            <div className="lg:col-span-5 bg-slate-50 rounded-2xl p-6 border border-slate-200 flex flex-col justify-between space-y-4">
               <div className="space-y-4">
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block border-b border-slate-800 pb-2">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-500 block border-b border-slate-200 pb-2">
                   Payment Summary Breakdown
                 </span>
 
                 <div className="space-y-3 text-xs">
                   <div className="flex justify-between items-center py-1">
-                    <span className="text-slate-400">Monthly EMI:</span>
-                    <span className="text-lg font-black text-emerald-400 font-mono">
+                    <span className="text-slate-600">Monthly EMI:</span>
+                    <span className="text-lg font-black text-[#466E18] font-mono">
                       {formatCurrency(emiResults.monthlyEmi)}
                     </span>
                   </div>
 
-                  <div className="flex justify-between items-center py-1 border-t border-slate-800/60">
-                    <span className="text-slate-400">Principal Borrowing:</span>
-                    <span className="font-bold text-white font-mono">
+                  <div className="flex justify-between items-center py-1 border-t border-slate-200">
+                    <span className="text-slate-600">Principal Borrowing:</span>
+                    <span className="font-bold text-slate-900 font-mono">
                       {formatCurrency(calcAmount)}
                     </span>
                   </div>
 
-                  <div className="flex justify-between items-center py-1 border-t border-slate-800/60">
-                    <span className="text-slate-400">Total Interest Payable:</span>
-                    <span className="font-bold text-amber-400 font-mono">
+                  <div className="flex justify-between items-center py-1 border-t border-slate-200">
+                    <span className="text-slate-600">Total Interest Payable:</span>
+                    <span className="font-bold text-amber-700 font-mono">
                       {formatCurrency(emiResults.totalInterest)}
                     </span>
                   </div>
 
-                  <div className="flex justify-between items-center py-1 border-t border-slate-800/60">
-                    <span className="text-slate-300 font-bold">Total Payment (Principal + Interest):</span>
-                    <span className="text-base font-black text-white font-mono">
+                  <div className="flex justify-between items-center py-1 border-t border-slate-200">
+                    <span className="text-slate-700 font-bold">Total Payment (Principal + Interest):</span>
+                    <span className="text-base font-black text-slate-900 font-mono">
                       {formatCurrency(emiResults.totalPayment)}
                     </span>
                   </div>
@@ -1088,16 +1087,16 @@ export default function LoanDetailsPage({
               </div>
 
               {/* Action Buttons in Calculator */}
-              <div className="pt-4 border-t border-slate-800 space-y-2">
+              <div className="pt-4 border-t border-slate-200 space-y-2">
                 <button
                   onClick={handleApplyClick}
-                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs shadow-lg shadow-emerald-500/20 cursor-pointer transition-all flex items-center justify-center gap-2"
+                  className="w-full py-3.5 rounded-xl bg-[#6EA928] hover:bg-[#5A8B1F] text-white font-bold text-xs shadow-md shadow-[#6EA928]/25 cursor-pointer transition-all flex items-center justify-center gap-2"
                 >
                   <span>🚀</span> Apply with this EMI ({formatCurrency(emiResults.monthlyEmi)}/mo)
                 </button>
                 <button
                   onClick={() => setShowQuickModal(true)}
-                  className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs cursor-pointer transition-colors"
+                  className="w-full py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold text-xs cursor-pointer transition-colors"
                 >
                   💬 Have Questions? Request Callback
                 </button>
@@ -1107,35 +1106,35 @@ export default function LoanDetailsPage({
           </div>
 
           {/* Indicative Amortization Schedule Table Preview */}
-          <div className="space-y-3 pt-4 border-t border-slate-800">
+          <div className="space-y-3 pt-4 border-t border-slate-200">
             <div className="flex justify-between items-center text-xs">
-              <span className="font-bold text-slate-300 uppercase tracking-wider">
+              <span className="font-bold text-slate-700 uppercase tracking-wider">
                 📊 Indicative Initial Amortization Schedule Preview (First 6 Months)
               </span>
               <span className="text-slate-500 text-[11px]">Formula: Reducing Balance</span>
             </div>
 
-            <div className="overflow-x-auto rounded-2xl border border-slate-800">
-              <table className="w-full text-xs text-left text-slate-300">
-                <thead className="bg-slate-950 text-slate-400 font-bold uppercase text-[10px] tracking-wider border-b border-slate-800">
+            <div className="overflow-x-auto rounded-2xl border border-slate-200">
+              <table className="w-full text-xs text-left text-slate-700">
+                <thead className="bg-slate-100 text-slate-700 font-bold uppercase text-[10px] tracking-wider border-b border-slate-200">
                   <tr>
                     <th className="px-4 py-3">Month</th>
                     <th className="px-4 py-3">Opening Balance</th>
-                    <th className="px-4 py-3 text-emerald-400">Monthly EMI</th>
+                    <th className="px-4 py-3 text-[#466E18]">Monthly EMI</th>
                     <th className="px-4 py-3">Principal</th>
-                    <th className="px-4 py-3 text-amber-400">Interest</th>
+                    <th className="px-4 py-3 text-amber-700">Interest</th>
                     <th className="px-4 py-3">Closing Balance</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60 font-mono">
+                <tbody className="divide-y divide-slate-200 font-mono">
                   {amortizationData.map((row) => (
-                    <tr key={row.month} className="hover:bg-slate-800/40">
-                      <td className="px-4 py-2.5 font-sans font-bold text-white">Month {row.month}</td>
+                    <tr key={row.month} className="hover:bg-slate-50">
+                      <td className="px-4 py-2.5 font-sans font-bold text-slate-900">Month {row.month}</td>
                       <td className="px-4 py-2.5">{formatCurrency(row.beginningBalance)}</td>
-                      <td className="px-4 py-2.5 font-bold text-emerald-400">{formatCurrency(row.emi)}</td>
-                      <td className="px-4 py-2.5 text-white">{formatCurrency(row.principalComp)}</td>
-                      <td className="px-4 py-2.5 text-amber-400">{formatCurrency(row.interestComp)}</td>
-                      <td className="px-4 py-2.5 text-slate-200">{formatCurrency(row.endingBalance)}</td>
+                      <td className="px-4 py-2.5 font-bold text-[#466E18]">{formatCurrency(row.emi)}</td>
+                      <td className="px-4 py-2.5 text-slate-900">{formatCurrency(row.principalComp)}</td>
+                      <td className="px-4 py-2.5 text-amber-700">{formatCurrency(row.interestComp)}</td>
+                      <td className="px-4 py-2.5 text-slate-700">{formatCurrency(row.endingBalance)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -1147,41 +1146,41 @@ export default function LoanDetailsPage({
         {/* =========================================================================
             SECTION 11, 12, 13: APPLY NOW, ENQUIRE NOW, & CONTACT INFORMATION
            ========================================================================= */}
-        <section className="bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8">
-          
+        <section className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-sm space-y-8">
+
           <div className="text-left max-w-2xl space-y-2">
-            <h2 className="text-2xl sm:text-3xl font-black text-white">
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900">
               11 & 12. Apply or Enquire for {prodName}
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400">
+            <p className="text-xs sm:text-sm text-slate-600">
               Choose your preferred channel: complete application online or request an immediate call back from our loan officer.
             </p>
           </div>
 
           {/* Action Cards: Apply Now (11) and Enquire Now (12) */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            
+
             {/* 11. APPLY NOW ACTION CARD */}
-            <div className="bg-slate-950/80 border border-emerald-500/40 rounded-3xl p-6 sm:p-7 space-y-5 shadow-xl flex flex-col justify-between">
+            <div className="bg-gradient-to-br from-emerald-50/40 via-white to-white border-2 border-emerald-400/50 rounded-3xl p-6 sm:p-7 space-y-5 shadow-xs flex flex-col justify-between">
               <div className="space-y-3">
-                <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+                <span className="px-3 py-1 rounded-full bg-emerald-100 border border-emerald-300 text-[#466E18] text-xs font-bold uppercase tracking-wider">
                   Recommended Choice
                 </span>
-                <h3 className="text-2xl font-black text-white">
+                <h3 className="text-2xl font-black text-slate-900">
                   11. Apply Now (Full Application)
                 </h3>
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-xs text-slate-600 leading-relaxed">
                   Proceed with the calculated loan amount ({formatCurrency(calcAmount)}) and tenure ({calcTenureMonths} Months). Fills in all details automatically at the Application Desk for faster sanction.
                 </p>
-                <div className="space-y-1.5 text-xs text-slate-400 pt-2">
+                <div className="space-y-1.5 text-xs text-slate-700 pt-2">
                   <div className="flex items-center gap-2">
-                    <span className="text-emerald-400 font-bold">✔</span> Instant Lead ID generation
+                    <span className="text-[#6EA928] font-bold">✔</span> Instant Lead ID generation
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-emerald-400 font-bold">✔</span> Dedicated loan processing officer assigned
+                    <span className="text-[#6EA928] font-bold">✔</span> Dedicated loan processing officer assigned
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-emerald-400 font-bold">✔</span> Direct bank routing to highest approval lender
+                    <span className="text-[#6EA928] font-bold">✔</span> Direct bank routing to highest approval lender
                   </div>
                 </div>
               </div>
@@ -1189,7 +1188,7 @@ export default function LoanDetailsPage({
               <div className="pt-4">
                 <button
                   onClick={handleApplyClick}
-                  className="w-full py-4 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-sm uppercase tracking-wider shadow-lg shadow-emerald-500/25 cursor-pointer transition-all flex items-center justify-center gap-2"
+                  className="w-full py-4 rounded-2xl bg-[#6EA928] hover:bg-[#5A8B1F] text-white font-black text-sm uppercase tracking-wider shadow-md shadow-[#6EA928]/30 cursor-pointer transition-all flex items-center justify-center gap-2"
                 >
                   <span>🚀</span> Proceed to Full Application Desk
                 </button>
@@ -1197,26 +1196,26 @@ export default function LoanDetailsPage({
             </div>
 
             {/* 12. ENQUIRE NOW ACTION CARD */}
-            <div className="bg-slate-950/80 border border-sky-500/40 rounded-3xl p-6 sm:p-7 space-y-5 shadow-xl flex flex-col justify-between">
+            <div className="bg-gradient-to-br from-sky-50/40 via-white to-white border-2 border-[#0A5C80]/40 rounded-3xl p-6 sm:p-7 space-y-5 shadow-xs flex flex-col justify-between">
               <div className="space-y-3">
-                <span className="px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-bold uppercase tracking-wider">
+                <span className="px-3 py-1 rounded-full bg-sky-100 border border-sky-300 text-[#0A5C80] text-xs font-bold uppercase tracking-wider">
                   Quick Callback
                 </span>
-                <h3 className="text-2xl font-black text-white">
+                <h3 className="text-2xl font-black text-slate-900">
                   12. Enquire Now (1-Click Callback)
                 </h3>
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-xs text-slate-600 leading-relaxed">
                   Short on time or have questions before applying? Submit just your name and mobile number. Our loan specialist will call you within 15 minutes.
                 </p>
-                <div className="space-y-1.5 text-xs text-slate-400 pt-2">
+                <div className="space-y-1.5 text-xs text-slate-700 pt-2">
                   <div className="flex items-center gap-2">
-                    <span className="text-sky-400 font-bold">✔</span> 15-Minute Guaranteed Callback
+                    <span className="text-[#0A5C80] font-bold">✔</span> 15-Minute Guaranteed Callback
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-sky-400 font-bold">✔</span> Free personalized eligibility counseling
+                    <span className="text-[#0A5C80] font-bold">✔</span> Free personalized eligibility counseling
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-sky-400 font-bold">✔</span> Doorstep document pickup coordination
+                    <span className="text-[#0A5C80] font-bold">✔</span> Doorstep document pickup coordination
                   </div>
                 </div>
               </div>
@@ -1224,7 +1223,7 @@ export default function LoanDetailsPage({
               <div className="pt-4">
                 <button
                   onClick={() => setShowQuickModal(true)}
-                  className="w-full py-4 rounded-2xl bg-slate-800 hover:bg-slate-700 text-sky-400 border border-sky-500/50 font-black text-sm uppercase tracking-wider cursor-pointer transition-all flex items-center justify-center gap-2"
+                  className="w-full py-4 rounded-2xl bg-[#0A5C80] hover:bg-[#074763] text-white font-black text-sm uppercase tracking-wider shadow-md shadow-[#0A5C80]/25 cursor-pointer transition-all flex items-center justify-center gap-2"
                 >
                   <span>📞</span> Request Instant Callback
                 </button>
@@ -1236,69 +1235,69 @@ export default function LoanDetailsPage({
           {/* =========================================================================
               13. CONTACT INFORMATION & ADVISORY DESK
              ========================================================================= */}
-          <div className="border-t border-slate-800 pt-8 space-y-6">
+          <div className="border-t border-slate-200 pt-8 space-y-6">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-6 bg-emerald-500 rounded-full"></span>
-              <h3 className="text-xl font-black text-white">
+              <span className="w-2.5 h-6 bg-[#6EA928] rounded-full"></span>
+              <h3 className="text-xl font-black text-slate-900">
                 13. Dedicated Loan Desk & Contact Information
               </h3>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              
-              <div className="p-4 rounded-2xl bg-slate-950/70 border border-slate-800 space-y-1.5">
+
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-1.5">
                 <span className="text-2xl block">📞</span>
-                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                   Toll-Free Loan Helpline
                 </span>
                 <a
                   href="tel:18004259988"
-                  className="text-base font-black text-emerald-400 hover:text-emerald-300 font-mono block"
+                  className="text-base font-black text-[#466E18] hover:underline font-mono block"
                 >
                   1800-425-9988
                 </a>
                 <span className="text-[10px] text-slate-500 block">Mon - Sat: 9:00 AM - 7:00 PM</span>
               </div>
 
-              <div className="p-4 rounded-2xl bg-slate-950/70 border border-slate-800 space-y-1.5">
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-1.5">
                 <span className="text-2xl block">💬</span>
-                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                   WhatsApp Advisory Desk
                 </span>
                 <a
                   href="https://wa.me/917675852618?text=Hello%20VGS%20Finance,%20I%20am%20interested%20in%20learning%20more%20about%20the%20loan%20options."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-base font-black text-teal-400 hover:text-teal-300 font-mono block"
+                  className="text-base font-black text-teal-700 hover:underline font-mono block"
                 >
                   +91 7675852618
                 </a>
                 <span className="text-[10px] text-slate-500 block">Instant Chat & Status Inquiries</span>
               </div>
 
-              <div className="p-4 rounded-2xl bg-slate-950/70 border border-slate-800 space-y-1.5">
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-1.5">
                 <span className="text-2xl block">✉️</span>
-                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                   Email Support Desk
                 </span>
                 <a
                   href="mailto:reachus@ascendmedialabs.com"
-                  className="text-xs font-bold text-sky-400 hover:text-sky-300 block truncate"
+                  className="text-xs font-bold text-[#0A5C80] hover:underline block truncate"
                 >
                   reachus@ascendmedialabs.com
                 </a>
                 <span className="text-[10px] text-slate-500 block">loans@vgsfinance.com</span>
               </div>
 
-              <div className="p-4 rounded-2xl bg-slate-950/70 border border-slate-800 space-y-1.5">
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-1.5">
                 <span className="text-2xl block">🏢</span>
-                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                   Regional Operations Hub
                 </span>
-                <span className="text-xs font-bold text-white block">
+                <span className="text-xs font-bold text-slate-900 block">
                   Ascend Media Labs Hub
                 </span>
-                <span className="text-[10px] text-slate-400 block">
+                <span className="text-[10px] text-slate-500 block">
                   Visakhapatnam, Andhra Pradesh, India
                 </span>
               </div>
@@ -1306,7 +1305,7 @@ export default function LoanDetailsPage({
             </div>
 
             {/* Statutory Disclaimer */}
-            <div className="p-4 rounded-2xl bg-slate-950 border border-amber-500/20 text-amber-300 text-xs flex items-start gap-3">
+            <div className="p-4 rounded-2xl bg-amber-50/80 border border-amber-200 text-amber-900 text-xs flex items-start gap-3">
               <span className="text-base shrink-0">⚠️</span>
               <p className="leading-relaxed text-[11px]">
                 <strong>Important Compliance Disclosure:</strong> EMI calculations and loan information displayed on the website are indicative. Final interest rates, eligibility, approval, sanction, tenure, processing fees and loan terms are subject to the respective lender / financial institution.
@@ -1322,82 +1321,82 @@ export default function LoanDetailsPage({
           QUICK ENQUIRY MODAL (Triggered by 'Enquire Now')
          ========================================================================= */}
       {showQuickModal && (
-        <div className="fixed inset-0 z-60 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-800 max-w-md w-full rounded-3xl p-6 sm:p-7 shadow-2xl space-y-5 relative animate-scale-up">
-            
+        <div className="fixed inset-0 z-60 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white border border-slate-200 max-w-md w-full rounded-3xl p-6 sm:p-7 shadow-2xl space-y-5 relative animate-scale-up text-slate-900">
+
             <div className="flex justify-between items-start">
               <div>
-                <span className="px-2.5 py-0.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-[10px] font-bold uppercase tracking-wider">
+                <span className="px-2.5 py-0.5 rounded-full bg-sky-100 border border-sky-300 text-[#0A5C80] text-[10px] font-bold uppercase tracking-wider">
                   Quick Callback Request
                 </span>
-                <h3 className="text-lg font-black text-white mt-1">Enquire for {prodName}</h3>
-                <p className="text-xs text-slate-400">Our loan manager will call you within 15 minutes.</p>
+                <h3 className="text-lg font-black text-slate-900 mt-1">Enquire for {prodName}</h3>
+                <p className="text-xs text-slate-500">Our loan manager will call you within 15 minutes.</p>
               </div>
               <button
                 onClick={() => setShowQuickModal(false)}
-                className="w-7 h-7 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center text-xs cursor-pointer"
+                className="w-8 h-8 rounded-full bg-slate-100 text-slate-500 hover:text-slate-900 hover:bg-slate-200 flex items-center justify-center text-sm cursor-pointer transition-colors"
               >
                 ✕
               </button>
             </div>
 
             {quickSubmitted ? (
-              <div className="p-6 text-center space-y-2 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl">
+              <div className="p-6 text-center space-y-2 bg-emerald-50 border border-emerald-200 rounded-2xl">
                 <span className="text-3xl">✅</span>
-                <h4 className="text-sm font-bold text-emerald-400">Enquiry Submitted Successfully!</h4>
-                <p className="text-xs text-slate-300">A loan officer has been assigned and will call you shortly.</p>
+                <h4 className="text-sm font-bold text-[#466E18]">Enquiry Submitted Successfully!</h4>
+                <p className="text-xs text-slate-600">A loan officer has been assigned and will call you shortly.</p>
               </div>
             ) : (
               <form onSubmit={handleQuickEnquirySubmit} className="space-y-3.5 text-xs">
                 <div>
-                  <label className="block text-slate-300 font-bold mb-1">Your Full Name *</label>
+                  <label className="block text-slate-700 font-bold mb-1">Your Full Name *</label>
                   <input
                     type="text"
                     required
                     placeholder="e.g. Ramesh Varma"
                     value={quickName}
                     onChange={(e) => setQuickName(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
+                    className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#6EA928] focus:bg-white"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-slate-300 font-bold mb-1">Mobile Number (with WhatsApp) *</label>
+                  <label className="block text-slate-700 font-bold mb-1">Mobile Number (with WhatsApp) *</label>
                   <input
                     type="tel"
                     required
                     placeholder="e.g. +91 98765 43210"
                     value={quickPhone}
                     onChange={(e) => setQuickPhone(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
+                    className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#6EA928] focus:bg-white"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-slate-300 font-bold mb-1">City / Location</label>
+                  <label className="block text-slate-700 font-bold mb-1">City / Location</label>
                   <input
                     type="text"
                     placeholder="e.g. Visakhapatnam, Vijayawada"
                     value={quickCity}
                     onChange={(e) => setQuickCity(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
+                    className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#6EA928] focus:bg-white"
                   />
                 </div>
 
-                <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 text-[11px] text-slate-400 space-y-1">
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-[11px] text-slate-600 space-y-1">
                   <div className="flex justify-between">
                     <span>Selected Loan:</span>
-                    <span className="text-white font-bold">{prodName}</span>
+                    <span className="text-slate-900 font-bold">{prodName}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Calculated EMI:</span>
-                    <span className="text-emerald-400 font-bold">{formatCurrency(emiResults.monthlyEmi)}/mo</span>
+                    <span className="text-[#466E18] font-bold">{formatCurrency(emiResults.monthlyEmi)}/mo</span>
                   </div>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-emerald-500/20 cursor-pointer transition-all"
+                  className="w-full py-3 rounded-xl bg-[#6EA928] hover:bg-[#5A8B1F] text-white font-bold text-xs uppercase tracking-wider shadow-md shadow-[#6EA928]/25 cursor-pointer transition-all"
                 >
                   🚀 Submit Quick Callback Request
                 </button>

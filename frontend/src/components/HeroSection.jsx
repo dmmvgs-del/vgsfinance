@@ -1043,9 +1043,8 @@ export default function HeroSection({
                 return (
                   <div
                     key={slide.id}
-                    className={`absolute inset-0 w-full h-full transition-all duration-500 ease-in-out ${
-                      isActive ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-95 z-0 pointer-events-none'
-                    }`}
+                    className={`absolute inset-0 w-full h-full transition-all duration-500 ease-in-out ${isActive ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-95 z-0 pointer-events-none'
+                      }`}
                   >
                     <img
                       src={slide.image}
@@ -1083,9 +1082,8 @@ export default function HeroSection({
                       e.stopPropagation();
                       setActiveSlide(idx);
                     }}
-                    className={`h-1 rounded-full transition-all duration-300 ${
-                      activeSlide === idx ? 'w-4 bg-white' : 'w-1 bg-white/50'
-                    }`}
+                    className={`h-1 rounded-full transition-all duration-300 ${activeSlide === idx ? 'w-4 bg-white' : 'w-1 bg-white/50'
+                      }`}
                   />
                 ))}
               </div>
@@ -1174,8 +1172,8 @@ export default function HeroSection({
                       onClick={() => setActiveSlide(idx)}
                       aria-label={`Slide ${idx + 1}`}
                       className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlide === idx
-                          ? 'w-7 bg-gradient-to-r from-[#0A5C80] to-[#6EA928]'
-                          : 'w-2 bg-slate-300 hover:bg-[#0A5C80]/50'
+                        ? 'w-7 bg-gradient-to-r from-[#0A5C80] to-[#6EA928]'
+                        : 'w-2 bg-slate-300 hover:bg-[#0A5C80]/50'
                         }`}
                     />
                   ))}
@@ -1265,8 +1263,8 @@ export default function HeroSection({
                       <div
                         key={slide.id}
                         className={`absolute inset-0 w-full h-full transition-all duration-500 ease-in-out ${isActive
-                            ? 'opacity-100 scale-100 z-10 pointer-events-auto'
-                            : 'opacity-0 scale-95 z-0 pointer-events-none'
+                          ? 'opacity-100 scale-100 z-10 pointer-events-auto'
+                          : 'opacity-0 scale-95 z-0 pointer-events-none'
                           }`}
                       >
                         <img
