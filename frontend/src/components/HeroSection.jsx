@@ -410,7 +410,7 @@ export default function HeroSection({
              Right: Logo Brand Colors (Teal Blue & Leaf Green) Circular Photo Frame with 5 Loan Visuals
          ========================================================================= */}
       <div
-        className="relative bg-gradient-to-b from-white via-[#F0F7FA]/70 to-white pt-8 sm:pt-12 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden select-none"
+        className="relative bg-gradient-to-b from-white via-[#F0F7FA]/70 to-white pt-3 sm:pt-12 pb-8 sm:pb-16 px-3.5 sm:px-6 lg:px-8 overflow-hidden select-none"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >

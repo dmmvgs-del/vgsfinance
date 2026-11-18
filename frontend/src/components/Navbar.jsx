@@ -21,33 +21,34 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
     <>
       {/* =========================================================================
           1. TOP UTILITY BAR (Non-Sticky Announcement / Contact Info Banner)
-             Scrolls away naturally with the page as requested
+             Responsive single row on all mobile, tablet, and desktop devices
          ========================================================================= */}
       <div className="bg-[#041E2B] text-slate-300 text-xs border-b border-[#0A5C80]/30 font-sans relative z-30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center py-2 gap-2">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between py-1.5 sm:py-2">
 
+          {/* Left Announcement: Tablet & Desktop */}
           <div className="hidden md:flex items-center gap-2 text-[11px] text-[#6EA928] font-bold">
             <span className="w-2 h-2 rounded-full bg-[#6EA928] animate-pulse"></span>
             <span>India's Leading Multi-Bank Loan Supermarket & Financial Services</span>
           </div>
 
-          {/* Right contact details */}
-          <div className="flex flex-wrap items-center justify-center md:justify-end gap-4 sm:gap-6 text-[11px]">
-            <a
-              href="mailto:reachus@ascendmedialabs.com"
-              className="flex items-center gap-1.5 hover:text-white transition-colors"
-            >
-              <span>✉️</span>
-              <span>reachus@ascendmedialabs.com</span>
-            </a>
+          {/* Contact Details: Clean Single Row on All Devices */}
+          <div className="w-full md:w-auto flex items-center justify-between md:justify-end gap-3 sm:gap-6 text-[11px]">
             <a
               href="tel:18004259988"
-              className="flex items-center gap-1.5 hover:text-[#6EA928] font-bold transition-colors"
+              className="flex items-center gap-1.5 text-[#6EA928] hover:text-white font-bold transition-colors shrink-0"
             >
               <span>📞</span>
               <span>1800-425-9988</span>
             </a>
-            <span className="hidden sm:flex items-center gap-1.5 text-slate-400">
+            <a
+              href="mailto:reachus@ascendmedialabs.com"
+              className="flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors truncate max-w-[190px] xs:max-w-none"
+            >
+              <span>✉️</span>
+              <span className="truncate">reachus@ascendmedialabs.com</span>
+            </a>
+            <span className="hidden lg:flex items-center gap-1.5 text-slate-400 shrink-0">
               <span>📍</span>
               <span>Visakhapatnam, Andhra Pradesh</span>
             </span>
@@ -60,27 +61,27 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
           2. MAIN NAVIGATION BAR (Sticky to Top of Viewport Across Entire Website)
          ========================================================================= */}
       <header className="sticky top-0 z-50 shadow-xl font-sans bg-[#061D28]/95 backdrop-blur-md border-b border-[#0A5C80]/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 sm:h-20 gap-2">
 
             {/* Left: Brand Logo & Title */}
             <div
-              className="flex items-center gap-3 cursor-pointer select-none"
+              className="flex items-center gap-2 sm:gap-3 cursor-pointer select-none min-w-0"
               onClick={() => setCurrentView('website')}
             >
               <img
                 src={logoImg}
                 alt="VGS Financial Services"
-                className="w-12 h-12 sm:w-14 sm:h-14 object-contain rounded-xl bg-white p-1 border border-[#0A5C80]/40 shadow-lg shadow-[#0A5C80]/20 shrink-0"
+                className="w-10 h-10 sm:w-14 sm:h-14 object-contain rounded-xl bg-white p-0.5 sm:p-1 border border-[#0A5C80]/40 shadow-lg shadow-[#0A5C80]/20 shrink-0"
               />
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="text-xl sm:text-2xl font-black tracking-tight text-white">
+              <div className="min-w-0">
+                <div className="flex items-center leading-tight">
+                  <span className="text-xs xs:text-sm sm:text-xl lg:text-2xl font-black tracking-tight text-white whitespace-nowrap">
                     VGS <span className="text-[#6EA928]">FINANCIAL SERVICES</span>
                   </span>
                 </div>
-                <div className="text-[10px] font-bold tracking-widest uppercase text-slate-400">
-                  PRIVATE LIMITED • LOAN SUPER MARKET
+                <div className="text-[7.5px] xs:text-[8.5px] sm:text-[10px] font-bold tracking-wider sm:tracking-widest uppercase text-slate-400 whitespace-nowrap leading-none mt-0.5">
+                  PRIVATE LIMITED <span className="hidden sm:inline">• LOAN SUPER MARKET</span>
                 </div>
               </div>
             </div>
@@ -224,17 +225,18 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
 
             </div>
 
-            {/* Mobile Menu Button */}
-            <div className="flex lg:hidden items-center gap-2">
+            {/* Mobile Menu & Quick Admin Button */}
+            <div className="flex lg:hidden items-center gap-1.5 sm:gap-2 shrink-0">
               <button
                 onClick={() => setCurrentView(currentView === 'website' ? 'admin' : 'website')}
-                className="px-3 py-1.5 rounded-lg text-xs font-bold bg-[#041E2B] text-[#6EA928] border border-[#0A5C80]/50"
+                className="px-2.5 py-1.5 rounded-lg text-[11px] sm:text-xs font-bold bg-[#041E2B] text-[#6EA928] border border-[#0A5C80]/50 hover:border-[#6EA928] whitespace-nowrap transition-colors"
               >
                 {currentView === 'website' ? '🔒 Admin' : '🌐 Website'}
               </button>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-xl text-slate-400 hover:text-white bg-[#041E2B] border border-[#0A5C80]/40"
+                className="p-1.5 sm:p-2 rounded-xl text-slate-300 hover:text-white bg-[#041E2B] border border-[#0A5C80]/40 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 text-base"
+                aria-label="Toggle Menu"
               >
                 {mobileMenuOpen ? '✕' : '☰'}
               </button>

@@ -220,7 +220,7 @@ export default function PopularCategoriesSection({ categories, onSelectCategory 
         </div>
 
         {/* Category Family Filter Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2">
+        <div className="flex flex-wrap items-center justify-start gap-2">
           {families.map((fam) => (
             <button
               key={fam.id}
