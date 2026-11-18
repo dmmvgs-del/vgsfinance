@@ -34,7 +34,8 @@ export default function ContactEnquiryForm({ selectedProduct, prefillData, onLea
     if (prefillData) {
       setFormData(prev => ({
         ...prev,
-        requestedAmount: prefillData.amount || prev.requestedAmount,
+        requestedAmount: prefillData.requestedAmount || prefillData.amount || prev.requestedAmount,
+        productName: prefillData.productName || prev.productName,
         tenureMonths: prefillData.tenureMonths || prev.tenureMonths
       }));
     }

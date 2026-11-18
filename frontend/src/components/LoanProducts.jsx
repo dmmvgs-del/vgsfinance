@@ -73,13 +73,41 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
     // 1. Category Matching
     const matchCat = selectedCategory === 'all' || p.categoryId === selectedCategory;
 
-    // 2. Keyword Search
+    // 2. Comprehensive Keyword & Alias Search
     const query = searchQuery.toLowerCase().trim();
+    const featuresStr = Array.isArray(p.features) ? p.features.join(' ').toLowerCase() : '';
+    const docsStr = Array.isArray(p.documentsRequired) ? p.documentsRequired.join(' ').toLowerCase() : '';
+    const descStr = (p.description || '').toLowerCase();
+    const catName = categories.find(c => c.id === p.categoryId)?.name?.toLowerCase() || '';
+
+    // Smart aliases
+    const isCarAlias = ['kia', 'car', 'auto', 'vehicle', 'maruti', 'hyundai', 'tata', 'mahindra', 'honda', 'toyota'].some(w => query.includes(w));
+    const isHomeAlias = ['home', 'house', 'flat', 'villa', 'plot', 'apartment', 'property', 'housing'].some(w => query.includes(w));
+    const isGoldAlias = ['gold', 'jewel', 'ornament', 'sovereign'].some(w => query.includes(w));
+    const isDoctorAlias = ['doctor', 'clinic', 'hospital', 'dentist', 'surgeon', 'medical'].some(w => query.includes(w));
+    const isBusinessAlias = ['business', 'trade', 'gst', 'msme', 'working capital', 'firm', 'shop', 'retail'].some(w => query.includes(w));
+    const isEduAlias = ['education', 'college', 'university', 'study', 'abroad', 'degree', 'student'].some(w => query.includes(w));
+    const isCvAlias = ['truck', 'lorry', 'commercial vehicle', 'bus', 'tipper', 'fleet'].some(w => query.includes(w));
+
+    let matchAlias = false;
+    if (isCarAlias && (p.categoryId === 'cat-car' || p.categoryId === 'cat-commercial-vehicle')) matchAlias = true;
+    if (isHomeAlias && (p.categoryId === 'cat-home' || p.categoryId === 'cat-mortgage' || p.categoryId === 'cat-lap')) matchAlias = true;
+    if (isGoldAlias && p.categoryId === 'cat-gold') matchAlias = true;
+    if (isDoctorAlias && (p.categoryId === 'cat-doctor' || p.categoryId === 'cat-professional')) matchAlias = true;
+    if (isBusinessAlias && (p.categoryId === 'cat-business' || p.categoryId === 'cat-working-capital')) matchAlias = true;
+    if (isEduAlias && p.categoryId === 'cat-education') matchAlias = true;
+    if (isCvAlias && (p.categoryId === 'cat-commercial-vehicle' || p.categoryId === 'cat-construction-equipment')) matchAlias = true;
+
     const matchSearch = query === '' ||
       p.name.toLowerCase().includes(query) ||
       (p.tagline && p.tagline.toLowerCase().includes(query)) ||
+      descStr.includes(query) ||
+      featuresStr.includes(query) ||
+      docsStr.includes(query) ||
+      catName.includes(query) ||
       (p.processingFee && p.processingFee.toLowerCase().includes(query)) ||
-      (p.eligibility?.employmentType && p.eligibility.employmentType.toLowerCase().includes(query));
+      (p.eligibility?.employmentType && p.eligibility.employmentType.toLowerCase().includes(query)) ||
+      matchAlias;
 
     // 3. Rate Filter
     let matchRate = true;
@@ -295,9 +323,12 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
 
           </div>
 
-          <div className="text-[11px] text-slate-500 flex items-center justify-between border-t border-slate-100 pt-3">
+          <div className="text-[11px] text-slate-500 flex flex-col sm:flex-row sm:items-center justify-between border-t border-slate-100 pt-3 gap-2">
             <span>
-              Showing <strong className="text-[#0A5C80] font-bold">{filtered.length}</strong> loan products matching your criteria
+              Showing <strong className="text-[#0A5C80] font-bold">{filtered.length}</strong> loan products
+              {searchQuery && (
+                <> matching <strong className="text-[#6EA928] bg-[#E8F5D4] px-2 py-0.5 rounded-full border border-[#6EA928]/30">"{searchQuery}"</strong></>
+              )}
             </span>
             <span className="text-slate-400 hidden sm:inline">
               Instant indicative loan terms • Subject to lender verification

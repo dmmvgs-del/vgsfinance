@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import PopularCategoriesSection from './PopularCategoriesSection';
 import LoanProducts from './LoanProducts';
@@ -12,10 +12,31 @@ export default function ServicesPage({
   onSwitchToAdmin,
   onSelectProduct,
   onApplyClick,
-  onLeadSubmitted
+  onLeadSubmitted,
+  initialSearchFilter = null,
+  initialCategoryId = 'all'
 }) {
-  const [selectedCategoryFilter, setSelectedCategoryFilter] = useState('all');
-  const [searchFilterData, setSearchFilterData] = useState(null);
+  const [selectedCategoryFilter, setSelectedCategoryFilter] = useState(initialCategoryId || 'all');
+  const [searchFilterData, setSearchFilterData] = useState(initialSearchFilter);
+
+  useEffect(() => {
+    if (initialCategoryId) {
+      setSelectedCategoryFilter(initialCategoryId);
+    }
+  }, [initialCategoryId]);
+
+  useEffect(() => {
+    if (initialSearchFilter) {
+      setSearchFilterData(initialSearchFilter);
+      if (initialSearchFilter.selectedCat && initialSearchFilter.selectedCat !== 'ALL') {
+        setSelectedCategoryFilter(initialSearchFilter.selectedCat);
+      }
+      setTimeout(() => {
+        const el = document.getElementById('products');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 150);
+    }
+  }, [initialSearchFilter]);
 
   const handleCategorySelect = (catId) => {
     setSelectedCategoryFilter(catId);
@@ -58,6 +79,7 @@ export default function ServicesPage({
 
       {/* 5. SECTION C: QUICK ENQUIRY ASSISTANCE DESK */}
       <QuickEnquirySection
+        categories={categories}
         onLeadSubmitted={onLeadSubmitted}
       />
 

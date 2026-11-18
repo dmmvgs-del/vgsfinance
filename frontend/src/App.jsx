@@ -129,11 +129,31 @@ function App() {
     if (filter.selectedCat && filter.selectedCat !== 'ALL') {
       setSelectedCategoryFilter(filter.selectedCat);
     }
-    scrollToSection('featured-products');
+    handleSwitchView('services');
   };
 
-  const handleQuickApply = ({ categoryId, requestedAmount }) => {
-    setPrefillData({ requestedAmount, categoryId });
+  const handleQuickApply = ({ categoryId, requestedAmount, searchTerm }) => {
+    let catName = 'Personal Loan';
+    if (categoryId && categoryId !== 'ALL') {
+      const found = landingData.categories?.find(c => c.id === categoryId);
+      if (found) catName = found.name;
+    } else if (searchTerm) {
+      const s = String(searchTerm).toLowerCase();
+      if (['kia', 'car', 'auto', 'vehicle', 'maruti', 'hyundai', 'tata'].some(w => s.includes(w))) catName = 'Car Loan';
+      else if (['home', 'house', 'flat', 'villa', 'plot', 'apartment'].some(w => s.includes(w))) catName = 'Home Loan';
+      else if (['gold', 'jewel', 'ornament'].some(w => s.includes(w))) catName = 'Gold Loan';
+      else if (['doctor', 'clinic', 'dentist', 'hospital'].some(w => s.includes(w))) catName = 'Doctor Loan';
+      else if (['business', 'working capital', 'msme', 'gst'].some(w => s.includes(w))) catName = 'Business Loan';
+      else if (['education', 'college', 'study', 'university'].some(w => s.includes(w))) catName = 'Education Loan';
+      else if (['truck', 'lorry', 'commercial vehicle'].some(w => s.includes(w))) catName = 'Commercial Vehicle Loan';
+    }
+
+    setPrefillData({
+      requestedAmount,
+      categoryId,
+      productName: catName,
+      source: 'discovery_engine'
+    });
     scrollToSection('quick-enquiry');
   };
 
@@ -153,6 +173,8 @@ function App() {
         onSelectProduct={handleSelectProduct}
         onApplyClick={handleApplyClick}
         onLeadSubmitted={fetchLandingData}
+        initialSearchFilter={searchFilterData}
+        initialCategoryId={selectedCategoryFilter}
       />
     );
   }
@@ -228,6 +250,8 @@ function App() {
 
         {/* 8. Quick Enquiry Section */}
         <QuickEnquirySection
+          prefillData={prefillData}
+          categories={landingData.categories || []}
           onLeadSubmitted={fetchLandingData}
         />
 

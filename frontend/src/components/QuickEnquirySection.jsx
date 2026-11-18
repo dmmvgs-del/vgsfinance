@@ -1,18 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../config/api';
 
-export default function QuickEnquirySection({ onLeadSubmitted }) {
+export default function QuickEnquirySection({ onLeadSubmitted, prefillData, categories }) {
   const [formData, setFormData] = useState({
     customerName: '',
     phone: '',
-    productName: 'VGS Express Personal Loan',
-    requestedAmount: 300000,
+    productName: 'Personal Loan',
+    requestedAmount: 500000,
     city: 'Hyderabad',
     callbackTime: 'Immediate (Within 15 Mins)'
   });
   const [submitting, setSubmitting] = useState(false);
   const [submittedLead, setSubmittedLead] = useState(null);
   const [errorMsg, setErrorMsg] = useState('');
+
+  useEffect(() => {
+    if (prefillData) {
+      setFormData(prev => ({
+        ...prev,
+        requestedAmount: prefillData.requestedAmount || prefillData.amount || prev.requestedAmount,
+        productName: prefillData.productName || (prefillData.categoryId && categories ? (categories.find(c => c.id === prefillData.categoryId)?.name || prev.productName) : prev.productName)
+      }));
+    }
+  }, [prefillData, categories]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -110,6 +120,20 @@ export default function QuickEnquirySection({ onLeadSubmitted }) {
               {errorMsg && (
                 <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs text-center font-bold">
                   {errorMsg}
+                </div>
+              )}
+
+              {prefillData && (
+                <div className="p-3.5 rounded-2xl bg-[#E8F5D4] border border-[#6EA928]/40 text-xs text-[#0A5C80] flex flex-col sm:flex-row sm:items-center justify-between gap-2 shadow-sm animate-fade-in">
+                  <div className="flex items-center gap-2">
+                    <span className="text-base text-[#6EA928]">⚡</span>
+                    <span>
+                      Pre-filled from Loan Search: <strong>{formData.productName}</strong> for <strong>₹ {Number(formData.requestedAmount).toLocaleString('en-IN')}</strong>. Enter your details below to submit in 1 click!
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-bold text-[#466E18] uppercase tracking-wider bg-white px-2.5 py-1 rounded-full border border-[#6EA928]/30 shrink-0 self-start sm:self-auto">
+                    Ready to Submit
+                  </span>
                 </div>
               )}
 
