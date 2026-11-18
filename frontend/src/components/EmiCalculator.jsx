@@ -64,18 +64,18 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
   };
 
   return (
-    <section id="emi-calc" className="py-16 bg-[#061D28] border-t border-[#0A5C80]/30">
+    <section id="emi-calc" className="py-16 bg-white border-t border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto space-y-2">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0A5C80]/20 border border-[#0A5C80]/40 text-[#85C7DF] text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E8F5D4] border border-[#6EA928]/40 text-[#466E18] text-xs font-bold uppercase tracking-wider">
             <span>🧮</span> Interactive EMI Calculator
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
             Financial EMI Calculator
           </h2>
-          <p className="text-sm text-slate-300">
+          <p className="text-sm text-slate-600">
             Determine your exact monthly installment, principal portion, and interest schedule across 15+ partner banks.
           </p>
         </div>
@@ -83,9 +83,9 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start max-w-5xl mx-auto">
           
           {/* Steps 1, 2, 3: Input Controls */}
-          <div className="lg:col-span-7 bg-[#041E2B] border border-[#0A5C80]/40 p-6 sm:p-8 rounded-3xl shadow-xl space-y-6">
+          <div className="lg:col-span-7 bg-slate-50 border border-slate-200 p-6 sm:p-8 rounded-3xl shadow-sm space-y-6">
             
-            <div className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center justify-between border-b border-[#0A5C80]/30 pb-3">
+            <div className="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center justify-between border-b border-slate-200 pb-3">
               <span>Calculator Inputs</span>
               <span className="text-[#6EA928] font-bold">Reducing Balance Formula</span>
             </div>
@@ -93,8 +93,8 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
             {/* Step 1: Enter Loan Amount */}
             <div className="space-y-2">
               <div className="flex justify-between items-center">
-                <label className="text-xs sm:text-sm font-bold text-white flex items-center gap-1.5">
-                  <span className="w-5 h-5 rounded-full bg-[#6EA928]/20 text-[#6EA928] text-xs flex items-center justify-center font-bold">1</span>
+                <label className="text-xs sm:text-sm font-bold text-slate-800 flex items-center gap-1.5">
+                  <span className="w-5 h-5 rounded-full bg-[#E8F5D4] text-[#466E18] text-xs flex items-center justify-center font-bold">1</span>
                   Enter Loan Amount (₹)
                 </label>
                 <div className="relative w-44">
@@ -106,7 +106,7 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
                     step="10000"
                     value={loanAmount}
                     onChange={(e) => setLoanAmount(Number(e.target.value))}
-                    className="w-full bg-[#062433] border border-[#0A5C80]/40 rounded-xl pl-7 pr-3 py-1.5 text-xs font-bold text-[#6EA928] text-right focus:outline-none focus:border-[#6EA928]"
+                    className="w-full bg-white border border-slate-300 rounded-xl pl-7 pr-3 py-1.5 text-xs font-bold text-[#0A5C80] text-right focus:outline-none focus:border-[#6EA928] shadow-sm"
                   />
                 </div>
               </div>
@@ -117,9 +117,9 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
                 step="25000"
                 value={loanAmount}
                 onChange={(e) => setLoanAmount(Number(e.target.value))}
-                className="w-full accent-[#6EA928] cursor-pointer h-2 bg-[#062433] rounded-lg"
+                className="w-full accent-[#6EA928] cursor-pointer h-2 bg-slate-200 rounded-lg"
               />
-              <div className="flex justify-between text-[11px] text-slate-400 font-medium">
+              <div className="flex justify-between text-[11px] text-slate-500 font-medium">
                 <span>₹ 25,000</span>
                 <span>₹ 25 Lakhs</span>
                 <span>₹ 50 Lakhs</span>
@@ -129,8 +129,8 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
             {/* Step 2: Enter Interest Rate */}
             <div className="space-y-2">
               <div className="flex justify-between items-center">
-                <label className="text-xs sm:text-sm font-bold text-white flex items-center gap-1.5">
-                  <span className="w-5 h-5 rounded-full bg-[#0A5C80]/20 text-[#85C7DF] text-xs flex items-center justify-center font-bold">2</span>
+                <label className="text-xs sm:text-sm font-bold text-slate-800 flex items-center gap-1.5">
+                  <span className="w-5 h-5 rounded-full bg-sky-100 text-[#0A5C80] text-xs flex items-center justify-center font-bold">2</span>
                   Enter Interest Rate (% p.a.)
                 </label>
                 <div className="relative w-28">
@@ -141,7 +141,7 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
                     step="0.1"
                     value={interestRate}
                     onChange={(e) => setInterestRate(Number(e.target.value))}
-                    className="w-full bg-[#062433] border border-[#0A5C80]/40 rounded-xl pl-3 pr-7 py-1.5 text-xs font-bold text-[#85C7DF] text-right focus:outline-none focus:border-[#0A5C80]"
+                    className="w-full bg-white border border-slate-300 rounded-xl pl-3 pr-7 py-1.5 text-xs font-bold text-[#0A5C80] text-right focus:outline-none focus:border-[#0A5C80] shadow-sm"
                   />
                   <span className="absolute right-3 top-2 text-slate-400 text-xs font-bold">%</span>
                 </div>
@@ -153,9 +153,9 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
                 step="0.25"
                 value={interestRate}
                 onChange={(e) => setInterestRate(Number(e.target.value))}
-                className="w-full accent-[#0A5C80] cursor-pointer h-2 bg-[#062433] rounded-lg"
+                className="w-full accent-[#0A5C80] cursor-pointer h-2 bg-slate-200 rounded-lg"
               />
-              <div className="flex justify-between text-[11px] text-slate-400 font-medium">
+              <div className="flex justify-between text-[11px] text-slate-500 font-medium">
                 <span>7% (Home Loan)</span>
                 <span>11.5% (Personal)</span>
                 <span>24%</span>
@@ -165,13 +165,13 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
             {/* Step 3: Select Loan Tenure */}
             <div className="space-y-2">
               <div className="flex justify-between items-center">
-                <label className="text-xs sm:text-sm font-bold text-white flex items-center gap-1.5">
-                  <span className="w-5 h-5 rounded-full bg-[#6EA928]/20 text-[#6EA928] text-xs flex items-center justify-center font-bold">3</span>
+                <label className="text-xs sm:text-sm font-bold text-slate-800 flex items-center gap-1.5">
+                  <span className="w-5 h-5 rounded-full bg-[#E8F5D4] text-[#466E18] text-xs flex items-center justify-center font-bold">3</span>
                   Select Loan Tenure
                 </label>
                 
                 {/* Months vs Years Unit Switcher */}
-                <div className="flex items-center gap-1 bg-[#062433] p-0.5 rounded-xl border border-[#0A5C80]/40 text-xs">
+                <div className="flex items-center gap-1 bg-white p-0.5 rounded-xl border border-slate-300 text-xs shadow-sm">
                   <button
                     type="button"
                     onClick={() => {
@@ -181,7 +181,7 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
                       }
                     }}
                     className={`px-2.5 py-1 rounded-lg font-bold transition-all ${
-                      tenureUnit === 'months' ? 'bg-[#0A5C80] text-white' : 'text-slate-400 hover:text-white'
+                      tenureUnit === 'months' ? 'bg-[#0A5C80] text-white' : 'text-slate-600 hover:text-slate-900'
                     }`}
                   >
                     Months
@@ -195,7 +195,7 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
                       }
                     }}
                     className={`px-2.5 py-1 rounded-lg font-bold transition-all ${
-                      tenureUnit === 'years' ? 'bg-[#0A5C80] text-white' : 'text-slate-400 hover:text-white'
+                      tenureUnit === 'years' ? 'bg-[#0A5C80] text-white' : 'text-slate-600 hover:text-slate-900'
                     }`}
                   >
                     Years
@@ -210,11 +210,11 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
                 step={tenureUnit === 'years' ? 1 : 6}
                 value={tenureValue}
                 onChange={(e) => setTenureValue(Number(e.target.value))}
-                className="w-full accent-[#0A5C80] cursor-pointer h-2 bg-[#062433] rounded-lg"
+                className="w-full accent-[#0A5C80] cursor-pointer h-2 bg-slate-200 rounded-lg"
               />
 
-              <div className="flex justify-between text-xs text-slate-400 font-medium">
-                <span>Selected: <strong className="text-[#85C7DF]">{tenureValue} {tenureUnit} ({tenureInMonths} Months)</strong></span>
+              <div className="flex justify-between text-xs text-slate-500 font-medium">
+                <span>Selected: <strong className="text-[#0A5C80]">{tenureValue} {tenureUnit} ({tenureInMonths} Months)</strong></span>
                 <span>Max: {tenureUnit === 'years' ? '20 Years' : '84 Months'}</span>
               </div>
             </div>
@@ -224,7 +224,7 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
               <button
                 type="button"
                 onClick={calculateEmi}
-                className="w-full py-2.5 rounded-xl text-xs font-bold bg-[#062433] hover:bg-[#0A5C80]/40 text-slate-200 border border-[#0A5C80]/40 flex items-center justify-center gap-2 cursor-pointer transition-colors"
+                className="w-full py-2.5 rounded-xl text-xs font-bold bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 flex items-center justify-center gap-2 cursor-pointer transition-colors shadow-sm"
               >
                 🔄 4. Recalculate Estimated EMI
               </button>
@@ -233,49 +233,49 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
           </div>
 
           {/* Steps 5, 6, 7: Output Displays */}
-          <div className="lg:col-span-5 bg-gradient-to-br from-[#041E2B] via-[#062A3B] to-[#041A26] border border-[#0A5C80]/50 p-6 sm:p-8 rounded-3xl shadow-2xl space-y-6 flex flex-col justify-between">
+          <div className="lg:col-span-5 bg-white border border-slate-200/90 p-6 sm:p-8 rounded-3xl shadow-xl space-y-6 flex flex-col justify-between">
             
             <div className="space-y-4">
-              <div className="text-xs uppercase font-bold tracking-wider text-slate-300 border-b border-[#0A5C80]/30 pb-3 flex justify-between items-center">
+              <div className="text-xs uppercase font-bold tracking-wider text-slate-700 border-b border-slate-200 pb-3 flex justify-between items-center">
                 <span>Output Breakdown</span>
                 <span className="text-[#6EA928] font-bold">Standard Reducing Rate</span>
               </div>
 
               {/* Step 5: Display Estimated Monthly EMI */}
-              <div className="p-6 rounded-2xl bg-[#03141D] border border-[#6EA928]/40 text-center space-y-1 shadow-inner">
-                <span className="text-[11px] uppercase tracking-wider text-[#94CF45] font-bold flex items-center justify-center gap-1">
+              <div className="p-6 rounded-2xl bg-[#E8F5D4]/70 border border-[#6EA928]/40 text-center space-y-1 shadow-sm">
+                <span className="text-[11px] uppercase tracking-wider text-[#466E18] font-bold flex items-center justify-center gap-1">
                   <span>💰</span> 5. Estimated Monthly EMI
                 </span>
-                <div className="text-3xl sm:text-4xl font-black text-[#6EA928] tracking-tight">
+                <div className="text-3xl sm:text-4xl font-black text-[#466E18] tracking-tight font-mono">
                   {formatCurrency(calculation.monthlyEmi)}
                 </div>
-                <div className="text-[11px] text-slate-400">Payable every month for {tenureInMonths} months</div>
+                <div className="text-[11px] text-slate-600">Payable every month for {tenureInMonths} months</div>
               </div>
 
               {/* Steps 6 & 7: Total Interest & Estimated Total Payment */}
               <div className="grid grid-cols-2 gap-3 pt-1">
                 {/* Step 6: Display Total Interest */}
-                <div className="p-4 rounded-xl bg-[#041E2B] border border-[#0A5C80]/30 text-center space-y-1">
-                  <span className="text-[10px] uppercase font-bold text-slate-400 block">
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-center space-y-1">
+                  <span className="text-[10px] uppercase font-bold text-slate-500 block">
                     6. Total Interest
                   </span>
-                  <div className="text-lg font-black text-[#85C7DF]">
+                  <div className="text-lg font-black text-[#0A5C80]">
                     {formatCurrency(calculation.totalInterest)}
                   </div>
-                  <div className="text-[10px] text-slate-400">
+                  <div className="text-[10px] text-slate-500">
                     ({calculation.interestPercent}% of payment)
                   </div>
                 </div>
 
                 {/* Step 7: Display Estimated Total Payment */}
-                <div className="p-4 rounded-xl bg-[#041E2B] border border-[#0A5C80]/30 text-center space-y-1">
-                  <span className="text-[10px] uppercase font-bold text-slate-400 block">
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-center space-y-1">
+                  <span className="text-[10px] uppercase font-bold text-slate-500 block">
                     7. Total Payment
                   </span>
-                  <div className="text-lg font-black text-white">
+                  <div className="text-lg font-black text-slate-900">
                     {formatCurrency(calculation.totalPayment)}
                   </div>
-                  <div className="text-[10px] text-slate-400">
+                  <div className="text-[10px] text-slate-500">
                     Principal + Interest
                   </div>
                 </div>
@@ -283,11 +283,11 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
 
               {/* Visual Proportion Bar (Principal vs Interest) */}
               <div className="space-y-1.5 pt-2">
-                <div className="flex justify-between text-[11px] font-semibold text-slate-300">
+                <div className="flex justify-between text-[11px] font-semibold text-slate-700">
                   <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-[#0A5C80]"></span> Principal: {calculation.principalPercent}%</span>
                   <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-[#6EA928]"></span> Interest: {calculation.interestPercent}%</span>
                 </div>
-                <div className="w-full h-2.5 rounded-full bg-[#062433] overflow-hidden flex border border-[#0A5C80]/30">
+                <div className="w-full h-2.5 rounded-full bg-slate-200 overflow-hidden flex border border-slate-300">
                   <div
                     className="bg-[#0A5C80] h-full transition-all duration-300"
                     style={{ width: `${calculation.principalPercent}%` }}
@@ -316,10 +316,10 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
             </button>
 
             {/* Statutory Indicative Calculation Notice */}
-            <div className="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs flex items-start gap-2.5">
+            <div className="p-3.5 rounded-2xl bg-amber-50 border border-amber-300 text-amber-900 text-xs flex items-start gap-2.5">
               <span className="text-sm mt-0.5">⚠️</span>
               <p className="leading-relaxed text-[11px] sm:text-xs">
-                <strong>Important:</strong> EMI calculations and loan information displayed on the website are indicative. Final interest rates, eligibility, approval, sanction, tenure, processing fees and loan terms are subject to the respective lender / financial institution.
+                <strong className="text-amber-950">Important:</strong> EMI calculations and loan information displayed on the website are indicative. Final interest rates, eligibility, approval, sanction, tenure, processing fees and loan terms are subject to the respective lender / financial institution.
               </p>
             </div>
 

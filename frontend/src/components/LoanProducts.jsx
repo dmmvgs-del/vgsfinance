@@ -123,18 +123,18 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
   };
 
   return (
-    <section id="products" className="py-20 bg-[#061D28] border-t border-b border-[#0A5C80]/30">
+    <section id="products" className="py-20 bg-slate-50 border-t border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#6EA928]/15 border border-[#6EA928]/40 text-[#94CF45] text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#E8F5D4] border border-[#6EA928]/40 text-[#466E18] text-xs font-bold uppercase tracking-wider">
             <span>🛒</span> Centralized Loan Supermarket
           </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
             Loan Category Listing & Product Marketplace
           </h2>
-          <p className="text-sm text-slate-300">
+          <p className="text-sm text-slate-600">
             Browse loan categories, filter interest rates, compare limits, select your loan type, and enquire with 1-click submission.
           </p>
         </div>
@@ -143,14 +143,14 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
             1. LOAN CATEGORY LISTING (All 16 Categories)
            ========================================================================= */}
         <div className="space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs font-bold text-slate-300 uppercase tracking-wider gap-2">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs font-bold text-slate-700 uppercase tracking-wider gap-2">
             <span className="flex items-center gap-2">
               <span>📋</span> 1. Loan Category Listing
-              <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#6EA928]/20 text-[#94CF45] border border-[#6EA928]/35 font-bold">
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#E8F5D4] text-[#466E18] border border-[#6EA928]/35 font-bold">
                 {categories.length} Categories
               </span>
             </span>
-            <span className="text-slate-400 text-[11px] font-normal lowercase">
+            <span className="text-slate-500 text-[11px] font-normal lowercase">
               Click any category card to filter applicable products
             </span>
           </div>
@@ -160,8 +160,8 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
             <button
               onClick={() => setSelectedCategory('all')}
               className={`p-3 rounded-2xl border text-center transition-all cursor-pointer flex flex-col items-center justify-center gap-1.5 ${selectedCategory === 'all'
-                  ? 'bg-[#0A5C80]/30 border-[#6EA928] text-[#94CF45] shadow-lg shadow-[#6EA928]/15 ring-1 ring-[#6EA928]/50'
-                  : 'bg-[#041E2B] border-[#0A5C80]/30 text-slate-300 hover:text-white hover:border-[#6EA928]'
+                  ? 'bg-white border-[#6EA928] text-[#0A5C80] shadow-md shadow-[#6EA928]/15 ring-2 ring-[#6EA928]'
+                  : 'bg-white border-slate-200 text-slate-700 hover:text-slate-900 hover:border-[#6EA928] shadow-sm'
                 }`}
             >
               <span className="text-xl">🌟</span>
@@ -177,8 +177,8 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
                   className={`p-3 rounded-2xl border text-center transition-all cursor-pointer flex flex-col items-center justify-center gap-1.5 ${isSelected
-                      ? 'bg-[#0A5C80]/30 border-[#6EA928] text-[#94CF45] shadow-lg shadow-[#6EA928]/15 ring-1 ring-[#6EA928]/50'
-                      : 'bg-[#041E2B] border-[#0A5C80]/30 text-slate-300 hover:text-white hover:border-[#6EA928]'
+                      ? 'bg-white border-[#6EA928] text-[#0A5C80] shadow-md shadow-[#6EA928]/15 ring-2 ring-[#6EA928]'
+                      : 'bg-white border-slate-200 text-slate-700 hover:text-slate-900 hover:border-[#6EA928] shadow-sm'
                     }`}
                 >
                   <span className="text-xl">{cat.icon || '📄'}</span>
@@ -190,17 +190,17 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
           </div>
 
           {selectedCategoryObj && (
-            <div className="p-4 rounded-2xl bg-[#041E2B] border border-[#0A5C80]/40 text-xs text-slate-300 flex items-center justify-between gap-4 shadow-lg">
+            <div className="p-4 rounded-2xl bg-white border border-slate-200 text-xs text-slate-700 flex items-center justify-between gap-4 shadow-sm">
               <div className="flex items-center gap-3">
                 <span className="text-2xl">{selectedCategoryObj.icon}</span>
                 <div>
-                  <span className="font-bold text-white text-sm mr-2">{selectedCategoryObj.name}:</span>
-                  <span className="text-slate-300 text-xs">{selectedCategoryObj.description}</span>
+                  <span className="font-bold text-slate-900 text-sm mr-2">{selectedCategoryObj.name}:</span>
+                  <span className="text-slate-600 text-xs">{selectedCategoryObj.description}</span>
                 </div>
               </div>
               <button
                 onClick={() => setSelectedCategory('all')}
-                className="px-3 py-1 rounded-lg bg-[#062433] hover:bg-[#0A5C80]/40 border border-[#0A5C80]/50 text-[11px] text-slate-200 font-bold shrink-0 cursor-pointer"
+                className="px-3 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 border border-slate-300 text-[11px] text-slate-700 font-bold shrink-0 cursor-pointer"
               >
                 Reset Filter ✕
               </button>
@@ -211,23 +211,23 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
         {/* =========================================================================
             2. SEARCH & BASIC FILTERING CONTROLS
            ========================================================================= */}
-        <div className="bg-slate-900 border border-slate-800 p-5 rounded-3xl shadow-xl space-y-4">
+        <div className="bg-white border border-slate-200/90 p-5 rounded-3xl shadow-sm space-y-4">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
 
             {/* Search Input */}
             <div className="w-full lg:w-1/3 relative">
-              <span className="absolute left-3.5 top-3 text-slate-500 text-sm">🔍</span>
+              <span className="absolute left-3.5 top-3 text-slate-400 text-sm">🔍</span>
               <input
                 type="text"
                 placeholder="Search by loan name, purpose, eligibility..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-slate-800 border border-slate-700 rounded-2xl pl-10 pr-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition-colors"
+                className="w-full bg-slate-50 border border-slate-300 rounded-2xl pl-10 pr-4 py-2.5 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#6EA928] focus:bg-white transition-colors"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-3 top-2.5 text-slate-400 hover:text-white text-xs cursor-pointer"
+                  className="absolute right-3 top-2.5 text-slate-400 hover:text-slate-700 text-xs cursor-pointer"
                 >
                   ✕
                 </button>
@@ -239,11 +239,11 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
 
               {/* Filter: Interest Rate */}
               <div className="flex items-center gap-1.5">
-                <span className="text-slate-400 font-medium text-[11px]">Rate:</span>
+                <span className="text-slate-600 font-medium text-[11px]">Rate:</span>
                 <select
                   value={maxRateFilter}
                   onChange={(e) => setMaxRateFilter(e.target.value)}
-                  className="bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-2 text-white font-medium focus:outline-none focus:border-emerald-500 cursor-pointer text-xs"
+                  className="bg-slate-50 border border-slate-300 rounded-xl px-2.5 py-2 text-slate-800 font-medium focus:outline-none focus:border-[#6EA928] cursor-pointer text-xs"
                 >
                   <option value="ALL">All Rates</option>
                   <option value="UNDER_9">≤ 9.0% p.a. (Prime Lowest)</option>
@@ -254,11 +254,11 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
 
               {/* Filter: Tenure Range */}
               <div className="flex items-center gap-1.5">
-                <span className="text-slate-400 font-medium text-[11px]">Tenure:</span>
+                <span className="text-slate-600 font-medium text-[11px]">Tenure:</span>
                 <select
                   value={maxTenureFilter}
                   onChange={(e) => setMaxTenureFilter(e.target.value)}
-                  className="bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-2 text-white font-medium focus:outline-none focus:border-emerald-500 cursor-pointer text-xs"
+                  className="bg-slate-50 border border-slate-300 rounded-xl px-2.5 py-2 text-slate-800 font-medium focus:outline-none focus:border-[#6EA928] cursor-pointer text-xs"
                 >
                   <option value="ALL">Any Tenure</option>
                   <option value="SHORT">Short (Up to 3 Yrs)</option>
@@ -269,11 +269,11 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
 
               {/* Sort By */}
               <div className="flex items-center gap-1.5">
-                <span className="text-slate-400 font-medium text-[11px]">Sort:</span>
+                <span className="text-slate-600 font-medium text-[11px]">Sort:</span>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-2 text-white font-medium focus:outline-none focus:border-emerald-500 cursor-pointer text-xs"
+                  className="bg-slate-50 border border-slate-300 rounded-xl px-2.5 py-2 text-slate-800 font-medium focus:outline-none focus:border-[#6EA928] cursor-pointer text-xs"
                 >
                   <option value="recommended">Recommended</option>
                   <option value="rate-low">Lowest Interest Rate</option>
@@ -285,7 +285,7 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
               {(searchQuery || selectedCategory !== 'all' || maxRateFilter !== 'ALL' || maxTenureFilter !== 'ALL') && (
                 <button
                   onClick={handleClearFilters}
-                  className="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-rose-300 border border-rose-500/30 font-bold text-xs cursor-pointer flex items-center gap-1"
+                  className="px-3 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-300 font-bold text-xs cursor-pointer flex items-center gap-1"
                 >
                   Clear Filters ✕
                 </button>
@@ -295,11 +295,11 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
 
           </div>
 
-          <div className="text-[11px] text-slate-400 flex items-center justify-between border-t border-slate-800/80 pt-3">
+          <div className="text-[11px] text-slate-500 flex items-center justify-between border-t border-slate-100 pt-3">
             <span>
-              Showing <strong className="text-emerald-400">{filtered.length}</strong> loan products matching your criteria
+              Showing <strong className="text-[#0A5C80] font-bold">{filtered.length}</strong> loan products matching your criteria
             </span>
-            <span className="text-slate-500 hidden sm:inline">
+            <span className="text-slate-400 hidden sm:inline">
               Instant indicative loan terms • Subject to lender verification
             </span>
           </div>
@@ -309,15 +309,15 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
             3. LOAN PRODUCT CARDS & LOAN TYPE SELECTION
            ========================================================================= */}
         {filtered.length === 0 ? (
-          <div className="p-12 text-center bg-slate-900 border border-slate-800 rounded-3xl space-y-3">
+          <div className="p-12 text-center bg-white border border-slate-200 rounded-3xl space-y-3 shadow-sm">
             <span className="text-3xl">🔍</span>
-            <h3 className="text-lg font-bold text-white">No loan products match your current filters</h3>
-            <p className="text-xs text-slate-400 max-w-md mx-auto">
+            <h3 className="text-lg font-bold text-slate-800">No loan products match your current filters</h3>
+            <p className="text-xs text-slate-500 max-w-md mx-auto">
               Try adjusting your search keyword, resetting the interest rate filter, or browsing all categories.
             </p>
             <button
               onClick={handleClearFilters}
-              className="mt-2 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs cursor-pointer"
+              className="mt-2 px-4 py-2 rounded-xl bg-[#6EA928] hover:bg-[#5A8B1F] text-white font-bold text-xs cursor-pointer"
             >
               Reset All Filters
             </button>
@@ -330,9 +330,9 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
                 <div
                   key={prod.id}
                   onClick={() => setSelectedLoanType(prod.id)}
-                  className={`bg-[#041E2B] rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:shadow-[#6EA928]/10 group relative border cursor-pointer ${isSelected
-                      ? 'border-[#6EA928] shadow-xl shadow-[#6EA928]/20 ring-2 ring-[#6EA928]/40'
-                      : 'border-[#0A5C80]/30 hover:border-[#6EA928]/60'
+                  className={`bg-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:shadow-[#6EA928]/10 group relative border cursor-pointer ${isSelected
+                      ? 'border-[#6EA928] shadow-lg shadow-[#6EA928]/20 ring-2 ring-[#6EA928]'
+                      : 'border-slate-200/90 hover:border-[#6EA928]'
                     }`}
                 >
                   {/* Selected Badge */}
@@ -350,10 +350,10 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
                         <span className="text-[10px] font-bold uppercase tracking-wider text-[#6EA928] block mb-0.5">
                           {categories.find(c => c.id === prod.categoryId)?.name || 'Loan'}
                         </span>
-                        <h3 className="text-lg font-bold text-white group-hover:text-[#85C7DF] transition-colors">
+                        <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#0A5C80] transition-colors">
                           {prod.name}
                         </h3>
-                        <p className="text-xs text-slate-300 mt-1 line-clamp-1 leading-relaxed">
+                        <p className="text-xs text-slate-500 mt-1 line-clamp-1 leading-relaxed">
                           {prod.tagline}
                         </p>
                       </div>
@@ -366,16 +366,16 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
                     </div>
 
                     {/* Amount Limits & Tenure Grid */}
-                    <div className="grid grid-cols-2 gap-2 bg-[#062433]/90 p-3.5 rounded-2xl border border-[#0A5C80]/30 text-xs">
+                    <div className="grid grid-cols-2 gap-2 bg-slate-50 p-3.5 rounded-2xl border border-slate-200 text-xs">
                       <div>
-                        <span className="text-slate-400 block text-[11px] font-medium">Loan Limit:</span>
-                        <span className="font-black text-white mt-0.5 block text-xs font-mono">
+                        <span className="text-slate-500 block text-[11px] font-medium">Loan Limit:</span>
+                        <span className="font-black text-slate-900 mt-0.5 block text-xs font-mono">
                           {formatCurrency(prod.minAmount)} - {formatCurrency(prod.maxAmount)}
                         </span>
                       </div>
                       <div>
-                        <span className="text-slate-400 block text-[11px] font-medium">Tenure Window:</span>
-                        <span className="font-black text-[#85C7DF] mt-0.5 block text-xs">
+                        <span className="text-slate-500 block text-[11px] font-medium">Tenure Window:</span>
+                        <span className="font-black text-[#0A5C80] mt-0.5 block text-xs">
                           {prod.minTenure}m to {prod.maxTenure}m ({(prod.maxTenure / 12).toFixed(0)} Yrs)
                         </span>
                       </div>
@@ -384,19 +384,19 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
                     {/* Eligibility & Features */}
                     <div className="space-y-2 pt-1">
                       <div className="flex flex-wrap gap-1.5">
-                        <span className="px-2 py-0.5 rounded bg-[#0A5C80]/20 text-slate-200 text-[10px] border border-[#0A5C80]/40">
+                        <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px] border border-slate-200">
                           Age: {prod.eligibility?.minAge || 21}-{prod.eligibility?.maxAge || 60} Yrs
                         </span>
                         <span className="px-2 py-0.5 rounded bg-[#E8F5D4] text-[#466E18] text-[10px] border border-[#6EA928]/30 font-bold">
                           Min Income: {formatCurrency(prod.eligibility?.minIncome || 25000)}/m
                         </span>
-                        <span className="px-2 py-0.5 rounded bg-[#0A5C80]/20 text-[#85C7DF] text-[10px] border border-[#0A5C80]/40 font-bold">
+                        <span className="px-2 py-0.5 rounded bg-sky-50 text-[#0A5C80] text-[10px] border border-sky-200 font-bold">
                           CIBIL: {prod.eligibility?.minCibilScore || '680+'}
                         </span>
                       </div>
 
                       {prod.features?.slice(0, 2).map((feat, i) => (
-                        <div key={i} className="text-xs text-slate-300 flex items-center gap-2">
+                        <div key={i} className="text-xs text-slate-600 flex items-center gap-2">
                           <span className="text-[#6EA928] font-bold">✓</span>
                           <span className="truncate">{feat}</span>
                         </div>
@@ -404,9 +404,9 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
                     </div>
 
                     {/* Processing Fee */}
-                    <div className="text-xs text-slate-400 pt-2 flex justify-between border-t border-[#0A5C80]/30">
+                    <div className="text-xs text-slate-500 pt-2 flex justify-between border-t border-slate-100">
                       <span>Processing Fee:</span>
-                      <span className="text-slate-200 font-semibold">{prod.processingFee}</span>
+                      <span className="text-slate-800 font-semibold">{prod.processingFee}</span>
                     </div>
 
                   </div>
@@ -414,7 +414,7 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
                   {/* =========================================================================
                       4. LOAN TYPE SELECTION & APPLY / ENQUIRE NOW ACTION BUTTONS
                      ========================================================================= */}
-                  <div className="pt-5 grid grid-cols-2 gap-2 border-t border-[#0A5C80]/30 mt-4">
+                  <div className="pt-5 grid grid-cols-2 gap-2 border-t border-slate-100 mt-4">
                     <button
                       type="button"
                       onClick={(e) => {
@@ -425,7 +425,7 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
                           setDetailModalProduct(prod);
                         }
                       }}
-                      className="py-3 px-3 rounded-xl font-bold text-xs bg-[#0A5C80]/20 hover:bg-[#0A5C80]/40 text-[#85C7DF] hover:text-white border border-[#0A5C80]/50 transition-all cursor-pointer text-center"
+                      className="py-3 px-3 rounded-xl font-bold text-xs bg-slate-100 hover:bg-slate-200 text-[#0A5C80] border border-slate-300 transition-all cursor-pointer text-center"
                     >
                       🔍 View Details & EMI
                     </button>
@@ -448,10 +448,10 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
         )}
 
         {/* Statutory Regulatory Disclaimer */}
-        <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-amber-500/20 text-amber-300 text-xs flex items-start gap-3 shadow-md">
+        <div className="p-4 sm:p-5 rounded-2xl bg-amber-50 border border-amber-300 text-amber-900 text-xs flex items-start gap-3 shadow-sm">
           <span className="text-base mt-0.5">⚠️</span>
           <p className="leading-relaxed">
-            <strong>Important:</strong> EMI calculations and loan information displayed on the website are indicative. Final interest rates, eligibility, approval, sanction, tenure, processing fees and loan terms are subject to the respective lender / financial institution.
+            <strong className="text-amber-950">Important:</strong> EMI calculations and loan information displayed on the website are indicative. Final interest rates, eligibility, approval, sanction, tenure, processing fees and loan terms are subject to the respective lender / financial institution.
           </p>
         </div>
 
@@ -461,58 +461,58 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
           DETAILED LOAN MODAL (In-Depth Terms, Documents & In-Modal Simulator)
          ========================================================================= */}
       {detailModalProduct && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-800 max-w-3xl w-full rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6 max-h-[92vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white border border-slate-200 max-w-3xl w-full rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6 max-h-[92vh] overflow-y-auto">
 
             {/* Modal Header */}
-            <div className="flex justify-between items-start border-b border-slate-800 pb-4">
+            <div className="flex justify-between items-start border-b border-slate-200 pb-4">
               <div>
-                <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+                <span className="px-3 py-1 rounded-full bg-[#E8F5D4] border border-[#6EA928]/30 text-[#466E18] text-xs font-bold uppercase tracking-wider">
                   Detailed Loan Specification
                 </span>
-                <h3 className="text-2xl font-black text-white mt-2">{detailModalProduct.name}</h3>
-                <p className="text-xs text-slate-400">{detailModalProduct.tagline}</p>
+                <h3 className="text-2xl font-black text-slate-900 mt-2">{detailModalProduct.name}</h3>
+                <p className="text-xs text-slate-500">{detailModalProduct.tagline}</p>
               </div>
               <button
                 onClick={() => setDetailModalProduct(null)}
-                className="w-8 h-8 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center text-sm font-bold cursor-pointer"
+                className="w-8 h-8 rounded-full bg-slate-100 text-slate-600 hover:text-slate-900 flex items-center justify-center text-sm font-bold cursor-pointer"
               >
                 ✕
               </button>
             </div>
 
             {/* Quick Specs Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-950 p-4 rounded-2xl border border-slate-800 text-xs">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs">
               <div>
-                <span className="text-slate-400 block text-[11px]">Interest Rate</span>
-                <span className="font-extrabold text-emerald-400 text-base">{detailModalProduct.interestRate}% p.a.</span>
+                <span className="text-slate-500 block text-[11px]">Interest Rate</span>
+                <span className="font-extrabold text-[#6EA928] text-base">{detailModalProduct.interestRate}% p.a.</span>
               </div>
               <div>
-                <span className="text-slate-400 block text-[11px]">Loan Limit</span>
-                <span className="font-extrabold text-white text-xs">{formatCurrency(detailModalProduct.maxAmount)}</span>
+                <span className="text-slate-500 block text-[11px]">Loan Limit</span>
+                <span className="font-extrabold text-slate-900 text-xs">{formatCurrency(detailModalProduct.maxAmount)}</span>
               </div>
               <div>
-                <span className="text-slate-400 block text-[11px]">Max Tenure</span>
-                <span className="font-extrabold text-sky-400 text-xs">{detailModalProduct.maxTenure} Months</span>
+                <span className="text-slate-500 block text-[11px]">Max Tenure</span>
+                <span className="font-extrabold text-[#0A5C80] text-xs">{detailModalProduct.maxTenure} Months</span>
               </div>
               <div>
-                <span className="text-slate-400 block text-[11px]">Processing Fee</span>
-                <span className="font-extrabold text-amber-400 text-xs">{detailModalProduct.processingFee}</span>
+                <span className="text-slate-500 block text-[11px]">Processing Fee</span>
+                <span className="font-extrabold text-amber-700 text-xs">{detailModalProduct.processingFee}</span>
               </div>
             </div>
 
             {/* In-Modal Mini EMI Calculator */}
-            <div className="bg-slate-950/80 p-5 rounded-2xl border border-slate-800 space-y-3">
+            <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
               <div className="flex justify-between items-center text-xs font-bold">
-                <span className="text-slate-200">🧮 Indicative EMI Simulator for this Loan:</span>
-                <span className="text-emerald-400 font-mono text-sm">{formatCurrency(modalEmiResult.emi)} / month</span>
+                <span className="text-slate-800">🧮 Indicative EMI Simulator for this Loan:</span>
+                <span className="text-[#466E18] bg-[#E8F5D4] px-3 py-1 rounded-lg font-mono text-sm border border-[#6EA928]/30">{formatCurrency(modalEmiResult.emi)} / month</span>
               </div>
 
               <div className="space-y-2 text-xs">
                 <div>
-                  <div className="flex justify-between text-slate-400 mb-1">
+                  <div className="flex justify-between text-slate-600 mb-1">
                     <span>Borrowing Amount:</span>
-                    <span className="text-white font-bold">{formatCurrency(modalAmount)}</span>
+                    <span className="text-slate-900 font-bold">{formatCurrency(modalAmount)}</span>
                   </div>
                   <input
                     type="range"
@@ -521,14 +521,14 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
                     step="25000"
                     value={modalAmount}
                     onChange={(e) => setModalAmount(Number(e.target.value))}
-                    className="w-full accent-emerald-500 cursor-pointer h-1.5 bg-slate-800 rounded-lg"
+                    className="w-full accent-[#6EA928] cursor-pointer h-1.5 bg-slate-200 rounded-lg"
                   />
                 </div>
 
                 <div>
-                  <div className="flex justify-between text-slate-400 mb-1">
+                  <div className="flex justify-between text-slate-600 mb-1">
                     <span>Tenure (Months):</span>
-                    <span className="text-white font-bold">{modalTenure} Months</span>
+                    <span className="text-slate-900 font-bold">{modalTenure} Months</span>
                   </div>
                   <input
                     type="range"
@@ -537,7 +537,7 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
                     step="6"
                     value={modalTenure}
                     onChange={(e) => setModalTenure(Number(e.target.value))}
-                    className="w-full accent-sky-500 cursor-pointer h-1.5 bg-slate-800 rounded-lg"
+                    className="w-full accent-[#0A5C80] cursor-pointer h-1.5 bg-slate-200 rounded-lg"
                   />
                 </div>
               </div>
@@ -545,18 +545,18 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
 
             {/* Categorized Required Documents Checklist */}
             <div className="space-y-2">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-300">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700">
                 📑 Categorized Checklist of Required Documents:
               </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-300">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700">
                 {(detailModalProduct.documentsRequired || [
                   'Proof of Identity: PAN Card / Aadhaar Card',
                   'Proof of Address: Passport / Utility Bill',
                   'Income Proof: Last 3 months Salary Slips / ITR',
                   'Banking Track: Last 6 months operative bank statements'
                 ]).map((doc, idx) => (
-                  <div key={idx} className="p-2.5 rounded-xl bg-slate-800/60 border border-slate-700/60 flex items-center gap-2">
-                    <span className="text-emerald-400 font-bold">✔</span>
+                  <div key={idx} className="p-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center gap-2">
+                    <span className="text-[#6EA928] font-bold">✔</span>
                     <span>{doc}</span>
                   </div>
                 ))}
@@ -564,11 +564,11 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
             </div>
 
             {/* Modal Actions */}
-            <div className="flex gap-3 pt-4 border-t border-slate-800">
+            <div className="flex gap-3 pt-4 border-t border-slate-200">
               <button
                 type="button"
                 onClick={() => setDetailModalProduct(null)}
-                className="w-1/3 py-3 rounded-xl font-bold text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 cursor-pointer"
+                className="w-1/3 py-3 rounded-xl font-bold text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 cursor-pointer"
               >
                 Close
               </button>
@@ -579,7 +579,7 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
                   setDetailModalProduct(null);
                   handleSelectLoanType(prod);
                 }}
-                className="w-2/3 py-3 rounded-xl font-bold text-xs bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-500/20 cursor-pointer flex items-center justify-center gap-2"
+                className="w-2/3 py-3 rounded-xl font-bold text-xs bg-[#6EA928] hover:bg-[#5A8B1F] text-white shadow-lg shadow-[#6EA928]/20 cursor-pointer flex items-center justify-center gap-2"
               >
                 <span>🚀</span> Confirm Selection & Proceed to Enquiry
               </button>

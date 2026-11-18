@@ -52,17 +52,17 @@ export default function DocumentsInfo() {
   };
 
   return (
-    <section id="documents" className="py-16 bg-slate-950">
+    <section id="documents" className="py-16 bg-white border-t border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
         <div className="text-center max-w-2xl mx-auto space-y-2">
-          <div className="text-xs font-bold uppercase tracking-widest text-indigo-400">
+          <div className="text-xs font-bold uppercase tracking-widest text-[#6EA928]">
             Documentation Guide
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
             Required Documents for Loan Processing
           </h2>
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-slate-600">
             Keep these essential documents ready to accelerate your verification and loan sanction.
           </p>
         </div>
@@ -75,8 +75,8 @@ export default function DocumentsInfo() {
               onClick={() => setActiveTab(key)}
               className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 cursor-pointer ${
                 activeTab === key
-                  ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30'
-                  : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+                  ? 'bg-[#6EA928] text-white shadow-lg shadow-[#6EA928]/30'
+                  : 'bg-slate-50 text-slate-700 hover:text-slate-900 border border-slate-200'
               }`}
             >
               <span>{data.icon}</span>
@@ -90,14 +90,14 @@ export default function DocumentsInfo() {
           {docCategories[activeTab].docs.map((doc, idx) => (
             <div
               key={idx}
-              className="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl flex items-start gap-4 hover:border-indigo-500/40 transition-colors"
+              className="bg-slate-50 border border-slate-200/90 p-5 rounded-2xl flex items-start gap-4 hover:border-[#6EA928] hover:bg-white hover:shadow-md transition-all"
             >
-              <div className="w-8 h-8 rounded-xl bg-indigo-500/10 text-indigo-400 font-bold flex items-center justify-center shrink-0 border border-indigo-500/20 text-xs">
+              <div className="w-8 h-8 rounded-xl bg-[#E8F5D4] text-[#466E18] font-bold flex items-center justify-center shrink-0 border border-[#6EA928]/30 text-xs">
                 {idx + 1}
               </div>
               <div className="space-y-1">
-                <h4 className="text-sm font-bold text-white">{doc.name}</h4>
-                <p className="text-xs text-slate-400 leading-relaxed">{doc.desc}</p>
+                <h4 className="text-sm font-bold text-slate-900">{doc.name}</h4>
+                <p className="text-xs text-slate-600 leading-relaxed">{doc.desc}</p>
               </div>
             </div>
           ))}

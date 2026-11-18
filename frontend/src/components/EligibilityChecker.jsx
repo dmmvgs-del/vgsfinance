@@ -36,29 +36,29 @@ export default function EligibilityChecker({ onApplyWithEligibleAmount }) {
   };
 
   return (
-    <section id="eligibility" className="py-16 bg-[#061D28] border-t border-b border-[#0A5C80]/30">
+    <section id="eligibility" className="py-16 bg-slate-50 border-t border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <div className="text-xs font-bold uppercase tracking-widest text-[#6EA928]">
             Credit Assessment
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
             Check Your Maximum Loan Eligibility
           </h2>
-          <p className="text-sm text-slate-300">
+          <p className="text-sm text-slate-600">
             Estimate your loan borrowing capacity based on your monthly income and current commitments.
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto bg-[#041E2B] border border-[#0A5C80]/40 rounded-3xl p-6 sm:p-10 shadow-2xl">
+        <div className="max-w-4xl mx-auto bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-10 shadow-lg">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             
             {/* Input Controls */}
             <div className="space-y-5">
               
               <div>
-                <label className="block text-xs font-semibold uppercase text-slate-300 mb-1">
+                <label className="block text-xs font-bold uppercase text-slate-700 mb-1">
                   Monthly Net Take-Home Income
                 </label>
                 <div className="relative">
@@ -67,13 +67,13 @@ export default function EligibilityChecker({ onApplyWithEligibleAmount }) {
                     type="number"
                     value={income}
                     onChange={(e) => setIncome(Number(e.target.value))}
-                    className="w-full bg-[#062433] border border-[#0A5C80]/40 rounded-xl pl-8 pr-4 py-2.5 text-white font-bold text-sm focus:outline-none focus:border-[#6EA928]"
+                    className="w-full bg-slate-50 border border-slate-300 rounded-xl pl-8 pr-4 py-2.5 text-slate-900 font-bold text-sm focus:outline-none focus:border-[#6EA928] focus:bg-white"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase text-slate-300 mb-1">
+                <label className="block text-xs font-bold uppercase text-slate-700 mb-1">
                   Current Existing EMIs / Obligations
                 </label>
                 <div className="relative">
@@ -82,19 +82,19 @@ export default function EligibilityChecker({ onApplyWithEligibleAmount }) {
                     type="number"
                     value={existingEmi}
                     onChange={(e) => setExistingEmi(Number(e.target.value))}
-                    className="w-full bg-[#062433] border border-[#0A5C80]/40 rounded-xl pl-8 pr-4 py-2.5 text-white font-bold text-sm focus:outline-none focus:border-[#6EA928]"
+                    className="w-full bg-slate-50 border border-slate-300 rounded-xl pl-8 pr-4 py-2.5 text-slate-900 font-bold text-sm focus:outline-none focus:border-[#6EA928] focus:bg-white"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase text-slate-300 mb-1">
+                <label className="block text-xs font-bold uppercase text-slate-700 mb-1">
                   Preferred Tenure
                 </label>
                 <select
                   value={tenureYears}
                   onChange={(e) => setTenureYears(Number(e.target.value))}
-                  className="w-full bg-[#062433] border border-[#0A5C80]/40 rounded-xl px-4 py-2.5 text-white font-medium text-sm focus:outline-none focus:border-[#6EA928]"
+                  className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-slate-900 font-medium text-sm focus:outline-none focus:border-[#6EA928] focus:bg-white cursor-pointer"
                 >
                   <option value={1}>1 Year (12 Months)</option>
                   <option value={2}>2 Years (24 Months)</option>
@@ -107,18 +107,18 @@ export default function EligibilityChecker({ onApplyWithEligibleAmount }) {
             </div>
 
             {/* Eligibility Result Box */}
-            <div className="bg-[#03141D] border border-[#0A5C80]/40 p-6 rounded-2xl text-center space-y-4">
+            <div className="bg-[#E8F5D4]/40 border border-[#6EA928]/40 p-6 rounded-2xl text-center space-y-4 shadow-sm">
               <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#E8F5D4] text-[#466E18] border border-[#6EA928]/40">
                 ✓ Eligibility Criteria (Standard FOIR 50%)
               </span>
 
               <div className="space-y-1">
-                <div className="text-xs text-slate-400">Estimated Maximum Loan Amount:</div>
-                <div className="text-3xl sm:text-4xl font-black text-[#6EA928]">
+                <div className="text-xs text-slate-600">Estimated Maximum Loan Amount:</div>
+                <div className="text-3xl sm:text-4xl font-black text-[#466E18] font-mono">
                   {formatCurrency(maxLoan)}
                 </div>
-                <div className="text-xs text-slate-400">
-                  Max Allowable EMI: <span className="text-[#85C7DF] font-bold">{formatCurrency(maxAllowedEmi)} / month</span>
+                <div className="text-xs text-slate-600">
+                  Max Allowable EMI: <span className="text-[#0A5C80] font-bold">{formatCurrency(maxAllowedEmi)} / month</span>
                 </div>
               </div>
 
@@ -132,10 +132,10 @@ export default function EligibilityChecker({ onApplyWithEligibleAmount }) {
               </div>
 
               {/* Indicative Notice */}
-              <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-left flex items-start gap-2">
+              <div className="p-3 rounded-xl bg-amber-50 border border-amber-300 text-amber-900 text-left flex items-start gap-2">
                 <span className="text-xs mt-0.5">⚠️</span>
                 <p className="text-[11px] leading-relaxed">
-                  <strong>Important:</strong> EMI calculations and loan information displayed on the website are indicative. Final interest rates, eligibility, approval, sanction, tenure, processing fees and loan terms are subject to the respective lender / financial institution.
+                  <strong className="text-amber-950">Important:</strong> EMI calculations and loan information displayed on the website are indicative. Final interest rates, eligibility, approval, sanction, tenure, processing fees and loan terms are subject to the respective lender / financial institution.
                 </p>
               </div>
             </div>

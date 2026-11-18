@@ -135,7 +135,7 @@ function App() {
 
   // Public Landing Website view (Home Page Scope)
   return (
-    <div className="min-h-screen bg-[#061D28] text-slate-100 flex flex-col font-sans selection:bg-[#6EA928] selection:text-white">
+    <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-[#6EA928] selection:text-white">
       
       {/* Top Header & Navigation */}
       <Navbar
@@ -145,7 +145,7 @@ function App() {
       />
 
       {/* Main Home Page Content */}
-      <main className="flex-1 space-y-0">
+      <main className="flex-1 space-y-0 bg-white">
         
         {/* 1. Hero Banner */}
         <HeroSection

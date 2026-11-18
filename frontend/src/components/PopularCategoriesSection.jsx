@@ -204,17 +204,17 @@ export default function PopularCategoriesSection({ categories, onSelectCategory 
   };
 
   return (
-    <section id="popular-categories" className="py-20 bg-[#061D28]">
+    <section id="popular-categories" className="py-20 bg-slate-50 border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="text-xs font-bold uppercase tracking-widest text-[#6EA928]">
             Comprehensive Financial Supermarket
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
             Explore All 16 Loan Categories
           </h2>
-          <p className="text-sm sm:text-base text-slate-300">
+          <p className="text-sm sm:text-base text-slate-600">
             From retail and housing finance to medical, enterprise working capital, and heavy machinery — discover tailored loan solutions across India.
           </p>
         </div>
@@ -228,7 +228,7 @@ export default function PopularCategoriesSection({ categories, onSelectCategory 
               className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                 activeFamily === fam.id
                   ? 'bg-[#6EA928] text-white shadow-lg shadow-[#6EA928]/30'
-                  : 'bg-[#041E2B] text-slate-300 hover:text-white border border-[#0A5C80]/40 hover:border-[#6EA928]'
+                  : 'bg-white text-slate-700 hover:text-slate-900 border border-slate-200 hover:border-[#6EA928] shadow-sm'
               }`}
             >
               {fam.label}
@@ -242,11 +242,11 @@ export default function PopularCategoriesSection({ categories, onSelectCategory 
             <div
               key={item.id}
               onClick={() => handleCardClick(item.id)}
-              className="bg-[#041E2B] border border-[#0A5C80]/35 hover:border-[#6EA928]/60 p-5 rounded-3xl transition-all duration-300 hover:-translate-y-1.5 shadow-xl hover:shadow-[#6EA928]/10 cursor-pointer flex flex-col justify-between group space-y-4"
+              className="bg-white border border-slate-200/90 hover:border-[#6EA928] p-5 rounded-3xl transition-all duration-300 hover:-translate-y-1.5 shadow-sm hover:shadow-xl hover:shadow-[#6EA928]/10 cursor-pointer flex flex-col justify-between group space-y-4"
             >
               <div className="space-y-3">
                 <div className="flex justify-between items-start">
-                  <div className="w-12 h-12 rounded-2xl bg-[#062A3B] border border-[#0A5C80]/40 flex items-center justify-center text-xl group-hover:bg-[#6EA928] group-hover:text-white transition-colors shadow-md">
+                  <div className="w-12 h-12 rounded-2xl bg-slate-100 border border-slate-200 flex items-center justify-center text-xl group-hover:bg-[#6EA928] group-hover:text-white transition-colors shadow-sm">
                     {item.icon}
                   </div>
                   <span className="text-[9px] font-extrabold px-2 py-0.5 rounded-full bg-[#E8F5D4] text-[#466E18] border border-[#6EA928]/30">
@@ -255,16 +255,16 @@ export default function PopularCategoriesSection({ categories, onSelectCategory 
                 </div>
 
                 <div>
-                  <h3 className="text-base font-bold text-white group-hover:text-[#85C7DF] transition-colors">
+                  <h3 className="text-base font-bold text-slate-900 group-hover:text-[#0A5C80] transition-colors">
                     {item.name}
                   </h3>
-                  <p className="text-[11px] text-slate-300 mt-1 line-clamp-2 leading-relaxed font-medium">
+                  <p className="text-[11px] text-slate-500 mt-1 line-clamp-2 leading-relaxed font-medium">
                     {item.perk}
                   </p>
                 </div>
               </div>
 
-              <div className="pt-3 border-t border-[#0A5C80]/30 space-y-2">
+              <div className="pt-3 border-t border-slate-100 space-y-2">
                 <div className="grid grid-cols-2 gap-1 text-[11px]">
                   <div>
                     <span className="text-slate-400 block text-[9px] uppercase font-bold">Interest Rate</span>
@@ -272,11 +272,11 @@ export default function PopularCategoriesSection({ categories, onSelectCategory 
                   </div>
                   <div>
                     <span className="text-slate-400 block text-[9px] uppercase font-bold">Sanction Limit</span>
-                    <span className="font-extrabold text-white">{item.maxAmount}</span>
+                    <span className="font-extrabold text-slate-800">{item.maxAmount}</span>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between text-xs font-bold text-slate-300 group-hover:text-[#6EA928] pt-1">
+                <div className="flex items-center justify-between text-xs font-bold text-slate-500 group-hover:text-[#6EA928] pt-1">
                   <span>Explore Loans</span>
                   <span className="transform group-hover:translate-x-1 transition-transform text-xs">➔</span>
                 </div>

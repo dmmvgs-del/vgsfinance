@@ -60,7 +60,7 @@ export default function HeroSection({
       primaryBg: 'bg-[#0A5C80] hover:bg-[#084E6D] text-white font-black shadow-lg shadow-[#0A5C80]/30',
       secondaryCta: 'Calculate EMI',
       secondaryIcon: '🧮',
-      secondaryAction: onCalcClick || (() => {}),
+      secondaryAction: onCalcClick || (() => { }),
       badgeText: 'Over ₹250+ Crores Disbursed Nationwide',
       badgeColor: 'bg-[#0A5C80]/20 text-[#85C7DF] border-[#0A5C80]/40'
     },
@@ -220,7 +220,7 @@ export default function HeroSection({
 
   return (
     <section id="hero" className="relative font-sans select-none overflow-hidden">
-      
+
       {/* =========================================================================
           1. HERO CAROUSEL BANNER (Company Logo Palette: Deep Marine Blue & Growth Green)
          ========================================================================= */}
@@ -235,15 +235,15 @@ export default function HeroSection({
         <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto relative z-10">
-          
+
           {/* Main Hero Grid: Left Content (Carousel Slides) + Right 3D Visual */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            
+
             {/* -------------------------------------------------------------------
                 LEFT COLUMN: DYNAMIC CAROUSEL SLIDE CONTENT
                ------------------------------------------------------------------- */}
             <div className="lg:col-span-7 space-y-6 sm:space-y-7 animate-fade-in">
-              
+
               {/* Category / Supermarket Live Badge */}
               <div className="flex items-center gap-2">
                 <span className={`inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-black tracking-wide border uppercase backdrop-blur-md ${currentSlideData.badgeColor}`}>
@@ -266,7 +266,7 @@ export default function HeroSection({
                   <br />
                   <span className="text-white">{currentSlideData.headlineSecondLine}</span>
                 </h1>
-                
+
                 <p className="text-sm sm:text-base text-slate-200 font-medium max-w-xl pt-2 sm:pt-3 leading-relaxed">
                   {currentSlideData.description}
                 </p>
@@ -319,11 +319,10 @@ export default function HeroSection({
                       key={s.id}
                       onClick={() => setActiveSlide(idx)}
                       aria-label={`Slide ${idx + 1}`}
-                      className={`h-2 rounded-full transition-all cursor-pointer ${
-                        activeSlide === idx
+                      className={`h-2 rounded-full transition-all cursor-pointer ${activeSlide === idx
                           ? 'w-7 bg-[#6EA928]'
                           : 'w-2 bg-white/30 hover:bg-white/60'
-                      }`}
+                        }`}
                     />
                   ))}
                 </div>
@@ -339,16 +338,16 @@ export default function HeroSection({
                 RIGHT COLUMN: 3D HOLOGRAPHIC DIGITAL BANK + FINANCIAL ADVISOR
                ------------------------------------------------------------------- */}
             <div className="lg:col-span-5 relative flex items-center justify-center">
-              
+
               {/* Outer Glowing Stage Container */}
               <div className="relative w-full max-w-md sm:max-w-lg aspect-[4/3] sm:aspect-square flex items-center justify-center">
-                
+
                 {/* Ambient Glows */}
                 <div className="absolute inset-4 bg-gradient-to-tr from-[#0A5C80]/30 to-[#6EA928]/25 rounded-3xl blur-2xl"></div>
 
                 {/* Glassmorphic 3D Holographic Showcase Card */}
                 <div className="relative w-full h-full rounded-3xl bg-gradient-to-b from-[#0A5C80]/25 via-[#062A3B]/60 to-[#031824]/90 border border-[#0A5C80]/40 backdrop-blur-md p-4 sm:p-6 shadow-2xl flex flex-col justify-between overflow-hidden">
-                  
+
                   {/* Floating Rupee Hologram Badge */}
                   <div className="absolute top-4 right-4 z-20">
                     <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#6EA928] to-[#94CF45] border-2 border-white/80 text-[#031824] font-black text-2xl flex items-center justify-center shadow-xl shadow-[#6EA928]/40 animate-bounce">
@@ -358,7 +357,7 @@ export default function HeroSection({
 
                   {/* 3D Bank Architecture Hologram Illustration */}
                   <div className="relative w-full flex-1 flex items-center justify-center">
-                    
+
                     <svg
                       className="w-full h-full max-h-64 sm:max-h-72 drop-shadow-[0_10px_20px_rgba(10,92,128,0.4)]"
                       viewBox="0 0 400 300"
@@ -425,7 +424,7 @@ export default function HeroSection({
                       />
                       {/* Arrowhead on chart */}
                       <polygon points="320,70 330,85 315,88" fill="#94CF45" />
-                      
+
                       {/* Chart Data Node Bulbs */}
                       <circle cx="150" cy="180" r="4.5" fill="#0A5C80" stroke="#ffffff" strokeWidth="1.5" />
                       <circle cx="200" cy="150" r="4.5" fill="#6EA928" stroke="#ffffff" strokeWidth="1.5" />
@@ -435,10 +434,10 @@ export default function HeroSection({
                       <g transform="translate(250, 45)">
                         {/* Golden/Green Ambient Glow behind Advisor */}
                         <circle cx="65" cy="100" r="60" fill="#6EA928" opacity="0.25" filter="url(#neonGlow)" />
-                        
+
                         {/* Advisor Hair (Back) */}
                         <path d="M40 50 C40 20, 90 20, 90 50 C95 85, 95 110, 85 130 C75 110, 45 110, 40 50 Z" fill="#1c1917" />
-                        
+
                         {/* Advisor Neck & Collar */}
                         <rect x="58" y="70" width="14" height="20" rx="2" fill="#e0a98b" />
                         <polygon points="50,85 65,105 58,85" fill="#ffffff" />
@@ -452,7 +451,7 @@ export default function HeroSection({
                         <path d="M60 64 Q65 70 70 64" stroke="#b91c1c" strokeWidth="1.5" strokeLinecap="round" fill="none" />
                         <path d="M54 47 Q58 45 62 47" stroke="#1c1917" strokeWidth="1.5" strokeLinecap="round" fill="none" />
                         <path d="M68 47 Q72 45 76 47" stroke="#1c1917" strokeWidth="1.5" strokeLinecap="round" fill="none" />
-                        
+
                         {/* Advisor Hair (Front Wave / Stylized) */}
                         <path d="M45 45 C50 30, 80 30, 85 45 C80 35, 55 35, 45 45 Z" fill="#292524" />
 
@@ -461,10 +460,10 @@ export default function HeroSection({
                         {/* Lapels */}
                         <polygon points="40,85 55,105 52,145 35,130" fill="#0A5C80" />
                         <polygon points="90,85 75,105 78,145 95,130" fill="#0A5C80" />
-                        
+
                         {/* Crossed Arms */}
                         <path d="M35 140 Q65 170 95 140 Q65 155 35 140" fill="#072C3E" stroke="#0A5C80" strokeWidth="1" />
-                        
+
                         {/* Green Lapel Pin Badge */}
                         <circle cx="48" cy="115" r="3" fill="#6EA928" stroke="#ffffff" strokeWidth="0.5" />
                         {/* Watch */}
@@ -497,7 +496,7 @@ export default function HeroSection({
              ========================================================================= */}
           <div className="mt-8 sm:mt-12 bg-[#041E2B] border border-[#0A5C80]/35 rounded-2xl shadow-xl p-3 sm:p-4 backdrop-blur-md">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 divide-y md:divide-y-0 md:divide-x divide-[#0A5C80]/30 text-center">
-              
+
               {/* Metric 1 */}
               <div className="flex items-center justify-center gap-2.5 sm:gap-3 py-1 px-2">
                 <span className="text-xl sm:text-2xl text-[#6EA928]">🏛️</span>
@@ -542,7 +541,7 @@ export default function HeroSection({
          ========================================================================= */}
       <div className="bg-[#F4F8FA] text-slate-800 py-10 sm:py-14 px-4 sm:px-6 lg:px-8 border-b border-slate-200">
         <div className="max-w-7xl mx-auto space-y-7">
-          
+
           {/* Section Header */}
           <div className="flex items-center gap-3">
             <span className="w-1.5 h-7 sm:h-8 bg-[#6EA928] rounded-full inline-block"></span>
@@ -556,7 +555,7 @@ export default function HeroSection({
 
           {/* Dual-Panel Grid: 6 Loan Cards (Left) + Compare Loan Options Widget (Right) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
-            
+
             {/* -------------------------------------------------------------------
                 LEFT PANEL (8 Cols): 6 WHITE ROUNDED LOAN CARDS (2 rows x 3 cols)
                ------------------------------------------------------------------- */}
@@ -601,7 +600,7 @@ export default function HeroSection({
                 RIGHT PANEL (4 Cols): DEEP MARINE "COMPARE LOAN OPTIONS" WIDGET
                ------------------------------------------------------------------- */}
             <div className="lg:col-span-4 bg-[#072C3E] rounded-3xl p-6 sm:p-7 text-white shadow-xl border border-[#0A5C80]/50 flex flex-col justify-between space-y-5">
-              
+
               {/* Widget Header */}
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
@@ -617,7 +616,7 @@ export default function HeroSection({
 
               {/* 3 Vibrant Rounded Gradient Action Buttons in Brand Colors */}
               <div className="space-y-3">
-                
+
                 {/* 1. Personal Loan (Brand Growth Green) */}
                 <button
                   onClick={() => handleAvailLoan('Personal Loan', 'cat-personal')}
@@ -698,7 +697,7 @@ export default function HeroSection({
       {/* =========================================================================
           4. FLOATING ACTION BADGES (WhatsApp on Left & AI Assistant on Right)
          ========================================================================= */}
-      
+
       {/* Floating WhatsApp Desk on Bottom Left */}
       <a
         href="https://wa.me/917675852618?text=Hello%20VGS%20Finance,%20I%20am%20looking%20for%20loan%20options%20in%20the%20Loan%20Supermarket."
@@ -733,7 +732,7 @@ export default function HeroSection({
       {partnerModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
           <div className="bg-slate-900 border border-slate-800 max-w-lg w-full rounded-3xl p-6 sm:p-8 shadow-2xl space-y-5 animate-scale-up">
-            
+
             <div className="flex justify-between items-start">
               <div>
                 <span className="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-bold uppercase tracking-wider">
