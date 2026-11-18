@@ -157,94 +157,132 @@ export default function HeroSection({
   };
 
   // 6 Core loan cards matching reference image
+  // 6 Core loan cards matching centered reference design (media_1794984519245_3f603f31.png)
   const loanCards = [
     {
-      title: 'Personal Loan',
-      description: 'For your personal needs like medical, travel, marriage & more.',
-      catId: 'cat-personal',
-      rate: 'From 10.5%',
+      title: 'Health & Doctor Loan',
+      description: 'Health insurance and emergency medical loans provide coverage for hospital expenses, treatments, and clinical equipment without financial stress.',
+      catId: 'cat-professional',
       iconSvg: (
-        <svg className="w-8 h-8" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="24" cy="24" r="22" fill="#E8F5D4" />
-          <path d="M16 19C16 14.5817 19.5817 11 24 11C28.4183 11 32 14.5817 32 19V20H16V19Z" fill="#0A5C80" />
-          <path d="M12 21C12 20.4477 12.4477 20 13 20H35C35.5523 20 36 20.4477 36 21V33C36 37.4183 32.4183 41 28 41H20C15.5817 41 12 37.4183 12 33V21Z" fill="#6EA928" />
-          <circle cx="24" cy="30" r="4.5" fill="#E8F5D4" />
-          <path d="M22 28H26M22 30H26M23 28V32" stroke="#0A5C80" strokeWidth="1.5" strokeLinecap="round" />
-        </svg>
-      )
-    },
-    {
-      title: 'Business Loan',
-      description: 'Tailored financial solutions to grow and expand your business.',
-      catId: 'cat-business',
-      rate: 'From 11.5%',
-      iconSvg: (
-        <svg className="w-8 h-8" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="8" y="16" width="32" height="24" rx="4" fill="#92400E" />
-          <rect x="6" y="20" width="36" height="20" rx="4" fill="#B45309" />
-          <path d="M18 16V12C18 10.8954 18.8954 10 20 10H28C29.1046 10 30 10.8954 30 12V16" stroke="#78350F" strokeWidth="3" />
-          <rect x="22" y="24" width="4" height="4" rx="1" fill="#FEF3C7" />
-          <line x1="6" y1="26" x2="42" y2="26" stroke="#78350F" strokeWidth="2" />
+        <svg className="w-12 h-12" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Caring Hand holding Heart */}
+          <path d="M12 37C12 37 18 33 24 35L33 39C36 40.5 40 38.5 41 35C41.8 32 39 29.5 36 29L29 28" stroke="#FDBA74" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="#FED7AA" />
+          {/* Pink/Coral Heart */}
+          <path d="M28 12C24.5 7.5 17 8 15 13C12.5 19 22 27 28 32C34 27 43.5 19 41 13C39 8 31.5 7.5 28 12Z" fill="#F43F5E" />
+          {/* White Heartbeat Pulse ECG */}
+          <path d="M20 18H23L25 15L27 21L29 17L31 18H36" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          {/* Green Medical Plus Badge */}
+          <circle cx="39" cy="11" r="5" fill="#10B981" />
+          <path d="M39 8.5V13.5M36.5 11H41.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
         </svg>
       )
     },
     {
       title: 'Home Loan',
-      description: 'Make your dream home a reality with attractive loan offers.',
+      description: 'Home loans protect your property and personal belongings, offering flexible 30-year EMIs and subsidized interest rates across 15+ partner banks.',
       catId: 'cat-home',
-      rate: 'From 8.4%',
       iconSvg: (
-        <svg className="w-8 h-8" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M24 8L8 22H14V38H34V22H40L24 8Z" fill="#EF4444" />
-          <rect x="18" y="26" width="12" height="12" rx="1" fill="#FEF2F2" />
-          <rect x="20" y="28" width="8" height="10" fill="#DC2626" />
-          <path d="M24 8L8 22H14L24 13L34 22H40L24 8Z" fill="#B91C1C" />
-          <rect x="30" y="12" width="4" height="7" fill="#7F1D1D" />
+        <svg className="w-12 h-12" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Caring Hand holding House */}
+          <path d="M14 42C14 42 20 38 26 40L36 43C39 44 43 42 44 38C44.5 35 41.5 33 38 33L31 32" stroke="#FDBA74" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="#FED7AA" />
+          {/* Red House Roof */}
+          <path d="M28 10L14 22H18V36H38V22H42L28 10Z" fill="#EF4444" />
+          {/* Chimney */}
+          <rect x="34" y="13" width="4" height="6" fill="#DC2626" />
+          {/* House Body */}
+          <rect x="18" y="22" width="20" height="14" rx="1" fill="#E0F2FE" />
+          {/* Blue Door */}
+          <rect x="25" y="27" width="6" height="9" rx="1" fill="#0A5C80" />
+          {/* Gold Coin on Front */}
+          <circle cx="28" cy="20" r="5" fill="#FBBF24" stroke="#F59E0B" strokeWidth="1.5" />
+          <text x="28" y="23" textAnchor="middle" fill="#92400E" fontSize="7" fontWeight="bold">₹</text>
         </svg>
       )
     },
     {
-      title: 'Doctor Loan',
-      description: 'Special loan solutions for doctors and healthcare professionals.',
-      catId: 'cat-professional',
-      rate: 'Special APR',
+      title: 'Personal Loan',
+      description: 'Personal loans for weddings, travel, education, and unexpected life goals with instant paperless verification and same-day direct disbursement.',
+      catId: 'cat-personal',
       iconSvg: (
-        <svg className="w-8 h-8" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="24" cy="24" r="20" fill="#E0F2FE" />
-          <path d="M16 14V24C16 28.4183 19.5817 32 24 32C28.4183 32 32 28.4183 32 24V14" stroke="#0284C7" strokeWidth="3.5" strokeLinecap="round" />
-          <circle cx="16" cy="14" r="2.5" fill="#0369A1" />
-          <circle cx="32" cy="14" r="2.5" fill="#0369A1" />
-          <path d="M24 32V38C24 39.1046 24.8954 40 26 40H28" stroke="#0284C7" strokeWidth="3.5" strokeLinecap="round" />
-          <circle cx="30" cy="40" r="3" fill="#0369A1" />
+        <svg className="w-12 h-12" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Soft Circle Background */}
+          <circle cx="28" cy="28" r="22" fill="#E8F5D4" />
+          {/* Modern Wallet Body in Royal Teal */}
+          <rect x="12" y="20" width="32" height="22" rx="5" fill="#0A5C80" />
+          <path d="M12 25H44" stroke="#074460" strokeWidth="2" />
+          {/* Leaf Green Flap with Button */}
+          <rect x="32" y="27" width="12" height="8" rx="3" fill="#6EA928" />
+          <circle cx="36" cy="31" r="2" fill="white" />
+          {/* Gold Rupee Coin floating */}
+          <circle cx="24" cy="15" r="7" fill="#FBBF24" stroke="#F59E0B" strokeWidth="1.5" />
+          <text x="24" y="18.5" textAnchor="middle" fill="#92400E" fontSize="9" fontWeight="bold">₹</text>
+          {/* Floating Heart Accent */}
+          <path d="M38 12C36.5 10 33 10.5 32 12.5C31 10.5 27.5 10 26 12C24.5 14 27 18 32 20.5C37 18 39.5 14 38 12Z" fill="#F43F5E" />
+        </svg>
+      )
+    },
+    {
+      title: 'Business Loan',
+      description: 'Tailored financial solutions, MSME collateral-free working capital, and equipment credit lines to scale your commercial enterprise smoothly.',
+      catId: 'cat-business',
+      iconSvg: (
+        <svg className="w-12 h-12" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Background Soft Glow */}
+          <circle cx="28" cy="28" r="22" fill="#E0F2FE" />
+          {/* Corporate Towers */}
+          <rect x="14" y="20" width="12" height="22" rx="2" fill="#0A5C80" />
+          <rect x="30" y="14" width="12" height="28" rx="2" fill="#073D54" />
+          {/* Windows */}
+          <rect x="17" y="24" width="2" height="3" fill="#7DD3FC" />
+          <rect x="21" y="24" width="2" height="3" fill="#7DD3FC" />
+          <rect x="17" y="30" width="2" height="3" fill="#7DD3FC" />
+          <rect x="21" y="30" width="2" height="3" fill="#7DD3FC" />
+          <rect x="33" y="18" width="2" height="3" fill="#38BDF8" />
+          <rect x="37" y="18" width="2" height="3" fill="#38BDF8" />
+          <rect x="33" y="24" width="2" height="3" fill="#38BDF8" />
+          <rect x="37" y="24" width="2" height="3" fill="#38BDF8" />
+          {/* Upward Green Growth Trend Arrow */}
+          <path d="M12 36L26 24L34 28L44 14" stroke="#6EA928" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M38 14H44V20" stroke="#6EA928" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       )
     },
     {
       title: 'Education Loan',
-      description: 'Fund higher education in India or abroad with ease.',
+      description: 'Fund higher education in premier institutions across India and abroad with 100% fee coverage, living expenses, and student-friendly moratoriums.',
       catId: 'cat-education',
-      rate: 'From 9.5%',
       iconSvg: (
-        <svg className="w-8 h-8" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="24,10 42,19 24,28 6,19" fill="#1E40AF" />
-          <path d="M12 22.5V32C12 32 17 37 24 37C31 37 36 32 36 32V22.5" stroke="#1E40AF" strokeWidth="3" fill="none" />
-          <line x1="39" y1="20.5" x2="39" y2="34" stroke="#6EA928" strokeWidth="2.5" strokeLinecap="round" />
-          <circle cx="39" cy="35" r="2" fill="#0A5C80" />
+        <svg className="w-12 h-12" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Background Circle */}
+          <circle cx="28" cy="28" r="22" fill="#E8F5D4" />
+          {/* Graduation Cap */}
+          <polygon points="28,12 46,20 28,28 10,20" fill="#0A5C80" />
+          <path d="M16 23.5V33C16 33 21 37 28 37C35 37 40 33 40 33V23.5" stroke="#0A5C80" strokeWidth="3" fill="none" />
+          {/* Gold Tassel */}
+          <line x1="43" y1="21" x2="43" y2="32" stroke="#F59E0B" strokeWidth="2.5" strokeLinecap="round" />
+          <circle cx="43" cy="33" r="2.5" fill="#D97706" />
+          {/* Diploma Scroll */}
+          <rect x="18" y="38" width="20" height="6" rx="3" fill="#FEF3C7" stroke="#F59E0B" strokeWidth="1.5" />
+          <rect x="26" y="37" width="4" height="8" rx="1" fill="#EF4444" />
         </svg>
       )
     },
     {
       title: 'Loan Against Property',
-      description: 'Unlock the value of your property for business or personal needs.',
+      description: 'Unlock substantial liquidity against your residential or commercial real estate with competitive interest rates and extended repayment horizons.',
       catId: 'cat-mortgage',
-      rate: 'From 8.9%',
       iconSvg: (
-        <svg className="w-8 h-8" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="12" y="8" width="24" height="32" rx="3" fill="#E2E8F0" stroke="#94A3B8" strokeWidth="2" />
-          <line x1="18" y1="16" x2="30" y2="16" stroke="#64748B" strokeWidth="2" strokeLinecap="round" />
-          <line x1="18" y1="22" x2="30" y2="22" stroke="#64748B" strokeWidth="2" strokeLinecap="round" />
-          <line x1="18" y1="28" x2="26" y2="28" stroke="#64748B" strokeWidth="2" strokeLinecap="round" />
-          <path d="M26 26L36 35H32V42H28V37H24V42H20V35H16L26 26Z" fill="#10B981" />
+        <svg className="w-12 h-12" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Background Circle */}
+          <circle cx="28" cy="28" r="22" fill="#F0FDF4" />
+          {/* Property Document Sheet */}
+          <rect x="14" y="12" width="22" height="30" rx="3" fill="white" stroke="#94A3B8" strokeWidth="2" />
+          <line x1="20" y1="18" x2="30" y2="18" stroke="#0A5C80" strokeWidth="2" strokeLinecap="round" />
+          <line x1="20" y1="24" x2="30" y2="24" stroke="#94A3B8" strokeWidth="2" strokeLinecap="round" />
+          <line x1="20" y1="30" x2="26" y2="30" stroke="#94A3B8" strokeWidth="2" strokeLinecap="round" />
+          {/* Protection Shield in Logo Green */}
+          <path d="M38 20L44 23V30C44 35 41 39 38 41C35 39 32 35 32 30V23L38 20Z" fill="#6EA928" />
+          <path d="M35 30L37 32L41 27" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       )
     }
@@ -521,153 +559,55 @@ export default function HeroSection({
       <div className="bg-[#F4F8FA] text-slate-800 py-10 sm:py-14 px-4 sm:px-6 lg:px-8 border-b border-slate-200">
         <div className="max-w-7xl mx-auto space-y-7">
 
-          {/* Section Header */}
-          <div className="flex items-center gap-3">
-            <span className="w-1.5 h-7 sm:h-8 bg-[#6EA928] rounded-full inline-block"></span>
-            <h2 className="text-2xl sm:text-3xl font-black text-[#041E2B] tracking-tight">
-              Find a loan that fits{' '}
-              <span className="text-[#0A5C80] underline decoration-[#6EA928] decoration-4 underline-offset-4">
-                your goals
-              </span>
+          {/* Section Header (Centered, Clean & Modern) */}
+          <div className="text-center max-w-2xl mx-auto space-y-2 mb-2 sm:mb-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E8F5D4] border border-[#6EA928]/30 text-[#0A5C80] text-xs font-black tracking-wide uppercase">
+              <span className="w-2 h-2 rounded-full bg-[#6EA928] animate-ping"></span>
+              <span>Our Loan Products</span>
+            </div>
+            <h2 className="text-2xl sm:text-4xl font-black text-[#041E2B] tracking-tight">
+              Find a Loan That Fits <span className="text-[#0A5C80]">Your Goals</span>
             </h2>
+            <p className="text-xs sm:text-sm text-slate-500 font-medium">
+              Explore our core lending solutions designed for your personal, business, and health financial milestones.
+            </p>
           </div>
 
-          {/* Dual-Panel Grid: 6 Loan Cards (Left) + Compare Loan Options Widget (Right) */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
-
-            {/* -------------------------------------------------------------------
-                LEFT PANEL (8 Cols): 6 WHITE ROUNDED LOAN CARDS (2 rows x 3 cols)
-               ------------------------------------------------------------------- */}
-            <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5">
-              {loanCards.map((card, idx) => (
-                <div
-                  key={idx}
-                  onClick={() => handleAvailLoan(card.title, card.catId)}
-                  className="bg-white rounded-2xl sm:rounded-3xl p-5 border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-[#0A5C80]/50 hover:-translate-y-1 transition-all duration-300 group cursor-pointer flex flex-col justify-between space-y-4"
-                >
-                  <div className="space-y-3">
-                    {/* Icon & Title Row */}
-                    <div className="flex items-center gap-3">
-                      <div className="w-11 h-11 rounded-2xl bg-slate-50 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform shadow-inner">
-                        {card.iconSvg}
-                      </div>
-                      <h3 className="text-base font-black text-slate-900 group-hover:text-[#0A5C80] transition-colors leading-tight">
-                        {card.title}
-                      </h3>
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-xs text-slate-500 leading-relaxed font-medium">
-                      {card.description}
-                    </p>
-                  </div>
-
-                  {/* Card Footer: Rate tag & Circular Arrow Button */}
-                  <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
-                    <span className="text-[11px] font-bold text-[#0A5C80] bg-[#E0F1F6] px-2.5 py-0.5 rounded-full">
-                      {card.rate}
-                    </span>
-                    <span className="w-7 h-7 rounded-full bg-slate-100 group-hover:bg-[#6EA928] text-slate-600 group-hover:text-white flex items-center justify-center text-xs font-black transition-colors shadow-sm">
-                      ➔
-                    </span>
-                  </div>
+          {/* 6 Loan Cards Grid (Centered Clean Design matching media_1794984519245_3f603f31.png) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+            {loanCards.map((card, idx) => (
+              <div
+                key={idx}
+                onClick={() => handleAvailLoan(card.title, card.catId)}
+                className="bg-white rounded-3xl sm:rounded-[32px] p-7 sm:p-9 shadow-md shadow-slate-200/50 hover:shadow-2xl hover:shadow-slate-300/60 hover:-translate-y-2 transition-all duration-300 border border-slate-100/90 flex flex-col items-center text-center cursor-pointer group"
+              >
+                {/* Centered Large Friendly Illustration Icon */}
+                <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-3xl bg-slate-50/80 flex items-center justify-center mb-5 sm:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-inner">
+                  {card.iconSvg}
                 </div>
-              ))}
-            </div>
 
-            {/* -------------------------------------------------------------------
-                RIGHT PANEL (4 Cols): DEEP MARINE "COMPARE LOAN OPTIONS" WIDGET
-               ------------------------------------------------------------------- */}
-            <div className="lg:col-span-4 bg-[#072C3E] rounded-3xl p-6 sm:p-7 text-white shadow-xl border border-[#0A5C80]/50 flex flex-col justify-between space-y-5">
+                {/* Centered Bold Title */}
+                <h3 className="text-lg sm:text-xl font-black text-[#041E2B] group-hover:text-[#0A5C80] transition-colors mb-2.5 text-center leading-snug">
+                  {card.title}
+                </h3>
 
-              {/* Widget Header */}
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <span className="text-xl text-[#6EA928]">📊</span>
-                  <h3 className="text-lg sm:text-xl font-black text-white">
-                    Compare loan options
-                  </h3>
-                </div>
-                <p className="text-xs text-slate-200 font-medium leading-relaxed">
-                  Check interest rates, eligibility and benefits across top banks — all in one place.
+                {/* Centered Description Paragraph */}
+                <p className="text-xs sm:text-sm text-slate-500 leading-relaxed font-normal text-center max-w-xs">
+                  {card.description}
                 </p>
               </div>
+            ))}
+          </div>
 
-              {/* 3 Vibrant Rounded Gradient Action Buttons in Brand Colors */}
-              <div className="space-y-3">
-
-                {/* 1. Personal Loan (Brand Growth Green) */}
-                <button
-                  onClick={() => handleAvailLoan('Personal Loan', 'cat-personal')}
-                  className="w-full p-3.5 rounded-2xl bg-gradient-to-r from-[#6EA928] to-[#508018] hover:opacity-95 text-white shadow-lg shadow-[#6EA928]/30 transition-all transform hover:-translate-y-0.5 flex items-center justify-between cursor-pointer group"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-sm font-black">
-                      👤
-                    </div>
-                    <div className="text-left">
-                      <div className="text-xs sm:text-sm font-black">Personal Loan</div>
-                      <div className="text-[11px] text-[#E8F5D4] font-medium">From 10.5% p.a.</div>
-                    </div>
-                  </div>
-                  <span className="w-7 h-7 rounded-full bg-white/20 group-hover:bg-white group-hover:text-[#508018] flex items-center justify-center text-xs font-black transition-colors">
-                    ➔
-                  </span>
-                </button>
-
-                {/* 2. Business Loan (Brand Marine Blue) */}
-                <button
-                  onClick={() => handleAvailLoan('Business Loan', 'cat-business')}
-                  className="w-full p-3.5 rounded-2xl bg-gradient-to-r from-[#0A5C80] to-[#073D54] hover:opacity-95 text-white shadow-lg shadow-[#0A5C80]/30 transition-all transform hover:-translate-y-0.5 flex items-center justify-between cursor-pointer group"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-sm font-black">
-                      💼
-                    </div>
-                    <div className="text-left">
-                      <div className="text-xs sm:text-sm font-black">Business Loan</div>
-                      <div className="text-[11px] text-[#B8E0ED] font-medium">From 11.5% p.a.</div>
-                    </div>
-                  </div>
-                  <span className="w-7 h-7 rounded-full bg-white/20 group-hover:bg-white group-hover:text-[#0A5C80] flex items-center justify-center text-xs font-black transition-colors">
-                    ➔
-                  </span>
-                </button>
-
-                {/* 3. Doctor Loan (Brand Teal-Green Gradient) */}
-                <button
-                  onClick={() => handleAvailLoan('Doctor Loan', 'cat-professional')}
-                  className="w-full p-3.5 rounded-2xl bg-gradient-to-r from-[#0D749E] to-[#6EA928] hover:opacity-95 text-white shadow-lg shadow-[#0D749E]/30 transition-all transform hover:-translate-y-0.5 flex items-center justify-between cursor-pointer group"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-sm font-black">
-                      🩺
-                    </div>
-                    <div className="text-left">
-                      <div className="text-xs sm:text-sm font-black">Doctor Loan</div>
-                      <div className="text-[11px] text-[#E0F1F6] font-medium">Special APR</div>
-                    </div>
-                  </div>
-                  <span className="w-7 h-7 rounded-full bg-white/20 group-hover:bg-white group-hover:text-[#0D749E] flex items-center justify-center text-xs font-black transition-colors">
-                    ➔
-                  </span>
-                </button>
-
-              </div>
-
-              {/* Bottom Supermarket Footnote */}
-              <div className="pt-3 border-t border-[#0A5C80]/40 text-center">
-                <a
-                  href="#products"
-                  className="text-xs text-[#6EA928] hover:text-[#94CF45] font-bold flex items-center justify-center gap-1.5 transition-colors"
-                >
-                  <span>🛒 View All 16+ Categories in Supermarket</span>
-                  <span>»</span>
-                </a>
-              </div>
-
-            </div>
-
+          {/* Bottom Supermarket Explorer Pill */}
+          <div className="text-center pt-4 sm:pt-6">
+            <a
+              href="#products"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-white hover:bg-[#0A5C80] text-[#0A5C80] hover:text-white border-2 border-[#0A5C80]/30 hover:border-[#0A5C80] text-xs sm:text-sm font-black transition-all shadow-sm"
+            >
+              <span>🛒 Explore All 16+ Categories in Loan Supermarket</span>
+              <span>➔</span>
+            </a>
           </div>
 
         </div>
