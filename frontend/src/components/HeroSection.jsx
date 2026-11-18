@@ -1,4 +1,8 @@
 import { useState, useEffect } from 'react';
+import heroDigitalBank from '../assets/hero-digital-bank.jpg';
+import heroHomeFamily from '../assets/hero-home-family.jpg';
+import heroBusinessGrowth from '../assets/hero-business-growth.jpg';
+import heroCorporateCapital from '../assets/hero-corporate-capital.jpg';
 
 export default function HeroSection({
   onApplyClick,
@@ -21,9 +25,20 @@ export default function HeroSection({
   const [activeSlide, setActiveSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
+  const handleAvailLoan = (loanType, categoryId) => {
+    if (onSelectCategory && categoryId && categoryId !== 'all') {
+      onSelectCategory(categoryId);
+    } else {
+      const el = document.getElementById('products');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      else if (onApplyClick) onApplyClick();
+    }
+  };
+
   const carouselSlides = [
     {
       id: 'supermarket',
+      image: heroDigitalBank,
       tag: "India's #1 Multi-Bank Marketplace",
       headlinePrefix: 'The ',
       headlineAccent: 'Right Loan.',
@@ -39,49 +54,79 @@ export default function HeroSection({
       secondaryIcon: '🎧',
       secondaryAction: () => setPartnerModalOpen(true),
       badgeText: 'Instant In-Principle Sanction in 2 Hours',
-      badgeColor: 'bg-[#6EA928]/20 text-[#94CF45] border-[#6EA928]/40'
+      badgeColor: 'bg-[#6EA928]/20 text-[#94CF45] border-[#6EA928]/40',
+      highlightTag: '15+ Partner Banks',
+      floatingBadge1: { icon: '🏛️', title: '15+ Banking Partners', subtitle: 'SBI, HDFC, ICICI, Axis' },
+      floatingBadge2: { icon: '⚡', title: '2 Hr In-Principle', subtitle: '100% Paperless KYC' }
     },
     {
-      id: 'fast-approval',
-      tag: 'Express Digital Disbursement',
-      headlinePrefix: 'Fast Approvals. ',
+      id: 'home-loans',
+      image: heroHomeFamily,
+      tag: 'Dream Home & Construction Loans',
+      headlinePrefix: 'Your Dream Home. ',
       headlineAccent: 'Lowest Rates.',
       headlineSuffix: '',
-      headlineSecondLine: 'Zero Hidden Charges.',
-      accentColor: 'text-[#85C7DF]',
+      headlineSecondLine: 'Starting @ 8.4% p.a.',
+      accentColor: 'text-[#94CF45]',
       description:
-        'Get 100% paperless KYC approval with attractive rates starting from 8.4% p.a. and doorstep advisor support.',
-      primaryCta: 'Check Instant Eligibility ➔',
-      primaryAction: () => {
-        const el = document.getElementById('eligibility-checker');
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-        else if (onApplyClick) onApplyClick();
-      },
-      primaryBg: 'bg-[#0A5C80] hover:bg-[#084E6D] text-white font-black shadow-lg shadow-[#0A5C80]/30',
+        'Make your dream home a reality with transparent sanctions up to ₹5 Crores, up to 30 years tenure & doorstep advisor support.',
+      primaryCta: 'Check Home Loan Rates ➔',
+      primaryAction: () => handleAvailLoan('Home Loan', 'cat-home'),
+      primaryBg: 'bg-[#6EA928] hover:bg-[#5A8B1F] text-white font-black shadow-lg shadow-[#6EA928]/30',
       secondaryCta: 'Calculate EMI',
       secondaryIcon: '🧮',
       secondaryAction: onCalcClick || (() => { }),
-      badgeText: 'Over ₹250+ Crores Disbursed Nationwide',
-      badgeColor: 'bg-[#0A5C80]/20 text-[#85C7DF] border-[#0A5C80]/40'
+      badgeText: 'Tenure up to 30 Yrs • PMAY Subsidy Support',
+      badgeColor: 'bg-[#6EA928]/20 text-[#94CF45] border-[#6EA928]/40',
+      highlightTag: 'Home Loan @ 8.4%',
+      floatingBadge1: { icon: '🏡', title: 'Home Loans', subtitle: 'Starting From 8.40% p.a.' },
+      floatingBadge2: { icon: '🔑', title: 'Sanction up to ₹5 Cr', subtitle: 'Doorstep Documentation' }
     },
     {
-      id: 'high-value',
-      tag: 'High Quantum Business & Property Loans',
-      headlinePrefix: 'Unlock High Value ',
-      headlineAccent: 'Property & Business',
+      id: 'business-growth',
+      image: heroBusinessGrowth,
+      tag: 'MSME & Business Growth Capital',
+      headlinePrefix: 'Scale Your Business. ',
+      headlineAccent: 'Fuel Vision.',
       headlineSuffix: '',
-      headlineSecondLine: 'Loans Up To ₹10 Cr.',
+      headlineSecondLine: 'Collateral-Free up to ₹50L.',
       accentColor: 'text-[#6EA928]',
       description:
-        'Tailored mortgage and working capital limits with maximum tenure up to 30 years and multi-bank sanction options.',
-      primaryCta: 'Avail Low Rate Loan ➔',
-      primaryAction: () => handleAvailLoan('Loan Against Property', 'cat-mortgage'),
-      primaryBg: 'bg-gradient-to-r from-[#0A5C80] to-[#6EA928] hover:opacity-90 text-white font-black shadow-lg shadow-[#0A5C80]/30',
+        'Working capital limits, equipment purchase, and machinery loans designed for modern entrepreneurs and SMEs with 48-hr fast disbursal.',
+      primaryCta: 'Avail Business Loan ➔',
+      primaryAction: () => handleAvailLoan('Business Loan', 'cat-business'),
+      primaryBg: 'bg-[#0A5C80] hover:bg-[#084E6D] text-white font-black shadow-lg shadow-[#0A5C80]/30',
       secondaryCta: 'Join as Freelancer',
       secondaryIcon: '🤝',
       secondaryAction: () => setPartnerModalOpen(true),
-      badgeText: '15+ Top PSU, Private & NBFC Partners',
-      badgeColor: 'bg-[#0A5C80]/20 text-[#94CF45] border-[#6EA928]/40'
+      badgeText: 'Over ₹250+ Crores Disbursed to MSMEs',
+      badgeColor: 'bg-[#0A5C80]/20 text-[#85C7DF] border-[#0A5C80]/40',
+      highlightTag: 'Collateral-Free MSME',
+      floatingBadge1: { icon: '📈', title: 'Up to ₹50 Lakhs', subtitle: 'Unsecured Business Loan' },
+      floatingBadge2: { icon: '🚀', title: '48 Hr Disbursal', subtitle: 'CGTMSE Coverage' }
+    },
+    {
+      id: 'corporate-capital',
+      image: heroCorporateCapital,
+      tag: 'High-Value Corporate & Property Finance',
+      headlinePrefix: 'Unlock High Value ',
+      headlineAccent: 'Property & Corporate',
+      headlineSuffix: '',
+      headlineSecondLine: 'Loans Up To ₹10 Cr.',
+      accentColor: 'text-[#85C7DF]',
+      description:
+        'Tailored mortgages, loan against commercial/residential property, and debt syndication with maximum loan-to-value and multi-bank sanction options.',
+      primaryCta: 'Avail Mortgage Loan ➔',
+      primaryAction: () => handleAvailLoan('Loan Against Property', 'cat-mortgage'),
+      primaryBg: 'bg-gradient-to-r from-[#0A5C80] to-[#6EA928] hover:opacity-90 text-white font-black shadow-lg shadow-[#0A5C80]/30',
+      secondaryCta: 'Talk to an Expert',
+      secondaryIcon: '🎧',
+      secondaryAction: () => setPartnerModalOpen(true),
+      badgeText: 'PSU, Private & NBFC Consortium',
+      badgeColor: 'bg-[#0A5C80]/20 text-[#94CF45] border-[#6EA928]/40',
+      highlightTag: 'Up to ₹10 Crores',
+      floatingBadge1: { icon: '🏢', title: 'Mortgage Loan', subtitle: 'LAP Up to ₹10 Cr' },
+      floatingBadge2: { icon: '📊', title: 'Lowest Spreads', subtitle: 'Consortium Sanctions' }
     }
   ];
 
@@ -100,16 +145,6 @@ export default function HeroSection({
 
   const handlePrevSlide = () => {
     setActiveSlide((prev) => (prev - 1 + carouselSlides.length) % carouselSlides.length);
-  };
-
-  const handleAvailLoan = (loanType, categoryId) => {
-    if (onSelectCategory && categoryId && categoryId !== 'all') {
-      onSelectCategory(categoryId);
-    } else {
-      const el = document.getElementById('products');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-      else if (onApplyClick) onApplyClick();
-    }
   };
 
   const handlePartnerSubmit = (e) => {
@@ -335,152 +370,134 @@ export default function HeroSection({
             </div>
 
             {/* -------------------------------------------------------------------
-                RIGHT COLUMN: 3D HOLOGRAPHIC DIGITAL BANK + FINANCIAL ADVISOR
+                RIGHT COLUMN: ANIMATED FINTECH VISUAL SHOWCASE (4 HERO IMAGES + ANIMATIONS)
                ------------------------------------------------------------------- */}
             <div className="lg:col-span-5 relative flex items-center justify-center">
 
               {/* Outer Glowing Stage Container */}
-              <div className="relative w-full max-w-md sm:max-w-lg aspect-[4/3] sm:aspect-square flex items-center justify-center">
+              <div className="relative w-full max-w-lg aspect-[4/3] sm:aspect-[5/4] md:aspect-square flex items-center justify-center">
 
-                {/* Ambient Glows */}
-                <div className="absolute inset-4 bg-gradient-to-tr from-[#0A5C80]/30 to-[#6EA928]/25 rounded-3xl blur-2xl"></div>
+                {/* Ambient Animated Glows (Breathing Logo colors: Marine Blue & Growth Green) */}
+                <div className="absolute inset-2 bg-gradient-to-tr from-[#0A5C80]/40 via-[#6EA928]/30 to-[#94CF45]/20 rounded-3xl blur-2xl animate-pulse-glow"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#6EA928]/20 via-[#0A5C80]/30 to-[#6EA928]/20 rounded-3xl blur-xl opacity-60"></div>
 
-                {/* Glassmorphic 3D Holographic Showcase Card */}
-                <div className="relative w-full h-full rounded-3xl bg-gradient-to-b from-[#0A5C80]/25 via-[#062A3B]/60 to-[#031824]/90 border border-[#0A5C80]/40 backdrop-blur-md p-4 sm:p-6 shadow-2xl flex flex-col justify-between overflow-hidden">
+                {/* Glassmorphic 3D Showcase Card Frame */}
+                <div className="relative w-full h-full rounded-3xl bg-gradient-to-b from-[#0A5C80]/30 via-[#062A3B]/80 to-[#031824]/95 border-2 border-[#0A5C80]/50 backdrop-blur-xl p-3 sm:p-4 shadow-2xl flex flex-col justify-between overflow-hidden group">
 
-                  {/* Floating Rupee Hologram Badge */}
-                  <div className="absolute top-4 right-4 z-20">
-                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#6EA928] to-[#94CF45] border-2 border-white/80 text-[#031824] font-black text-2xl flex items-center justify-center shadow-xl shadow-[#6EA928]/40 animate-bounce">
-                      ₹
+                  {/* Stack of 4 Slide Images with Smooth Crossfade & Ken Burns Zoom */}
+                  <div className="relative w-full flex-1 rounded-2xl overflow-hidden shadow-inner bg-[#02111A]">
+                    {carouselSlides.map((slide, idx) => {
+                      const isActive = activeSlide === idx;
+                      return (
+                        <div
+                          key={slide.id}
+                          className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+                            isActive
+                              ? 'opacity-100 scale-100 z-10 pointer-events-auto'
+                              : 'opacity-0 scale-105 z-0 pointer-events-none'
+                          }`}
+                        >
+                          {/* Ken Burns Animated Image */}
+                          <div className={`w-full h-full overflow-hidden ${isActive ? 'animate-ken-burns' : ''}`}>
+                            <img
+                              src={slide.image}
+                              alt={slide.tag}
+                              className="w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.05]"
+                              loading="eager"
+                            />
+                          </div>
+
+                          {/* Gradient Overlays for Readability & High-Tech Look */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#031824]/90 via-[#031824]/20 to-transparent"></div>
+                          <div className="absolute inset-0 bg-gradient-to-b from-[#031824]/50 via-transparent to-transparent"></div>
+                          <div className="absolute inset-0 bg-gradient-to-r from-[#0A5C80]/20 to-transparent mix-blend-overlay"></div>
+                        </div>
+                      );
+                    })}
+
+                    {/* Floating Glassmorphic Badge 1 (Top Left) - Slow Float Animation */}
+                    <div className="absolute top-3.5 left-3.5 z-20 animate-float-slow">
+                      <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#041E2B]/85 backdrop-blur-md border border-[#6EA928]/60 shadow-lg shadow-[#041E2B]/50 text-white">
+                        <span className="text-lg">{currentSlideData.floatingBadge1?.icon || '🏛️'}</span>
+                        <div className="leading-tight">
+                          <p className="text-[11px] font-black text-[#94CF45] tracking-wide">
+                            {currentSlideData.floatingBadge1?.title || '15+ Banking Partners'}
+                          </p>
+                          <p className="text-[9px] text-slate-300 font-medium">
+                            {currentSlideData.floatingBadge1?.subtitle || 'SBI, HDFC, ICICI, Axis'}
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* 3D Bank Architecture Hologram Illustration */}
-                  <div className="relative w-full flex-1 flex items-center justify-center">
+                    {/* Floating Rupee Hologram Token (Top Right) - Bouncing Glow */}
+                    <div className="absolute top-3.5 right-3.5 z-20">
+                      <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-[#6EA928] to-[#94CF45] border-2 border-white/90 text-[#031824] font-black text-xl flex items-center justify-center shadow-xl shadow-[#6EA928]/50 animate-bounce">
+                        ₹
+                      </div>
+                    </div>
 
-                    <svg
-                      className="w-full h-full max-h-64 sm:max-h-72 drop-shadow-[0_10px_20px_rgba(10,92,128,0.4)]"
-                      viewBox="0 0 400 300"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <defs>
-                        <linearGradient id="bankGrad" x1="0" y1="0" x2="1" y2="1">
-                          <stop offset="0%" stopColor="#3D9EBF" stopOpacity="0.9" />
-                          <stop offset="50%" stopColor="#0A5C80" stopOpacity="0.8" />
-                          <stop offset="100%" stopColor="#041E2B" stopOpacity="0.9" />
-                        </linearGradient>
-                        <linearGradient id="brandCurve" x1="0" y1="1" x2="1" y2="0">
-                          <stop offset="0%" stopColor="#0A5C80" />
-                          <stop offset="50%" stopColor="#6EA928" />
-                          <stop offset="100%" stopColor="#94CF45" />
-                        </linearGradient>
-                        <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
-                          <feGaussianBlur stdDeviation="6" result="blur" />
-                          <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                        </filter>
-                      </defs>
+                    {/* Floating Glassmorphic Badge 2 (Bottom Right) - Reverse Float Animation */}
+                    <div className="absolute bottom-4 right-3.5 z-20 animate-float-reverse">
+                      <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#041E2B]/85 backdrop-blur-md border border-[#0A5C80]/70 shadow-lg shadow-[#041E2B]/50 text-white">
+                        <span className="text-lg">{currentSlideData.floatingBadge2?.icon || '⚡'}</span>
+                        <div className="leading-tight text-right">
+                          <p className="text-[11px] font-black text-[#85C7DF] tracking-wide">
+                            {currentSlideData.floatingBadge2?.title || 'Fast Digital Approval'}
+                          </p>
+                          <p className="text-[9px] text-slate-300 font-medium">
+                            {currentSlideData.floatingBadge2?.subtitle || '100% Paperless KYC'}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
 
-                      {/* Holographic Platform / Isometric Grid Base */}
-                      <ellipse cx="200" cy="250" rx="170" ry="40" fill="url(#bankGrad)" opacity="0.35" />
-                      <ellipse cx="200" cy="250" rx="140" ry="30" stroke="#0A5C80" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.7" />
-
-                      {/* 3D Glass Screen Backdrop */}
-                      <rect x="50" y="40" width="220" height="190" rx="16" fill="#062A3B" fillOpacity="0.6" stroke="#0A5C80" strokeWidth="1.5" />
-                      <line x1="70" y1="70" x2="110" y2="70" stroke="#6EA928" strokeWidth="2.5" strokeLinecap="round" opacity="0.8" />
-                      <line x1="70" y1="85" x2="130" y2="85" stroke="#3D9EBF" strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
-
-                      {/* 3D Bank Temple Building */}
-                      <g transform="translate(60, 60)">
-                        {/* Pediment (Triangle Roof) */}
-                        <polygon points="100,20 180,60 20,60" fill="url(#bankGrad)" stroke="#3D9EBF" strokeWidth="2" />
-                        <rect x="70" y="38" width="60" height="15" rx="3" fill="#0A5C80" />
-                        <text x="100" y="49" textAnchor="middle" fill="#ffffff" fontSize="9" fontWeight="900" letterSpacing="1">
-                          BANK
-                        </text>
-
-                        {/* Frieze & Architrave */}
-                        <rect x="25" y="60" width="150" height="10" fill="#084E6D" stroke="#6EA928" strokeWidth="1" />
-
-                        {/* Classical Greek Pillars */}
-                        <rect x="35" y="70" width="16" height="70" rx="2" fill="#0A5C80" fillOpacity="0.85" stroke="#3D9EBF" strokeWidth="1" />
-                        <rect x="70" y="70" width="16" height="70" rx="2" fill="#0A5C80" fillOpacity="0.85" stroke="#3D9EBF" strokeWidth="1" />
-                        <rect x="110" y="70" width="16" height="70" rx="2" fill="#0A5C80" fillOpacity="0.85" stroke="#3D9EBF" strokeWidth="1" />
-                        <rect x="145" y="70" width="16" height="70" rx="2" fill="#0A5C80" fillOpacity="0.85" stroke="#3D9EBF" strokeWidth="1" />
-
-                        {/* Steps Base */}
-                        <rect x="20" y="140" width="160" height="8" fill="#063D56" stroke="#0A5C80" strokeWidth="1" />
-                        <rect x="10" y="148" width="180" height="10" fill="#041E2B" stroke="#6EA928" strokeWidth="1" />
-                      </g>
-
-                      {/* Upward Rising Trajectory Growth Chart Line */}
-                      <path
-                        d="M80 220 Q 150 190 200 150 T 320 80"
-                        fill="none"
-                        stroke="url(#brandCurve)"
-                        strokeWidth="4"
-                        strokeLinecap="round"
-                        filter="url(#neonGlow)"
-                      />
-                      {/* Arrowhead on chart */}
-                      <polygon points="320,70 330,85 315,88" fill="#94CF45" />
-
-                      {/* Chart Data Node Bulbs */}
-                      <circle cx="150" cy="180" r="4.5" fill="#0A5C80" stroke="#ffffff" strokeWidth="1.5" />
-                      <circle cx="200" cy="150" r="4.5" fill="#6EA928" stroke="#ffffff" strokeWidth="1.5" />
-                      <circle cx="260" cy="115" r="4.5" fill="#94CF45" stroke="#ffffff" strokeWidth="1.5" />
-
-                      {/* Professional Female Financial Advisor Vector Rendering */}
-                      <g transform="translate(250, 45)">
-                        {/* Golden/Green Ambient Glow behind Advisor */}
-                        <circle cx="65" cy="100" r="60" fill="#6EA928" opacity="0.25" filter="url(#neonGlow)" />
-
-                        {/* Advisor Hair (Back) */}
-                        <path d="M40 50 C40 20, 90 20, 90 50 C95 85, 95 110, 85 130 C75 110, 45 110, 40 50 Z" fill="#1c1917" />
-
-                        {/* Advisor Neck & Collar */}
-                        <rect x="58" y="70" width="14" height="20" rx="2" fill="#e0a98b" />
-                        <polygon points="50,85 65,105 58,85" fill="#ffffff" />
-                        <polygon points="80,85 65,105 72,85" fill="#ffffff" />
-
-                        {/* Advisor Face */}
-                        <ellipse cx="65" cy="55" rx="18" ry="22" fill="#f2bba2" />
-                        {/* Eyes, Smile, Eyebrows */}
-                        <ellipse cx="58" cy="52" rx="2" ry="1.5" fill="#292524" />
-                        <ellipse cx="72" cy="52" rx="2" ry="1.5" fill="#292524" />
-                        <path d="M60 64 Q65 70 70 64" stroke="#b91c1c" strokeWidth="1.5" strokeLinecap="round" fill="none" />
-                        <path d="M54 47 Q58 45 62 47" stroke="#1c1917" strokeWidth="1.5" strokeLinecap="round" fill="none" />
-                        <path d="M68 47 Q72 45 76 47" stroke="#1c1917" strokeWidth="1.5" strokeLinecap="round" fill="none" />
-
-                        {/* Advisor Hair (Front Wave / Stylized) */}
-                        <path d="M45 45 C50 30, 80 30, 85 45 C80 35, 55 35, 45 45 Z" fill="#292524" />
-
-                        {/* Advisor Suit Jacket (Deep Marine Navy Blazer) */}
-                        <path d="M40 85 C30 110, 30 170, 30 190 L100 190 C100 170, 100 110, 90 85 L75 105 L65 135 L55 105 Z" fill="#072C3E" />
-                        {/* Lapels */}
-                        <polygon points="40,85 55,105 52,145 35,130" fill="#0A5C80" />
-                        <polygon points="90,85 75,105 78,145 95,130" fill="#0A5C80" />
-
-                        {/* Crossed Arms */}
-                        <path d="M35 140 Q65 170 95 140 Q65 155 35 140" fill="#072C3E" stroke="#0A5C80" strokeWidth="1" />
-
-                        {/* Green Lapel Pin Badge */}
-                        <circle cx="48" cy="115" r="3" fill="#6EA928" stroke="#ffffff" strokeWidth="0.5" />
-                        {/* Watch */}
-                        <rect x="42" y="152" width="7" height="4" rx="1" fill="#6EA928" />
-                      </g>
-                    </svg>
+                    {/* Bottom Left Live Tag Pill */}
+                    <div className="absolute bottom-4 left-3.5 z-20 hidden sm:block">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-[#6EA928]/90 text-white shadow-md backdrop-blur-sm border border-white/30">
+                        <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span>
+                        {currentSlideData.highlightTag || 'Verified Rates'}
+                      </span>
+                    </div>
 
                   </div>
 
-                  {/* Bottom Strip Inside 3D Card */}
-                  <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-300">
-                    <span className="flex items-center gap-1.5 font-bold text-[#6EA928]">
-                      <span>✓</span> ISO 9001:2015 Certified Advisory
-                    </span>
-                    <span className="text-[10px] text-[#85C7DF] font-mono font-bold">
-                      15+ Partner Banks
-                    </span>
+                  {/* Interactive Bottom Control & Thumbnail Preview Bar */}
+                  <div className="pt-2.5 px-1 flex items-center justify-between text-xs">
+                    
+                    {/* Interactive 4-Thumbnail Switcher */}
+                    <div className="flex items-center gap-2">
+                      {carouselSlides.map((slide, idx) => (
+                        <button
+                          key={slide.id}
+                          onClick={() => setActiveSlide(idx)}
+                          className={`group/thumb relative rounded-lg overflow-hidden border transition-all duration-300 cursor-pointer ${
+                            activeSlide === idx
+                              ? 'border-[#6EA928] ring-2 ring-[#6EA928]/50 scale-105'
+                              : 'border-white/20 opacity-60 hover:opacity-100 hover:border-white/50'
+                          }`}
+                          title={slide.tag}
+                        >
+                          <img
+                            src={slide.image}
+                            alt={slide.tag}
+                            className="w-10 h-7 sm:w-12 sm:h-8 object-cover"
+                          />
+                          {activeSlide === idx && (
+                            <div className="absolute inset-0 bg-[#6EA928]/20 pointer-events-none"></div>
+                          )}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Status / Compliance Pill */}
+                    <div className="flex items-center gap-1 text-[11px] text-slate-300 font-semibold font-mono">
+                      <span className="text-[#6EA928]">✓</span>
+                      <span className="hidden sm:inline">100% Verified Partners</span>
+                      <span className="text-white/40">•</span>
+                      <span className="text-[#85C7DF]">0{activeSlide + 1}/0{carouselSlides.length}</span>
+                    </div>
+
                   </div>
 
                 </div>
