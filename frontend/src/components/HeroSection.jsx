@@ -338,23 +338,7 @@ export default function HeroSection({
                 </button>
               </div>
 
-              {/* Social Proof & Ratings (Matches Reference Image) */}
-              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 pt-3 text-xs sm:text-sm text-slate-600">
-                <div className="flex items-center gap-1.5 font-bold text-slate-800">
-                  <div className="flex items-center text-[#F59E0B] text-base">
-                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                  </div>
-                  <span>10K+ 4.8 Star Rating</span>
-                </div>
-                <span className="text-slate-300 hidden sm:inline">•</span>
-                <div className="flex items-center gap-1.5 font-semibold text-[#0A5C80]">
-                  <span>🏛️ 15+ Partner Banks</span>
-                </div>
-                <span className="text-slate-300 hidden sm:inline">•</span>
-                <div className="flex items-center gap-1.5 font-semibold text-[#6EA928]">
-                  <span>⚡ 2-Hr Disbursal</span>
-                </div>
-              </div>
+
 
             </div>
 
@@ -413,11 +397,7 @@ export default function HeroSection({
 
               </div>
 
-              {/* Star Rating Under Circular Frame (Matches Reference Image) */}
-              <div className="flex items-center gap-1.5 pt-4 text-xs font-bold text-slate-700">
-                <span className="text-[#F59E0B] text-sm">★★★★★</span>
-                <span>10K+ 4.8 Star Rating</span>
-              </div>
+
 
             </div>
 
@@ -668,37 +648,7 @@ export default function HeroSection({
         </div>
       </div>
 
-      {/* =========================================================================
-          4. FLOATING ACTION BADGES (WhatsApp on Left & AI Assistant on Right)
-         ========================================================================= */}
 
-      {/* Floating WhatsApp Desk on Bottom Left */}
-      <a
-        href="https://wa.me/917675852618?text=Hello%20VGS%20Finance,%20I%20am%20looking%20for%20loan%20options%20in%20the%20Loan%20Supermarket."
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 left-6 z-40 w-14 h-14 rounded-full bg-[#6EA928] hover:bg-[#5A8B1F] text-white flex items-center justify-center text-3xl shadow-2xl hover:scale-110 transition-all cursor-pointer group"
-        title="Chat with Loan Advisor on WhatsApp"
-      >
-        <span className="animate-bounce">💬</span>
-        <span className="absolute left-16 top-2.5 px-3 py-1 rounded-xl bg-[#041E2B] text-white text-[11px] font-bold whitespace-nowrap shadow-xl opacity-0 group-hover:opacity-100 transition-opacity border border-[#0A5C80]/50 pointer-events-none">
-          WhatsApp Advisory Desk
-        </span>
-      </a>
-
-      {/* Floating AI Assistant on Bottom Right */}
-      <div className="fixed bottom-6 right-6 z-40">
-        <button
-          onClick={onApplyClick}
-          className="w-14 h-14 rounded-full bg-gradient-to-tr from-[#0A5C80] to-[#6EA928] hover:opacity-90 text-white flex items-center justify-center text-2xl shadow-2xl hover:scale-110 transition-all cursor-pointer group relative"
-          title="Instant Loan Assistant"
-        >
-          <span>🤖</span>
-          <span className="absolute right-16 top-2.5 px-3 py-1 rounded-xl bg-[#041E2B] text-white text-[11px] font-bold whitespace-nowrap shadow-xl opacity-0 group-hover:opacity-100 transition-opacity border border-[#0A5C80]/50 pointer-events-none">
-            Instant Loan Assistant
-          </span>
-        </button>
-      </div>
 
       {/* =========================================================================
           5. MODAL: JOIN AS FREELANCER / DSA PARTNER
