@@ -633,8 +633,8 @@ export default function HeroSection({
       <div className="bg-[#F4F8FA] text-slate-800 py-10 sm:py-14 px-4 sm:px-6 lg:px-8 border-b border-slate-200">
         <div className="max-w-7xl mx-auto space-y-7">
 
-          {/* Section Header (Centered, Clean & Modern) */}
-          <div className="text-center max-w-2xl mx-auto space-y-2 mb-2 sm:mb-4">
+          {/* Section Header (Left-Aligned, Clean & Modern) */}
+          <div className="text-left max-w-2xl space-y-2 mb-2 sm:mb-4">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E8F5D4] border border-[#6EA928]/30 text-[#0A5C80] text-xs font-black tracking-wide uppercase">
               <span className="w-2 h-2 rounded-full bg-[#6EA928] animate-ping"></span>
               <span>Our Loan Products</span>

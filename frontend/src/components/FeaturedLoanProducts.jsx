@@ -7,11 +7,11 @@ export default function FeaturedLoanProducts({ products, onApplyProduct, onViewD
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
-          <div className="space-y-2 max-w-2xl">
-            <div className="text-xs font-bold uppercase tracking-widest text-[#6EA928]">
-              Curated Market Offerings
+          <div className="space-y-3 max-w-2xl text-left">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E8F5D4] border border-[#6EA928]/30 text-[#0A5C80] text-xs font-black tracking-wide uppercase">
+              <span>Curated Market Offerings</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#041E2B] tracking-tight">
               Featured Loan Products
             </h2>
             <p className="text-sm text-slate-600">

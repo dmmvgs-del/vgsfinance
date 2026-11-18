@@ -111,14 +111,14 @@ export default function CustomerContactWorkflow({ onSelectProductClick }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#E8F5D4] border border-[#6EA928]/30 text-[#466E18] text-xs font-bold uppercase tracking-wider">
+        <div className="text-left max-w-3xl space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E8F5D4] border border-[#6EA928]/30 text-[#0A5C80] text-xs font-black tracking-wide uppercase">
             <span>Phase 6 Workflow</span>
             <span>•</span>
             <span>End-to-End Customer Contact Journey</span>
           </div>
           
-          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-black text-[#041E2B] tracking-tight">
             How Your Loan Journey Moves from <span className="text-[#6EA928]">Enquiry to Bank Disbursement</span>
           </h2>
 
@@ -127,7 +127,7 @@ export default function CustomerContactWorkflow({ onSelectProductClick }) {
           </p>
 
           {/* Quick Flow Pipeline Pill Indicator */}
-          <div className="inline-flex flex-wrap items-center justify-center gap-2 pt-2 text-xs font-bold text-slate-700">
+          <div className="inline-flex flex-wrap items-center justify-start gap-2 pt-2 text-xs font-bold text-slate-700">
             <span className="px-2.5 py-1 rounded-lg bg-slate-100 border border-slate-200">1. Customer</span>
             <span className="text-[#6EA928] font-black">➔</span>
             <span className="px-2.5 py-1 rounded-lg bg-slate-100 border border-slate-200">2. Loan Product</span>

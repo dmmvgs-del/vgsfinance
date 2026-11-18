@@ -646,7 +646,7 @@ export default function LoanDetailsPage({
             SECTION 9: LOAN PROCESS INFORMATION (5-STEP ROADMAP)
            ========================================================================= */}
         <section className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-xl space-y-8">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
+          <div className="text-left max-w-2xl space-y-2">
             <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider">
               <span>⚡</span> Fast-Track Loan Workflow
             </div>
@@ -942,7 +942,7 @@ export default function LoanDetailsPage({
            ========================================================================= */}
         <section className="bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8">
           
-          <div className="text-center max-w-2xl mx-auto space-y-2">
+          <div className="text-left max-w-2xl space-y-2">
             <h2 className="text-2xl sm:text-3xl font-black text-white">
               11 & 12. Apply or Enquire for {product.name}
             </h2>

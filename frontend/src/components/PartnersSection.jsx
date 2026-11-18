@@ -3,11 +3,11 @@ export default function PartnersSection({ partners }) {
     <section id="partners" className="py-16 bg-slate-50 border-t border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
-        <div className="text-center max-w-2xl mx-auto space-y-2">
-          <div className="text-xs font-bold uppercase tracking-widest text-[#6EA928]">
-            Lending Network
+        <div className="text-left max-w-2xl space-y-2">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E8F5D4] border border-[#6EA928]/30 text-[#0A5C80] text-xs font-black tracking-wide uppercase">
+            <span>Lending Network</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#041E2B] tracking-tight">
             Our Partner Banks & NBFCs
           </h2>
           <p className="text-sm text-slate-600">

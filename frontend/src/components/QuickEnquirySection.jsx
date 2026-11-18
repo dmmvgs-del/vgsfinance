@@ -95,11 +95,11 @@ export default function QuickEnquirySection({ onLeadSubmitted }) {
           ) : (
             <div className="space-y-8">
 
-              <div className="text-center max-w-2xl mx-auto space-y-2">
-                <span className="text-xs font-bold uppercase tracking-widest text-[#6EA928]">
-                  ⚡ Express Assistance Desk
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+              <div className="text-left max-w-2xl space-y-2">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E8F5D4] border border-[#6EA928]/30 text-[#0A5C80] text-xs font-black tracking-wide uppercase">
+                  <span>⚡ Express Assistance Desk</span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-black text-[#041E2B] tracking-tight">
                   Get a Loan Callback in 15 Minutes
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-600">

@@ -127,11 +127,11 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#E8F5D4] border border-[#6EA928]/40 text-[#466E18] text-xs font-bold uppercase tracking-wider">
-            <span>🛒</span> Centralized Loan Supermarket
+        <div className="text-left max-w-3xl space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E8F5D4] border border-[#6EA928]/30 text-[#0A5C80] text-xs font-black tracking-wide uppercase">
+            <span>🛒</span> <span>Centralized Loan Supermarket</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-black text-[#041E2B] tracking-tight">
             Loan Category Listing & Product Marketplace
           </h2>
           <p className="text-sm text-slate-600">

@@ -68,11 +68,11 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto space-y-2">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E8F5D4] border border-[#6EA928]/40 text-[#466E18] text-xs font-bold uppercase tracking-wider">
-            <span>🧮</span> Interactive EMI Calculator
+        <div className="text-left max-w-2xl space-y-2">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E8F5D4] border border-[#6EA928]/30 text-[#0A5C80] text-xs font-black tracking-wide uppercase">
+            <span>🧮</span> <span>Interactive EMI Calculator</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#041E2B] tracking-tight">
             Financial EMI Calculator
           </h2>
           <p className="text-sm text-slate-600">
