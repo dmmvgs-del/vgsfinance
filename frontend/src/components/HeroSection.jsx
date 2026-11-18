@@ -46,7 +46,7 @@ export default function HeroSection({
       tag: 'For The Happy Life',
       preAccent: 'Join In A ',
       highlightWord1: 'Trustable',
-      highlightColor1: 'text-[#F59E0B]',
+      highlightColor1: 'text-[#0A5C80]',
       highlightWord2: 'Home Finance',
       highlightColor2: 'text-[#6EA928]',
       description:
@@ -64,7 +64,7 @@ export default function HeroSection({
       tag: 'Fuel Academic Dreams',
       preAccent: 'Empower Your ',
       highlightWord1: 'Global',
-      highlightColor1: 'text-[#F59E0B]',
+      highlightColor1: 'text-[#0A5C80]',
       highlightWord2: 'Education',
       highlightColor2: 'text-[#6EA928]',
       description:
@@ -82,7 +82,7 @@ export default function HeroSection({
       tag: 'Scale Your Enterprise',
       preAccent: 'Grow With ',
       highlightWord1: 'Smart',
-      highlightColor1: 'text-[#F59E0B]',
+      highlightColor1: 'text-[#0A5C80]',
       highlightWord2: 'Business Capital',
       highlightColor2: 'text-[#6EA928]',
       description:
@@ -100,7 +100,7 @@ export default function HeroSection({
       tag: 'Care When It Matters',
       preAccent: 'Protect With ',
       highlightWord1: 'Emergency',
-      highlightColor1: 'text-[#F59E0B]',
+      highlightColor1: 'text-[#0A5C80]',
       highlightWord2: 'Medical Loans',
       highlightColor2: 'text-[#6EA928]',
       description:
@@ -118,7 +118,7 @@ export default function HeroSection({
       tag: 'Celebrate Life Milestones',
       preAccent: 'Achieve With ',
       highlightWord1: 'Instant',
-      highlightColor1: 'text-[#F59E0B]',
+      highlightColor1: 'text-[#0A5C80]',
       highlightWord2: 'Personal Finance',
       highlightColor2: 'text-[#6EA928]',
       description:
@@ -165,11 +165,11 @@ export default function HeroSection({
       rate: 'From 10.5%',
       iconSvg: (
         <svg className="w-8 h-8" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="24" cy="24" r="22" fill="#FEF3C7" />
-          <path d="M16 19C16 14.5817 19.5817 11 24 11C28.4183 11 32 14.5817 32 19V20H16V19Z" fill="#D97706" />
-          <path d="M12 21C12 20.4477 12.4477 20 13 20H35C35.5523 20 36 20.4477 36 21V33C36 37.4183 32.4183 41 28 41H20C15.5817 41 12 37.4183 12 33V21Z" fill="#F59E0B" />
-          <circle cx="24" cy="30" r="4.5" fill="#FEF3C7" />
-          <path d="M22 28H26M22 30H26M23 28V32" stroke="#B45309" strokeWidth="1.5" strokeLinecap="round" />
+          <circle cx="24" cy="24" r="22" fill="#E8F5D4" />
+          <path d="M16 19C16 14.5817 19.5817 11 24 11C28.4183 11 32 14.5817 32 19V20H16V19Z" fill="#0A5C80" />
+          <path d="M12 21C12 20.4477 12.4477 20 13 20H35C35.5523 20 36 20.4477 36 21V33C36 37.4183 32.4183 41 28 41H20C15.5817 41 12 37.4183 12 33V21Z" fill="#6EA928" />
+          <circle cx="24" cy="30" r="4.5" fill="#E8F5D4" />
+          <path d="M22 28H26M22 30H26M23 28V32" stroke="#0A5C80" strokeWidth="1.5" strokeLinecap="round" />
         </svg>
       )
     },
@@ -228,8 +228,8 @@ export default function HeroSection({
         <svg className="w-8 h-8" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <polygon points="24,10 42,19 24,28 6,19" fill="#1E40AF" />
           <path d="M12 22.5V32C12 32 17 37 24 37C31 37 36 32 36 32V22.5" stroke="#1E40AF" strokeWidth="3" fill="none" />
-          <line x1="39" y1="20.5" x2="39" y2="34" stroke="#F59E0B" strokeWidth="2.5" strokeLinecap="round" />
-          <circle cx="39" cy="35" r="2" fill="#D97706" />
+          <line x1="39" y1="20.5" x2="39" y2="34" stroke="#6EA928" strokeWidth="2.5" strokeLinecap="round" />
+          <circle cx="39" cy="35" r="2" fill="#0A5C80" />
         </svg>
       )
     },
@@ -257,15 +257,15 @@ export default function HeroSection({
 
       {/* =========================================================================
           1. HERO SECTION: CLEAN MODERN 2-COLUMN DESIGN (Matching Reference Image)
-             Left: Category Tabs, Two-Tone Headline, Benefits, Action Buttons, Ratings
-             Right: Golden-Amber Organic Circular Photo Frame with 5 Loan Visuals
+             Left: Two-Tone Headline in Brand Blue & Green, Benefits, Action Buttons
+             Right: Logo Brand Colors (Teal Blue & Leaf Green) Circular Photo Frame with 5 Loan Visuals
          ========================================================================= */}
       <div
-        className="relative bg-gradient-to-b from-white via-slate-50/70 to-white pt-8 sm:pt-12 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden select-none"
+        className="relative bg-gradient-to-b from-white via-[#F0F7FA]/70 to-white pt-8 sm:pt-12 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden select-none"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
-        {/* Abstract Flowing Organic Curved Ribbons (Matches Reference Image) */}
+        {/* Abstract Flowing Organic Curved Ribbons in Company Logo Colors (#6EA928 & #0A5C80) */}
         <svg
           className="absolute left-0 bottom-10 w-72 sm:w-[480px] h-36 pointer-events-none opacity-80 z-0"
           viewBox="0 0 500 160"
@@ -285,7 +285,7 @@ export default function HeroSection({
         >
           <path
             d="M -40,80 C 120,150 260,20 380,100 C 440,140 480,60 540,80"
-            stroke="#F59E0B"
+            stroke="#0A5C80"
             strokeWidth="3"
             strokeLinecap="round"
           />
@@ -343,12 +343,12 @@ export default function HeroSection({
             </div>
 
             {/* -----------------------------------------------------------------
-                RIGHT COLUMN (5 cols): GOLDEN ORGANIC CIRCULAR PHOTO FRAME
+                RIGHT COLUMN (5 cols): LOGO BRAND COLORS CIRCULAR PHOTO FRAME
                ----------------------------------------------------------------- */}
             <div className="lg:col-span-5 flex flex-col items-center justify-center relative">
 
-              {/* The Golden-Orange Organic Circular Ring Frame (Matches Reference Image) */}
-              <div className="relative w-72 h-72 sm:w-88 sm:h-88 md:w-[420px] md:h-[420px] rounded-full p-3 sm:p-4 bg-gradient-to-tr from-[#F59E0B] via-[#FBBF24] to-[#6EA928] shadow-2xl shadow-amber-500/25">
+              {/* The Organic Circular Ring Frame in Logo Brand Colors (Royal Teal Blue & Leaf Green) */}
+              <div className="relative w-72 h-72 sm:w-88 sm:h-88 md:w-[420px] md:h-[420px] rounded-full p-3 sm:p-4 bg-gradient-to-tr from-[#0A5C80] via-[#0E7490] to-[#6EA928] shadow-2xl shadow-[#0A5C80]/30">
 
                 {/* Inner White Ring & Circular Photo Viewport */}
                 <div className="relative w-full h-full rounded-full overflow-hidden bg-white border-4 border-white shadow-inner">
@@ -403,26 +403,26 @@ export default function HeroSection({
 
           </div>
 
-          {/* SLIDE PROGRESS CONTROLS (Dots & Next/Prev) */}
+          {/* SLIDE PROGRESS CONTROLS (Dots & Next/Prev in Logo Brand Colors) */}
           <div className="flex items-center justify-center gap-3 pt-8">
             <button
               onClick={handlePrevSlide}
               aria-label="Previous Slide"
-              className="w-9 h-9 rounded-full bg-slate-100 hover:bg-[#6EA928] hover:text-white text-slate-700 flex items-center justify-center text-xs font-bold transition-all border border-slate-200 cursor-pointer shadow-sm"
+              className="w-9 h-9 rounded-full bg-white hover:bg-[#0A5C80] hover:text-white text-[#0A5C80] flex items-center justify-center text-xs font-bold transition-all border border-[#0A5C80]/30 cursor-pointer shadow-sm"
             >
               ❮
             </button>
 
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-2">
               {carouselSlides.map((s, idx) => (
                 <button
                   key={s.id}
                   onClick={() => setActiveSlide(idx)}
                   aria-label={`Slide ${idx + 1}`}
-                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
                     activeSlide === idx
-                      ? 'w-7 bg-[#6EA928]'
-                      : 'w-2 bg-slate-300 hover:bg-slate-400'
+                      ? 'w-8 bg-gradient-to-r from-[#0A5C80] to-[#6EA928]'
+                      : 'w-2.5 bg-slate-200 hover:bg-[#0A5C80]/40'
                   }`}
                 />
               ))}
@@ -431,12 +431,12 @@ export default function HeroSection({
             <button
               onClick={handleNextSlide}
               aria-label="Next Slide"
-              className="w-9 h-9 rounded-full bg-slate-100 hover:bg-[#6EA928] hover:text-white text-slate-700 flex items-center justify-center text-xs font-bold transition-all border border-slate-200 cursor-pointer shadow-sm"
+              className="w-9 h-9 rounded-full bg-white hover:bg-[#6EA928] hover:text-white text-[#0A5C80] flex items-center justify-center text-xs font-bold transition-all border border-[#0A5C80]/30 cursor-pointer shadow-sm"
             >
               ❯
             </button>
 
-            <span className="text-xs text-slate-400 font-mono ml-2">
+            <span className="text-xs text-[#0A5C80] font-bold font-mono ml-2">
               0{activeSlide + 1} / 0{carouselSlides.length}
             </span>
           </div>
