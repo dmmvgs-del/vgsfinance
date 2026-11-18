@@ -416,8 +416,131 @@ export default function HeroSection({
       >
         <div className="max-w-7xl mx-auto relative z-10">
 
-          {/* MAIN 2-COLUMN HERO GRID */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          {/* =========================================================================
+              MOBILE HERO LAYOUT (Matching Reference Image media_1794993192820_602858ae.png)
+              1. Search Bar at Top: "Search products..."
+              2. Full-Width Horizontal Banner Slider with Image & Content Overlay
+              3. Centered Pill Slide Indicators
+             ========================================================================= */}
+          <div className="block lg:hidden space-y-3 pb-3">
+            {/* 1. Mobile Search Bar */}
+            <div className="relative">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm">🔍</span>
+              <input
+                type="text"
+                placeholder="Search products, loans, interest rates..."
+                onClick={() => {
+                  const el = document.getElementById('loan-search') || document.getElementById('featured-products');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+                readOnly
+                className="w-full bg-white border border-slate-200/90 rounded-full py-2.5 pl-11 pr-4 text-xs font-medium text-slate-800 placeholder-slate-400 shadow-sm focus:outline-none cursor-pointer"
+              />
+            </div>
+
+            {/* 2. Mobile Horizontal Banner Card Slider */}
+            <div
+              className="relative w-full aspect-[16/9] xs:aspect-[16/8.5] rounded-2xl overflow-hidden shadow-lg border border-slate-100 bg-[#041E2B] group select-none"
+              onClick={() => handleAvailLoan(currentSlideData.name, currentSlideData.catId)}
+            >
+              {carouselSlides.map((slide, idx) => {
+                const isActive = activeSlide === idx;
+                return (
+                  <div
+                    key={slide.id}
+                    className={`absolute inset-0 w-full h-full transition-all duration-500 ease-in-out ${
+                      isActive ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-95 z-0 pointer-events-none'
+                    }`}
+                  >
+                    <img
+                      src={slide.image}
+                      alt={slide.name}
+                      className="w-full h-full object-cover object-center"
+                      loading="eager"
+                    />
+                    {/* Gradient Overlay for Crisp Text Readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#041E2B]/90 via-[#041E2B]/40 to-transparent"></div>
+
+                    {/* Banner Content Overlay */}
+                    <div className="absolute inset-0 p-3.5 sm:p-5 flex flex-col justify-between z-20 text-white">
+                      {/* Top Badges */}
+                      <div className="flex justify-between items-start gap-2">
+                        <span className="px-2.5 py-1 rounded-full bg-[#E8F5D4] text-[#0A5C80] text-[10px] font-black uppercase tracking-wide shadow-sm">
+                          {slide.tag}
+                        </span>
+                        <span className="px-2.5 py-1 rounded-full bg-[#0A5C80] text-white text-[11px] font-black shadow-md border border-white/20">
+                          💰 {slide.rate}
+                        </span>
+                      </div>
+
+                      {/* Bottom Headline & Action Button */}
+                      <div className="space-y-1.5">
+                        <h2 className="text-sm sm:text-lg font-black text-white leading-tight drop-shadow-md">
+                          {slide.preAccent}
+                          <span className="text-[#7DD3FC]">{slide.highlightWord1} </span>
+                          <span className="text-[#A3E635]">{slide.highlightWord2}</span>
+                        </h2>
+                        <div className="flex items-center justify-between pt-0.5">
+                          <span className="text-[10px] sm:text-xs text-slate-200 font-medium truncate max-w-[65%]">
+                            {slide.featureTag}
+                          </span>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleAvailLoan(slide.name, slide.catId);
+                            }}
+                            className="px-3 py-1 rounded-full bg-[#6EA928] hover:bg-[#5A8B1F] text-white text-[10px] sm:text-xs font-black shadow-md flex items-center gap-1 cursor-pointer"
+                          >
+                            <span>Apply</span>
+                            <span>➔</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+
+              {/* Bottom Centered Pill Indicator (Matching Reference Image) */}
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/45 backdrop-blur-sm">
+                {carouselSlides.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveSlide(idx);
+                    }}
+                    className={`h-1 rounded-full transition-all duration-300 ${
+                      activeSlide === idx ? 'w-4 bg-white' : 'w-1 bg-white/50'
+                    }`}
+                  />
+                ))}
+              </div>
+
+              {/* Prev / Next Touch Arrows */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handlePrevSlide();
+                }}
+                className="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-6 h-6 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center text-[10px] backdrop-blur-sm cursor-pointer"
+              >
+                ❮
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleNextSlide();
+                }}
+                className="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-6 h-6 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center text-[10px] backdrop-blur-sm cursor-pointer"
+              >
+                ❯
+              </button>
+            </div>
+          </div>
+
+          {/* MAIN 2-COLUMN HERO GRID (Desktop Only) */}
+          <div className="hidden lg:grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
 
             {/* -----------------------------------------------------------------
                 LEFT COLUMN (7 cols): TYPOGRAPHY, BENEFITS & ACTION BUTTONS
