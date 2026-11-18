@@ -20,12 +20,13 @@ import { API_BASE_URL } from './config/api';
 import logoImg from './assets/Logo.jpeg';
 
 const defaultMedicalLoanProduct = {
-  id: 'prod-medical-comprehensive',
-  name: 'Medical & Healthcare Loan Solutions',
-  categoryName: 'Medical Loan',
+  id: 'prod-doctor-medical',
+  name: 'Doctor & Medical Loan Solutions',
+  title: 'Doctor & Medical Loan Solutions',
+  categoryName: 'Doctor & Medical Loan',
   categoryId: 'cat-doctor',
-  badge: '🏥 Specialized Healthcare & Medical Financing',
-  tagline: 'Comprehensive financing for emergency medical treatments, health insurance bills, clinic setups, and diagnostic equipment.',
+  badge: '🏥 Specialized Doctor & Medical Financing',
+  tagline: 'Comprehensive financing for Doctor clinic setups, emergency medical treatments, health insurance bills, and diagnostic equipment.',
   description: 'Our Medical & Healthcare Loan program offers swift financial relief when health emergencies arise or when medical practitioners need capital to expand their practice. Covering everything from immediate surgical admissions and insurance co-pay deductibles to doctor clinic setups and advanced medical equipment acquisitions.',
   interestRate: 9.50,
   minAmount: 50000,

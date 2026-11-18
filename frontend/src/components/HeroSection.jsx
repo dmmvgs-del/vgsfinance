@@ -171,7 +171,7 @@ export default function HeroSection({
     },
     {
       id: 'medical',
-      name: 'Medical Loan',
+      name: 'Doctor & Medical Loan',
       icon: '🏥',
       image: loanHealth,
       catId: 'cat-doctor',
@@ -184,9 +184,9 @@ export default function HeroSection({
       highlightColor2: 'text-[#6EA928]',
       description:
         'Never compromise on healthcare, emergency medical procedures, or health insurance coverage. Benefit from fast 2-hour digital clearance, preferential APR, and flexible repayment EMIs.',
-      rate: 'Special Medical APR',
+      rate: 'From 9.50% p.a.',
       featureTag: 'Instant 2-Hr Clearance',
-      primaryCta: 'Explore Medical Loan Options ➔'
+      primaryCta: 'Explore Doctor & Medical Loans ➔'
     },
     {
       id: 'personal',
@@ -238,34 +238,53 @@ export default function HeroSection({
   // Related Loan Options Data for Interactive Click Modal
   const relatedOptionsData = {
     medical: {
-      badge: '🏥 Specialized Healthcare & Medical Financing',
-      title: 'Medical & Healthcare Loan Solutions',
-      description: 'Choose your specific medical requirement to explore tailored financing with 2-hour hospital clearance:',
+      id: 'prod-doctor-medical',
+      name: 'Doctor & Medical Loan Solutions',
+      title: 'Doctor & Medical Loan Solutions',
+      categoryName: 'Doctor & Medical Loan',
+      categoryId: 'cat-doctor',
       catId: 'cat-doctor',
-      options: [
+      badge: '🏥 Specialized Doctor & Medical Financing',
+      tagline: 'Comprehensive financing for Doctor clinic setups, emergency medical treatments, health insurance bills, and diagnostic equipment.',
+      description: 'Our Doctor & Medical Loan program offers dedicated financing for Doctors, Dentists, and clinic setups, alongside emergency medical treatment loans and health insurance bill coverage with 2-hour hospital clearance.',
+      interestRate: 9.50,
+      minAmount: 50000,
+      maxAmount: 20000000,
+      minTenure: 12,
+      maxTenure: 84,
+      processingFee: '0.75% + GST',
+      features: [
+        'Doctor & Clinic Practice Loan up to ₹75 Lakhs without collateral',
+        'Emergency Medical Treatment Loan with instant 2-hour hospital clearance',
+        'Health Insurance & Hospitalization Loan covering deductibles & non-covered therapies',
+        'Medical Equipment & Diagnostic Loan up to ₹2 Crores with 85% invoice funding',
+        'Fast paperless digital verification and minimal documentation',
+        'Flexible repayment tenures from 12 to 84 months with zero prepayment penalties'
+      ],
+      subOptions: [
         {
           id: 'opt-emergency',
           title: 'Emergency Medical Treatment Loan',
           icon: '🚑',
           tag: 'FAST 2-HR CLEARANCE',
-          description: 'Immediate funds for urgent hospital admissions, surgeries, critical care, and medical procedures.',
+          description: 'Immediate funds for urgent hospital admissions, surgeries, critical care, and medical procedures with direct hospital disbursal.',
           rate: 'From 9.50% p.a.',
           limit: 'Up to ₹ 15 Lakhs',
           tenure: '12 - 48 Months',
           defaultAmount: 300000,
-          benefits: ['Direct Hospital NEFT Disbursal', 'Minimal Paperwork', 'Zero Prepayment Penalty']
+          benefits: ['Direct Hospital NEFT Disbursal', 'Minimal Paperwork in 2 Hours', 'Zero Prepayment Penalty']
         },
         {
           id: 'opt-insurance',
           title: 'Health Insurance & Hospitalization Loan',
           icon: '🛡️',
           tag: 'COVERS DEDUCTIBLES',
-          description: 'Financing for insurance co-pays, hospital room upgrades, non-covered therapies, and post-discharge treatments.',
+          description: 'Financing for insurance co-pays, hospital room upgrades, non-covered therapies, post-discharge medicines, and deductibles.',
           rate: 'From 9.00% p.a.',
           limit: 'Up to ₹ 10 Lakhs',
           tenure: '12 - 36 Months',
           defaultAmount: 200000,
-          benefits: ['No Collateral Required', 'Cashless Hospital Assistance', 'Low Monthly EMIs']
+          benefits: ['No Collateral Required', 'Cashless Hospital Assistance', 'Low Pocket-Friendly EMIs']
         },
         {
           id: 'opt-doctor',
@@ -277,7 +296,7 @@ export default function HeroSection({
           limit: 'Up to ₹ 75 Lakhs',
           tenure: '12 - 84 Months',
           defaultAmount: 1500000,
-          benefits: ['Exclusive Practitioner Rates', 'Doorstep Document Pickup', 'Fast-Track Sanction']
+          benefits: ['Exclusive Practitioner Rates', 'Doorstep Document Pickup', 'Fast-Track Sanctions']
         },
         {
           id: 'opt-equipment',
@@ -291,6 +310,70 @@ export default function HeroSection({
           defaultAmount: 2500000,
           benefits: ['Up to 85% Machine Invoice Value', 'Flexible Balloon EMIs', 'OEM Dealer Partnerships']
         }
+      ],
+      options: [
+        {
+          id: 'opt-emergency',
+          title: 'Emergency Medical Treatment Loan',
+          icon: '🚑',
+          tag: 'FAST 2-HR CLEARANCE',
+          description: 'Immediate funds for urgent hospital admissions, surgeries, critical care, and medical procedures with direct hospital disbursal.',
+          rate: 'From 9.50% p.a.',
+          limit: 'Up to ₹ 15 Lakhs',
+          tenure: '12 - 48 Months',
+          defaultAmount: 300000,
+          benefits: ['Direct Hospital NEFT Disbursal', 'Minimal Paperwork in 2 Hours', 'Zero Prepayment Penalty']
+        },
+        {
+          id: 'opt-insurance',
+          title: 'Health Insurance & Hospitalization Loan',
+          icon: '🛡️',
+          tag: 'COVERS DEDUCTIBLES',
+          description: 'Financing for insurance co-pays, hospital room upgrades, non-covered therapies, post-discharge medicines, and deductibles.',
+          rate: 'From 9.00% p.a.',
+          limit: 'Up to ₹ 10 Lakhs',
+          tenure: '12 - 36 Months',
+          defaultAmount: 200000,
+          benefits: ['No Collateral Required', 'Cashless Hospital Assistance', 'Low Pocket-Friendly EMIs']
+        },
+        {
+          id: 'opt-doctor',
+          title: 'Doctor & Clinic Practice Loan',
+          icon: '🩺',
+          tag: 'FOR DOCTORS & DENTISTS',
+          description: 'High-ticket unsecured capital for MBBS, MD, MS, BDS practitioners to establish, expand, or renovate private clinics.',
+          rate: 'From 9.99% p.a.',
+          limit: 'Up to ₹ 75 Lakhs',
+          tenure: '12 - 84 Months',
+          defaultAmount: 1500000,
+          benefits: ['Exclusive Practitioner Rates', 'Doorstep Document Pickup', 'Fast-Track Sanctions']
+        },
+        {
+          id: 'opt-equipment',
+          title: 'Medical Equipment & Diagnostic Loan',
+          icon: '🔬',
+          tag: 'MACHINERY & LAB ASSETS',
+          description: 'Asset financing for ultrasound units, digital X-Ray machines, dental chairs, pathology lab tools, and ICU monitors.',
+          rate: 'From 10.25% p.a.',
+          limit: 'Up to ₹ 2 Crores',
+          tenure: '24 - 84 Months',
+          defaultAmount: 2500000,
+          benefits: ['Up to 85% Machine Invoice Value', 'Flexible Balloon EMIs', 'OEM Dealer Partnerships']
+        }
+      ],
+      eligibility: {
+        minAge: 21,
+        maxAge: 68,
+        minIncome: 25000,
+        employmentType: 'Salaried, Self-Employed & Registered Doctors',
+        minCibilScore: 680
+      },
+      documentsRequired: [
+        'Aadhaar Card, PAN Card & Current Address Proof',
+        'Hospital Admission Estimate / Proforma Invoice / Medical Treatment Bills',
+        'Last 6 Months Bank Statement & Latest 3 Months Salary Slips (for salaried)',
+        'Medical Degree / MCI / DCI State Registration Certificate (for Doctor loans)',
+        'Equipment Quotation / Proforma Invoice from authorized OEM dealer (for Equipment loans)'
       ]
     },
     home: {
@@ -688,22 +771,43 @@ export default function HeroSection({
   };
 
   const handleCardClick = (card) => {
-    const productData = (card.modalKey && relatedOptionsData[card.modalKey]) || {
-      id: `prod-${card.catId || 'general'}`,
-      name: card.title,
-      categoryName: card.title,
-      categoryId: card.catId,
-      tagline: card.description,
-      interestRate: 9.50,
-      minAmount: 50000,
-      maxAmount: 5000000,
-      minTenure: 12,
-      maxTenure: 60,
-      processingFee: '1.0% + GST',
-      features: [
-        'Lowest market interest rates with fast approval',
-        'Minimal paperless verification and digital KYC',
-        'Flexible repayment tenures and pre-closure options'
+    const raw = (card.modalKey && relatedOptionsData[card.modalKey]) || {};
+    const productData = {
+      id: raw.id || `prod-${card.catId || 'general'}`,
+      name: raw.name || raw.title || card.title || 'Doctor & Medical Loan Solutions',
+      title: raw.title || raw.name || card.title || 'Doctor & Medical Loan Solutions',
+      categoryName: raw.categoryName || card.title || 'Doctor & Medical Loan',
+      categoryId: raw.catId || raw.categoryId || card.catId || 'cat-doctor',
+      badge: raw.badge || '🏥 Specialized Doctor & Medical Financing',
+      tagline: raw.tagline || raw.description || card.description,
+      description: raw.description || card.description,
+      interestRate: typeof raw.interestRate === 'number' ? raw.interestRate : 9.50,
+      minAmount: raw.minAmount || 50000,
+      maxAmount: raw.maxAmount || 20000000,
+      minTenure: raw.minTenure || 12,
+      maxTenure: raw.maxTenure || 84,
+      processingFee: raw.processingFee || '0.75% + GST',
+      turnaroundTime: raw.turnaroundTime || '2 - 24 Hours',
+      features: raw.features || [
+        'Doctor & Clinic Practice Loan up to ₹75 Lakhs without collateral',
+        'Emergency Medical Treatment Loan with instant 2-hour hospital clearance',
+        'Health Insurance & Hospitalization Loan covering deductibles & non-covered therapies',
+        'Medical Equipment & Diagnostic Loan up to ₹2 Crores with 85% invoice funding'
+      ],
+      subOptions: raw.subOptions || raw.options || [],
+      options: raw.options || raw.subOptions || [],
+      eligibility: raw.eligibility || {
+        minAge: 21,
+        maxAge: 68,
+        minIncome: 25000,
+        employmentType: 'Salaried, Self-Employed & Registered Doctors',
+        minCibilScore: 680
+      },
+      documentsRequired: raw.documentsRequired || [
+        'Aadhaar Card, PAN Card & Current Address Proof',
+        'Hospital Admission Estimate / Proforma Invoice / Medical Treatment Bills',
+        'Last 6 Months Bank Statement & Latest 3 Months Salary Slips',
+        'Medical Degree / MCI / DCI State Registration Certificate'
       ]
     };
 
@@ -719,8 +823,8 @@ export default function HeroSection({
   // 8 Core loan cards matching reference design
   const loanCards = [
     {
-      title: 'Medical Loan',
-      description: 'Emergency medical treatment loans, health insurance bill coverage, and doctor clinic equipment funding with instant hospital clearance.',
+      title: 'Doctor & Medical Loan',
+      description: 'Doctor clinic practice loans, emergency medical treatments, and health insurance bill coverage with instant 2-hour hospital clearance.',
       catId: 'cat-doctor',
       modalKey: 'medical',
       imgSrc: cardHealthDoctor,

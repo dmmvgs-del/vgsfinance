@@ -3,8 +3,60 @@ import Navbar from './Navbar';
 import logoImg from '../assets/Logo.jpeg';
 import { API_BASE_URL } from '../config/api';
 
+// Default Healthcare & Medical Loan Options (Emergency, Health Insurance, Doctor Clinic, Equipment)
+const defaultHealthcareSubOptions = [
+  {
+    id: 'opt-emergency',
+    title: 'Emergency Medical Treatment Loan',
+    icon: '🚑',
+    tag: 'FAST 2-HR CLEARANCE',
+    description: 'Immediate funds for urgent hospital admissions, surgeries, critical care, and medical procedures with direct hospital disbursal.',
+    rate: 'From 9.50% p.a.',
+    limit: 'Up to ₹ 15 Lakhs',
+    tenure: '12 - 48 Months',
+    defaultAmount: 300000,
+    benefits: ['Direct Hospital NEFT Disbursal', 'Minimal Paperwork in 2 Hours', 'Zero Prepayment Penalty']
+  },
+  {
+    id: 'opt-insurance',
+    title: 'Health Insurance & Hospitalization Loan',
+    icon: '🛡️',
+    tag: 'COVERS DEDUCTIBLES',
+    description: 'Financing for insurance co-pays, hospital room rent upgrades, non-covered therapies, post-discharge medicines, and deductibles.',
+    rate: 'From 9.00% p.a.',
+    limit: 'Up to ₹ 10 Lakhs',
+    tenure: '12 - 36 Months',
+    defaultAmount: 200000,
+    benefits: ['No Collateral Required', 'Cashless Hospital Assistance', 'Low Pocket-Friendly EMIs']
+  },
+  {
+    id: 'opt-doctor',
+    title: 'Doctor & Clinic Practice Loan',
+    icon: '🩺',
+    tag: 'FOR DOCTORS & DENTISTS',
+    description: 'High-ticket unsecured capital for MBBS, MD, MS, BDS practitioners to establish, expand, or renovate private clinics.',
+    rate: 'From 9.99% p.a.',
+    limit: 'Up to ₹ 75 Lakhs',
+    tenure: '12 - 84 Months',
+    defaultAmount: 1500000,
+    benefits: ['Exclusive Practitioner Rates', 'Doorstep Document Pickup', 'Fast-Track Sanctions']
+  },
+  {
+    id: 'opt-equipment',
+    title: 'Medical Equipment & Diagnostic Loan',
+    icon: '🔬',
+    tag: 'MACHINERY & LAB ASSETS',
+    description: 'Asset financing for ultrasound units, digital X-Ray machines, dental chairs, pathology lab tools, and ICU monitors.',
+    rate: 'From 10.25% p.a.',
+    limit: 'Up to ₹ 2 Crores',
+    tenure: '24 - 84 Months',
+    defaultAmount: 2500000,
+    benefits: ['Up to 85% Machine Invoice Value', 'Flexible Balloon EMIs', 'OEM Dealer Partnerships']
+  }
+];
+
 export default function LoanDetailsPage({
-  product,
+  product = {},
   categories = [],
   onClose,
   onApplyNow,
@@ -13,21 +65,81 @@ export default function LoanDetailsPage({
   onSwitchToServices,
   onSwitchToAdmin
 }) {
-  if (!product) return null;
+  // Normalize fields so nothing can ever be blank or missing!
+  const rawProduct = product || {};
+  const prodName = rawProduct.name || rawProduct.title || 'Doctor & Medical Loan Solutions';
+  const prodTagline = rawProduct.tagline || rawProduct.description || 'Specialized financing for doctors, emergency medical treatments, health insurance bills, and clinic setups.';
+  const prodRate = typeof rawProduct.interestRate === 'number' ? rawProduct.interestRate : 9.50;
+  const prodMinAmount = Number(rawProduct.minAmount) || 50000;
+  const prodMaxAmount = Number(rawProduct.maxAmount) || 20000000;
+  const prodMinTenure = Number(rawProduct.minTenure) || 12;
+  const prodMaxTenure = Number(rawProduct.maxTenure) || 84;
+  const prodProcessingFee = rawProduct.processingFee || '0.75% + GST';
+  const prodTurnaround = rawProduct.turnaroundTime || '2 - 24 Hours';
+  const prodId = rawProduct.id || 'VGS-DOC-MED-01';
 
-  const category = categories.find(c => c.id === product.categoryId) || {
-    name: 'Retail Loan',
-    icon: '💼'
+  // Category determination
+  const isDoctorOrMedical = prodName.toLowerCase().includes('doctor') || prodName.toLowerCase().includes('medical') || rawProduct.categoryId === 'cat-doctor' || rawProduct.catId === 'cat-doctor';
+
+  const category = categories.find(c => c.id === (rawProduct.categoryId || rawProduct.catId)) || {
+    name: isDoctorOrMedical ? 'Doctor & Medical Loan' : (rawProduct.categoryName || 'Doctor & Medical Loan'),
+    icon: isDoctorOrMedical ? '🩺' : '💼'
   };
+
+  // Sub options list: if provided on product, use it; otherwise fallback to defaultHealthcareSubOptions
+  const prodSubOptions = (rawProduct.subOptions && rawProduct.subOptions.length > 0)
+    ? rawProduct.subOptions
+    : (rawProduct.options && rawProduct.options.length > 0)
+      ? rawProduct.options
+      : defaultHealthcareSubOptions;
+
+  const prodFeatures = (rawProduct.features && rawProduct.features.length > 0)
+    ? rawProduct.features
+    : [
+        'Fast 2-hour hospital clearance & direct hospital NEFT disbursal',
+        'Covers health insurance co-pays, deductibles & non-covered therapies',
+        'Special high-ticket unsecured capital up to ₹75 Lakhs for Doctors & Dentists',
+        'Up to 85% machinery invoice financing up to ₹2 Crores for medical diagnostic equipment',
+        'Minimal documentation with paperless digital KYC verification',
+        'Flexible repayment tenures from 12 to 84 months with zero prepayment penalties'
+      ];
+
+  const prodEligibility = rawProduct.eligibility || {
+    minAge: 21,
+    maxAge: 68,
+    minIncome: 25000,
+    employmentType: 'Salaried, Self-Employed & Registered Doctors',
+    minCibilScore: 680
+  };
+
+  const prodDocuments = (rawProduct.documentsRequired && rawProduct.documentsRequired.length > 0)
+    ? rawProduct.documentsRequired
+    : [
+        'Aadhaar Card, PAN Card & Current Address Proof',
+        'Hospital Admission Estimate / Proforma Invoice / Medical Treatment Bills',
+        'Last 6 Months Bank Statement & Latest 3 Months Salary Slips (for salaried)',
+        'Medical Degree / MCI / DCI State Registration Certificate (for Doctor loans)',
+        'Equipment Quotation / Proforma Invoice from authorized OEM dealer (for Equipment loans)'
+      ];
 
   // State for Embedded Live EMI Calculator
   const [calcAmount, setCalcAmount] = useState(
-    Math.max(product.minAmount, Math.min(product.maxAmount, 500000))
+    Math.max(prodMinAmount, Math.min(prodMaxAmount, 300000))
   );
-  const [calcRate, setCalcRate] = useState(product.interestRate || 10.5);
+  const [calcRate, setCalcRate] = useState(prodRate);
   const [calcTenureMonths, setCalcTenureMonths] = useState(
-    Math.min(product.maxTenure || 36, Math.max(product.minTenure || 12, 36))
+    Math.min(prodMaxTenure || 36, Math.max(prodMinTenure || 12, 36))
   );
+
+  // Sync state if product prop changes
+  useEffect(() => {
+    if (rawProduct && Object.keys(rawProduct).length > 0) {
+      if (typeof rawProduct.interestRate === 'number') setCalcRate(rawProduct.interestRate);
+      if (rawProduct.minAmount && rawProduct.maxAmount) {
+        setCalcAmount(Math.max(rawProduct.minAmount, Math.min(rawProduct.maxAmount, 300000)));
+      }
+    }
+  }, [product]);
 
   const [emiResults, setEmiResults] = useState({
     monthlyEmi: 0,
@@ -109,7 +221,7 @@ export default function LoanDetailsPage({
   const handleApplyClick = () => {
     if (onApplyNow) {
       onApplyNow({
-        product,
+        product: { ...rawProduct, name: prodName, id: prodId, interestRate: prodRate },
         requestedAmount: calcAmount,
         tenureMonths: calcTenureMonths,
         monthlyEmi: emiResults.monthlyEmi
@@ -130,10 +242,10 @@ export default function LoanDetailsPage({
         customerName: quickName,
         phone: quickPhone,
         city: quickCity || 'Visakhapatnam',
-        productName: product.name,
+        productName: prodName,
         requestedAmount: calcAmount,
         tenureMonths: calcTenureMonths,
-        notes: `Enquiry generated from Loan Details Page for ${product.name}`
+        notes: `Enquiry generated from Loan Details Page for ${prodName}`
       })
     }).catch(err => console.warn('Lead submission error:', err));
 
@@ -177,9 +289,9 @@ export default function LoanDetailsPage({
         <div className="flex items-center gap-1.5 text-xs text-slate-400">
           <span className="text-[#6EA928] font-bold">VGS Finance</span>
           <span>/</span>
-          <span className="text-slate-300 font-medium">{category.name || 'Services'}</span>
+          <span className="text-slate-300 font-medium">{category.name || 'Doctor & Medical Loan'}</span>
           <span>/</span>
-          <span className="text-white font-bold truncate max-w-xs">{product.name}</span>
+          <span className="text-white font-bold truncate max-w-xs">{prodName}</span>
         </div>
       </div>
 
@@ -198,10 +310,10 @@ export default function LoanDetailsPage({
             <div className="space-y-3 max-w-3xl">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-black uppercase tracking-wider flex items-center gap-1">
-                  <span>{category.icon || '📄'}</span> {category.name}
+                  <span>{category.icon || '🩺'}</span> {category.name}
                 </span>
                 <span className="px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-bold">
-                  Product ID: {product.id}
+                  Product ID: {prodId}
                 </span>
                 <span className="px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-bold">
                   Verified Lending Partner Network
@@ -210,12 +322,12 @@ export default function LoanDetailsPage({
 
               {/* 1. LOAN NAME */}
               <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
-                {product.name}
+                {prodName}
               </h1>
 
               {/* Tagline / Subtitle */}
               <p className="text-base sm:text-lg text-slate-300 font-medium leading-relaxed">
-                {product.tagline || 'Flexible financing designed to support your personal, professional, and commercial capital requirements.'}
+                {prodTagline}
               </p>
             </div>
 
@@ -226,7 +338,7 @@ export default function LoanDetailsPage({
                   Interest Rate from
                 </span>
                 <span className="text-4xl font-black text-emerald-400 block tracking-tight">
-                  {product.interestRate}% <span className="text-sm font-normal text-slate-300">p.a.</span>
+                  {prodRate}% <span className="text-sm font-normal text-slate-300">p.a.</span>
                 </span>
                 <span className="text-[10px] text-emerald-500/90 font-medium block mt-0.5">
                   Monthly Reducing Balance Formula
@@ -236,12 +348,12 @@ export default function LoanDetailsPage({
               <div className="pt-3 border-t border-slate-800 flex justify-around text-xs">
                 <div>
                   <span className="text-slate-500 block text-[10px]">Processing Fee</span>
-                  <span className="text-white font-bold">{product.processingFee || '1.0% + GST'}</span>
+                  <span className="text-white font-bold">{prodProcessingFee}</span>
                 </div>
                 <div className="border-r border-slate-800"></div>
                 <div>
                   <span className="text-slate-500 block text-[10px]">Sanction Turnaround</span>
-                  <span className="text-sky-400 font-bold">24-48 Hours</span>
+                  <span className="text-sky-400 font-bold">{prodTurnaround}</span>
                 </div>
               </div>
 
@@ -260,7 +372,7 @@ export default function LoanDetailsPage({
         {/* =========================================================================
             SPECIALIZED LOAN SUB-OPTIONS SHOWCASE (e.g. Medical: Emergency, Health Insurance, Doctor Clinic, Equipment)
            ========================================================================= */}
-        {product.subOptions && product.subOptions.length > 0 && (
+        {prodSubOptions && prodSubOptions.length > 0 && (
           <section className="bg-gradient-to-br from-[#041E2B] via-slate-900 to-[#041E2B] border border-[#0A5C80]/40 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-6">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3 border-b border-[#0A5C80]/30 pb-4">
               <div>
@@ -275,12 +387,12 @@ export default function LoanDetailsPage({
                 </p>
               </div>
               <span className="text-xs font-bold px-3 py-1.5 rounded-full bg-slate-800 text-[#6EA928] border border-slate-700 shrink-0">
-                {product.subOptions.length} Specialized Facilities
+                {prodSubOptions.length} Specialized Facilities
               </span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {product.subOptions.map((opt) => (
+              {prodSubOptions.map((opt) => (
                 <div
                   key={opt.id}
                   className="bg-slate-950/80 border border-slate-800 hover:border-[#6EA928] rounded-2xl p-5 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between space-y-4 group"
@@ -377,7 +489,7 @@ export default function LoanDetailsPage({
             
             <div className="text-sm text-slate-300 space-y-4 leading-relaxed font-normal">
               <p>
-                The <strong className="text-white">{product.name}</strong> is structured by VGS Finance & Loans to cater to eligible borrowers seeking immediate, transparent capital. Backed by top-tier banking partners and premier Non-Banking Financial Companies (NBFCs), this loan product ensures transparent pricing with no hidden charges.
+                The <strong className="text-white">{prodName}</strong> is structured by VGS Finance & Loans to cater to eligible borrowers seeking immediate, transparent capital. Backed by top-tier banking partners and premier Non-Banking Financial Companies (NBFCs), this loan product ensures transparent pricing with no hidden charges.
               </p>
               <p>
                 Whether you need funds for emergency financial needs, debt consolidation, business working capital, capacity expansion, medical treatments, or asset acquisition, this facility offers swift processing with minimal documentation and customizable repayment tenures.
@@ -421,14 +533,7 @@ export default function LoanDetailsPage({
             </div>
 
             <div className="space-y-3">
-              {(product.features && product.features.length > 0 ? product.features : [
-                'Competitive interest rates starting at lowest market benchmarks',
-                'Minimal documentation with 100% paperless verification',
-                'Fast digital approval and disbursement within 24-48 business hours',
-                'Flexible repayment tenure options from 12 to 360 months',
-                'Pre-closure and part-prepayment options with transparent terms',
-                'Doorstep service & dedicated relationship manager support'
-              ]).map((feat, idx) => (
+              {prodFeatures.map((feat, idx) => (
                 <div
                   key={idx}
                   className="p-3 rounded-2xl bg-slate-950/60 border border-slate-800 hover:border-slate-700 flex items-start gap-3 transition-colors"
@@ -469,7 +574,7 @@ export default function LoanDetailsPage({
               </div>
               <div className="space-y-1">
                 <span className="text-2xl font-black text-white block">
-                  {formatCurrency(product.minAmount)} - {formatCurrency(product.maxAmount)}
+                  {formatCurrency(prodMinAmount)} - {formatCurrency(prodMaxAmount)}
                 </span>
                 <span className="text-xs text-slate-400 block">
                   Sanction quantum based on income profile & eligibility
@@ -478,11 +583,11 @@ export default function LoanDetailsPage({
               <div className="pt-3 border-t border-slate-800/80 space-y-1.5 text-xs text-slate-300">
                 <div className="flex justify-between">
                   <span className="text-slate-400">Minimum Quantum:</span>
-                  <span className="font-bold text-white">{formatCurrency(product.minAmount)}</span>
+                  <span className="font-bold text-white">{formatCurrency(prodMinAmount)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-slate-400">Maximum Limit:</span>
-                  <span className="font-bold text-white">{formatCurrency(product.maxAmount)}</span>
+                  <span className="font-bold text-white">{formatCurrency(prodMaxAmount)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-slate-400">Indicative LTV:</span>
@@ -501,7 +606,7 @@ export default function LoanDetailsPage({
               </div>
               <div className="space-y-1">
                 <span className="text-2xl font-black text-emerald-400 block">
-                  {product.interestRate}% <span className="text-xs font-normal text-slate-300">p.a.</span>
+                  {prodRate}% <span className="text-xs font-normal text-slate-300">p.a.</span>
                 </span>
                 <span className="text-xs text-slate-400 block">
                   Monthly Reducing Balance Calculation Method
@@ -514,7 +619,7 @@ export default function LoanDetailsPage({
                 </div>
                 <div className="flex justify-between">
                   <span className="text-slate-400">Processing Fee:</span>
-                  <span className="font-bold text-amber-400">{product.processingFee || '1.0% + GST'}</span>
+                  <span className="font-bold text-amber-400">{prodProcessingFee}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-slate-400">Foreclosure Charges:</span>
@@ -533,10 +638,10 @@ export default function LoanDetailsPage({
               </div>
               <div className="space-y-1">
                 <span className="text-2xl font-black text-sky-400 block">
-                  {product.minTenure} - {product.maxTenure} Months
+                  {prodMinTenure} - {prodMaxTenure} Months
                 </span>
                 <span className="text-xs text-slate-400 block">
-                  Flexible tenure window ({(product.minTenure / 12).toFixed(1)} to {(product.maxTenure / 12).toFixed(0)} Years)
+                  Flexible tenure window ({(prodMinTenure / 12).toFixed(1)} to {(prodMaxTenure / 12).toFixed(0)} Years)
                 </span>
               </div>
               <div className="pt-3 border-t border-slate-800/80 space-y-1.5 text-xs text-slate-300">
@@ -580,28 +685,28 @@ export default function LoanDetailsPage({
                 <div className="p-3.5 rounded-2xl bg-slate-950/70 border border-slate-800 flex justify-between items-center text-xs">
                   <span className="text-slate-400 font-medium">Eligible Age Bracket</span>
                   <span className="font-bold text-white">
-                    {product.eligibility?.minAge || 21} - {product.eligibility?.maxAge || 65} Years
+                    {prodEligibility?.minAge || 21} - {prodEligibility?.maxAge || 65} Years
                   </span>
                 </div>
 
                 <div className="p-3.5 rounded-2xl bg-slate-950/70 border border-slate-800 flex justify-between items-center text-xs">
                   <span className="text-slate-400 font-medium">Minimum Monthly Net Income</span>
                   <span className="font-bold text-emerald-400">
-                    {formatCurrency(product.eligibility?.minIncome || 25000)} / Month
+                    {formatCurrency(prodEligibility?.minIncome || 25000)} / Month
                   </span>
                 </div>
 
                 <div className="p-3.5 rounded-2xl bg-slate-950/70 border border-slate-800 flex justify-between items-center text-xs">
                   <span className="text-slate-400 font-medium">Employment Profiles</span>
                   <span className="font-bold text-slate-200 text-right max-w-[55%] truncate">
-                    {product.eligibility?.employmentType || 'Salaried / Self-Employed'}
+                    {prodEligibility?.employmentType || 'Salaried / Self-Employed'}
                   </span>
                 </div>
 
                 <div className="p-3.5 rounded-2xl bg-slate-950/70 border border-slate-800 flex justify-between items-center text-xs">
                   <span className="text-slate-400 font-medium">Minimum CIBIL Score</span>
                   <span className="font-extrabold text-sky-400">
-                    {product.eligibility?.minCibilScore ? `${product.eligibility.minCibilScore}+` : '680+ (Good Track)'}
+                    {prodEligibility?.minCibilScore ? `${prodEligibility.minCibilScore}+` : '680+ (Good Track)'}
                   </span>
                 </div>
 
@@ -726,13 +831,13 @@ export default function LoanDetailsPage({
             </div>
 
             {/* Custom Product-Specific Document Requirements */}
-            {product.documentsRequired && product.documentsRequired.length > 0 && (
+            {prodDocuments && prodDocuments.length > 0 && (
               <div className="pt-3 border-t border-slate-800/80">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-2">
-                  📌 Specific Requirements for {product.name}:
+                  📌 Specific Requirements for {prodName}:
                 </span>
                 <div className="flex flex-wrap gap-1.5">
-                  {product.documentsRequired.map((doc, i) => (
+                  {prodDocuments.map((doc, i) => (
                     <span key={i} className="px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs font-medium">
                       • {doc}
                     </span>
@@ -834,7 +939,7 @@ export default function LoanDetailsPage({
                 <span>🧮</span> Mathematical Reducing Engine
               </div>
               <h2 className="text-2xl sm:text-3xl font-black text-white">
-                10. Interactive EMI Calculator for {product.name}
+                10. Interactive EMI Calculator for {prodName}
               </h2>
               <p className="text-xs text-slate-400">
                 Simulate monthly installment, interest liability, and complete repayment summary:
@@ -864,16 +969,16 @@ export default function LoanDetailsPage({
                 </div>
                 <input
                   type="range"
-                  min={product.minAmount || 50000}
-                  max={product.maxAmount || 5000000}
+                  min={prodMinAmount}
+                  max={prodMaxAmount}
                   step="25000"
                   value={calcAmount}
                   onChange={(e) => setCalcAmount(Number(e.target.value))}
                   className="w-full accent-emerald-500 cursor-pointer h-2 bg-slate-800 rounded-lg"
                 />
                 <div className="flex justify-between text-[11px] text-slate-500">
-                  <span>Min: {formatCurrency(product.minAmount)}</span>
-                  <span>Max: {formatCurrency(product.maxAmount)}</span>
+                  <span>Min: {formatCurrency(prodMinAmount)}</span>
+                  <span>Max: {formatCurrency(prodMaxAmount)}</span>
                 </div>
               </div>
 
@@ -896,7 +1001,7 @@ export default function LoanDetailsPage({
                 />
                 <div className="flex justify-between text-[11px] text-slate-500">
                   <span>6.5% p.a.</span>
-                  <span>Product Rate: {product.interestRate}%</span>
+                  <span>Product Rate: {prodRate}%</span>
                   <span>24.0% p.a.</span>
                 </div>
               </div>
@@ -911,16 +1016,16 @@ export default function LoanDetailsPage({
                 </div>
                 <input
                   type="range"
-                  min={product.minTenure || 12}
-                  max={product.maxTenure || 60}
+                  min={prodMinTenure}
+                  max={prodMaxTenure}
                   step="6"
                   value={calcTenureMonths}
                   onChange={(e) => setCalcTenureMonths(Number(e.target.value))}
                   className="w-full accent-sky-500 cursor-pointer h-2 bg-slate-800 rounded-lg"
                 />
                 <div className="flex justify-between text-[11px] text-slate-500">
-                  <span>Min: {product.minTenure} Months</span>
-                  <span>Max: {product.maxTenure} Months</span>
+                  <span>Min: {prodMinTenure} Months</span>
+                  <span>Max: {prodMaxTenure} Months</span>
                 </div>
               </div>
 
@@ -1046,7 +1151,7 @@ export default function LoanDetailsPage({
           
           <div className="text-left max-w-2xl space-y-2">
             <h2 className="text-2xl sm:text-3xl font-black text-white">
-              11 & 12. Apply or Enquire for {product.name}
+              11 & 12. Apply or Enquire for {prodName}
             </h2>
             <p className="text-xs sm:text-sm text-slate-400">
               Choose your preferred channel: complete application online or request an immediate call back from our loan officer.
@@ -1225,7 +1330,7 @@ export default function LoanDetailsPage({
                 <span className="px-2.5 py-0.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-[10px] font-bold uppercase tracking-wider">
                   Quick Callback Request
                 </span>
-                <h3 className="text-lg font-black text-white mt-1">Enquire for {product.name}</h3>
+                <h3 className="text-lg font-black text-white mt-1">Enquire for {prodName}</h3>
                 <p className="text-xs text-slate-400">Our loan manager will call you within 15 minutes.</p>
               </div>
               <button
@@ -1282,7 +1387,7 @@ export default function LoanDetailsPage({
                 <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 text-[11px] text-slate-400 space-y-1">
                   <div className="flex justify-between">
                     <span>Selected Loan:</span>
-                    <span className="text-white font-bold">{product.name}</span>
+                    <span className="text-white font-bold">{prodName}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Calculated EMI:</span>

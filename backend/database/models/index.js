@@ -31,7 +31,7 @@ const defaultCategories = [
   { id: 'cat-mortgage', name: 'Mortgage Loan', icon: '🏛️', description: 'High-value mortgage financing against residential or commercial real estate collateral.' },
   { id: 'cat-lap', name: 'Loan Against Property', icon: '🏢', description: 'Unlock high equity value from owned residential, commercial, or industrial properties with low EMIs.' },
   { id: 'cat-professional', name: 'Professional Loan', icon: '💼', description: 'Tailored credit lines for Chartered Accountants, CS, Architects, and Certified Consultants.' },
-  { id: 'cat-doctor', name: 'Doctor Loan', icon: '🩺', description: 'Exclusive high-ticket loans for Medical Doctors and Healthcare Practitioners for clinic expansion.' },
+  { id: 'cat-doctor', name: 'Doctor & Medical Loan', icon: '🩺', description: 'Exclusive high-ticket loans for Medical Doctors, clinic setups, emergency medical treatments, and health insurance bill coverage.' },
   { id: 'cat-equipment', name: 'Equipment Loan', icon: '⚙️', description: 'Machinery, diagnostic equipment, and manufacturing tooling loans with flexible repayment tenures.' },
   { id: 'cat-commercial-vehicle', name: 'Commercial Vehicle Loan', icon: '🚛', description: 'Affordable financing for heavy trucks, buses, tippers, light commercial vehicles (LCVs), and fleet.' },
   { id: 'cat-working-capital', name: 'Working Capital Loan', icon: '📈', description: 'Revolving Cash Credit (CC), Overdraft (OD), and trade invoice discounting to power daily operations.' },
@@ -179,17 +179,27 @@ const defaultProducts = [
   {
     id: 'prod-doctor-med',
     categoryId: 'cat-doctor',
-    name: 'VGS Medico Doctor Loan',
-    tagline: 'High-ticket specialized funding for Doctors, Dentists & Surgeons',
-    interestRate: 9.99,
-    minAmount: 300000,
-    maxAmount: 7500000,
+    name: 'Doctor & Medical Loan Solutions',
+    tagline: 'Emergency medical treatments, health insurance bills, doctor clinic setups, and diagnostic equipment funding.',
+    interestRate: 9.50,
+    minAmount: 50000,
+    maxAmount: 20000000,
     minTenure: 12,
     maxTenure: 84,
-    processingFee: '1.0% + GST',
-    eligibility: { minAge: 25, maxAge: 68, minIncome: 50000, employmentType: 'MBBS / MD / MS / BDS / MDS Doctor', minCibilScore: 720 },
-    documentsRequired: ['Medical Registration Certificate (MCI/State Council)', 'Highest qualification degree', 'Clinic address proof / hospital empanelment', 'Last 6 months bank statement'],
-    features: ['Pre-approved collateral-free limits up to ₹75 Lakhs', 'Funds for clinic setup, renovation, or equipment', 'Doorstep document pickup']
+    processingFee: '0.75% + GST',
+    eligibility: { minAge: 21, maxAge: 68, minIncome: 25000, employmentType: 'Salaried, Self-Employed & Registered Doctors', minCibilScore: 680 },
+    documentsRequired: [
+      'Aadhaar Card, PAN Card & Current Address Proof',
+      'Hospital Admission Estimate / Proforma Invoice / Medical Treatment Bills',
+      'Last 6 Months Bank Statement & Latest 3 Months Salary Slips',
+      'Medical Degree / MCI / DCI State Registration Certificate (for Doctor loans)'
+    ],
+    features: [
+      'Doctor & Clinic Practice Loan up to ₹75 Lakhs without collateral',
+      'Emergency Medical Treatment Loan with instant 2-hour hospital clearance',
+      'Health Insurance & Hospitalization Loan covering deductibles & non-covered therapies',
+      'Medical Equipment & Diagnostic Loan up to ₹2 Crores with 85% invoice funding'
+    ]
   },
   {
     id: 'prod-equip-mfg',
