@@ -104,7 +104,7 @@ export default function ContactEnquiryForm({ selectedProduct, prefillData, onLea
   return (
     <section id="contact-enquiry" className="py-20 bg-white border-t border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        
+
         {/* Section Header */}
         <div className="text-left max-w-2xl space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E8F5D4] border border-[#6EA928]/30 text-[#0A5C80] text-xs font-black tracking-wide uppercase">
@@ -119,10 +119,10 @@ export default function ContactEnquiryForm({ selectedProduct, prefillData, onLea
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start max-w-6xl mx-auto">
-          
+
           {/* Main Form Box */}
           <div className="lg:col-span-8 bg-white border border-slate-200/90 p-6 sm:p-10 rounded-3xl shadow-xl">
-            
+
             {/* Step 8 & 9 Result Screen: Saved in database with Lead Tracking ID */}
             {submittedLead ? (
               <div className="p-8 rounded-3xl bg-slate-50 border border-[#6EA928]/40 text-center space-y-5 animate-fadeIn">
@@ -193,7 +193,7 @@ export default function ContactEnquiryForm({ selectedProduct, prefillData, onLea
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
-                
+
                 {errorMessage && (
                   <div className="p-4 rounded-2xl bg-rose-50 border border-rose-300 text-rose-800 text-xs">
                     ⚠️ {errorMessage}

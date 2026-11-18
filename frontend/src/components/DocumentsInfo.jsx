@@ -54,7 +54,7 @@ export default function DocumentsInfo() {
   return (
     <section id="documents" className="py-16 bg-white border-t border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        
+
         <div className="text-left max-w-2xl space-y-2">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E8F5D4] border border-[#6EA928]/30 text-[#0A5C80] text-xs font-black tracking-wide uppercase">
             <span>Documentation Guide</span>
@@ -73,11 +73,10 @@ export default function DocumentsInfo() {
             <button
               key={key}
               onClick={() => setActiveTab(key)}
-              className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 cursor-pointer ${
-                activeTab === key
+              className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-2 cursor-pointer ${activeTab === key
                   ? 'bg-[#6EA928] text-white shadow-lg shadow-[#6EA928]/30'
                   : 'bg-slate-50 text-slate-700 hover:text-slate-900 border border-slate-200'
-              }`}
+                }`}
             >
               <span>{data.icon}</span>
               <span>{data.title}</span>

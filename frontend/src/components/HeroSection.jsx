@@ -4,6 +4,12 @@ import loanEducation from '../assets/loan-education.jpg';
 import loanBusiness from '../assets/loan-business.jpg';
 import loanHealth from '../assets/loan-health.jpg';
 import loanPersonal from '../assets/loan-personal.jpg';
+import cardHealthDoctor from '../assets/card-health-doctor.jpg';
+import cardHomeLoan from '../assets/card-home-loan.jpg';
+import cardPersonalLoan from '../assets/card-personal-loan.jpg';
+import cardBusinessLoan from '../assets/card-business-loan.jpg';
+import cardEducationLoan from '../assets/card-education-loan.jpg';
+import cardPropertyLoan from '../assets/card-property-loan.jpg';
 
 export default function HeroSection({
   onApplyClick,
@@ -230,6 +236,7 @@ export default function HeroSection({
       title: 'Health & Doctor Loan',
       description: 'Health insurance and emergency medical loans provide coverage for hospital expenses, treatments, and clinical equipment without financial stress.',
       catId: 'cat-professional',
+      imgSrc: cardHealthDoctor,
       iconSvg: (
         <svg className="w-12 h-12" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
           {/* Caring Hand holding Heart */}
@@ -248,6 +255,7 @@ export default function HeroSection({
       title: 'Home Loan',
       description: 'Home loans protect your property and personal belongings, offering flexible 30-year EMIs and subsidized interest rates across 15+ partner banks.',
       catId: 'cat-home',
+      imgSrc: cardHomeLoan,
       iconSvg: (
         <svg className="w-12 h-12" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
           {/* Caring Hand holding House */}
@@ -270,6 +278,7 @@ export default function HeroSection({
       title: 'Personal Loan',
       description: 'Personal loans for weddings, travel, education, and unexpected life goals with instant paperless verification and same-day direct disbursement.',
       catId: 'cat-personal',
+      imgSrc: cardPersonalLoan,
       iconSvg: (
         <svg className="w-12 h-12" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
           {/* Soft Circle Background */}
@@ -292,6 +301,7 @@ export default function HeroSection({
       title: 'Business Loan',
       description: 'Tailored financial solutions, MSME collateral-free working capital, and equipment credit lines to scale your commercial enterprise smoothly.',
       catId: 'cat-business',
+      imgSrc: cardBusinessLoan,
       iconSvg: (
         <svg className="w-12 h-12" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
           {/* Background Soft Glow */}
@@ -318,6 +328,7 @@ export default function HeroSection({
       title: 'Education Loan',
       description: 'Fund higher education in premier institutions across India and abroad with 100% fee coverage, living expenses, and student-friendly moratoriums.',
       catId: 'cat-education',
+      imgSrc: cardEducationLoan,
       iconSvg: (
         <svg className="w-12 h-12" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
           {/* Background Circle */}
@@ -338,6 +349,7 @@ export default function HeroSection({
       title: 'Loan Against Property',
       description: 'Unlock substantial liquidity against your residential or commercial real estate with competitive interest rates and extended repayment horizons.',
       catId: 'cat-mortgage',
+      imgSrc: cardPropertyLoan,
       iconSvg: (
         <svg className="w-12 h-12" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
           {/* Background Circle */}
@@ -410,7 +422,7 @@ export default function HeroSection({
 
                 {/* Secondary Button */}
                 <button
-                  onClick={onCalcClick || (() => {})}
+                  onClick={onCalcClick || (() => { })}
                   className="px-6 sm:px-7 py-3.5 rounded-full text-sm sm:text-base font-bold bg-white hover:bg-slate-50 text-[#0A5C80] border-2 border-[#0A5C80] shadow-sm transition-all transform hover:-translate-y-0.5 cursor-pointer flex items-center gap-2"
                 >
                   <span>🧮 Calculate EMI</span>
@@ -433,11 +445,10 @@ export default function HeroSection({
                       key={s.id}
                       onClick={() => setActiveSlide(idx)}
                       aria-label={`Slide ${idx + 1}`}
-                      className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                        activeSlide === idx
+                      className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlide === idx
                           ? 'w-7 bg-gradient-to-r from-[#0A5C80] to-[#6EA928]'
                           : 'w-2 bg-slate-300 hover:bg-[#0A5C80]/50'
-                      }`}
+                        }`}
                     />
                   ))}
                 </div>
@@ -525,11 +536,10 @@ export default function HeroSection({
                     return (
                       <div
                         key={slide.id}
-                        className={`absolute inset-0 w-full h-full transition-all duration-700 ease-in-out ${
-                          isActive
+                        className={`absolute inset-0 w-full h-full transition-all duration-700 ease-in-out ${isActive
                             ? 'opacity-100 scale-100 z-10 pointer-events-auto'
                             : 'opacity-0 scale-95 z-0 pointer-events-none'
-                        }`}
+                          }`}
                       >
                         <img
                           src={slide.image}
@@ -655,9 +665,17 @@ export default function HeroSection({
                 onClick={() => handleAvailLoan(card.title, card.catId)}
                 className="bg-white rounded-3xl sm:rounded-[32px] p-7 sm:p-9 shadow-md shadow-slate-200/50 hover:shadow-2xl hover:shadow-slate-300/60 hover:-translate-y-2 transition-all duration-300 border border-slate-100/90 flex flex-col items-center text-center cursor-pointer group"
               >
-                {/* Centered Large Friendly Illustration Icon */}
-                <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-3xl bg-slate-50/80 flex items-center justify-center mb-5 sm:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-inner">
-                  {card.iconSvg}
+                {/* Centered Large Friendly 3D Illustration Icon */}
+                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl flex items-center justify-center mb-5 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
+                  {card.imgSrc ? (
+                    <img
+                      src={card.imgSrc}
+                      alt={card.title}
+                      className="w-full h-full object-contain rounded-2xl drop-shadow-sm"
+                    />
+                  ) : (
+                    card.iconSvg
+                  )}
                 </div>
 
                 {/* Centered Bold Title */}
