@@ -76,11 +76,11 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
               />
               <div className="min-w-0">
                 <div className="flex items-center leading-tight">
-                  <span className="text-xs xs:text-sm sm:text-xl lg:text-2xl font-black tracking-tight text-white whitespace-nowrap">
+                  <span className="text-sm xs:text-base sm:text-xl lg:text-2xl font-black tracking-tight text-white whitespace-nowrap">
                     VGS <span className="text-[#6EA928]">FINANCIAL SERVICES</span>
                   </span>
                 </div>
-                <div className="text-[7.5px] xs:text-[8.5px] sm:text-[10px] font-bold tracking-wider sm:tracking-widest uppercase text-slate-400 whitespace-nowrap leading-none mt-0.5">
+                <div className="text-[8.5px] xs:text-[9.5px] sm:text-[10px] font-bold tracking-wider sm:tracking-widest uppercase text-slate-400 whitespace-nowrap leading-none mt-0.5">
                   PRIVATE LIMITED <span className="hidden sm:inline">• LOAN SUPER MARKET</span>
                 </div>
               </div>
@@ -98,9 +98,8 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }
                 }}
-                className={`hover:text-[#6EA928] transition-colors py-2 ${
-                  currentView === 'website' ? 'border-b-2 border-[#6EA928] text-[#6EA928]' : ''
-                }`}
+                className={`hover:text-[#6EA928] transition-colors py-2 ${currentView === 'website' ? 'border-b-2 border-[#6EA928] text-[#6EA928]' : ''
+                  }`}
               >
                 Home
               </a>
@@ -127,9 +126,8 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
                     setCurrentView('services');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className={`hover:text-[#6EA928] transition-colors py-2 flex items-center gap-1 cursor-pointer ${
-                    currentView === 'services' ? 'border-b-2 border-[#6EA928] text-[#6EA928]' : ''
-                  }`}
+                  className={`hover:text-[#6EA928] transition-colors py-2 flex items-center gap-1 cursor-pointer ${currentView === 'services' ? 'border-b-2 border-[#6EA928] text-[#6EA928]' : ''
+                    }`}
                 >
                   <span>Services</span>
                   <span className="text-[10px] text-[#6EA928]">▼</span>
@@ -225,17 +223,11 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
 
             </div>
 
-            {/* Mobile Menu & Quick Admin Button */}
-            <div className="flex lg:hidden items-center gap-1.5 sm:gap-2 shrink-0">
-              <button
-                onClick={() => setCurrentView(currentView === 'website' ? 'admin' : 'website')}
-                className="px-2.5 py-1.5 rounded-lg text-[11px] sm:text-xs font-bold bg-[#041E2B] text-[#6EA928] border border-[#0A5C80]/50 hover:border-[#6EA928] whitespace-nowrap transition-colors"
-              >
-                {currentView === 'website' ? '🔒 Admin' : '🌐 Website'}
-              </button>
+            {/* Mobile Menu Button */}
+            <div className="flex lg:hidden items-center shrink-0">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-1.5 sm:p-2 rounded-xl text-slate-300 hover:text-white bg-[#041E2B] border border-[#0A5C80]/40 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 text-base"
+                className="p-2 rounded-xl text-slate-300 hover:text-white bg-[#041E2B] border border-[#0A5C80]/40 flex items-center justify-center w-9 h-9 text-base shadow-sm cursor-pointer"
                 aria-label="Toggle Menu"
               >
                 {mobileMenuOpen ? '✕' : '☰'}
@@ -286,11 +278,11 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  setCurrentView('admin');
+                  setCurrentView(currentView === 'website' ? 'admin' : 'website');
                 }}
-                className="w-full py-2.5 rounded-xl font-bold bg-[#041E2B] border border-[#0A5C80]/50 text-[#6EA928] text-xs"
+                className="w-full py-2.5 rounded-xl font-bold bg-[#041E2B] border border-[#0A5C80]/50 text-[#6EA928] text-xs hover:border-[#6EA928] transition-colors"
               >
-                🔒 Login as Admin / Officer
+                {currentView === 'website' ? '🔒 Login as Admin / Officer' : '🌐 Return to Website'}
               </button>
               <button
                 onClick={() => {
