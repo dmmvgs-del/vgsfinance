@@ -18,10 +18,10 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
   ];
 
   return (
-    <header className="sticky top-0 z-50 shadow-xl font-sans">
+    <header className="font-sans relative">
       
       {/* =========================================================================
-          1. TOP UTILITY BAR (Angled Contact Info Banner)
+          1. TOP UTILITY BAR (Non-Sticky Announcement / Contact Info Banner)
          ========================================================================= */}
       <div className="bg-[#041E2B] text-slate-300 text-xs border-b border-[#0A5C80]/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center py-2 gap-2">
@@ -57,9 +57,9 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
       </div>
 
       {/* =========================================================================
-          2. MAIN NAVIGATION BAR (Dual-Tone Supermarket Branded)
+          2. MAIN NAVIGATION BAR (Sticky to Top of Viewport)
          ========================================================================= */}
-      <nav className="bg-[#061D28]/95 backdrop-blur-md border-b border-[#0A5C80]/30">
+      <nav className="sticky top-0 z-50 bg-[#061D28]/95 backdrop-blur-md border-b border-[#0A5C80]/30 shadow-xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             
