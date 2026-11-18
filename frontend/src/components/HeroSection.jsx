@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import loanHome from '../assets/loan-home.jpg';
 import loanEducation from '../assets/loan-education.jpg';
 import loanBusiness from '../assets/loan-business.jpg';
@@ -25,6 +25,73 @@ export default function HeroSection({
   // Carousel state
   const [activeSlide, setActiveSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-increment metrics state (triggers on scrolling up and down)
+  const metricsBarRef = useRef(null);
+  const [metricCounts, setMetricCounts] = useState({
+    banks: 0,
+    categories: 0,
+    experts: 0,
+    quickHours: 0
+  });
+
+  useEffect(() => {
+    const el = metricsBarRef.current;
+    if (!el) return;
+
+    let animId = null;
+
+    const runCountUp = () => {
+      const startTime = performance.now();
+      const duration = 1200; // 1.2s smooth animation
+
+      const step = (now) => {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // Easing: easeOutCubic
+        const ease = 1 - Math.pow(1 - progress, 3);
+
+        setMetricCounts({
+          banks: Math.round(ease * 15),
+          categories: Math.round(ease * 16),
+          experts: Math.round(ease * 100),
+          quickHours: Math.round(ease * 2)
+        });
+
+        if (progress < 1) {
+          animId = requestAnimationFrame(step);
+        }
+      };
+
+      setMetricCounts({ banks: 0, categories: 0, experts: 0, quickHours: 0 });
+      animId = requestAnimationFrame(step);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Trigger auto-increment whenever scrolled into view (from above or below)
+            runCountUp();
+          } else {
+            // Reset when scrolled out of view so it auto-increments again when scrolling back
+            if (animId) cancelAnimationFrame(animId);
+            setMetricCounts({ banks: 0, categories: 0, experts: 0, quickHours: 0 });
+          }
+        });
+      },
+      {
+        threshold: 0.25
+      }
+    );
+
+    observer.observe(el);
+
+    return () => {
+      observer.disconnect();
+      if (animId) cancelAnimationFrame(animId);
+    };
+  }, []);
 
   const handleAvailLoan = (loanType, categoryId) => {
     if (onSelectCategory && categoryId && categoryId !== 'all') {
@@ -504,9 +571,9 @@ export default function HeroSection({
       </div>
 
       {/* =========================================================================
-          2. FOUR METRICS PILL BAR (Directly under Hero Section)
+          2. FOUR METRICS PILL BAR (Auto-increments on scrolling up & down)
          ========================================================================= */}
-      <div className="bg-white px-4 sm:px-6 lg:px-8 pb-8 pt-2">
+      <div ref={metricsBarRef} className="bg-white px-4 sm:px-6 lg:px-8 pb-8 pt-2">
         <div className="max-w-7xl mx-auto">
           <div className="bg-[#041E2B] border border-[#0A5C80]/35 rounded-2xl shadow-xl p-3 sm:p-4 backdrop-blur-md">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 divide-y md:divide-y-0 md:divide-x divide-[#0A5C80]/30 text-center">
@@ -514,32 +581,44 @@ export default function HeroSection({
               {/* Metric 1 */}
               <div className="flex items-center justify-center gap-2.5 sm:gap-3 py-1 px-2">
                 <span className="text-xl sm:text-2xl text-[#6EA928]">🏛️</span>
-                <span className="text-xs sm:text-sm font-black text-white tracking-wide">
-                  15+ Banking Partners
+                <span className="text-xs sm:text-sm font-black text-white tracking-wide flex items-center">
+                  <span className="font-mono text-sm sm:text-base font-black text-[#6EA928] mr-1 min-w-[28px] inline-block text-right">
+                    {metricCounts.banks}+
+                  </span>
+                  <span>Banking Partners</span>
                 </span>
               </div>
 
               {/* Metric 2 */}
               <div className="flex items-center justify-center gap-2.5 sm:gap-3 py-1 px-2">
                 <span className="text-xl sm:text-2xl text-[#6EA928]">📚</span>
-                <span className="text-xs sm:text-sm font-black text-white tracking-wide">
-                  16+ Loan Categories
+                <span className="text-xs sm:text-sm font-black text-white tracking-wide flex items-center">
+                  <span className="font-mono text-sm sm:text-base font-black text-[#6EA928] mr-1 min-w-[28px] inline-block text-right">
+                    {metricCounts.categories}+
+                  </span>
+                  <span>Loan Categories</span>
                 </span>
               </div>
 
               {/* Metric 3 */}
               <div className="flex items-center justify-center gap-2.5 sm:gap-3 py-1 px-2 pt-2 md:pt-1">
                 <span className="text-xl sm:text-2xl text-[#6EA928]">🧑‍💼</span>
-                <span className="text-xs sm:text-sm font-black text-white tracking-wide">
-                  Expert Assistance
+                <span className="text-xs sm:text-sm font-black text-white tracking-wide flex items-center">
+                  <span className="font-mono text-sm sm:text-base font-black text-[#6EA928] mr-1 min-w-[38px] inline-block text-right">
+                    {metricCounts.experts}%
+                  </span>
+                  <span>Expert Assistance</span>
                 </span>
               </div>
 
               {/* Metric 4 */}
               <div className="flex items-center justify-center gap-2.5 sm:gap-3 py-1 px-2 pt-2 md:pt-1">
                 <span className="text-xl sm:text-2xl text-[#6EA928]">⚡</span>
-                <span className="text-xs sm:text-sm font-black text-white tracking-wide">
-                  Quick In-Principle Decisions
+                <span className="text-xs sm:text-sm font-black text-white tracking-wide flex items-center">
+                  <span className="font-mono text-sm sm:text-base font-black text-[#6EA928] mr-1 min-w-[34px] inline-block text-right">
+                    {metricCounts.quickHours}-Hr
+                  </span>
+                  <span>Quick In-Principle Decisions</span>
                 </span>
               </div>
 
