@@ -437,14 +437,7 @@ export default function HeroSection({
                   })}
                 </div>
 
-                {/* Green Pulse Play/Sanction Center Button (Matches Reference Image) */}
-                <div
-                  onClick={() => handleAvailLoan(currentSlideData.name, currentSlideData.catId)}
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-[#6EA928] hover:bg-[#5A8B1F] text-white flex items-center justify-center text-lg shadow-xl shadow-[#6EA928]/50 animate-pulse cursor-pointer border-2 border-white transition-transform hover:scale-110"
-                  title="Check Instant Loan Offer"
-                >
-                  ▶
-                </div>
+
 
                 {/* Floating Top-Right Rate Pill Badge */}
                 <div className="absolute -top-2 right-2 sm:top-1 sm:right-4 z-20 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#0A5C80] text-white text-xs sm:text-sm font-black shadow-xl border-2 border-white flex items-center gap-1.5 animate-bounce">
