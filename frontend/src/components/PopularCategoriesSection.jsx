@@ -204,17 +204,17 @@ export default function PopularCategoriesSection({ categories, onSelectCategory 
   };
 
   return (
-    <section id="popular-categories" className="py-20 bg-slate-950">
+    <section id="popular-categories" className="py-20 bg-[#061D28]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="text-xs font-bold uppercase tracking-widest text-emerald-400">
+          <div className="text-xs font-bold uppercase tracking-widest text-[#6EA928]">
             Comprehensive Financial Supermarket
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             Explore All 16 Loan Categories
           </h2>
-          <p className="text-sm sm:text-base text-slate-400">
+          <p className="text-sm sm:text-base text-slate-300">
             From retail and housing finance to medical, enterprise working capital, and heavy machinery — discover tailored loan solutions across India.
           </p>
         </div>
@@ -227,8 +227,8 @@ export default function PopularCategoriesSection({ categories, onSelectCategory 
               onClick={() => setActiveFamily(fam.id)}
               className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                 activeFamily === fam.id
-                  ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/25'
-                  : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+                  ? 'bg-[#6EA928] text-white shadow-lg shadow-[#6EA928]/30'
+                  : 'bg-[#041E2B] text-slate-300 hover:text-white border border-[#0A5C80]/40 hover:border-[#6EA928]'
               }`}
             >
               {fam.label}
@@ -242,41 +242,41 @@ export default function PopularCategoriesSection({ categories, onSelectCategory 
             <div
               key={item.id}
               onClick={() => handleCardClick(item.id)}
-              className="bg-slate-900 border border-slate-800 hover:border-emerald-500/50 p-5 rounded-3xl transition-all duration-300 hover:-translate-y-1.5 shadow-xl hover:shadow-emerald-500/10 cursor-pointer flex flex-col justify-between group space-y-4"
+              className="bg-[#041E2B] border border-[#0A5C80]/35 hover:border-[#6EA928]/60 p-5 rounded-3xl transition-all duration-300 hover:-translate-y-1.5 shadow-xl hover:shadow-[#6EA928]/10 cursor-pointer flex flex-col justify-between group space-y-4"
             >
               <div className="space-y-3">
                 <div className="flex justify-between items-start">
-                  <div className="w-12 h-12 rounded-2xl bg-slate-800 border border-slate-700/80 flex items-center justify-center text-xl group-hover:bg-emerald-600 transition-colors shadow-md">
+                  <div className="w-12 h-12 rounded-2xl bg-[#062A3B] border border-[#0A5C80]/40 flex items-center justify-center text-xl group-hover:bg-[#6EA928] group-hover:text-white transition-colors shadow-md">
                     {item.icon}
                   </div>
-                  <span className="text-[9px] font-extrabold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  <span className="text-[9px] font-extrabold px-2 py-0.5 rounded-full bg-[#E8F5D4] text-[#466E18] border border-[#6EA928]/30">
                     {item.badge}
                   </span>
                 </div>
 
                 <div>
-                  <h3 className="text-base font-bold text-white group-hover:text-emerald-400 transition-colors">
+                  <h3 className="text-base font-bold text-white group-hover:text-[#85C7DF] transition-colors">
                     {item.name}
                   </h3>
-                  <p className="text-[11px] text-slate-400 mt-1 line-clamp-2 leading-relaxed">
+                  <p className="text-[11px] text-slate-300 mt-1 line-clamp-2 leading-relaxed font-medium">
                     {item.perk}
                   </p>
                 </div>
               </div>
 
-              <div className="pt-3 border-t border-slate-800/80 space-y-2">
+              <div className="pt-3 border-t border-[#0A5C80]/30 space-y-2">
                 <div className="grid grid-cols-2 gap-1 text-[11px]">
                   <div>
-                    <span className="text-slate-500 block text-[9px] uppercase font-bold">Interest Rate</span>
-                    <span className="font-extrabold text-emerald-400">{item.rate}</span>
+                    <span className="text-slate-400 block text-[9px] uppercase font-bold">Interest Rate</span>
+                    <span className="font-extrabold text-[#6EA928]">{item.rate}</span>
                   </div>
                   <div>
-                    <span className="text-slate-500 block text-[9px] uppercase font-bold">Sanction Limit</span>
+                    <span className="text-slate-400 block text-[9px] uppercase font-bold">Sanction Limit</span>
                     <span className="font-extrabold text-white">{item.maxAmount}</span>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between text-xs font-bold text-slate-300 group-hover:text-emerald-400 pt-1">
+                <div className="flex items-center justify-between text-xs font-bold text-slate-300 group-hover:text-[#6EA928] pt-1">
                   <span>Explore Loans</span>
                   <span className="transform group-hover:translate-x-1 transition-transform text-xs">➔</span>
                 </div>

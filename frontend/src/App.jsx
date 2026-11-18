@@ -135,7 +135,7 @@ function App() {
 
   // Public Landing Website view (Home Page Scope)
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-white">
+    <div className="min-h-screen bg-[#061D28] text-slate-100 flex flex-col font-sans selection:bg-[#6EA928] selection:text-white">
       
       {/* Top Header & Navigation */}
       <Navbar
@@ -234,7 +234,7 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-slate-800 bg-slate-950 py-12 text-slate-400 text-xs">
+      <footer className="border-t border-[#0A5C80]/30 bg-[#041E2B] py-12 text-slate-400 text-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
           
           <div className="space-y-3">
@@ -242,7 +242,7 @@ function App() {
               <img
                 src={logoImg}
                 alt="VGS Finance Logo"
-                className="w-9 h-9 object-contain rounded-xl bg-white p-1 border border-slate-700 shadow-sm shrink-0"
+                className="w-9 h-9 object-contain rounded-xl bg-white p-1 border border-[#0A5C80]/40 shadow-sm shrink-0"
               />
               <span className="font-extrabold text-white text-base tracking-tight">VGS FINANCE</span>
             </div>
@@ -254,20 +254,20 @@ function App() {
           <div>
             <div className="font-bold text-white uppercase tracking-wider text-xs mb-3">Quick Navigation</div>
             <ul className="space-y-2">
-              <li><a href="#products" className="hover:text-emerald-400">Loan Supermarket</a></li>
-              <li><a href="#emi-calc" className="hover:text-emerald-400">EMI Calculator</a></li>
-              <li><a href="#eligibility" className="hover:text-emerald-400">Eligibility Criteria</a></li>
-              <li><a href="#documents" className="hover:text-emerald-400">Required Documents</a></li>
+              <li><a href="#products" className="hover:text-[#6EA928] transition-colors">Loan Supermarket</a></li>
+              <li><a href="#emi-calc" className="hover:text-[#6EA928] transition-colors">EMI Calculator</a></li>
+              <li><a href="#eligibility" className="hover:text-[#6EA928] transition-colors">Eligibility Criteria</a></li>
+              <li><a href="#documents" className="hover:text-[#6EA928] transition-colors">Required Documents</a></li>
             </ul>
           </div>
 
           <div>
             <div className="font-bold text-white uppercase tracking-wider text-xs mb-3">Regulatory & Compliance</div>
             <ul className="space-y-2">
-              <li className="hover:text-emerald-400 cursor-pointer">RBI Regulations & Disclosures</li>
-              <li className="hover:text-emerald-400 cursor-pointer">Privacy & Data Protection Policy</li>
-              <li className="hover:text-emerald-400 cursor-pointer">Terms & Conditions (T&C)</li>
-              <li className="hover:text-emerald-400 cursor-pointer">Fair Practices Code (FPC)</li>
+              <li className="hover:text-[#6EA928] transition-colors cursor-pointer">RBI Regulations & Disclosures</li>
+              <li className="hover:text-[#6EA928] transition-colors cursor-pointer">Privacy & Data Protection Policy</li>
+              <li className="hover:text-[#6EA928] transition-colors cursor-pointer">Terms & Conditions (T&C)</li>
+              <li className="hover:text-[#6EA928] transition-colors cursor-pointer">Fair Practices Code (FPC)</li>
             </ul>
           </div>
 
@@ -276,7 +276,7 @@ function App() {
             <p>Access loan administration and lead processing desk:</p>
             <button
               onClick={() => handleSwitchView('admin')}
-              className="mt-1 px-4 py-2 bg-slate-900 hover:bg-slate-800 text-indigo-400 border border-slate-700 rounded-xl font-bold cursor-pointer transition-all"
+              className="mt-1 px-4 py-2 bg-[#0A5C80]/20 hover:bg-[#0A5C80]/40 text-[#85C7DF] hover:text-white border border-[#0A5C80]/50 rounded-xl font-bold cursor-pointer transition-all"
             >
               🔒 Admin Dashboard Login
             </button>

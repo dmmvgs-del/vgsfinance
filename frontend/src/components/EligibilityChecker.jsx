@@ -36,65 +36,65 @@ export default function EligibilityChecker({ onApplyWithEligibleAmount }) {
   };
 
   return (
-    <section id="eligibility" className="py-16 bg-slate-900/60 border-t border-b border-slate-800">
+    <section id="eligibility" className="py-16 bg-[#061D28] border-t border-b border-[#0A5C80]/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
         <div className="text-center max-w-2xl mx-auto space-y-2">
-          <div className="text-xs font-bold uppercase tracking-widest text-emerald-400">
+          <div className="text-xs font-bold uppercase tracking-widest text-[#6EA928]">
             Credit Assessment
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             Check Your Maximum Loan Eligibility
           </h2>
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-slate-300">
             Estimate your loan borrowing capacity based on your monthly income and current commitments.
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl">
+        <div className="max-w-4xl mx-auto bg-[#041E2B] border border-[#0A5C80]/40 rounded-3xl p-6 sm:p-10 shadow-2xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             
             {/* Input Controls */}
             <div className="space-y-5">
               
               <div>
-                <label className="block text-xs font-semibold uppercase text-slate-400 mb-1">
+                <label className="block text-xs font-semibold uppercase text-slate-300 mb-1">
                   Monthly Net Take-Home Income
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-2.5 text-slate-500 font-bold">₹</span>
+                  <span className="absolute left-3 top-2.5 text-slate-400 font-bold">₹</span>
                   <input
                     type="number"
                     value={income}
                     onChange={(e) => setIncome(Number(e.target.value))}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-xl pl-8 pr-4 py-2.5 text-white font-bold text-sm focus:outline-none focus:border-emerald-500"
+                    className="w-full bg-[#062433] border border-[#0A5C80]/40 rounded-xl pl-8 pr-4 py-2.5 text-white font-bold text-sm focus:outline-none focus:border-[#6EA928]"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase text-slate-400 mb-1">
+                <label className="block text-xs font-semibold uppercase text-slate-300 mb-1">
                   Current Existing EMIs / Obligations
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-2.5 text-slate-500 font-bold">₹</span>
+                  <span className="absolute left-3 top-2.5 text-slate-400 font-bold">₹</span>
                   <input
                     type="number"
                     value={existingEmi}
                     onChange={(e) => setExistingEmi(Number(e.target.value))}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-xl pl-8 pr-4 py-2.5 text-white font-bold text-sm focus:outline-none focus:border-emerald-500"
+                    className="w-full bg-[#062433] border border-[#0A5C80]/40 rounded-xl pl-8 pr-4 py-2.5 text-white font-bold text-sm focus:outline-none focus:border-[#6EA928]"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase text-slate-400 mb-1">
+                <label className="block text-xs font-semibold uppercase text-slate-300 mb-1">
                   Preferred Tenure
                 </label>
                 <select
                   value={tenureYears}
                   onChange={(e) => setTenureYears(Number(e.target.value))}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-white font-medium text-sm focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-[#062433] border border-[#0A5C80]/40 rounded-xl px-4 py-2.5 text-white font-medium text-sm focus:outline-none focus:border-[#6EA928]"
                 >
                   <option value={1}>1 Year (12 Months)</option>
                   <option value={2}>2 Years (24 Months)</option>
@@ -107,25 +107,25 @@ export default function EligibilityChecker({ onApplyWithEligibleAmount }) {
             </div>
 
             {/* Eligibility Result Box */}
-            <div className="bg-gradient-to-br from-slate-950 to-slate-900 border border-slate-700/80 p-6 rounded-2xl text-center space-y-4">
-              <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+            <div className="bg-[#03141D] border border-[#0A5C80]/40 p-6 rounded-2xl text-center space-y-4">
+              <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#E8F5D4] text-[#466E18] border border-[#6EA928]/40">
                 ✓ Eligibility Criteria (Standard FOIR 50%)
               </span>
 
               <div className="space-y-1">
                 <div className="text-xs text-slate-400">Estimated Maximum Loan Amount:</div>
-                <div className="text-3xl sm:text-4xl font-black text-emerald-400">
+                <div className="text-3xl sm:text-4xl font-black text-[#6EA928]">
                   {formatCurrency(maxLoan)}
                 </div>
-                <div className="text-xs text-slate-500">
-                  Max Allowable EMI: <span className="text-slate-300 font-bold">{formatCurrency(maxAllowedEmi)} / month</span>
+                <div className="text-xs text-slate-400">
+                  Max Allowable EMI: <span className="text-[#85C7DF] font-bold">{formatCurrency(maxAllowedEmi)} / month</span>
                 </div>
               </div>
 
               <div className="pt-2">
                 <button
                   onClick={() => onApplyWithEligibleAmount({ amount: maxLoan, tenureMonths: tenureYears * 12 })}
-                  className="w-full py-3 rounded-xl font-bold text-xs bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-500/20 transition-all cursor-pointer"
+                  className="w-full py-3 rounded-xl font-bold text-xs bg-[#6EA928] hover:bg-[#5A8B1F] text-white shadow-lg shadow-[#6EA928]/30 transition-all cursor-pointer"
                 >
                   Apply with this Eligible Amount ➔
                 </button>

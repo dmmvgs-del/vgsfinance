@@ -634,20 +634,20 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
+    <div className="min-h-screen bg-[#061D28] text-slate-100 flex flex-col font-sans">
 
       {/* Admin Top Bar */}
-      <div className="bg-slate-900 border-b border-slate-800 px-6 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div className="bg-[#041E2B] border-b border-[#0A5C80]/30 px-6 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div className="flex items-center gap-3">
           <img
             src={logoImg}
             alt="VGS Finance Logo"
-            className="w-10 h-10 object-contain rounded-xl bg-white p-1 border border-slate-700 shadow-md shrink-0"
+            className="w-10 h-10 object-contain rounded-xl bg-white p-1 border border-[#0A5C80]/40 shadow-md shrink-0"
           />
           <div>
             <h1 className="text-lg font-black text-white tracking-tight flex items-center gap-2">
               VGS Finance Admin Portal
-              <span className="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2.5 py-0.5 rounded-full font-bold">
+              <span className="text-[10px] bg-[#6EA928]/20 text-[#94CF45] border border-[#6EA928]/40 px-2.5 py-0.5 rounded-full font-bold">
                 Phase 6: Customer Contact & Institution Routing
               </span>
             </h1>
@@ -661,7 +661,7 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
           <button
             onClick={handleAutoSyncDatabase}
             disabled={syncingDb}
-            className="px-3.5 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-indigo-600 to-sky-600 hover:from-indigo-500 hover:to-sky-500 text-white shadow-md shadow-indigo-600/30 cursor-pointer flex items-center gap-1.5 transition-all"
+            className="px-3.5 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-[#0A5C80] to-[#6EA928] hover:opacity-90 text-white shadow-md shadow-[#0A5C80]/30 cursor-pointer flex items-center gap-1.5 transition-all"
             title="Automatically create and synchronize all 10 MySQL tables in Hostinger"
           >
             <span>{syncingDb ? '⏳' : '⚡'}</span>
@@ -669,13 +669,13 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
           </button>
           <button
             onClick={fetchAdminData}
-            className="px-3 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 cursor-pointer"
+            className="px-3 py-2 rounded-xl text-xs font-semibold bg-[#062433] hover:bg-[#0A5C80]/30 text-slate-300 border border-[#0A5C80]/40 cursor-pointer transition-colors"
           >
             🔄 Refresh Pipeline
           </button>
           <button
             onClick={onSwitchToWebsite}
-            className="px-3 py-2 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white shadow-md cursor-pointer flex items-center gap-1.5"
+            className="px-3 py-2 rounded-xl text-xs font-bold bg-[#0A5C80] hover:bg-[#084E6D] text-white shadow-md cursor-pointer flex items-center gap-1.5 transition-colors"
           >
             🌐 Public Website
           </button>
@@ -689,16 +689,16 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
       </div>
 
       {/* Admin Tabs */}
-      <div className="bg-slate-900/60 border-b border-slate-800 px-6 flex flex-wrap gap-4 sm:gap-6">
+      <div className="bg-[#03141D] border-b border-[#0A5C80]/30 px-6 flex flex-wrap gap-4 sm:gap-6">
         <button
           onClick={() => setActiveAdminTab('leads')}
           className={`py-3.5 text-xs font-bold border-b-2 transition-all flex items-center gap-2 cursor-pointer ${activeAdminTab === 'leads'
-            ? 'border-emerald-500 text-emerald-400'
+            ? 'border-[#6EA928] text-[#94CF45]'
             : 'border-transparent text-slate-400 hover:text-white'
             }`}
         >
           <span>📋 Lead Pipeline & Workflow</span>
-          <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px]">
+          <span className="px-2 py-0.5 rounded-full bg-[#6EA928]/20 text-[#94CF45] text-[10px]">
             {leads.length}
           </span>
         </button>
@@ -706,7 +706,7 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
         <button
           onClick={() => setActiveAdminTab('overview')}
           className={`py-3.5 text-xs font-bold border-b-2 transition-all flex items-center gap-2 cursor-pointer ${activeAdminTab === 'overview'
-            ? 'border-emerald-500 text-emerald-400'
+            ? 'border-[#6EA928] text-[#94CF45]'
             : 'border-transparent text-slate-400 hover:text-white'
             }`}
         >
@@ -716,7 +716,7 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
         <button
           onClick={() => setActiveAdminTab('products')}
           className={`py-3.5 text-xs font-bold border-b-2 transition-all flex items-center gap-2 cursor-pointer ${activeAdminTab === 'products'
-            ? 'border-emerald-500 text-emerald-400'
+            ? 'border-[#6EA928] text-[#94CF45]'
             : 'border-transparent text-slate-400 hover:text-white'
             }`}
         >
@@ -726,7 +726,7 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
         <button
           onClick={() => setActiveAdminTab('partners')}
           className={`py-3.5 text-xs font-bold border-b-2 transition-all flex items-center gap-2 cursor-pointer ${activeAdminTab === 'partners'
-            ? 'border-emerald-500 text-emerald-400'
+            ? 'border-[#6EA928] text-[#94CF45]'
             : 'border-transparent text-slate-400 hover:text-white'
             }`}
         >
@@ -736,7 +736,7 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
         <button
           onClick={() => setActiveAdminTab('customers')}
           className={`py-3.5 text-xs font-bold border-b-2 transition-all flex items-center gap-2 cursor-pointer ${activeAdminTab === 'customers'
-            ? 'border-emerald-500 text-emerald-400'
+            ? 'border-[#6EA928] text-[#94CF45]'
             : 'border-transparent text-slate-400 hover:text-white'
             }`}
         >

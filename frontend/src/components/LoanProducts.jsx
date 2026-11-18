@@ -123,12 +123,12 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
   };
 
   return (
-    <section id="products" className="py-20 bg-slate-900/60 border-t border-b border-slate-800">
+    <section id="products" className="py-20 bg-[#061D28] border-t border-b border-[#0A5C80]/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#6EA928]/15 border border-[#6EA928]/40 text-[#94CF45] text-xs font-bold uppercase tracking-wider">
             <span>🛒</span> Centralized Loan Supermarket
           </div>
           <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
@@ -143,14 +143,14 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
             1. LOAN CATEGORY LISTING (All 16 Categories)
            ========================================================================= */}
         <div className="space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs font-bold text-slate-400 uppercase tracking-wider gap-2">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs font-bold text-slate-300 uppercase tracking-wider gap-2">
             <span className="flex items-center gap-2">
               <span>📋</span> 1. Loan Category Listing
-              <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold">
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#6EA928]/20 text-[#94CF45] border border-[#6EA928]/35 font-bold">
                 {categories.length} Categories
               </span>
             </span>
-            <span className="text-slate-500 text-[11px] font-normal lowercase">
+            <span className="text-slate-400 text-[11px] font-normal lowercase">
               Click any category card to filter applicable products
             </span>
           </div>
@@ -160,13 +160,13 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
             <button
               onClick={() => setSelectedCategory('all')}
               className={`p-3 rounded-2xl border text-center transition-all cursor-pointer flex flex-col items-center justify-center gap-1.5 ${selectedCategory === 'all'
-                  ? 'bg-emerald-500/15 border-emerald-500 text-emerald-300 shadow-lg shadow-emerald-500/10 ring-1 ring-emerald-500/50'
-                  : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-white hover:border-slate-700'
+                  ? 'bg-[#0A5C80]/30 border-[#6EA928] text-[#94CF45] shadow-lg shadow-[#6EA928]/15 ring-1 ring-[#6EA928]/50'
+                  : 'bg-[#041E2B] border-[#0A5C80]/30 text-slate-300 hover:text-white hover:border-[#6EA928]'
                 }`}
             >
               <span className="text-xl">🌟</span>
               <span className="text-xs font-bold">All Loans</span>
-              <span className="text-[9px] text-slate-500">{products.length} Products</span>
+              <span className="text-[9px] text-slate-400">{products.length} Products</span>
             </button>
 
             {categories.map((cat) => {
@@ -177,30 +177,30 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
                   className={`p-3 rounded-2xl border text-center transition-all cursor-pointer flex flex-col items-center justify-center gap-1.5 ${isSelected
-                      ? 'bg-emerald-500/15 border-emerald-500 text-emerald-300 shadow-lg shadow-emerald-500/10 ring-1 ring-emerald-500/50'
-                      : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-white hover:border-slate-700'
+                      ? 'bg-[#0A5C80]/30 border-[#6EA928] text-[#94CF45] shadow-lg shadow-[#6EA928]/15 ring-1 ring-[#6EA928]/50'
+                      : 'bg-[#041E2B] border-[#0A5C80]/30 text-slate-300 hover:text-white hover:border-[#6EA928]'
                     }`}
                 >
                   <span className="text-xl">{cat.icon || '📄'}</span>
                   <span className="text-xs font-bold truncate max-w-full">{cat.name}</span>
-                  <span className="text-[9px] text-slate-500">{count > 0 ? `${count} Available` : 'Available'}</span>
+                  <span className="text-[9px] text-slate-400">{count > 0 ? `${count} Available` : 'Available'}</span>
                 </button>
               );
             })}
           </div>
 
           {selectedCategoryObj && (
-            <div className="p-4 rounded-2xl bg-slate-950/80 border border-emerald-500/30 text-xs text-slate-300 flex items-center justify-between gap-4 shadow-lg">
+            <div className="p-4 rounded-2xl bg-[#041E2B] border border-[#0A5C80]/40 text-xs text-slate-300 flex items-center justify-between gap-4 shadow-lg">
               <div className="flex items-center gap-3">
                 <span className="text-2xl">{selectedCategoryObj.icon}</span>
                 <div>
                   <span className="font-bold text-white text-sm mr-2">{selectedCategoryObj.name}:</span>
-                  <span className="text-slate-400 text-xs">{selectedCategoryObj.description}</span>
+                  <span className="text-slate-300 text-xs">{selectedCategoryObj.description}</span>
                 </div>
               </div>
               <button
                 onClick={() => setSelectedCategory('all')}
-                className="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-[11px] text-slate-300 font-bold shrink-0 cursor-pointer"
+                className="px-3 py-1 rounded-lg bg-[#062433] hover:bg-[#0A5C80]/40 border border-[#0A5C80]/50 text-[11px] text-slate-200 font-bold shrink-0 cursor-pointer"
               >
                 Reset Filter ✕
               </button>
@@ -330,14 +330,14 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
                 <div
                   key={prod.id}
                   onClick={() => setSelectedLoanType(prod.id)}
-                  className={`bg-slate-900 rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:shadow-emerald-500/10 group relative border cursor-pointer ${isSelected
-                      ? 'border-emerald-500 shadow-xl shadow-emerald-500/20 ring-2 ring-emerald-500/40'
-                      : 'border-slate-800 hover:border-slate-700'
+                  className={`bg-[#041E2B] rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:shadow-[#6EA928]/10 group relative border cursor-pointer ${isSelected
+                      ? 'border-[#6EA928] shadow-xl shadow-[#6EA928]/20 ring-2 ring-[#6EA928]/40'
+                      : 'border-[#0A5C80]/30 hover:border-[#6EA928]/60'
                     }`}
                 >
                   {/* Selected Badge */}
                   {isSelected && (
-                    <div className="absolute -top-3 right-6 px-3 py-0.5 rounded-full bg-emerald-500 text-slate-950 font-black text-[10px] uppercase tracking-wider shadow-md flex items-center gap-1">
+                    <div className="absolute -top-3 right-6 px-3 py-0.5 rounded-full bg-[#6EA928] text-white font-black text-[10px] uppercase tracking-wider shadow-md flex items-center gap-1">
                       <span>✓</span> Selected Loan Type
                     </div>
                   )}
@@ -347,26 +347,26 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
                     {/* Header: Name and Interest Rate */}
                     <div className="flex items-start justify-between gap-3">
                       <div>
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400 block mb-0.5">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#6EA928] block mb-0.5">
                           {categories.find(c => c.id === prod.categoryId)?.name || 'Loan'}
                         </span>
-                        <h3 className="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">
+                        <h3 className="text-lg font-bold text-white group-hover:text-[#85C7DF] transition-colors">
                           {prod.name}
                         </h3>
-                        <p className="text-xs text-slate-400 mt-1 line-clamp-1 leading-relaxed">
+                        <p className="text-xs text-slate-300 mt-1 line-clamp-1 leading-relaxed">
                           {prod.tagline}
                         </p>
                       </div>
                       <div className="text-right shrink-0">
-                        <span className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-black block">
+                        <span className="px-2.5 py-1 rounded-full bg-[#E8F5D4] border border-[#6EA928]/40 text-[#466E18] text-xs font-black block">
                           {prod.interestRate}% p.a.
                         </span>
-                        <span className="text-[10px] text-slate-500 block mt-0.5 font-medium">Reducing Rate</span>
+                        <span className="text-[10px] text-slate-400 block mt-0.5 font-medium">Reducing Rate</span>
                       </div>
                     </div>
 
                     {/* Amount Limits & Tenure Grid */}
-                    <div className="grid grid-cols-2 gap-2 bg-slate-950/70 p-3.5 rounded-2xl border border-slate-800 text-xs">
+                    <div className="grid grid-cols-2 gap-2 bg-[#062433]/90 p-3.5 rounded-2xl border border-[#0A5C80]/30 text-xs">
                       <div>
                         <span className="text-slate-400 block text-[11px] font-medium">Loan Limit:</span>
                         <span className="font-black text-white mt-0.5 block text-xs font-mono">
@@ -375,7 +375,7 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
                       </div>
                       <div>
                         <span className="text-slate-400 block text-[11px] font-medium">Tenure Window:</span>
-                        <span className="font-black text-sky-400 mt-0.5 block text-xs">
+                        <span className="font-black text-[#85C7DF] mt-0.5 block text-xs">
                           {prod.minTenure}m to {prod.maxTenure}m ({(prod.maxTenure / 12).toFixed(0)} Yrs)
                         </span>
                       </div>
@@ -384,27 +384,27 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
                     {/* Eligibility & Features */}
                     <div className="space-y-2 pt-1">
                       <div className="flex flex-wrap gap-1.5">
-                        <span className="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-[10px] border border-slate-700">
+                        <span className="px-2 py-0.5 rounded bg-[#0A5C80]/20 text-slate-200 text-[10px] border border-[#0A5C80]/40">
                           Age: {prod.eligibility?.minAge || 21}-{prod.eligibility?.maxAge || 60} Yrs
                         </span>
-                        <span className="px-2 py-0.5 rounded bg-slate-800 text-emerald-300 text-[10px] border border-slate-700">
+                        <span className="px-2 py-0.5 rounded bg-[#E8F5D4] text-[#466E18] text-[10px] border border-[#6EA928]/30 font-bold">
                           Min Income: {formatCurrency(prod.eligibility?.minIncome || 25000)}/m
                         </span>
-                        <span className="px-2 py-0.5 rounded bg-slate-800 text-sky-300 text-[10px] border border-slate-700">
+                        <span className="px-2 py-0.5 rounded bg-[#0A5C80]/20 text-[#85C7DF] text-[10px] border border-[#0A5C80]/40 font-bold">
                           CIBIL: {prod.eligibility?.minCibilScore || '680+'}
                         </span>
                       </div>
 
                       {prod.features?.slice(0, 2).map((feat, i) => (
                         <div key={i} className="text-xs text-slate-300 flex items-center gap-2">
-                          <span className="text-emerald-400 font-bold">✓</span>
+                          <span className="text-[#6EA928] font-bold">✓</span>
                           <span className="truncate">{feat}</span>
                         </div>
                       ))}
                     </div>
 
                     {/* Processing Fee */}
-                    <div className="text-xs text-slate-400 pt-2 flex justify-between border-t border-slate-800/80">
+                    <div className="text-xs text-slate-400 pt-2 flex justify-between border-t border-[#0A5C80]/30">
                       <span>Processing Fee:</span>
                       <span className="text-slate-200 font-semibold">{prod.processingFee}</span>
                     </div>
@@ -414,7 +414,7 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
                   {/* =========================================================================
                       4. LOAN TYPE SELECTION & APPLY / ENQUIRE NOW ACTION BUTTONS
                      ========================================================================= */}
-                  <div className="pt-5 grid grid-cols-2 gap-2 border-t border-slate-800/60 mt-4">
+                  <div className="pt-5 grid grid-cols-2 gap-2 border-t border-[#0A5C80]/30 mt-4">
                     <button
                       type="button"
                       onClick={(e) => {
@@ -425,7 +425,7 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
                           setDetailModalProduct(prod);
                         }
                       }}
-                      className="py-3 px-3 rounded-xl font-bold text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all cursor-pointer text-center"
+                      className="py-3 px-3 rounded-xl font-bold text-xs bg-[#0A5C80]/20 hover:bg-[#0A5C80]/40 text-[#85C7DF] hover:text-white border border-[#0A5C80]/50 transition-all cursor-pointer text-center"
                     >
                       🔍 View Details & EMI
                     </button>
@@ -435,7 +435,7 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
                         e.stopPropagation();
                         handleSelectLoanType(prod);
                       }}
-                      className="py-3 px-3 rounded-xl font-bold text-xs bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white shadow-lg shadow-emerald-600/20 transition-all cursor-pointer text-center"
+                      className="py-3 px-3 rounded-xl font-bold text-xs bg-[#6EA928] hover:bg-[#5A8B1F] text-white shadow-lg shadow-[#6EA928]/25 transition-all cursor-pointer text-center"
                     >
                       🚀 Apply / Enquire Now
                     </button>
