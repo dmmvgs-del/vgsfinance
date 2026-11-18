@@ -202,12 +202,12 @@ export default function HeroSection({
     }
   ];
 
-  // Carousel Autoplay Timer (5 seconds)
+  // Carousel Autoplay Timer (3 seconds for faster, dynamic transitions)
   useEffect(() => {
     if (isPaused) return;
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % carouselSlides.length);
-    }, 5000);
+    }, 3000);
     return () => clearInterval(timer);
   }, [isPaused, carouselSlides.length]);
 
@@ -536,7 +536,7 @@ export default function HeroSection({
                     return (
                       <div
                         key={slide.id}
-                        className={`absolute inset-0 w-full h-full transition-all duration-700 ease-in-out ${isActive
+                        className={`absolute inset-0 w-full h-full transition-all duration-500 ease-in-out ${isActive
                             ? 'opacity-100 scale-100 z-10 pointer-events-auto'
                             : 'opacity-0 scale-95 z-0 pointer-events-none'
                           }`}
