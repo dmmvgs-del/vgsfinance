@@ -19,10 +19,10 @@ export default function FeaturedLoanProducts({ products, onApplyProduct, onViewD
             </p>
           </div>
           <a
-            href="#products"
+            href="#contact-enquiry"
             className="text-xs font-bold text-[#0A5C80] hover:text-[#6EA928] flex items-center gap-1.5 transition-colors"
           >
-            <span>View All Products in Supermarket</span>
+            <span>Apply or Enquire for Any Loan</span>
             <span>➔</span>
           </a>
         </div>

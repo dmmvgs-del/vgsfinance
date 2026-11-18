@@ -105,7 +105,7 @@ export default function HeroSection({
     if (onSelectCategory && categoryId && categoryId !== 'all') {
       onSelectCategory(categoryId);
     } else {
-      const el = document.getElementById('products');
+      const el = document.getElementById('contact-enquiry') || document.getElementById('featured-products');
       if (el) el.scrollIntoView({ behavior: 'smooth' });
       else if (onApplyClick) onApplyClick();
     }
@@ -722,16 +722,7 @@ export default function HeroSection({
             ))}
           </div>
 
-          {/* Bottom Supermarket Explorer Pill */}
-          <div className="text-center pt-4 sm:pt-6">
-            <a
-              href="#products"
-              className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-white hover:bg-[#0A5C80] text-[#0A5C80] hover:text-white border-2 border-[#0A5C80]/30 hover:border-[#0A5C80] text-xs sm:text-sm font-black transition-all shadow-sm"
-            >
-              <span>🛒 Explore All 16+ Categories in Loan Supermarket</span>
-              <span>➔</span>
-            </a>
-          </div>
+
 
         </div>
       </div>

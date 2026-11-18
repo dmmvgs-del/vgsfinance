@@ -7,14 +7,14 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
 
   const loanServices = [
-    { name: 'Personal Loan', href: '#products', icon: '👤' },
-    { name: 'Business Loan', href: '#products', icon: '🏢' },
-    { name: 'Professional Loan (Doctor/CA)', href: '#products', icon: '💼' },
-    { name: 'Home Loan', href: '#products', icon: '🏠' },
-    { name: 'Gold Loan', href: '#products', icon: '🪙' },
-    { name: 'Commercial Vehicle Loan', href: '#products', icon: '🚛' },
-    { name: 'Mortgage Loan (LAP)', href: '#products', icon: '🏛️' },
-    { name: 'Working Capital / Overdraft', href: '#products', icon: '📈' }
+    { name: 'Personal Loan', href: '#featured-products', icon: '👤' },
+    { name: 'Business Loan', href: '#featured-products', icon: '🏢' },
+    { name: 'Professional Loan (Doctor/CA)', href: '#featured-products', icon: '💼' },
+    { name: 'Home Loan', href: '#featured-products', icon: '🏠' },
+    { name: 'Gold Loan', href: '#featured-products', icon: '🪙' },
+    { name: 'Commercial Vehicle Loan', href: '#featured-products', icon: '🚛' },
+    { name: 'Mortgage Loan (LAP)', href: '#featured-products', icon: '🏛️' },
+    { name: 'Working Capital / Overdraft', href: '#featured-products', icon: '📈' }
   ];
 
   return (
@@ -130,7 +130,7 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
                 )}
               </div>
 
-              <a href="#products" className="hover:text-[#6EA928] transition-colors py-2">
+              <a href="#featured-products" className="hover:text-[#6EA928] transition-colors py-2">
                 Gallery / Products
               </a>
 
@@ -213,7 +213,7 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
           <div className="lg:hidden border-t border-[#0A5C80]/30 bg-[#061D28] px-4 py-4 space-y-3">
             <a href="#hero" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-sm text-[#6EA928] font-bold">Home</a>
             <a href="#about" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-sm text-slate-300 font-medium">About us</a>
-            <a href="#products" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-sm text-slate-300 font-medium">Services & Products</a>
+            <a href="#featured-products" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-sm text-slate-300 font-medium">Services & Products</a>
             <a href="#emi-calc" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-sm text-slate-300 font-medium">EMI Calculator</a>
             <a href="#contact-enquiry" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-sm text-slate-300 font-medium">Contact us</a>
             <div className="pt-2 flex flex-col gap-2">

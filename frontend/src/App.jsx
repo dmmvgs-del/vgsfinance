@@ -4,7 +4,6 @@ import HeroSection from './components/HeroSection';
 import LoanSearchSection from './components/LoanSearchSection';
 import FeaturedLoanProducts from './components/FeaturedLoanProducts';
 import WhyChooseUs from './components/WhyChooseUs';
-import LoanProducts from './components/LoanProducts';
 import EmiCalculator from './components/EmiCalculator';
 import EligibilityChecker from './components/EligibilityChecker';
 import DocumentsInfo from './components/DocumentsInfo';
@@ -111,7 +110,7 @@ function App() {
 
   const handleCategorySelect = (catId) => {
     setSelectedCategoryFilter(catId);
-    scrollToSection('products');
+    scrollToSection('featured-products');
   };
 
   const handleSearchFilter = (filter) => {
@@ -119,7 +118,7 @@ function App() {
     if (filter.selectedCat && filter.selectedCat !== 'ALL') {
       setSelectedCategoryFilter(filter.selectedCat);
     }
-    scrollToSection('products');
+    scrollToSection('featured-products');
   };
 
   const handleQuickApply = ({ categoryId, requestedAmount }) => {
@@ -169,16 +168,6 @@ function App() {
           onViewDetails={(prod) => setDetailedProduct(prod)}
         />
 
-        {/* 5. Complete Loan Supermarket & Comparison Engine */}
-        <LoanProducts
-          products={landingData.products || []}
-          categories={landingData.categories || []}
-          onSelectProduct={handleSelectProduct}
-          onViewDetails={(prod) => setDetailedProduct(prod)}
-          initialCategoryId={selectedCategoryFilter}
-          searchFilter={searchFilterData}
-        />
-
         {/* Interactive Financial Decision Tools */}
         <EmiCalculator
           onApplyWithCalculation={handleApplyWithCalculation}
@@ -197,7 +186,7 @@ function App() {
 
         {/* 6. Customer Contact & Loan Lifecycle Tracker */}
         <CustomerContactWorkflow
-          onSelectProductClick={() => scrollToSection('products')}
+          onSelectProductClick={() => scrollToSection('featured-products')}
         />
 
         {/* 6. Financial Partner Section */}
