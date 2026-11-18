@@ -284,17 +284,15 @@ export default function HeroSection({
     <section id="hero" className="relative font-sans select-none overflow-hidden">
 
       {/* =========================================================================
-          1. HERO CAROUSEL BANNER: COMPLETE BACKGROUND IMAGE WITH FOREGROUND OVERLAY
+          1. HERO CAROUSEL BANNER: ULTRA-PREMIUM CLEAN FULL-BLEED VISUAL SHOWCASE
          ========================================================================= */}
       <div
-        className="relative min-h-[540px] sm:min-h-[580px] lg:min-h-[620px] text-white flex flex-col justify-between overflow-hidden transition-all duration-700 select-none shadow-2xl"
+        className="relative w-full h-[460px] sm:h-[520px] lg:h-[580px] xl:h-[620px] overflow-hidden select-none bg-[#031824]"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
-        {/* -----------------------------------------------------------------------
-            FULL-BLEED BACKGROUND IMAGE STACK (Each slide fills 100% of the Hero BG)
-           ----------------------------------------------------------------------- */}
-        <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
+        {/* Full-Bleed Complete Background Image Stack (100% Unobscured Artwork) */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
           {carouselSlides.map((slide, idx) => {
             const isActive = activeSlide === idx;
             return (
@@ -306,240 +304,58 @@ export default function HeroSection({
                     : 'opacity-0 scale-105 z-0 pointer-events-none'
                 }`}
               >
-                {/* Complete Background Image with subtle Ken Burns slow pan/zoom */}
+                {/* Clean, Full-Resolution Image with Subtle Ken Burns Slow Pan/Zoom */}
                 <div className={`w-full h-full overflow-hidden ${isActive ? 'animate-ken-burns' : ''}`}>
                   <img
                     src={slide.image}
                     alt={slide.tag}
-                    className="w-full h-full object-cover object-center sm:object-right-center filter brightness-[0.85] contrast-[1.10]"
+                    className="w-full h-full object-cover object-center"
                     loading="eager"
                   />
                 </div>
 
-                {/* Left-to-Right Dark Gradient Overlay: Ensures crystal-clear text readability on the left while keeping the visual on the right 100% visible */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#031824]/95 via-[#031824]/80 sm:via-[#031824]/55 to-transparent"></div>
-
-                {/* Top and Bottom subtle dark vignettes for seamless integration */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#031824] via-transparent to-[#031824]/50"></div>
-                <div className="absolute inset-0 bg-[#041E2B]/10 mix-blend-multiply"></div>
+                {/* Ultra-subtle bottom vignette to blend softly into the bar below */}
+                <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#031824] to-transparent pointer-events-none"></div>
               </div>
             );
           })}
-
-          {/* Ambient Brand Color Glow Orbs */}
-          <div className="absolute -top-20 left-10 w-96 h-96 bg-[#0A5C80]/30 rounded-full blur-3xl pointer-events-none animate-pulse-glow"></div>
-          <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#6EA928]/20 rounded-full blur-3xl pointer-events-none"></div>
         </div>
 
-        {/* Top Architectural Skewed Accent Bar */}
-        <div className="absolute top-0 left-1/3 w-36 h-2 bg-[#0A5C80] transform -skew-x-12 hidden md:block z-20"></div>
+        {/* Minimal Glassmorphic Left Arrow */}
+        <button
+          onClick={handlePrevSlide}
+          aria-label="Previous Slide"
+          className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/35 hover:bg-[#6EA928] text-white flex items-center justify-center text-sm sm:text-base font-bold transition-all border border-white/20 backdrop-blur-md cursor-pointer opacity-80 hover:opacity-100 shadow-xl"
+        >
+          ❮
+        </button>
 
-        {/* Bottom Left Modern Geometric White Slant Cut (Matches reference image) */}
-        <div className="absolute -bottom-0.5 left-0 w-36 sm:w-64 h-8 sm:h-12 bg-white [clip-path:polygon(0_100%,100%_100%,0_0)] pointer-events-none z-20"></div>
+        {/* Minimal Glassmorphic Right Arrow */}
+        <button
+          onClick={handleNextSlide}
+          aria-label="Next Slide"
+          className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/35 hover:bg-[#6EA928] text-white flex items-center justify-center text-sm sm:text-base font-bold transition-all border border-white/20 backdrop-blur-md cursor-pointer opacity-80 hover:opacity-100 shadow-xl"
+        >
+          ❯
+        </button>
 
-        {/* -----------------------------------------------------------------------
-            FOREGROUND CONTENT CONTAINER: TEXT & INTERACTIVE CTA (Overlaid on BG)
-           ----------------------------------------------------------------------- */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-10 sm:pt-14 pb-8 relative z-10 flex-1 flex flex-col justify-between">
-
-          {/* Main Hero Content Grid: Left Text + Right Floating 3D Badges */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center flex-1">
-
-            {/* LEFT COLUMN: DYNAMIC CAROUSEL SLIDE CONTENT */}
-            <div className="lg:col-span-8 space-y-5 sm:space-y-6 animate-fade-in max-w-2xl">
-
-              {/* Category / Supermarket Live Badge */}
-              <div className="flex items-center gap-2">
-                <span className={`inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-black tracking-wide border uppercase backdrop-blur-md ${currentSlideData.badgeColor}`}>
-                  <span className="w-2 h-2 rounded-full bg-current animate-ping"></span>
-                  {currentSlideData.tag}
-                </span>
-                <span className="text-[11px] text-slate-300 hidden sm:inline">
-                  • {currentSlideData.badgeText}
-                </span>
-              </div>
-
-              {/* Main Headline with dynamic logo accents */}
-              <div className="space-y-1">
-                <h1 className="text-3xl sm:text-5xl lg:text-[56px] font-black tracking-tight leading-[1.15] text-white drop-shadow-lg">
-                  <span>{currentSlideData.headlinePrefix}</span>
-                  <span className={currentSlideData.accentColor}>
-                    {currentSlideData.headlineAccent}
-                  </span>
-                  <span>{currentSlideData.headlineSuffix}</span>
-                  <br />
-                  <span className="text-white drop-shadow-md">{currentSlideData.headlineSecondLine}</span>
-                </h1>
-
-                <p className="text-sm sm:text-base text-slate-200 font-medium max-w-xl pt-2 sm:pt-3 leading-relaxed drop-shadow">
-                  {currentSlideData.description}
-                </p>
-              </div>
-
-              {/* Action Buttons (Matches Pill Button & Circular Badge in Reference Image) */}
-              <div className="flex flex-wrap items-center gap-3.5 pt-1">
-                {/* Primary Action Button */}
-                <button
-                  onClick={currentSlideData.primaryAction}
-                  className={`group px-7 py-3.5 rounded-full text-sm sm:text-base font-black transition-all transform hover:-translate-y-0.5 cursor-pointer flex items-center gap-2.5 shadow-xl ${currentSlideData.primaryBg}`}
-                >
-                  <span>{currentSlideData.primaryCta}</span>
-                  {currentSlideData.primaryHasCircleBadge ? (
-                    <>
-                      <span className="text-base group-hover:translate-x-1 transition-transform">➔</span>
-                      <span className="w-6 h-6 rounded-full bg-white/20 border border-white/40 flex items-center justify-center text-xs ml-1">
-                        🌐
-                      </span>
-                    </>
-                  ) : (
-                    <span className="group-hover:translate-x-1 transition-transform">➔</span>
-                  )}
-                </button>
-
-                {/* Secondary Action Button */}
-                <button
-                  onClick={currentSlideData.secondaryAction}
-                  className={`px-6 sm:px-7 py-3.5 rounded-full text-sm sm:text-base font-bold text-white transition-all transform hover:-translate-y-0.5 cursor-pointer flex items-center gap-2 shadow-md ${
-                    currentSlideData.secondaryBg ||
-                    'bg-[#041E2B]/80 hover:bg-[#0A5C80]/40 border border-[#0A5C80]/60 backdrop-blur-md'
-                  }`}
-                >
-                  <span className="text-base text-[#6EA928]">{currentSlideData.secondaryIcon}</span>
-                  <span>{currentSlideData.secondaryCta}</span>
-                </button>
-              </div>
-
-              {/* Trust Indicators Pill Bar */}
-              <div className="flex flex-wrap items-center gap-3 pt-2 text-xs text-slate-300">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#041E2B]/80 border border-white/15 backdrop-blur-md">
-                  <span className="text-[#6EA928]">✓</span> 15+ Banking Partners
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#041E2B]/80 border border-white/15 backdrop-blur-md">
-                  <span className="text-[#94CF45]">✓</span> 100% Paperless Process
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#041E2B]/80 border border-white/15 backdrop-blur-md">
-                  <span className="text-[#85C7DF]">✓</span> Lowest Interest Rates
-                </span>
-              </div>
-
-            </div>
-
-            {/* RIGHT COLUMN: FLOATING 3D GLASS BADGES OVER BACKGROUND IMAGE */}
-            <div className="lg:col-span-4 relative flex flex-col items-center lg:items-end justify-center space-y-4">
-
-              {/* Floating Rupee Hologram Token - Bouncing Glow */}
-              <div className="animate-bounce">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#6EA928] to-[#94CF45] border-2 border-white/90 text-[#031824] font-black text-2xl flex items-center justify-center shadow-2xl shadow-[#6EA928]/50">
-                  ₹
-                </div>
-              </div>
-
-              {/* Floating Glassmorphic Badge 1 - Slow Float Animation */}
-              <div className="animate-float-slow w-full max-w-xs">
-                <div className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#041E2B]/85 backdrop-blur-xl border border-[#6EA928]/60 shadow-2xl shadow-[#041E2B]/60 text-white">
-                  <span className="text-2xl">{currentSlideData.floatingBadge1?.icon || '🏛️'}</span>
-                  <div className="leading-tight">
-                    <p className="text-xs font-black text-[#94CF45] tracking-wide">
-                      {currentSlideData.floatingBadge1?.title || '15+ Banking Partners'}
-                    </p>
-                    <p className="text-[10px] text-slate-300 font-medium">
-                      {currentSlideData.floatingBadge1?.subtitle || 'SBI, HDFC, ICICI, Axis'}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating Glassmorphic Badge 2 - Reverse Float Animation */}
-              <div className="animate-float-reverse w-full max-w-xs">
-                <div className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#041E2B]/85 backdrop-blur-xl border border-[#0A5C80]/70 shadow-2xl shadow-[#041E2B]/60 text-white">
-                  <span className="text-2xl">{currentSlideData.floatingBadge2?.icon || '⚡'}</span>
-                  <div className="leading-tight">
-                    <p className="text-xs font-black text-[#85C7DF] tracking-wide">
-                      {currentSlideData.floatingBadge2?.title || 'Fast Digital Approval'}
-                    </p>
-                    <p className="text-[10px] text-slate-300 font-medium">
-                      {currentSlideData.floatingBadge2?.subtitle || '100% Paperless KYC'}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
-          {/* -----------------------------------------------------------------------
-              BOTTOM BAR: CAROUSEL CONTROLS & 5-THUMBNAIL SWITCHER
-             ----------------------------------------------------------------------- */}
-          <div className="pt-6 sm:pt-8 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 mt-4">
-            
-            {/* Left: Navigation Arrows & Slide Dots */}
-            <div className="flex items-center gap-3">
-              <button
-                onClick={handlePrevSlide}
-                aria-label="Previous Slide"
-                className="w-9 h-9 rounded-full bg-white/15 hover:bg-[#6EA928] hover:text-white text-white flex items-center justify-center text-sm font-bold transition-colors cursor-pointer border border-white/20 backdrop-blur-md"
-              >
-                ❮
-              </button>
-              <button
-                onClick={handleNextSlide}
-                aria-label="Next Slide"
-                className="w-9 h-9 rounded-full bg-white/15 hover:bg-[#6EA928] hover:text-white text-white flex items-center justify-center text-sm font-bold transition-colors cursor-pointer border border-white/20 backdrop-blur-md"
-              >
-                ❯
-              </button>
-
-              <div className="flex items-center gap-1.5 ml-2">
-                {carouselSlides.map((s, idx) => (
-                  <button
-                    key={s.id}
-                    onClick={() => setActiveSlide(idx)}
-                    aria-label={`Slide ${idx + 1}`}
-                    className={`h-2 rounded-full transition-all cursor-pointer ${
-                      activeSlide === idx
-                        ? 'w-7 bg-[#6EA928]'
-                        : 'w-2 bg-white/40 hover:bg-white/70'
-                    }`}
-                  />
-                ))}
-              </div>
-
-              <span className="text-xs text-slate-300 font-mono ml-2">
-                0{activeSlide + 1} / 0{carouselSlides.length}
-              </span>
-            </div>
-
-            {/* Right: 5 Interactive Thumbnail Switchers */}
-            <div className="flex items-center gap-2">
-              <span className="text-[11px] text-slate-300 font-semibold hidden md:inline mr-1">
-                Loan Showcase:
-              </span>
-              {carouselSlides.map((slide, idx) => (
-                <button
-                  key={slide.id}
-                  onClick={() => setActiveSlide(idx)}
-                  className={`group/thumb relative rounded-xl overflow-hidden border transition-all duration-300 cursor-pointer shadow-lg ${
-                    activeSlide === idx
-                      ? 'border-[#6EA928] ring-2 ring-[#6EA928]/60 scale-105'
-                      : 'border-white/30 opacity-60 hover:opacity-100 hover:border-white/60'
-                  }`}
-                  title={slide.tag}
-                >
-                  <img
-                    src={slide.image}
-                    alt={slide.tag}
-                    className="w-12 h-8 sm:w-14 sm:h-9 object-cover"
-                  />
-                  {activeSlide === idx && (
-                    <div className="absolute inset-0 bg-[#6EA928]/25 pointer-events-none"></div>
-                  )}
-                </button>
-              ))}
-            </div>
-
-          </div>
-
+        {/* Minimal Glassmorphic Slide Indicator Pills (Bottom Center) */}
+        <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 z-20 flex items-center gap-2 px-4 py-2 rounded-full bg-black/40 backdrop-blur-md border border-white/20 shadow-xl">
+          {carouselSlides.map((s, idx) => (
+            <button
+              key={s.id}
+              onClick={() => setActiveSlide(idx)}
+              aria-label={`Slide ${idx + 1}`}
+              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                activeSlide === idx
+                  ? 'w-7 bg-[#6EA928]'
+                  : 'w-2 bg-white/50 hover:bg-white/80'
+              }`}
+            />
+          ))}
+          <span className="text-[11px] text-white/80 font-mono ml-2 pl-2 border-l border-white/20">
+            0{activeSlide + 1} / 0{carouselSlides.length}
+          </span>
         </div>
 
       </div>
