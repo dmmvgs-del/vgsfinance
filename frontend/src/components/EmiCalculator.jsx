@@ -315,14 +315,6 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
               Apply with this Calculated EMI ({formatCurrency(calculation.monthlyEmi)}) ➔
             </button>
 
-            {/* Statutory Indicative Calculation Notice */}
-            <div className="p-3.5 rounded-2xl bg-amber-50 border border-amber-300 text-amber-900 text-xs flex items-start gap-2.5">
-              <span className="text-sm mt-0.5">⚠️</span>
-              <p className="leading-relaxed text-[11px] sm:text-xs">
-                <strong className="text-amber-950">Important:</strong> EMI calculations and loan information displayed on the website are indicative. Final interest rates, eligibility, approval, sanction, tenure, processing fees and loan terms are subject to the respective lender / financial institution.
-              </p>
-            </div>
-
           </div>
 
         </div>
