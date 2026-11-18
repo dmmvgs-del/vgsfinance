@@ -711,54 +711,63 @@ export default function HeroSection({
 
       {/* =========================================================================
           2. FOUR METRICS PILL BAR (Auto-increments on scrolling up & down)
+             Fully responsive across all mobile (2x2 cross-grid), tablet & desktop (4 cols)
          ========================================================================= */}
-      <div ref={metricsBarRef} className="bg-white px-4 sm:px-6 lg:px-8 pb-8 pt-2">
+      <div ref={metricsBarRef} className="bg-white px-3 sm:px-6 lg:px-8 pb-6 sm:pb-8 pt-2">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-[#041E2B] border border-[#0A5C80]/35 rounded-2xl shadow-xl p-3 sm:p-4 backdrop-blur-md">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 divide-y md:divide-y-0 md:divide-x divide-[#0A5C80]/30 text-center">
+          <div className="bg-[#041E2B] border border-[#0A5C80]/40 rounded-2xl sm:rounded-3xl shadow-xl p-2 sm:p-3 backdrop-blur-md">
+            <div className="grid grid-cols-2 lg:grid-cols-4">
 
               {/* Metric 1 */}
-              <div className="flex items-center justify-center gap-2.5 sm:gap-3 py-1 px-2">
-                <span className="text-xl sm:text-2xl text-[#6EA928]">🏛️</span>
-                <span className="text-xs sm:text-sm font-black text-white tracking-wide flex items-center">
-                  <span className="font-mono text-sm sm:text-base font-black text-[#6EA928] mr-1 min-w-[28px] inline-block text-right">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2.5 py-3 px-2 border-r border-[#0A5C80]/30 text-center sm:text-left">
+                <span className="text-xl sm:text-2xl text-[#6EA928] shrink-0">🏛️</span>
+                <div className="flex flex-col sm:flex-row sm:items-baseline items-center gap-0.5 sm:gap-1.5">
+                  <span className="font-mono text-base sm:text-xl font-black text-[#6EA928] leading-none">
                     {metricCounts.banks}+
                   </span>
-                  <span>Banking Partners</span>
-                </span>
+                  <span className="text-[11px] sm:text-xs lg:text-sm font-bold text-white whitespace-nowrap leading-tight">
+                    Banking Partners
+                  </span>
+                </div>
               </div>
 
               {/* Metric 2 */}
-              <div className="flex items-center justify-center gap-2.5 sm:gap-3 py-1 px-2">
-                <span className="text-xl sm:text-2xl text-[#6EA928]">📚</span>
-                <span className="text-xs sm:text-sm font-black text-white tracking-wide flex items-center">
-                  <span className="font-mono text-sm sm:text-base font-black text-[#6EA928] mr-1 min-w-[28px] inline-block text-right">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2.5 py-3 px-2 text-center sm:text-left lg:border-r border-[#0A5C80]/30">
+                <span className="text-xl sm:text-2xl text-[#6EA928] shrink-0">📚</span>
+                <div className="flex flex-col sm:flex-row sm:items-baseline items-center gap-0.5 sm:gap-1.5">
+                  <span className="font-mono text-base sm:text-xl font-black text-[#6EA928] leading-none">
                     {metricCounts.categories}+
                   </span>
-                  <span>Loan Categories</span>
-                </span>
+                  <span className="text-[11px] sm:text-xs lg:text-sm font-bold text-white whitespace-nowrap leading-tight">
+                    Loan Categories
+                  </span>
+                </div>
               </div>
 
               {/* Metric 3 */}
-              <div className="flex items-center justify-center gap-2.5 sm:gap-3 py-1 px-2 pt-2 md:pt-1">
-                <span className="text-xl sm:text-2xl text-[#6EA928]">🧑‍💼</span>
-                <span className="text-xs sm:text-sm font-black text-white tracking-wide flex items-center">
-                  <span className="font-mono text-sm sm:text-base font-black text-[#6EA928] mr-1 min-w-[38px] inline-block text-right">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2.5 py-3 px-2 border-t lg:border-t-0 border-r border-[#0A5C80]/30 text-center sm:text-left">
+                <span className="text-xl sm:text-2xl text-[#6EA928] shrink-0">🧑‍💼</span>
+                <div className="flex flex-col sm:flex-row sm:items-baseline items-center gap-0.5 sm:gap-1.5">
+                  <span className="font-mono text-base sm:text-xl font-black text-[#6EA928] leading-none">
                     {metricCounts.experts}%
                   </span>
-                  <span>Expert Assistance</span>
-                </span>
+                  <span className="text-[11px] sm:text-xs lg:text-sm font-bold text-white whitespace-nowrap leading-tight">
+                    Expert Assistance
+                  </span>
+                </div>
               </div>
 
               {/* Metric 4 */}
-              <div className="flex items-center justify-center gap-2.5 sm:gap-3 py-1 px-2 pt-2 md:pt-1">
-                <span className="text-xl sm:text-2xl text-[#6EA928]">⚡</span>
-                <span className="text-xs sm:text-sm font-black text-white tracking-wide flex items-center">
-                  <span className="font-mono text-sm sm:text-base font-black text-[#6EA928] mr-1 min-w-[34px] inline-block text-right">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2.5 py-3 px-2 border-t lg:border-t-0 text-center sm:text-left">
+                <span className="text-xl sm:text-2xl text-[#6EA928] shrink-0">⚡</span>
+                <div className="flex flex-col sm:flex-row sm:items-baseline items-center gap-0.5 sm:gap-1.5">
+                  <span className="font-mono text-base sm:text-xl font-black text-[#6EA928] leading-none">
                     {metricCounts.quickHours}-Hr
                   </span>
-                  <span>Quick In-Principle Decisions</span>
-                </span>
+                  <span className="text-[11px] sm:text-xs lg:text-sm font-bold text-white whitespace-nowrap leading-tight">
+                    Quick Decisions
+                  </span>
+                </div>
               </div>
 
             </div>
