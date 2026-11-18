@@ -196,6 +196,11 @@ export default function QuickEnquirySection({ onLeadSubmitted, prefillData, cate
                       onChange={(e) => setFormData({ ...formData, productName: e.target.value })}
                       className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-3 text-xs text-slate-900 font-semibold focus:outline-none focus:border-[#6EA928] focus:bg-white cursor-pointer"
                     >
+                      <option value="Medical Loan">Medical Loan (Healthcare & Emergency)</option>
+                      <option value="Emergency Medical Treatment Loan">Emergency Medical Treatment Loan (Surgeries / ICU)</option>
+                      <option value="Health Insurance & Hospitalization Loan">Health Insurance & Hospitalization Loan</option>
+                      <option value="Doctor & Clinic Practice Loan">Doctor & Clinic Practice Loan (Doctors/Dentists)</option>
+                      <option value="Medical Equipment & Diagnostic Loan">Medical Equipment & Diagnostic Loan</option>
                       <option value="Personal Loan">Personal Loan (Instant Cash)</option>
                       <option value="Business Loan">Business Loan (Working Capital)</option>
                       <option value="Home Loan">Home Loan (Housing Purchase & Construction)</option>
@@ -212,6 +217,17 @@ export default function QuickEnquirySection({ onLeadSubmitted, prefillData, cate
                       <option value="Self-Employed Professional Loan">Self-Employed Professional Loan</option>
                       <option value="Construction Equipment Loan">Construction Equipment Loan</option>
                       <option value="Other Financial Products">Other Financial Products (Debt Consolidation / BT)</option>
+                      {/* Fallback for custom prefilled sub-options */}
+                      {![
+                        'Medical Loan', 'Emergency Medical Treatment Loan', 'Health Insurance & Hospitalization Loan',
+                        'Doctor & Clinic Practice Loan', 'Medical Equipment & Diagnostic Loan',
+                        'Personal Loan', 'Business Loan', 'Home Loan', 'Car Loan', 'Gold Loan', 'Education Loan',
+                        'Mortgage Loan', 'Loan Against Property', 'Professional Loan', 'Doctor Loan', 'Equipment Loan',
+                        'Commercial Vehicle Loan', 'Working Capital Loan', 'Self-Employed Professional Loan',
+                        'Construction Equipment Loan', 'Other Financial Products'
+                      ].includes(formData.productName) && (
+                        <option value={formData.productName}>{formData.productName}</option>
+                      )}
                     </select>
                   </div>
 

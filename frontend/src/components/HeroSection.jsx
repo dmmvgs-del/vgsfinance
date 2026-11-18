@@ -18,9 +18,11 @@ export default function HeroSection({
   onCalcClick,
   onSelectCategory,
   onSelectProduct,
-  onGoToServices
+  onGoToServices,
+  onQuickApply
 }) {
   const [partnerModalOpen, setPartnerModalOpen] = useState(false);
+  const [activeCategoryModal, setActiveCategoryModal] = useState(null);
   const [partnerFormData, setPartnerFormData] = useState({
     name: '',
     phone: '',
@@ -168,11 +170,12 @@ export default function HeroSection({
       primaryCta: 'Apply for Business Loan ➔'
     },
     {
-      id: 'health',
-      name: 'Health Related Loan',
+      id: 'medical',
+      name: 'Medical Loan',
       icon: '🏥',
       image: loanHealth,
-      catId: 'cat-professional',
+      catId: 'cat-doctor',
+      modalKey: 'medical',
       tag: 'Care When It Matters',
       preAccent: 'Protect With ',
       highlightWord1: 'Emergency',
@@ -180,10 +183,10 @@ export default function HeroSection({
       highlightWord2: 'Medical Loans',
       highlightColor2: 'text-[#6EA928]',
       description:
-        'Never compromise on healthcare, emergency medical procedures, or clinic equipment financing. Benefit from fast 2-hour digital clearance, preferential APR, and flexible repayment EMIs.',
+        'Never compromise on healthcare, emergency medical procedures, or health insurance coverage. Benefit from fast 2-hour digital clearance, preferential APR, and flexible repayment EMIs.',
       rate: 'Special Medical APR',
       featureTag: 'Instant 2-Hr Clearance',
-      primaryCta: 'Apply for Medical Loan ➔'
+      primaryCta: 'Explore Medical Loan Options ➔'
     },
     {
       id: 'personal',
@@ -232,13 +235,497 @@ export default function HeroSection({
     }, 2500);
   };
 
-  // 6 Core loan cards matching reference image
-  // 6 Core loan cards matching centered reference design (media_1794984519245_3f603f31.png)
+  // Related Loan Options Data for Interactive Click Modal
+  const relatedOptionsData = {
+    medical: {
+      badge: '🏥 Specialized Healthcare & Medical Financing',
+      title: 'Medical & Healthcare Loan Solutions',
+      description: 'Choose your specific medical requirement to explore tailored financing with 2-hour hospital clearance:',
+      catId: 'cat-doctor',
+      options: [
+        {
+          id: 'opt-emergency',
+          title: 'Emergency Medical Treatment Loan',
+          icon: '🚑',
+          tag: 'FAST 2-HR CLEARANCE',
+          description: 'Immediate funds for urgent hospital admissions, surgeries, critical care, and medical procedures.',
+          rate: 'From 9.50% p.a.',
+          limit: 'Up to ₹ 15 Lakhs',
+          tenure: '12 - 48 Months',
+          defaultAmount: 300000,
+          benefits: ['Direct Hospital NEFT Disbursal', 'Minimal Paperwork', 'Zero Prepayment Penalty']
+        },
+        {
+          id: 'opt-insurance',
+          title: 'Health Insurance & Hospitalization Loan',
+          icon: '🛡️',
+          tag: 'COVERS DEDUCTIBLES',
+          description: 'Financing for insurance co-pays, hospital room upgrades, non-covered therapies, and post-discharge treatments.',
+          rate: 'From 9.00% p.a.',
+          limit: 'Up to ₹ 10 Lakhs',
+          tenure: '12 - 36 Months',
+          defaultAmount: 200000,
+          benefits: ['No Collateral Required', 'Cashless Hospital Assistance', 'Low Monthly EMIs']
+        },
+        {
+          id: 'opt-doctor',
+          title: 'Doctor & Clinic Practice Loan',
+          icon: '🩺',
+          tag: 'FOR DOCTORS & DENTISTS',
+          description: 'High-ticket unsecured capital for MBBS, MD, MS, BDS practitioners to establish, expand, or renovate private clinics.',
+          rate: 'From 9.99% p.a.',
+          limit: 'Up to ₹ 75 Lakhs',
+          tenure: '12 - 84 Months',
+          defaultAmount: 1500000,
+          benefits: ['Exclusive Practitioner Rates', 'Doorstep Document Pickup', 'Fast-Track Sanction']
+        },
+        {
+          id: 'opt-equipment',
+          title: 'Medical Equipment & Diagnostic Loan',
+          icon: '🔬',
+          tag: 'MACHINERY & LAB ASSETS',
+          description: 'Asset financing for ultrasound units, digital X-Ray machines, dental chairs, pathology lab tools, and ICU monitors.',
+          rate: 'From 10.25% p.a.',
+          limit: 'Up to ₹ 2 Crores',
+          tenure: '24 - 84 Months',
+          defaultAmount: 2500000,
+          benefits: ['Up to 85% Machine Invoice Value', 'Flexible Balloon EMIs', 'OEM Dealer Partnerships']
+        }
+      ]
+    },
+    home: {
+      badge: '🏠 Housing & Real Estate Finance',
+      title: 'Home & Housing Loan Solutions',
+      description: 'Explore tailored home financing solutions across 15+ partner banks with subsidized rates:',
+      catId: 'cat-home',
+      options: [
+        {
+          id: 'opt-home-purchase',
+          title: 'New Flat & Villa Purchase Loan',
+          icon: '🏡',
+          tag: 'READY & UNDER-CONSTRUCTION',
+          description: 'Funding for ready-to-move apartments, independent houses, gated communities, and builder flats.',
+          rate: 'From 8.40% p.a.',
+          limit: 'Up to ₹ 1.5 Crores',
+          tenure: 'Up to 30 Years',
+          defaultAmount: 3500000,
+          benefits: ['Tax Benefits under 80C & 24b', 'Subsidized PMAY Schemes', 'Zero Foreclosure Fee']
+        },
+        {
+          id: 'opt-plot-construction',
+          title: 'Plot Purchase & Construction Loan',
+          icon: '🏗️',
+          tag: 'COMPOSITE HOUSING',
+          description: 'Composite loan to buy approved residential plots and construct your custom architect-designed home.',
+          rate: 'From 8.65% p.a.',
+          limit: 'Up to ₹ 1 Crore',
+          tenure: 'Up to 25 Years',
+          defaultAmount: 2500000,
+          benefits: ['Stage-Wise Disbursals', 'Approved Municipal Layouts', 'Extended Construction Window']
+        },
+        {
+          id: 'opt-home-renovation',
+          title: 'Home Renovation & Extension Loan',
+          icon: '🔨',
+          tag: 'INTERIORS & UPGRADES',
+          description: 'Funds for interior design, floor extension, modular kitchens, solar roof installation, and home repairs.',
+          rate: 'From 8.75% p.a.',
+          limit: 'Up to ₹ 35 Lakhs',
+          tenure: 'Up to 15 Years',
+          defaultAmount: 800000,
+          benefits: ['Quick Paperless Verification', 'Minimal Margin Money', 'Immediate Sanctions']
+        },
+        {
+          id: 'opt-home-bt',
+          title: 'Home Loan Balance Transfer + Top-Up',
+          icon: '🔄',
+          tag: 'LOWER YOUR EXISTING EMI',
+          description: 'Switch your high-interest existing home loan from other banks and unlock additional low-cost top-up cash.',
+          rate: 'From 8.35% p.a.',
+          limit: 'Up to ₹ 2 Crores',
+          tenure: 'Up to 30 Years',
+          defaultAmount: 3000000,
+          benefits: ['Save ₹ Thousands on Monthly EMI', 'Additional Cash Top-Up', 'Zero Switching Hassle']
+        }
+      ]
+    },
+    personal: {
+      badge: '👤 Instant Retail & Lifestyle Credit',
+      title: 'Personal Loan Solutions',
+      description: 'Quick digital credit lines for all your planned milestones and unexpected expenses:',
+      catId: 'cat-personal',
+      options: [
+        {
+          id: 'opt-instant-personal',
+          title: 'Instant Cash Personal Loan',
+          icon: '⚡',
+          tag: 'SAME-DAY DISBURSAL',
+          description: 'Instant paperless funds transferred directly into your salary account with zero branch visits.',
+          rate: 'From 10.50% p.a.',
+          limit: 'Up to ₹ 15 Lakhs',
+          tenure: '12 - 60 Months',
+          defaultAmount: 300000,
+          benefits: ['100% Digital KYC', 'No Collateral Needed', 'Direct Bank NEFT in 2 Hours']
+        },
+        {
+          id: 'opt-wedding',
+          title: 'Wedding & Family Celebration Loan',
+          icon: '💍',
+          tag: 'SPECIAL MILESTONES',
+          description: 'Stress-free funding for wedding venues, jewelry, catering, photography, and honeymoon travel.',
+          rate: 'From 10.75% p.a.',
+          limit: 'Up to ₹ 25 Lakhs',
+          tenure: '12 - 60 Months',
+          defaultAmount: 500000,
+          benefits: ['High Sanction Quantum', 'Flexible EMI Choices', 'Quick Documentation']
+        },
+        {
+          id: 'opt-travel',
+          title: 'Holiday & Vacation Travel Loan',
+          icon: '✈️',
+          tag: 'EXPLORE THE WORLD',
+          description: 'Finance your dream domestic or international holiday package, flights, and foreign exchange.',
+          rate: 'From 11.00% p.a.',
+          limit: 'Up to ₹ 10 Lakhs',
+          tenure: '12 - 36 Months',
+          defaultAmount: 250000,
+          benefits: ['Instant Approval', 'Budget-Friendly EMIs', 'Direct Travel Agent Disbursal']
+        },
+        {
+          id: 'opt-debt-consolidation',
+          title: 'Debt Consolidation & Credit Card Balance Loan',
+          icon: '💳',
+          tag: 'SAVE HIGH INTEREST',
+          description: 'Combine multiple credit card dues and high-interest personal debts into one single affordable monthly EMI.',
+          rate: 'From 10.25% p.a.',
+          limit: 'Up to ₹ 20 Lakhs',
+          tenure: '12 - 60 Months',
+          defaultAmount: 400000,
+          benefits: ['Improve CIBIL Score', 'Single Monthly Payment', 'Halve Your Interest Expense']
+        }
+      ]
+    },
+    business: {
+      badge: '🏢 Enterprise Capital & Trade Growth',
+      title: 'Business & Working Capital Solutions',
+      description: 'Power your retail, wholesale, manufacturing, or service business to next-level growth:',
+      catId: 'cat-business',
+      options: [
+        {
+          id: 'opt-working-capital',
+          title: 'Unsecured Business Working Capital',
+          icon: '📈',
+          tag: 'COLLATERAL-FREE UP TO ₹50L',
+          description: 'Instant trade finance for inventory restocking, supplier payments, and day-to-day liquidity.',
+          rate: 'From 11.50% p.a.',
+          limit: 'Up to ₹ 50 Lakhs',
+          tenure: '12 - 60 Months',
+          defaultAmount: 1000000,
+          benefits: ['Zero Asset Hypothecation', 'GST-Based Fast Appraisal', '48-Hour Disbursal']
+        },
+        {
+          id: 'opt-cc-od',
+          title: 'Revolving Cash Credit (CC) & Overdraft (OD)',
+          icon: '🔄',
+          tag: 'PAY ONLY ON UTILIZATION',
+          description: 'Flexible revolving credit line against inventory and receivables with annual renewal facility.',
+          rate: 'From 11.25% p.a.',
+          limit: 'Up to ₹ 1 Crore',
+          tenure: 'Annual Renewal',
+          defaultAmount: 2500000,
+          benefits: ['Interest on Daily Balance Only', 'Sub-Limits for BG & LC', 'Smooth Cashflow Support']
+        },
+        {
+          id: 'opt-msme-term',
+          title: 'MSME Machinery & Enterprise Expansion Loan',
+          icon: '🏭',
+          tag: 'SCALE UP MANUFACTURING',
+          description: 'Term loans to purchase factory equipment, expand warehouse facilities, or launch new product lines.',
+          rate: 'From 11.00% p.a.',
+          limit: 'Up to ₹ 2 Crores',
+          tenure: '24 - 84 Months',
+          defaultAmount: 2000000,
+          benefits: ['Long Repayment Horizon', 'Govt Subsidized CGTMSE Coverage', 'Custom Repayment Plans']
+        },
+        {
+          id: 'opt-gst-trade',
+          title: 'GST Invoice Trade Financing',
+          icon: '🧾',
+          tag: 'RECEIVABLES DISCOUNTING',
+          description: 'Unlock working capital trapped in unpaid buyer invoices with immediate invoice discounting lines.',
+          rate: 'From 11.75% p.a.',
+          limit: 'Up to ₹ 75 Lakhs',
+          tenure: '90 - 180 Days',
+          defaultAmount: 1500000,
+          benefits: ['Early Cash Against Invoices', 'No Real Estate Collateral', 'Direct Escrow Settlement']
+        }
+      ]
+    },
+    education: {
+      badge: '🎓 Global Higher Education Financing',
+      title: 'Education & Study Abroad Solutions',
+      description: '100% course funding for university admissions across India and 30+ countries:',
+      catId: 'cat-education',
+      options: [
+        {
+          id: 'opt-study-abroad',
+          title: 'Study Abroad Global University Loan',
+          icon: '🌍',
+          tag: 'USA, UK, CANADA, AUSTRALIA',
+          description: 'Comprehensive funding for overseas Master’s, STEM, and Bachelor’s degree programs.',
+          rate: 'From 9.25% p.a.',
+          limit: 'Up to ₹ 1 Crore',
+          tenure: 'Up to 15 Years',
+          defaultAmount: 2500000,
+          benefits: ['100% Tuition, Travel & Living Expenses', 'Moratorium: Course + 1 Year', 'Sec 80E Tax Deduction']
+        },
+        {
+          id: 'opt-domestic-degree',
+          title: 'Premier Indian University Degree Loan',
+          icon: '🏛️',
+          tag: 'IIT, IIM, BITS & MEDICAL COLLEGES',
+          description: 'Subsidized education financing for premier Indian institutions with quick paperless approvals.',
+          rate: 'From 8.95% p.a.',
+          limit: 'Up to ₹ 40 Lakhs',
+          tenure: 'Up to 12 Years',
+          defaultAmount: 1200000,
+          benefits: ['Instant Sanction on Admission Letter', 'Concessional Female Student Rates', 'No Processing Fee']
+        },
+        {
+          id: 'opt-executive-mba',
+          title: 'Executive MBA & Upskilling Program Loan',
+          icon: '💼',
+          tag: 'WORKING PROFESSIONALS',
+          description: 'Tailored education funding for working professionals pursuing Executive MBA, Data Science, or Tech Certifications.',
+          rate: 'From 9.75% p.a.',
+          limit: 'Up to ₹ 25 Lakhs',
+          tenure: '12 - 60 Months',
+          defaultAmount: 800000,
+          benefits: ['Self-Financed by Salary', 'Flexible Part-Time Study EMIs', 'Zero Upfront Collateral']
+        },
+        {
+          id: 'opt-aviation-special',
+          title: 'Aviation, Pilot & Commercial Training Loan',
+          icon: '✈️',
+          tag: 'SPECIALIZED VOCATIONAL',
+          description: 'High-ticket funding for Commercial Pilot License (CPL), merchant navy, and specialized vocational academies.',
+          rate: 'From 10.50% p.a.',
+          limit: 'Up to ₹ 60 Lakhs',
+          tenure: 'Up to 10 Years',
+          defaultAmount: 3000000,
+          benefits: ['Flying Hours Cost Coverage', 'Extended Moratorium', 'Step-Up Repayment Options']
+        }
+      ]
+    },
+    property: {
+      badge: '🏢 High-Value Mortgage & Asset Liquidity',
+      title: 'Loan Against Property & Mortgage Solutions',
+      description: 'Unlock maximum equity from your residential, commercial, or industrial properties:',
+      catId: 'cat-mortgage',
+      options: [
+        {
+          id: 'opt-res-lap',
+          title: 'Residential Property Mortgage Loan (LAP)',
+          icon: '🏠',
+          tag: 'MAX VALUE UP TO 70% LTV',
+          description: 'Pledge self-occupied or rented residential house/flat for personal or business capital needs.',
+          rate: 'From 9.15% p.a.',
+          limit: 'Up to ₹ 3 Crores',
+          tenure: 'Up to 15 Years',
+          defaultAmount: 2500000,
+          benefits: ['Substantially Lower Interest than Personal Loans', 'Extended 15-Year Repayment', 'Retain Property Ownership']
+        },
+        {
+          id: 'opt-comm-lap',
+          title: 'Commercial Property & Office Space Mortgage',
+          icon: '🏬',
+          tag: 'RETAIL & CORPORATE SPACES',
+          description: 'High-ticket financing against owned commercial shops, corporate offices, clinics, and showrooms.',
+          rate: 'From 9.40% p.a.',
+          limit: 'Up to ₹ 5 Crores',
+          tenure: 'Up to 15 Years',
+          defaultAmount: 5000000,
+          benefits: ['High Sanction Caps', 'Balloon EMI Options', 'Overdraft Facility Linked']
+        },
+        {
+          id: 'opt-industrial-lap',
+          title: 'Industrial Plot, Factory & Warehouse LAP',
+          icon: '🏭',
+          tag: 'MANUFACTURING & LOGISTICS',
+          description: 'Unlock substantial equity from industrial plots, manufacturing godowns, and warehouse premises.',
+          rate: 'From 9.75% p.a.',
+          limit: 'Up to ₹ 10 Crores',
+          tenure: 'Up to 12 Years',
+          defaultAmount: 7500000,
+          benefits: ['Specialized Industrial Valuation', 'Fast Legal Clearance', 'Working Capital Top-Up']
+        },
+        {
+          id: 'opt-lease-rental',
+          title: 'Lease Rental Discounting (LRD)',
+          icon: '📑',
+          tag: 'TERM LOAN AGAINST RENTALS',
+          description: 'Monetize future rental cash flows from corporate tenants in your commercial property into instant lump-sum capital.',
+          rate: 'From 8.95% p.a.',
+          limit: 'Up to ₹ 15 Crores',
+          tenure: 'Up to Lease Duration',
+          defaultAmount: 10000000,
+          benefits: ['Direct Rent Escrow Payment', 'High Quantum Loan', 'Subsidized Prime Rates']
+        }
+      ]
+    },
+    car: {
+      badge: '🚗 Fast Auto Financing & Vehicle Loans',
+      title: 'Car & Automobile Loan Solutions',
+      description: 'Fast-track funding with special dealer tie-ups across Maruti, Hyundai, Kia, Tata, Mahindra & Honda:',
+      catId: 'cat-car',
+      options: [
+        {
+          id: 'opt-new-car',
+          title: 'New Car Purchase Loan',
+          icon: '🚘',
+          tag: 'UP TO 95% ON-ROAD FUNDING',
+          description: 'Drive home your brand-new personal car with on-road funding, dealer discounts, and low EMIs.',
+          rate: 'From 8.85% p.a.',
+          limit: 'Up to ₹ 50 Lakhs',
+          tenure: '12 - 84 Months',
+          defaultAmount: 600000,
+          benefits: ['Covers Road Tax & Insurance', 'Exclusive Tie-Up Discounts', 'Zero Foreclosure after 2 Years']
+        },
+        {
+          id: 'opt-used-car',
+          title: 'Certified Pre-Owned Used Car Loan',
+          icon: '🚙',
+          tag: 'SECOND-HAND CAR DEALS',
+          description: 'Quick financing for pre-owned cars from authorized certified pre-owned dealerships or direct sellers.',
+          rate: 'From 10.50% p.a.',
+          limit: 'Up to ₹ 25 Lakhs',
+          tenure: '12 - 60 Months',
+          defaultAmount: 400000,
+          benefits: ['Fast RTO Ownership Transfer Assistance', 'Up to 80% Valuation', 'Immediate Sanction']
+        },
+        {
+          id: 'opt-ev-car',
+          title: 'Green Electric Vehicle (EV) Car Loan',
+          icon: '⚡',
+          tag: 'ECO-FRIENDLY SPECIAL',
+          description: 'Concessional auto loans for electric cars (Tata Nexon EV, Mahindra XUV400, MG ZS EV, BYD).',
+          rate: 'From 8.50% p.a.',
+          limit: 'Up to ₹ 40 Lakhs',
+          tenure: '12 - 84 Months',
+          defaultAmount: 800000,
+          benefits: ['Special 0.35% Green Rate Concession', 'Subsidized Processing Charges', 'Fast Digital Sanction']
+        },
+        {
+          id: 'opt-two-wheeler',
+          title: 'Two-Wheeler & Superbike Loan',
+          icon: '🏍️',
+          tag: 'SCOOTERS & MOTORCYCLES',
+          description: 'Same-day paperless financing for commuter motorcycles, electric scooters, and premium superbikes.',
+          rate: 'From 9.99% p.a.',
+          limit: 'Up to ₹ 8 Lakhs',
+          tenure: '12 - 48 Months',
+          defaultAmount: 120000,
+          benefits: ['Minimal Documentation', 'Low Down-Payment Schemes', 'Instant Showroom Delivery']
+        }
+      ]
+    },
+    gold: {
+      badge: '🪙 Instant Cash Against Gold Jewelry',
+      title: 'Gold Loan & Sovereign Pledge Solutions',
+      description: 'Get immediate high-value funds in 15 minutes against your 18k-24k gold jewelry:',
+      catId: 'cat-gold',
+      options: [
+        {
+          id: 'opt-instant-gold',
+          title: 'Instant 15-Minute Gold Loan',
+          icon: '🪙',
+          tag: 'DOORSTEP OR BRANCH DISBURSAL',
+          description: 'Immediate cash or instant NEFT transfer against gold ornaments with certified karat evaluation.',
+          rate: 'From 8.50% p.a.',
+          limit: 'Up to ₹ 30 Lakhs',
+          tenure: '3 - 36 Months',
+          defaultAmount: 200000,
+          benefits: ['Zero CIBIL Score Requirement', 'Bank-Grade Vault Security', 'Lowest Per-Gram Interest']
+        },
+        {
+          id: 'opt-doorstep-gold',
+          title: 'Doorstep VIP Gold Evaluation Loan',
+          icon: '🛵',
+          tag: 'AT YOUR HOME PRIVACY',
+          description: 'Our certified evaluation officer visits your home, tests your jewelry safely, and transfers cash instantly.',
+          rate: 'From 8.75% p.a.',
+          limit: 'Up to ₹ 20 Lakhs',
+          tenure: '6 - 24 Months',
+          defaultAmount: 350000,
+          benefits: ['Complete Privacy & Security', 'Insured Transit & Safe Vaults', 'Digital Weighing Machine']
+        },
+        {
+          id: 'opt-overdraft-gold',
+          title: 'Gold Overdraft Credit Line (Pay-Per-Use)',
+          icon: '🔄',
+          tag: 'INTEREST ONLY ON DRAWN CASH',
+          description: 'Revolving credit facility against gold where interest is payable only on the amount drawn for the days used.',
+          rate: 'From 9.00% p.a.',
+          limit: 'Up to ₹ 50 Lakhs',
+          tenure: '12 Months (Renewable)',
+          defaultAmount: 500000,
+          benefits: ['Withdraw & Repay Any Time', 'ATM Card / UPI Linked', 'Maximum Interest Savings']
+        },
+        {
+          id: 'opt-bullet-gold',
+          title: 'Bullet Repayment Gold Loan',
+          icon: '🎯',
+          tag: 'PAY PRINCIPAL & INTEREST AT END',
+          description: 'Zero monthly EMIs! Repay principal and interest together at the end of the loan tenure.',
+          rate: 'From 8.80% p.a.',
+          limit: 'Up to ₹ 25 Lakhs',
+          tenure: '6 - 12 Months',
+          defaultAmount: 300000,
+          benefits: ['No Monthly Payment Stress', 'Highest Loan-to-Value (LTV)', 'Instant Gold Return upon Closure']
+        }
+      ]
+    }
+  };
+
+  const handleCardClick = (card) => {
+    if (card.modalKey && relatedOptionsData[card.modalKey]) {
+      setActiveCategoryModal(card.modalKey);
+    } else {
+      handleAvailLoan(card.title, card.catId);
+    }
+  };
+
+  const handleSelectSubOption = (option, category) => {
+    setActiveCategoryModal(null);
+    if (onQuickApply) {
+      onQuickApply({
+        categoryId: category.catId,
+        requestedAmount: option.defaultAmount || 500000,
+        productName: option.title
+      });
+    } else if (onSelectProduct) {
+      onSelectProduct({ name: option.title, categoryId: category.catId });
+    } else {
+      handleAvailLoan(option.title, category.catId);
+    }
+  };
+
+  const handleExploreInSupermarket = (catId) => {
+    setActiveCategoryModal(null);
+    if (onGoToServices) {
+      onGoToServices();
+    } else {
+      window.location.hash = 'services';
+    }
+  };
+
+  // 8 Core loan cards matching reference design
   const loanCards = [
     {
-      title: 'Health & Doctor Loan',
-      description: 'Health insurance and emergency medical loans provide coverage for hospital expenses, treatments, and clinical equipment without financial stress.',
-      catId: 'cat-professional',
+      title: 'Medical Loan',
+      description: 'Emergency medical treatment loans, health insurance bill coverage, and doctor clinic equipment funding with instant hospital clearance.',
+      catId: 'cat-doctor',
+      modalKey: 'medical',
       imgSrc: cardHealthDoctor,
       iconSvg: (
         <svg className="w-12 h-12" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -258,6 +745,7 @@ export default function HeroSection({
       title: 'Home Loan',
       description: 'Home loans protect your property and personal belongings, offering flexible 30-year EMIs and subsidized interest rates across 15+ partner banks.',
       catId: 'cat-home',
+      modalKey: 'home',
       imgSrc: cardHomeLoan,
       iconSvg: (
         <svg className="w-12 h-12" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -281,6 +769,7 @@ export default function HeroSection({
       title: 'Personal Loan',
       description: 'Personal loans for weddings, travel, education, and unexpected life goals with instant paperless verification and same-day direct disbursement.',
       catId: 'cat-personal',
+      modalKey: 'personal',
       imgSrc: cardPersonalLoan,
       iconSvg: (
         <svg className="w-12 h-12" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -304,6 +793,7 @@ export default function HeroSection({
       title: 'Business Loan',
       description: 'Tailored financial solutions, MSME collateral-free working capital, and equipment credit lines to scale your commercial enterprise smoothly.',
       catId: 'cat-business',
+      modalKey: 'business',
       imgSrc: cardBusinessLoan,
       iconSvg: (
         <svg className="w-12 h-12" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -331,6 +821,7 @@ export default function HeroSection({
       title: 'Education Loan',
       description: 'Fund higher education in premier institutions across India and abroad with 100% fee coverage, living expenses, and student-friendly moratoriums.',
       catId: 'cat-education',
+      modalKey: 'education',
       imgSrc: cardEducationLoan,
       iconSvg: (
         <svg className="w-12 h-12" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -352,6 +843,7 @@ export default function HeroSection({
       title: 'Loan Against Property',
       description: 'Unlock substantial liquidity against your residential or commercial real estate with competitive interest rates and extended repayment horizons.',
       catId: 'cat-mortgage',
+      modalKey: 'property',
       imgSrc: cardPropertyLoan,
       iconSvg: (
         <svg className="w-12 h-12" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -369,9 +861,10 @@ export default function HeroSection({
       )
     },
     {
-      title: 'Car & Vehicle Loan',
+      title: 'Car Loan',
       description: 'Drive home your dream car or two-wheeler with 90% on-road funding, zero foreclosure charges, and fast 24-hour sanctions.',
-      catId: 'cat-vehicle',
+      catId: 'cat-car',
+      modalKey: 'car',
       imgSrc: cardCarLoan,
       iconSvg: (
         <svg className="w-12 h-12" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -387,6 +880,7 @@ export default function HeroSection({
       title: 'Gold Loan',
       description: 'Get immediate high-value cash against gold jewelry with doorstep evaluation, lowest per-gram interest rates, and bank-grade vault security.',
       catId: 'cat-gold',
+      modalKey: 'gold',
       imgSrc: cardGoldLoan,
       iconSvg: (
         <svg className="w-12 h-12" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -800,31 +1294,39 @@ export default function HeroSection({
             {loanCards.map((card, idx) => (
               <div
                 key={idx}
-                onClick={() => handleAvailLoan(card.title, card.catId)}
-                className="bg-white rounded-3xl p-6 sm:p-7 shadow-md shadow-slate-200/50 hover:shadow-2xl hover:shadow-slate-300/60 hover:-translate-y-2 transition-all duration-300 border border-slate-100/90 flex flex-col items-center text-center cursor-pointer group"
+                onClick={() => handleCardClick(card)}
+                className="bg-white rounded-3xl p-6 sm:p-7 shadow-md shadow-slate-200/50 hover:shadow-2xl hover:shadow-slate-300/60 hover:-translate-y-2 transition-all duration-300 border border-slate-100/90 flex flex-col items-center text-center cursor-pointer group justify-between"
               >
-                {/* Centered Large Friendly 3D Illustration Icon */}
-                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl flex items-center justify-center mb-4 sm:mb-5 group-hover:scale-110 transition-transform duration-300">
-                  {card.imgSrc ? (
-                    <img
-                      src={card.imgSrc}
-                      alt={card.title}
-                      className="w-full h-full object-contain rounded-2xl drop-shadow-sm"
-                    />
-                  ) : (
-                    card.iconSvg
-                  )}
+                <div className="flex flex-col items-center">
+                  {/* Centered Large Friendly 3D Illustration Icon */}
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl flex items-center justify-center mb-4 sm:mb-5 group-hover:scale-110 transition-transform duration-300">
+                    {card.imgSrc ? (
+                      <img
+                        src={card.imgSrc}
+                        alt={card.title}
+                        className="w-full h-full object-contain rounded-2xl drop-shadow-sm"
+                      />
+                    ) : (
+                      card.iconSvg
+                    )}
+                  </div>
+
+                  {/* Centered Bold Title */}
+                  <h3 className="text-base sm:text-lg font-black text-[#041E2B] group-hover:text-[#0A5C80] transition-colors mb-2 text-center leading-snug">
+                    {card.title}
+                  </h3>
+
+                  {/* Centered Description Paragraph */}
+                  <p className="text-xs sm:text-[13px] text-slate-500 leading-relaxed font-normal text-center">
+                    {card.description}
+                  </p>
                 </div>
 
-                {/* Centered Bold Title */}
-                <h3 className="text-base sm:text-lg font-black text-[#041E2B] group-hover:text-[#0A5C80] transition-colors mb-2 text-center leading-snug">
-                  {card.title}
-                </h3>
-
-                {/* Centered Description Paragraph */}
-                <p className="text-xs sm:text-[13px] text-slate-500 leading-relaxed font-normal text-center">
-                  {card.description}
-                </p>
+                {/* Interactive Click Pill */}
+                <div className="mt-4 pt-3 border-t border-slate-100 w-full flex items-center justify-center gap-1.5 text-xs font-bold text-[#0A5C80] group-hover:text-[#6EA928] transition-colors">
+                  <span>Explore Options</span>
+                  <span className="text-sm group-hover:translate-x-1 transition-transform">➔</span>
+                </div>
               </div>
             ))}
           </div>
@@ -954,6 +1456,125 @@ export default function HeroSection({
               </form>
             )}
 
+          </div>
+        </div>
+      )}
+
+      {/* =========================================================================
+          6. MODAL: RELATED LOAN OPTIONS MODAL (e.g. Medical Loan -> Emergency, Health Insurance, Doctor, Equipment)
+         ========================================================================= */}
+      {activeCategoryModal && relatedOptionsData[activeCategoryModal] && (
+        <div
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-5 overflow-y-auto"
+          onClick={() => setActiveCategoryModal(null)}
+        >
+          <div
+            className="bg-white border border-slate-200 rounded-3xl max-w-4xl w-full p-5 sm:p-8 shadow-2xl space-y-6 relative animate-scale-up my-auto text-left"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex justify-between items-start border-b border-slate-100 pb-4 pr-10">
+              <div className="space-y-1.5">
+                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8F5D4] text-[#466E18] border border-[#6EA928]/35 text-[11px] font-black uppercase tracking-wider">
+                  {relatedOptionsData[activeCategoryModal].badge}
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-black text-[#041E2B] tracking-tight">
+                  {relatedOptionsData[activeCategoryModal].title}
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-500 font-medium">
+                  {relatedOptionsData[activeCategoryModal].description}
+                </p>
+              </div>
+
+              {/* Close Button */}
+              <button
+                onClick={() => setActiveCategoryModal(null)}
+                className="absolute right-5 top-5 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 flex items-center justify-center font-bold text-base transition-colors cursor-pointer"
+                aria-label="Close Modal"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* 4 Related Loan Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {relatedOptionsData[activeCategoryModal].options.map((opt) => (
+                <div
+                  key={opt.id}
+                  className="bg-slate-50/70 hover:bg-white border border-slate-200/90 hover:border-[#6EA928] rounded-2xl p-5 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between space-y-4 group"
+                >
+                  <div className="space-y-3">
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex items-center gap-2.5">
+                        <span className="text-2xl p-2 rounded-xl bg-white border border-slate-200 shadow-sm group-hover:scale-110 transition-transform">
+                          {opt.icon}
+                        </span>
+                        <div>
+                          <h4 className="text-sm font-black text-[#041E2B] group-hover:text-[#0A5C80] transition-colors leading-tight">
+                            {opt.title}
+                          </h4>
+                          <span className="text-[10px] font-black text-[#466E18] uppercase tracking-wide">
+                            {opt.tag}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                      {opt.description}
+                    </p>
+
+                    {/* Financial Specs */}
+                    <div className="grid grid-cols-3 gap-2 bg-white rounded-xl p-2.5 border border-slate-200/80 text-[11px]">
+                      <div>
+                        <span className="text-[9px] uppercase font-bold text-slate-400 block">Interest Rate</span>
+                        <span className="font-black text-[#6EA928]">{opt.rate}</span>
+                      </div>
+                      <div>
+                        <span className="text-[9px] uppercase font-bold text-slate-400 block">Sanction Limit</span>
+                        <span className="font-black text-slate-800">{opt.limit}</span>
+                      </div>
+                      <div>
+                        <span className="text-[9px] uppercase font-bold text-slate-400 block">Tenure</span>
+                        <span className="font-bold text-slate-700">{opt.tenure}</span>
+                      </div>
+                    </div>
+
+                    {/* Bullet Benefits */}
+                    <div className="space-y-1 pt-1">
+                      {opt.benefits.map((b, bIdx) => (
+                        <div key={bIdx} className="flex items-center gap-1.5 text-[11px] text-slate-600">
+                          <span className="text-[#6EA928] font-bold">✔</span>
+                          <span>{b}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Apply Button */}
+                  <button
+                    onClick={() => handleSelectSubOption(opt, relatedOptionsData[activeCategoryModal])}
+                    className="w-full py-2.5 rounded-xl bg-[#0A5C80] hover:bg-[#6EA928] text-white font-bold text-xs shadow-md shadow-[#0A5C80]/15 hover:shadow-[#6EA928]/30 transition-all cursor-pointer flex items-center justify-center gap-1.5 group-hover:translate-x-0.5"
+                  >
+                    <span>⚡ 1-Click Fast Enquiry</span>
+                    <span>➔</span>
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            {/* Bottom Supermarket Redirect */}
+            <div className="border-t border-slate-100 pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+              <span className="text-slate-500 font-medium text-center sm:text-left">
+                Want to compare all partner bank rates and complete documentation checklists?
+              </span>
+              <button
+                onClick={() => handleExploreInSupermarket(relatedOptionsData[activeCategoryModal].catId)}
+                className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-[#E8F5D4] text-[#0A5C80] hover:text-[#466E18] font-bold border border-slate-200 transition-colors cursor-pointer shrink-0"
+              >
+                Compare in Full Supermarket ➔
+              </button>
+            </div>
           </div>
         </div>
       )}

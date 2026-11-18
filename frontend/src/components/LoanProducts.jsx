@@ -84,7 +84,7 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
     const isCarAlias = ['kia', 'car', 'auto', 'vehicle', 'maruti', 'hyundai', 'tata', 'mahindra', 'honda', 'toyota'].some(w => query.includes(w));
     const isHomeAlias = ['home', 'house', 'flat', 'villa', 'plot', 'apartment', 'property', 'housing'].some(w => query.includes(w));
     const isGoldAlias = ['gold', 'jewel', 'ornament', 'sovereign'].some(w => query.includes(w));
-    const isDoctorAlias = ['doctor', 'clinic', 'hospital', 'dentist', 'surgeon', 'medical'].some(w => query.includes(w));
+    const isDoctorAlias = ['doctor', 'clinic', 'hospital', 'dentist', 'surgeon', 'medical', 'emergency', 'health insurance', 'health'].some(w => query.includes(w));
     const isBusinessAlias = ['business', 'trade', 'gst', 'msme', 'working capital', 'firm', 'shop', 'retail'].some(w => query.includes(w));
     const isEduAlias = ['education', 'college', 'university', 'study', 'abroad', 'degree', 'student'].some(w => query.includes(w));
     const isCvAlias = ['truck', 'lorry', 'commercial vehicle', 'bus', 'tipper', 'fleet'].some(w => query.includes(w));

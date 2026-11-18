@@ -33,11 +33,11 @@ export default function LoanSearchSection({ categories, onSearchFilter, onQuickA
       label = 'Gold Loan (VGS Super Fast Gold Loan)';
       rate = 8.5;
       tenureMonths = 12;
-    } else if (catId === 'cat-doctor' || ['doctor', 'clinic', 'dentist', 'hospital'].some(w => s.includes(w))) {
+    } else if (catId === 'cat-doctor' || ['doctor', 'clinic', 'dentist', 'hospital', 'medical', 'emergency', 'health', 'insurance'].some(w => s.includes(w))) {
       catId = 'cat-doctor';
-      label = 'Doctor Loan (VGS Medico Doctor Loan)';
-      rate = 9.99;
-      tenureMonths = 60;
+      label = 'Medical Loan (Emergency / Health / Doctor)';
+      rate = 9.5;
+      tenureMonths = 48;
     } else if (catId === 'cat-education' || ['education', 'college', 'study', 'university'].some(w => s.includes(w))) {
       catId = 'cat-education';
       label = 'Education Loan (Global Scholar)';
