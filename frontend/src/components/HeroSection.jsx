@@ -40,8 +40,7 @@ export default function HeroSection({
   const carouselSlides = [
     {
       id: 'investment-advisory',
-      image: heroCoinGrowthSprout,
-      panoramicImage: heroInvestmentGrowth,
+      image: heroInvestmentGrowth,
       tag: "VGS FINANCIAL SERVICES • MULTI-BANK LOAN SUPERMARKET",
       headlinePrefix: 'WE PROVIDE ',
       headlineAccent: 'FINANCIAL & LOAN ADVISORY!',
@@ -285,33 +284,69 @@ export default function HeroSection({
     <section id="hero" className="relative font-sans select-none overflow-hidden">
 
       {/* =========================================================================
-          1. HERO CAROUSEL BANNER (Company Logo Palette: Deep Marine Blue & Growth Green)
+          1. HERO CAROUSEL BANNER: COMPLETE BACKGROUND IMAGE WITH FOREGROUND OVERLAY
          ========================================================================= */}
       <div
-        className="relative bg-gradient-to-r from-[#031824] via-[#062A3B] to-[#0A415A] text-white pt-10 sm:pt-14 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 shadow-2xl transition-all duration-700 overflow-hidden"
+        className="relative min-h-[540px] sm:min-h-[580px] lg:min-h-[620px] text-white flex flex-col justify-between overflow-hidden transition-all duration-700 select-none shadow-2xl"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
+        {/* -----------------------------------------------------------------------
+            FULL-BLEED BACKGROUND IMAGE STACK (Each slide fills 100% of the Hero BG)
+           ----------------------------------------------------------------------- */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
+          {carouselSlides.map((slide, idx) => {
+            const isActive = activeSlide === idx;
+            return (
+              <div
+                key={slide.id}
+                className={`absolute inset-0 w-full h-full transition-all duration-1000 ease-in-out ${
+                  isActive
+                    ? 'opacity-100 scale-100 z-10 pointer-events-auto'
+                    : 'opacity-0 scale-105 z-0 pointer-events-none'
+                }`}
+              >
+                {/* Complete Background Image with subtle Ken Burns slow pan/zoom */}
+                <div className={`w-full h-full overflow-hidden ${isActive ? 'animate-ken-burns' : ''}`}>
+                  <img
+                    src={slide.image}
+                    alt={slide.tag}
+                    className="w-full h-full object-cover object-center sm:object-right-center filter brightness-[0.85] contrast-[1.10]"
+                    loading="eager"
+                  />
+                </div>
+
+                {/* Left-to-Right Dark Gradient Overlay: Ensures crystal-clear text readability on the left while keeping the visual on the right 100% visible */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#031824]/95 via-[#031824]/80 sm:via-[#031824]/55 to-transparent"></div>
+
+                {/* Top and Bottom subtle dark vignettes for seamless integration */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#031824] via-transparent to-[#031824]/50"></div>
+                <div className="absolute inset-0 bg-[#041E2B]/10 mix-blend-multiply"></div>
+              </div>
+            );
+          })}
+
+          {/* Ambient Brand Color Glow Orbs */}
+          <div className="absolute -top-20 left-10 w-96 h-96 bg-[#0A5C80]/30 rounded-full blur-3xl pointer-events-none animate-pulse-glow"></div>
+          <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#6EA928]/20 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
         {/* Top Architectural Skewed Accent Bar */}
         <div className="absolute top-0 left-1/3 w-36 h-2 bg-[#0A5C80] transform -skew-x-12 hidden md:block z-20"></div>
 
         {/* Bottom Left Modern Geometric White Slant Cut (Matches reference image) */}
         <div className="absolute -bottom-0.5 left-0 w-36 sm:w-64 h-8 sm:h-12 bg-white [clip-path:polygon(0_100%,100%_100%,0_0)] pointer-events-none z-20"></div>
 
-        {/* Subtle glowing ambient background orbs & mesh */}
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#0A5C80]/20 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute bottom-0 left-10 w-80 h-80 bg-[#6EA928]/15 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none"></div>
+        {/* -----------------------------------------------------------------------
+            FOREGROUND CONTENT CONTAINER: TEXT & INTERACTIVE CTA (Overlaid on BG)
+           ----------------------------------------------------------------------- */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-10 sm:pt-14 pb-8 relative z-10 flex-1 flex flex-col justify-between">
 
-        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Main Hero Content Grid: Left Text + Right Floating 3D Badges */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center flex-1">
 
-          {/* Main Hero Grid: Left Content (Carousel Slides) + Right 3D Visual */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-
-            {/* -------------------------------------------------------------------
-                LEFT COLUMN: DYNAMIC CAROUSEL SLIDE CONTENT
-               ------------------------------------------------------------------- */}
-            <div className="lg:col-span-7 space-y-6 sm:space-y-7 animate-fade-in">
+            {/* LEFT COLUMN: DYNAMIC CAROUSEL SLIDE CONTENT */}
+            <div className="lg:col-span-8 space-y-5 sm:space-y-6 animate-fade-in max-w-2xl">
 
               {/* Category / Supermarket Live Badge */}
               <div className="flex items-center gap-2">
@@ -326,17 +361,17 @@ export default function HeroSection({
 
               {/* Main Headline with dynamic logo accents */}
               <div className="space-y-1">
-                <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-black tracking-tight leading-[1.15] text-white drop-shadow-md">
+                <h1 className="text-3xl sm:text-5xl lg:text-[56px] font-black tracking-tight leading-[1.15] text-white drop-shadow-lg">
                   <span>{currentSlideData.headlinePrefix}</span>
                   <span className={currentSlideData.accentColor}>
                     {currentSlideData.headlineAccent}
                   </span>
                   <span>{currentSlideData.headlineSuffix}</span>
                   <br />
-                  <span className="text-white">{currentSlideData.headlineSecondLine}</span>
+                  <span className="text-white drop-shadow-md">{currentSlideData.headlineSecondLine}</span>
                 </h1>
 
-                <p className="text-sm sm:text-base text-slate-200 font-medium max-w-xl pt-2 sm:pt-3 leading-relaxed">
+                <p className="text-sm sm:text-base text-slate-200 font-medium max-w-xl pt-2 sm:pt-3 leading-relaxed drop-shadow">
                   {currentSlideData.description}
                 </p>
               </div>
@@ -374,191 +409,147 @@ export default function HeroSection({
                 </button>
               </div>
 
-              {/* Carousel Navigation Controls (Dots & Arrows) */}
-              <div className="flex items-center gap-4 pt-2">
-                {/* Arrow Controls */}
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={handlePrevSlide}
-                    aria-label="Previous Slide"
-                    className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#6EA928] hover:text-white text-white flex items-center justify-center text-xs font-bold transition-colors cursor-pointer border border-white/10"
-                  >
-                    ❮
-                  </button>
-                  <button
-                    onClick={handleNextSlide}
-                    aria-label="Next Slide"
-                    className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#6EA928] hover:text-white text-white flex items-center justify-center text-xs font-bold transition-colors cursor-pointer border border-white/10"
-                  >
-                    ❯
-                  </button>
-                </div>
-
-                {/* Slide Indicators (Pills & Dots) */}
-                <div className="flex items-center gap-2">
-                  {carouselSlides.map((s, idx) => (
-                    <button
-                      key={s.id}
-                      onClick={() => setActiveSlide(idx)}
-                      aria-label={`Slide ${idx + 1}`}
-                      className={`h-2 rounded-full transition-all cursor-pointer ${activeSlide === idx
-                          ? 'w-7 bg-[#6EA928]'
-                          : 'w-2 bg-white/30 hover:bg-white/60'
-                        }`}
-                    />
-                  ))}
-                </div>
-
-                <span className="text-[11px] text-slate-300 font-mono ml-2">
-                  0{activeSlide + 1} / 0{carouselSlides.length}
+              {/* Trust Indicators Pill Bar */}
+              <div className="flex flex-wrap items-center gap-3 pt-2 text-xs text-slate-300">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#041E2B]/80 border border-white/15 backdrop-blur-md">
+                  <span className="text-[#6EA928]">✓</span> 15+ Banking Partners
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#041E2B]/80 border border-white/15 backdrop-blur-md">
+                  <span className="text-[#94CF45]">✓</span> 100% Paperless Process
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#041E2B]/80 border border-white/15 backdrop-blur-md">
+                  <span className="text-[#85C7DF]">✓</span> Lowest Interest Rates
                 </span>
               </div>
 
             </div>
 
-            {/* -------------------------------------------------------------------
-                RIGHT COLUMN: ANIMATED FINTECH VISUAL SHOWCASE (4 HERO IMAGES + ANIMATIONS)
-               ------------------------------------------------------------------- */}
-            <div className="lg:col-span-5 relative flex items-center justify-center">
+            {/* RIGHT COLUMN: FLOATING 3D GLASS BADGES OVER BACKGROUND IMAGE */}
+            <div className="lg:col-span-4 relative flex flex-col items-center lg:items-end justify-center space-y-4">
 
-              {/* Outer Glowing Stage Container */}
-              <div className="relative w-full max-w-lg aspect-[4/3] sm:aspect-[5/4] md:aspect-square flex items-center justify-center">
-
-                {/* Ambient Animated Glows (Breathing Logo colors: Marine Blue & Growth Green) */}
-                <div className="absolute inset-2 bg-gradient-to-tr from-[#0A5C80]/40 via-[#6EA928]/30 to-[#94CF45]/20 rounded-3xl blur-2xl animate-pulse-glow"></div>
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#6EA928]/20 via-[#0A5C80]/30 to-[#6EA928]/20 rounded-3xl blur-xl opacity-60"></div>
-
-                {/* Glassmorphic 3D Showcase Card Frame */}
-                <div className="relative w-full h-full rounded-3xl bg-gradient-to-b from-[#0A5C80]/30 via-[#062A3B]/80 to-[#031824]/95 border-2 border-[#0A5C80]/50 backdrop-blur-xl p-3 sm:p-4 shadow-2xl flex flex-col justify-between overflow-hidden group">
-
-                  {/* Stack of 4 Slide Images with Smooth Crossfade & Ken Burns Zoom */}
-                  <div className="relative w-full flex-1 rounded-2xl overflow-hidden shadow-inner bg-[#02111A]">
-                    {carouselSlides.map((slide, idx) => {
-                      const isActive = activeSlide === idx;
-                      return (
-                        <div
-                          key={slide.id}
-                          className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-                            isActive
-                              ? 'opacity-100 scale-100 z-10 pointer-events-auto'
-                              : 'opacity-0 scale-105 z-0 pointer-events-none'
-                          }`}
-                        >
-                          {/* Ken Burns Animated Image */}
-                          <div className={`w-full h-full overflow-hidden ${isActive ? 'animate-ken-burns' : ''}`}>
-                            <img
-                              src={slide.image}
-                              alt={slide.tag}
-                              className="w-full h-full object-cover object-center filter brightness-[0.98] contrast-[1.05]"
-                              loading="eager"
-                            />
-                          </div>
-
-                          {/* Gradient Overlays for Readability & High-Tech Look */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#031824]/90 via-[#031824]/20 to-transparent"></div>
-                          <div className="absolute inset-0 bg-gradient-to-b from-[#031824]/50 via-transparent to-transparent"></div>
-                          <div className="absolute inset-0 bg-gradient-to-r from-[#0A5C80]/20 to-transparent mix-blend-overlay"></div>
-                        </div>
-                      );
-                    })}
-
-                    {/* Floating Glassmorphic Badge 1 (Top Left) - Slow Float Animation */}
-                    <div className="absolute top-3.5 left-3.5 z-20 animate-float-slow">
-                      <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#041E2B]/85 backdrop-blur-md border border-[#6EA928]/60 shadow-lg shadow-[#041E2B]/50 text-white">
-                        <span className="text-lg">{currentSlideData.floatingBadge1?.icon || '🏛️'}</span>
-                        <div className="leading-tight">
-                          <p className="text-[11px] font-black text-[#94CF45] tracking-wide">
-                            {currentSlideData.floatingBadge1?.title || '15+ Banking Partners'}
-                          </p>
-                          <p className="text-[9px] text-slate-300 font-medium">
-                            {currentSlideData.floatingBadge1?.subtitle || 'SBI, HDFC, ICICI, Axis'}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Floating Rupee Hologram Token (Top Right) - Bouncing Glow */}
-                    <div className="absolute top-3.5 right-3.5 z-20">
-                      <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-[#6EA928] to-[#94CF45] border-2 border-white/90 text-[#031824] font-black text-xl flex items-center justify-center shadow-xl shadow-[#6EA928]/50 animate-bounce">
-                        ₹
-                      </div>
-                    </div>
-
-                    {/* Floating Glassmorphic Badge 2 (Bottom Right) - Reverse Float Animation */}
-                    <div className="absolute bottom-4 right-3.5 z-20 animate-float-reverse">
-                      <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#041E2B]/85 backdrop-blur-md border border-[#0A5C80]/70 shadow-lg shadow-[#041E2B]/50 text-white">
-                        <span className="text-lg">{currentSlideData.floatingBadge2?.icon || '⚡'}</span>
-                        <div className="leading-tight text-right">
-                          <p className="text-[11px] font-black text-[#85C7DF] tracking-wide">
-                            {currentSlideData.floatingBadge2?.title || 'Fast Digital Approval'}
-                          </p>
-                          <p className="text-[9px] text-slate-300 font-medium">
-                            {currentSlideData.floatingBadge2?.subtitle || '100% Paperless KYC'}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Bottom Left Live Tag Pill */}
-                    <div className="absolute bottom-4 left-3.5 z-20 hidden sm:block">
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-[#6EA928]/90 text-white shadow-md backdrop-blur-sm border border-white/30">
-                        <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span>
-                        {currentSlideData.highlightTag || 'Verified Rates'}
-                      </span>
-                    </div>
-
-                  </div>
-
-                  {/* Interactive Bottom Control & Thumbnail Preview Bar */}
-                  <div className="pt-2.5 px-1 flex items-center justify-between text-xs">
-                    
-                    {/* Interactive 5-Thumbnail Switcher */}
-                    <div className="flex items-center gap-1.5 sm:gap-2">
-                      {carouselSlides.map((slide, idx) => (
-                        <button
-                          key={slide.id}
-                          onClick={() => setActiveSlide(idx)}
-                          className={`group/thumb relative rounded-lg overflow-hidden border transition-all duration-300 cursor-pointer ${
-                            activeSlide === idx
-                              ? 'border-[#6EA928] ring-2 ring-[#6EA928]/50 scale-105'
-                              : 'border-white/20 opacity-60 hover:opacity-100 hover:border-white/50'
-                          }`}
-                          title={slide.tag}
-                        >
-                          <img
-                            src={slide.image}
-                            alt={slide.tag}
-                            className="w-8 h-6 sm:w-10 sm:h-7 object-cover"
-                          />
-                          {activeSlide === idx && (
-                            <div className="absolute inset-0 bg-[#6EA928]/20 pointer-events-none"></div>
-                          )}
-                        </button>
-                      ))}
-                    </div>
-
-                    {/* Status / Compliance Pill */}
-                    <div className="flex items-center gap-1 text-[11px] text-slate-300 font-semibold font-mono">
-                      <span className="text-[#6EA928]">✓</span>
-                      <span className="hidden sm:inline">100% Verified Partners</span>
-                      <span className="text-white/40">•</span>
-                      <span className="text-[#85C7DF]">0{activeSlide + 1}/0{carouselSlides.length}</span>
-                    </div>
-
-                  </div>
-
+              {/* Floating Rupee Hologram Token - Bouncing Glow */}
+              <div className="animate-bounce">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#6EA928] to-[#94CF45] border-2 border-white/90 text-[#031824] font-black text-2xl flex items-center justify-center shadow-2xl shadow-[#6EA928]/50">
+                  ₹
                 </div>
+              </div>
 
+              {/* Floating Glassmorphic Badge 1 - Slow Float Animation */}
+              <div className="animate-float-slow w-full max-w-xs">
+                <div className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#041E2B]/85 backdrop-blur-xl border border-[#6EA928]/60 shadow-2xl shadow-[#041E2B]/60 text-white">
+                  <span className="text-2xl">{currentSlideData.floatingBadge1?.icon || '🏛️'}</span>
+                  <div className="leading-tight">
+                    <p className="text-xs font-black text-[#94CF45] tracking-wide">
+                      {currentSlideData.floatingBadge1?.title || '15+ Banking Partners'}
+                    </p>
+                    <p className="text-[10px] text-slate-300 font-medium">
+                      {currentSlideData.floatingBadge1?.subtitle || 'SBI, HDFC, ICICI, Axis'}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating Glassmorphic Badge 2 - Reverse Float Animation */}
+              <div className="animate-float-reverse w-full max-w-xs">
+                <div className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#041E2B]/85 backdrop-blur-xl border border-[#0A5C80]/70 shadow-2xl shadow-[#041E2B]/60 text-white">
+                  <span className="text-2xl">{currentSlideData.floatingBadge2?.icon || '⚡'}</span>
+                  <div className="leading-tight">
+                    <p className="text-xs font-black text-[#85C7DF] tracking-wide">
+                      {currentSlideData.floatingBadge2?.title || 'Fast Digital Approval'}
+                    </p>
+                    <p className="text-[10px] text-slate-300 font-medium">
+                      {currentSlideData.floatingBadge2?.subtitle || '100% Paperless KYC'}
+                    </p>
+                  </div>
+                </div>
               </div>
 
             </div>
 
           </div>
 
-          {/* =========================================================================
-              2. FOUR METRICS PILL BAR (Directly under Hero Carousel)
-             ========================================================================= */}
-          <div className="mt-8 sm:mt-12 bg-[#041E2B] border border-[#0A5C80]/35 rounded-2xl shadow-xl p-3 sm:p-4 backdrop-blur-md">
+          {/* -----------------------------------------------------------------------
+              BOTTOM BAR: CAROUSEL CONTROLS & 5-THUMBNAIL SWITCHER
+             ----------------------------------------------------------------------- */}
+          <div className="pt-6 sm:pt-8 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 mt-4">
+            
+            {/* Left: Navigation Arrows & Slide Dots */}
+            <div className="flex items-center gap-3">
+              <button
+                onClick={handlePrevSlide}
+                aria-label="Previous Slide"
+                className="w-9 h-9 rounded-full bg-white/15 hover:bg-[#6EA928] hover:text-white text-white flex items-center justify-center text-sm font-bold transition-colors cursor-pointer border border-white/20 backdrop-blur-md"
+              >
+                ❮
+              </button>
+              <button
+                onClick={handleNextSlide}
+                aria-label="Next Slide"
+                className="w-9 h-9 rounded-full bg-white/15 hover:bg-[#6EA928] hover:text-white text-white flex items-center justify-center text-sm font-bold transition-colors cursor-pointer border border-white/20 backdrop-blur-md"
+              >
+                ❯
+              </button>
+
+              <div className="flex items-center gap-1.5 ml-2">
+                {carouselSlides.map((s, idx) => (
+                  <button
+                    key={s.id}
+                    onClick={() => setActiveSlide(idx)}
+                    aria-label={`Slide ${idx + 1}`}
+                    className={`h-2 rounded-full transition-all cursor-pointer ${
+                      activeSlide === idx
+                        ? 'w-7 bg-[#6EA928]'
+                        : 'w-2 bg-white/40 hover:bg-white/70'
+                    }`}
+                  />
+                ))}
+              </div>
+
+              <span className="text-xs text-slate-300 font-mono ml-2">
+                0{activeSlide + 1} / 0{carouselSlides.length}
+              </span>
+            </div>
+
+            {/* Right: 5 Interactive Thumbnail Switchers */}
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] text-slate-300 font-semibold hidden md:inline mr-1">
+                Loan Showcase:
+              </span>
+              {carouselSlides.map((slide, idx) => (
+                <button
+                  key={slide.id}
+                  onClick={() => setActiveSlide(idx)}
+                  className={`group/thumb relative rounded-xl overflow-hidden border transition-all duration-300 cursor-pointer shadow-lg ${
+                    activeSlide === idx
+                      ? 'border-[#6EA928] ring-2 ring-[#6EA928]/60 scale-105'
+                      : 'border-white/30 opacity-60 hover:opacity-100 hover:border-white/60'
+                  }`}
+                  title={slide.tag}
+                >
+                  <img
+                    src={slide.image}
+                    alt={slide.tag}
+                    className="w-12 h-8 sm:w-14 sm:h-9 object-cover"
+                  />
+                  {activeSlide === idx && (
+                    <div className="absolute inset-0 bg-[#6EA928]/25 pointer-events-none"></div>
+                  )}
+                </button>
+              ))}
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      {/* =========================================================================
+          2. FOUR METRICS PILL BAR (Directly under Hero Carousel)
+         ========================================================================= */}
+      <div className="bg-[#031824] px-4 sm:px-6 lg:px-8 pb-8 pt-2">
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-[#041E2B] border border-[#0A5C80]/35 rounded-2xl shadow-xl p-3 sm:p-4 backdrop-blur-md">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 divide-y md:divide-y-0 md:divide-x divide-[#0A5C80]/30 text-center">
 
               {/* Metric 1 */}
@@ -595,9 +586,7 @@ export default function HeroSection({
 
             </div>
           </div>
-
         </div>
-
       </div>
 
       {/* =========================================================================
