@@ -18,6 +18,7 @@ import AboutCompany from './components/AboutCompany';
 import AdminDashboard from './components/AdminDashboard';
 import LoanDetailsPage from './components/LoanDetailsPage';
 import { API_BASE_URL } from './config/api';
+import logoImg from './assets/Logo.jpeg';
 
 function App() {
   const [currentView, setCurrentView] = useState(() => {
@@ -237,10 +238,12 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
           
           <div className="space-y-3">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center font-bold text-white text-base">
-                ₹
-              </div>
+            <div className="flex items-center gap-2.5">
+              <img
+                src={logoImg}
+                alt="VGS Finance Logo"
+                className="w-9 h-9 object-contain rounded-xl bg-white p-1 border border-slate-700 shadow-sm shrink-0"
+              />
               <span className="font-extrabold text-white text-base tracking-tight">VGS FINANCE</span>
             </div>
             <p className="text-slate-400 leading-relaxed">

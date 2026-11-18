@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import logoImg from '../assets/Logo.jpeg';
 
 export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -67,9 +68,11 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
               className="flex items-center gap-3 cursor-pointer select-none"
               onClick={() => setCurrentView('website')}
             >
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-blue-700 via-indigo-600 to-sky-500 border border-sky-400/30 flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-blue-600/30">
-                ₹
-              </div>
+              <img
+                src={logoImg}
+                alt="VGS Financial Services"
+                className="w-12 h-12 sm:w-14 sm:h-14 object-contain rounded-xl bg-white p-1 border border-sky-400/40 shadow-lg shadow-blue-500/20 shrink-0"
+              />
               <div>
                 <div className="flex items-center gap-2">
                   <span className="text-xl sm:text-2xl font-black tracking-tight text-white">

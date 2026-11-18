@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../config/api';
+import logoImg from '../assets/Logo.jpeg';
 
 export default function AdminDashboard({ onSwitchToWebsite }) {
   // Admin Authentication State
@@ -564,9 +565,11 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
       <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-4">
         <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8 max-w-md w-full space-y-6 shadow-2xl">
           <div className="text-center space-y-2">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-indigo-600 via-sky-500 to-emerald-400 mx-auto flex items-center justify-center text-3xl font-black text-white shadow-lg">
-              ⚡
-            </div>
+            <img
+              src={logoImg}
+              alt="VGS Finance Logo"
+              className="w-16 h-16 object-contain rounded-2xl bg-white p-1.5 mx-auto shadow-xl border border-slate-700"
+            />
             <h2 className="text-2xl font-black text-white tracking-tight">Admin Portal Login</h2>
             <p className="text-xs text-slate-400">
               VGS Finance & Loans Management System • Restricted Access
@@ -636,9 +639,11 @@ export default function AdminDashboard({ onSwitchToWebsite }) {
       {/* Admin Top Bar */}
       <div className="bg-slate-900 border-b border-slate-800 px-6 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-sky-500 flex items-center justify-center font-black text-lg text-white shadow-lg">
-            ⚡
-          </div>
+          <img
+            src={logoImg}
+            alt="VGS Finance Logo"
+            className="w-10 h-10 object-contain rounded-xl bg-white p-1 border border-slate-700 shadow-md shrink-0"
+          />
           <div>
             <h1 className="text-lg font-black text-white tracking-tight flex items-center gap-2">
               VGS Finance Admin Portal
