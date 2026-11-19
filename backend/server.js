@@ -345,13 +345,30 @@ app.post('/api/leads', async (req, res) => {
       });
     }
 
+    // Sanitize and validate Indian mobile number
+    const cleanPhone = phone.toString().replace(/\D/g, '');
+    if (cleanPhone.length !== 10 || !/^[6-9]\d{9}$/.test(cleanPhone)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid mobile number. Please enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9.'
+      });
+    }
+
+    const cleanAmount = parseFloat(requestedAmount);
+    if (isNaN(cleanAmount) || cleanAmount < 25000) {
+      return res.status(400).json({
+        success: false,
+        message: 'Minimum loan enquiry amount is ₹25,000.'
+      });
+    }
+
     // Link or create Customer Profile in Customer Tables
-    let customer = await Customer.findOne({ where: { phone } });
+    let customer = await Customer.findOne({ where: { phone: cleanPhone } });
     if (!customer) {
       customer = await Customer.create({
         id: `CUST-${Date.now().toString().slice(-5)}`,
-        fullName: customerName,
-        phone,
+        fullName: customerName.trim(),
+        phone: cleanPhone,
         email: email || '',
         city: city || 'Hyderabad',
         employmentType: employmentType || 'Salaried',
@@ -359,11 +376,11 @@ app.post('/api/leads', async (req, res) => {
         cibilScore: 740,
         kycStatus: 'VERIFIED',
         totalLoansEnquired: 1,
-        totalAmountEnquired: parseFloat(requestedAmount) || 0
+        totalAmountEnquired: cleanAmount
       });
     } else {
       customer.totalLoansEnquired = (customer.totalLoansEnquired || 0) + 1;
-      customer.totalAmountEnquired = (customer.totalAmountEnquired || 0) + (parseFloat(requestedAmount) || 0);
+      customer.totalAmountEnquired = (customer.totalAmountEnquired || 0) + cleanAmount;
       await customer.save();
     }
 
@@ -373,14 +390,14 @@ app.post('/api/leads', async (req, res) => {
     const newLead = await Lead.create({
       id: newId,
       customerId: customer.id,
-      customerName,
-      phone,
+      customerName: customerName.trim(),
+      phone: cleanPhone,
       email: email || '',
       city: city || 'Hyderabad',
       employmentType: employmentType || 'Salaried',
       monthlyIncome: parseFloat(monthlyIncome) || 0,
       productName: productName || 'VGS Express Personal Loan',
-      requestedAmount: parseFloat(requestedAmount),
+      requestedAmount: cleanAmount,
       tenureMonths: parseInt(tenureMonths, 10) || 36,
       status: 'NEW_ENQUIRY', // Phase 4 Stage 1: New Enquiry
       priority: 'HIGH',
