@@ -443,7 +443,7 @@ export default function DocumentsInfo() {
                   <div className="w-11 h-11 rounded-2xl bg-[#E8F5D4] border border-[#6EA928]/30 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:shadow-sm transition-all">
                     {renderIcon(doc.iconType)}
                   </div>
-                  
+
                   <div className="flex items-center gap-1.5">
                     <span className={`text-[10px] font-black uppercase px-2.5 py-1 rounded-full border ${doc.badgeColor}`}>
                       {doc.badge}
