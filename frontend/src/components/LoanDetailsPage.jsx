@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Navbar from './Navbar';
+import Footer from './Footer';
 import logoImg from '../assets/Logo.jpeg';
 import { API_BASE_URL } from '../config/api';
 
@@ -2055,45 +2056,8 @@ export default function LoanDetailsPage({
         </div>
       )}
 
-      {/* Corporate Footer */}
-      <footer className="bg-[#041E2B] text-slate-300 py-12 px-4 sm:px-6 lg:px-8 border-t border-[#0A5C80]/30 mt-12">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-3">
-            <img src={logoImg} alt="VGS Finance" className="w-12 h-12 object-contain rounded-xl bg-white p-1" />
-            <div>
-              <div className="text-base font-black text-white">VGS FINANCIAL SERVICES</div>
-              <div className="text-xs text-[#6EA928] font-bold">LOAN SUPER MARKET • ISO COMPLIANT</div>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-bold text-slate-300">
-            <button onClick={onSwitchToHome || onClose} className="hover:text-[#6EA928] transition-colors cursor-pointer">
-              Home
-            </button>
-            <button onClick={onSwitchToServices || onClose} className="hover:text-[#6EA928] transition-colors cursor-pointer">
-              All Loan Services
-            </button>
-            <button onClick={onSwitchToAdmin} className="hover:text-[#6EA928] transition-colors cursor-pointer">
-              Admin Portal
-            </button>
-          </div>
-        </div>
-
-        <div className="max-w-7xl mx-auto mt-8 pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-slate-500">
-          <div>© 2026 VGS Finance & Loans Management System. All rights reserved.</div>
-          <div className="text-slate-400">
-            Engineered & Maintained by{' '}
-            <a
-              href="https://www.ascendmedialabs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-[#6EA928] hover:underline"
-            >
-              Ascend Media Labs (Visakhapatnam)
-            </a>
-          </div>
-        </div>
-      </footer>
+      {/* Corporate Premium Modular Footer */}
+      <Footer onSwitchView={onSwitchToAdmin} />
 
     </div>
   );

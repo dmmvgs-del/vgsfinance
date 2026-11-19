@@ -12,6 +12,7 @@ import TestimonialsSection from './components/TestimonialsSection';
 import QuickEnquirySection from './components/QuickEnquirySection';
 import ContactEnquiryForm from './components/ContactEnquiryForm';
 import AboutCompany from './components/AboutCompany';
+import Footer from './components/Footer';
 import AdminDashboard from './components/AdminDashboard';
 import LoanDetailsPage from './components/LoanDetailsPage';
 import ServicesPage from './components/ServicesPage';
@@ -403,92 +404,8 @@ function App() {
 
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-[#0A5C80]/30 bg-[#041E2B] py-12 text-slate-400 text-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
-
-          <div className="space-y-3">
-            <div className="flex items-center gap-2.5">
-              <img
-                src={logoImg}
-                alt="VGS Finance Logo"
-                className="w-9 h-9 object-contain rounded-xl bg-white p-1 border border-[#0A5C80]/40 shadow-sm shrink-0"
-              />
-              <span className="font-extrabold text-white text-base tracking-tight">VGS FINANCE</span>
-            </div>
-            <p className="text-slate-400 leading-relaxed">
-              A comprehensive Loan Supermarket & Financial Services aggregation platform. Providing transparent financing solutions across personal, business, vehicle, gold, and housing loans.
-            </p>
-          </div>
-
-          <div>
-            <div className="font-bold text-white uppercase tracking-wider text-xs mb-3">Quick Navigation</div>
-            <ul className="space-y-2">
-              <li><a href="#products" className="hover:text-[#6EA928] transition-colors">Loan Supermarket</a></li>
-              <li><a href="#emi-calc" className="hover:text-[#6EA928] transition-colors">EMI Calculator</a></li>
-              <li><a href="#eligibility" className="hover:text-[#6EA928] transition-colors">Eligibility Criteria</a></li>
-              <li><a href="#documents" className="hover:text-[#6EA928] transition-colors">Required Documents</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <div className="font-bold text-white uppercase tracking-wider text-xs mb-3">Regulatory & Compliance</div>
-            <ul className="space-y-2">
-              <li className="hover:text-[#6EA928] transition-colors cursor-pointer">RBI Regulations & Disclosures</li>
-              <li className="hover:text-[#6EA928] transition-colors cursor-pointer">Privacy & Data Protection Policy</li>
-              <li className="hover:text-[#6EA928] transition-colors cursor-pointer">Terms & Conditions (T&C)</li>
-              <li className="hover:text-[#6EA928] transition-colors cursor-pointer">Fair Practices Code (FPC)</li>
-            </ul>
-          </div>
-
-          <div className="space-y-2">
-            <div className="font-bold text-white uppercase tracking-wider text-xs mb-3">Management Portal</div>
-            <p>Access loan administration and lead processing desk:</p>
-            <button
-              onClick={() => handleSwitchView('admin')}
-              className="mt-1 px-4 py-2 bg-[#0A5C80]/20 hover:bg-[#0A5C80]/40 text-[#85C7DF] hover:text-white border border-[#0A5C80]/50 rounded-xl font-bold cursor-pointer transition-all"
-            >
-              🔒 Admin Dashboard Login
-            </button>
-          </div>
-
-        </div>
-
-        {/* Statutory Regulatory Disclaimer Banner */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
-          <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-amber-500/30 text-amber-300 text-xs flex items-start gap-3 shadow-xl">
-            <span className="text-base mt-0.5">⚠️</span>
-            <p className="leading-relaxed text-[11px] sm:text-xs text-amber-200/90">
-              <strong className="text-amber-400">Important:</strong> EMI calculations and loan information displayed on the website are indicative. Final interest rates, eligibility, approval, sanction, tenure, processing fees and loan terms are subject to the respective lender / financial institution.
-            </p>
-          </div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left text-slate-500">
-          <div>
-            © 2026 VGS Finance & Loans Management System. All rights reserved.
-          </div>
-          <div className="flex flex-wrap items-center justify-center md:justify-end gap-3 text-xs text-slate-400">
-            <span>Engineered & Maintained by</span>
-            <a
-              href="https://www.ascendmedialabs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-emerald-400 hover:text-emerald-300 transition-colors underline"
-            >
-              Ascend Media Labs (Visakhapatnam)
-            </a>
-            <span className="hidden sm:inline">•</span>
-            <a href="mailto:reachus@ascendmedialabs.com" className="hover:text-white">
-              reachus@ascendmedialabs.com
-            </a>
-            <span className="hidden sm:inline">•</span>
-            <a href="tel:+917675852618" className="hover:text-white font-mono">
-              +91 7675852618
-            </a>
-          </div>
-        </div>
-      </footer>
+      {/* Premium Modular Footer */}
+      <Footer onSwitchView={handleSwitchView} />
 
     </div>
   );
