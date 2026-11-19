@@ -4,8 +4,7 @@ import HeroSection from './components/HeroSection';
 import LoanSearchSection from './components/LoanSearchSection';
 import LoanProcessSteps from './components/LoanProcessSteps';
 import WhyChooseUs from './components/WhyChooseUs';
-import EmiCalculator from './components/EmiCalculator';
-import EligibilityChecker from './components/EligibilityChecker';
+import FinancialCalculatorSuite from './components/FinancialCalculatorSuite';
 import DocumentsInfo from './components/DocumentsInfo';
 import CustomerContactWorkflow from './components/CustomerContactWorkflow';
 import PartnersSection from './components/PartnersSection';
@@ -357,12 +356,9 @@ function App() {
         />
 
 
-        {/* Interactive Financial Decision Tools */}
-        <EmiCalculator
+        {/* Unified Financial Calculation Suite (EMI, Eligibility & Balance Transfer in One Unified Hub) */}
+        <FinancialCalculatorSuite
           onApplyWithCalculation={handleApplyWithCalculation}
-        />
-
-        <EligibilityChecker
           onApplyWithEligibleAmount={handleApplyWithEligibleAmount}
         />
 
