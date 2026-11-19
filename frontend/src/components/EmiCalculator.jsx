@@ -255,20 +255,17 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
               {/* Steps 6 & 7: Total Interest & Estimated Total Payment */}
               <div className="grid grid-cols-2 gap-3 pt-1">
                 {/* Step 6: Display Total Interest */}
-                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-center space-y-1">
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-center space-y-1 flex flex-col justify-center">
                   <span className="text-[10px] uppercase font-bold text-slate-500 block">
                     6. Total Interest
                   </span>
                   <div className="text-lg font-black text-[#0A5C80]">
                     {formatCurrency(calculation.totalInterest)}
                   </div>
-                  <div className="text-[10px] text-slate-500">
-                    ({calculation.interestPercent}% of payment)
-                  </div>
                 </div>
 
                 {/* Step 7: Display Estimated Total Payment */}
-                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-center space-y-1">
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-center space-y-1 flex flex-col justify-center">
                   <span className="text-[10px] uppercase font-bold text-slate-500 block">
                     7. Total Payment
                   </span>
