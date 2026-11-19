@@ -6,6 +6,8 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
   const [interestRate, setInterestRate] = useState(11.5);
   const [tenureValue, setTenureValue] = useState(36);
   const [tenureUnit, setTenureUnit] = useState('months'); // 'months' | 'years'
+  const [isRecalculated, setIsRecalculated] = useState(false);
+  const [pulseOutput, setPulseOutput] = useState(false);
 
   // Steps 4, 5, 6, 7: Calculation State
   const [calculation, setCalculation] = useState({
@@ -18,8 +20,8 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
 
   // Step 4: Calculate Estimated EMI Function
   const calculateEmi = () => {
-    const p = parseFloat(loanAmount) || 0;
-    const r = (parseFloat(interestRate) || 0) / 12 / 100;
+    const p = Math.max(0, parseFloat(loanAmount) || 0);
+    const r = (Math.max(0, parseFloat(interestRate) || 0)) / 12 / 100;
     const n = tenureUnit === 'years' ? (parseInt(tenureValue, 10) || 1) * 12 : parseInt(tenureValue, 10) || 1;
 
     if (p > 0 && r > 0 && n > 0) {
@@ -37,6 +39,16 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
         principalPercent: principalPct,
         interestPercent: interestPct
       });
+    } else if (p > 0 && r === 0 && n > 0) {
+      // 0% interest edge case
+      const emi = p / n;
+      setCalculation({
+        monthlyEmi: Math.round(emi),
+        totalInterest: 0,
+        totalPayment: Math.round(p),
+        principalPercent: 100,
+        interestPercent: 0
+      });
     } else {
       setCalculation({
         monthlyEmi: 0,
@@ -46,6 +58,16 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
         interestPercent: 0
       });
     }
+  };
+
+  const handleManualRecalculate = () => {
+    calculateEmi();
+    setIsRecalculated(true);
+    setPulseOutput(true);
+    setTimeout(() => {
+      setIsRecalculated(false);
+      setPulseOutput(false);
+    }, 1200);
   };
 
   // Recalculate automatically on input change
@@ -112,17 +134,34 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
               </div>
               <input
                 type="range"
-                min="25000"
-                max="5000000"
-                step="25000"
+                min="10000"
+                max="10000000"
+                step="10000"
                 value={loanAmount}
                 onChange={(e) => setLoanAmount(Number(e.target.value))}
                 className="w-full accent-[#6EA928] cursor-pointer h-2 bg-slate-200 rounded-lg"
               />
               <div className="flex justify-between text-[11px] text-slate-500 font-medium">
-                <span>₹ 25,000</span>
-                <span>₹ 25 Lakhs</span>
+                <span>₹ 10,000</span>
                 <span>₹ 50 Lakhs</span>
+                <span>₹ 1 Crore</span>
+              </div>
+              {/* Quick Amount Chips */}
+              <div className="flex flex-wrap gap-1.5 pt-1">
+                {[100000, 300000, 500000, 1000000, 2500000, 5000000].map((amt) => (
+                  <button
+                    key={amt}
+                    type="button"
+                    onClick={() => setLoanAmount(amt)}
+                    className={`text-[10px] px-2 py-0.5 rounded-md font-bold transition-all cursor-pointer border ${
+                      loanAmount === amt
+                        ? 'bg-[#0A5C80] text-white border-[#0A5C80]'
+                        : 'bg-white hover:bg-slate-100 text-slate-600 border-slate-200'
+                    }`}
+                  >
+                    ₹{amt >= 10000000 ? `${amt / 10000000}Cr` : amt >= 100000 ? `${amt / 100000}L` : `${amt / 1000}K`}
+                  </button>
+                ))}
               </div>
             </div>
 
@@ -136,8 +175,8 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
                 <div className="relative w-28">
                   <input
                     type="number"
-                    min="5"
-                    max="30"
+                    min="1"
+                    max="36"
                     step="0.1"
                     value={interestRate}
                     onChange={(e) => setInterestRate(Number(e.target.value))}
@@ -148,18 +187,44 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
               </div>
               <input
                 type="range"
-                min="7"
-                max="24"
-                step="0.25"
+                min="1"
+                max="36"
+                step="0.1"
                 value={interestRate}
                 onChange={(e) => setInterestRate(Number(e.target.value))}
                 className="w-full accent-[#0A5C80] cursor-pointer h-2 bg-slate-200 rounded-lg"
               />
               <div className="flex justify-between text-[11px] text-slate-500 font-medium">
-                <span>7% (Home Loan)</span>
+                <span>1% (Low Rate)</span>
+                <span>8.5% (Home)</span>
                 <span>11.5% (Personal)</span>
-                <span>24%</span>
+                <span>36%</span>
               </div>
+              {/* Quick Rate Preset Chips */}
+              <div className="flex flex-wrap gap-1.5 pt-1">
+                {[
+                  { label: 'Home: 8.5%', val: 8.5 },
+                  { label: 'Personal: 11.5%', val: 11.5 },
+                  { label: 'Business: 14%', val: 14 },
+                  { label: '₹1 Vaddi = 12% p.a.', val: 12 }
+                ].map((item) => (
+                  <button
+                    key={item.label}
+                    type="button"
+                    onClick={() => setInterestRate(item.val)}
+                    className={`text-[10px] px-2 py-0.5 rounded-md font-bold transition-all cursor-pointer border ${
+                      interestRate === item.val
+                        ? 'bg-[#6EA928] text-white border-[#6EA928]'
+                        : 'bg-white hover:bg-slate-100 text-slate-600 border-slate-200'
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+              <p className="text-[10px] text-slate-400 leading-tight">
+                💡 Note: Bank rates are annual (% per annum). ₹1 per month vaddi = 12% p.a.
+              </p>
             </div>
 
             {/* Step 3: Select Loan Tenure */}
@@ -217,23 +282,61 @@ export default function EmiCalculator({ onApplyWithCalculation }) {
                 <span>Selected: <strong className="text-[#0A5C80]">{tenureValue} {tenureUnit} ({tenureInMonths} Months)</strong></span>
                 <span>Max: {tenureUnit === 'years' ? '20 Years' : '84 Months'}</span>
               </div>
+
+              {/* Quick Tenure Chips */}
+              <div className="flex gap-1.5 pt-1">
+                {[1, 2, 3, 5, 7].map((yr) => {
+                  const val = tenureUnit === 'years' ? yr : yr * 12;
+                  const isSelected = tenureUnit === 'years' ? tenureValue === yr : tenureValue === yr * 12;
+                  return (
+                    <button
+                      key={yr}
+                      type="button"
+                      onClick={() => setTenureValue(val)}
+                      className={`text-[10px] px-2.5 py-0.5 rounded-md font-bold transition-all cursor-pointer border ${
+                        isSelected
+                          ? 'bg-[#0A5C80] text-white border-[#0A5C80]'
+                          : 'bg-white hover:bg-slate-100 text-slate-600 border-slate-200'
+                      }`}
+                    >
+                      {yr} {yr === 1 ? 'Year' : 'Yrs'}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
-            {/* Step 4 Trigger Button */}
+            {/* Step 4 Trigger Button with Dynamic Feedback */}
             <div className="pt-2">
               <button
                 type="button"
-                onClick={calculateEmi}
-                className="w-full py-2.5 rounded-xl text-xs font-bold bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 flex items-center justify-center gap-2 cursor-pointer transition-colors shadow-sm"
+                onClick={handleManualRecalculate}
+                className={`w-full py-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 cursor-pointer transition-all shadow-sm ${
+                  isRecalculated
+                    ? 'bg-[#E8F5D4] text-[#466E18] border-2 border-[#6EA928] scale-[1.01] shadow-md'
+                    : 'bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 active:scale-95'
+                }`}
               >
-                🔄 4. Recalculate Estimated EMI
+                {isRecalculated ? (
+                  <>
+                    <span className="text-base text-[#6EA928]">✓</span>
+                    <span className="text-[#466E18]">4. EMI Recalculated Successfully!</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="text-sm">🔄</span>
+                    <span>4. Recalculate Estimated EMI</span>
+                  </>
+                )}
               </button>
             </div>
 
           </div>
 
           {/* Steps 5, 6, 7: Output Displays */}
-          <div className="lg:col-span-5 bg-white border border-slate-200/90 p-6 sm:p-8 rounded-3xl shadow-xl space-y-6 flex flex-col justify-between">
+          <div className={`lg:col-span-5 bg-white border rounded-3xl p-6 sm:p-8 shadow-xl space-y-6 flex flex-col justify-between transition-all duration-300 ${
+            pulseOutput ? 'border-[#6EA928] ring-4 ring-[#6EA928]/25 scale-[1.01]' : 'border-slate-200/90'
+          }`}>
             
             <div className="space-y-4">
               <div className="text-xs uppercase font-bold tracking-wider text-slate-700 border-b border-slate-200 pb-3 flex justify-between items-center">
