@@ -479,39 +479,7 @@ export default function DocumentsInfo() {
           ))}
         </div>
 
-        {/* Speed-Up Sanction Bottom Banner */}
-        <div className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-4 text-left">
-            <div className="w-14 h-14 rounded-2xl bg-[#E8F5D4] border border-[#6EA928]/30 text-2xl flex items-center justify-center shrink-0">
-              ⚡
-            </div>
-            <div className="space-y-1">
-              <h3 className="text-base sm:text-lg font-extrabold text-[#041E2B] tracking-tight">
-                Want to Fast-Track Your Loan Application?
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-600">
-                Submit documents directly via WhatsApp or upload via secure Digilocker to receive your sanction letter within hours.
-              </p>
-            </div>
-          </div>
 
-          <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 w-full md:w-auto">
-            <a
-              href="#contact-enquiry"
-              className="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#6EA928] hover:bg-[#5A8B1F] text-white text-xs sm:text-sm font-bold shadow-lg shadow-[#6EA928]/30 transition-all text-center shrink-0"
-            >
-              Upload & Apply Online ➔
-            </a>
-            <a
-              href="https://wa.me/919876543210?text=Hi%20VGS%20Finance,%20I%20want%20to%20submit%20documents%20for%20a%20loan"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto px-5 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs sm:text-sm font-bold border border-slate-300 transition-all text-center shrink-0 flex items-center justify-center gap-1.5"
-            >
-              <span>💬 WhatsApp KYC Desk</span>
-            </a>
-          </div>
-        </div>
 
       </div>
     </section>
