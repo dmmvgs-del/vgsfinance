@@ -18,17 +18,6 @@ export default function Footer({ onSwitchView }) {
     setTimeout(() => setTrackStatus(null), 4000);
   };
 
-  const partnerBanks = [
-    { name: 'State Bank of India', code: 'SBI', type: 'Public Sector Bank', color: 'from-sky-700 to-blue-800' },
-    { name: 'HDFC Bank', code: 'HDFC', type: 'Private Bank', color: 'from-blue-800 to-indigo-900' },
-    { name: 'ICICI Bank', code: 'ICICI', type: 'Private Bank', color: 'from-amber-700 to-orange-800' },
-    { name: 'Bajaj Finserv', code: 'BAJAJ', type: 'Premier NBFC', color: 'from-blue-600 to-cyan-700' },
-    { name: 'Tata Capital', code: 'TATA', type: 'NBFC', color: 'from-blue-700 to-blue-900' },
-    { name: 'Kotak Mahindra Bank', code: 'KOTAK', type: 'Private Bank', color: 'from-red-700 to-rose-900' },
-    { name: 'Axis Bank', code: 'AXIS', type: 'Private Bank', color: 'from-rose-800 to-red-950' },
-    { name: 'Bank of Baroda', code: 'BOB', type: 'Public Sector Bank', color: 'from-orange-600 to-amber-700' }
-  ];
-
   return (
     <footer className="bg-gradient-to-b from-[#02131D] via-[#020E16] to-[#01080D] text-slate-300 font-sans relative border-t border-[#0A5C80]/40 overflow-hidden">
       
@@ -360,57 +349,9 @@ export default function Footer({ onSwitchView }) {
         </div>
 
         {/* =========================================================================
-            3. PARTNER INSTITUTIONS MICRO-BADGE STRIP
+            BOTTOM COPYRIGHT & DEVELOPER CREDITS SUB-FOOTER
         ========================================================================= */}
-        <div className="mt-12 pt-8 border-t border-slate-800/80">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-4">
-            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2 text-center md:text-left">
-              <span className="text-[#6EA928]">🏛️</span>
-              <span>Associated with India's Premier Lending Network</span>
-            </div>
-            <span className="text-[11px] text-slate-500 font-medium">
-              15+ Scheduled Commercial Banks & Top-Tier NBFCs
-            </span>
-          </div>
-
-          <div className="grid grid-cols-2 xs:grid-cols-4 sm:grid-cols-4 md:grid-cols-8 gap-2.5">
-            {partnerBanks.map((bank) => (
-              <div
-                key={bank.code}
-                className="p-2.5 rounded-xl bg-[#041C29] border border-slate-800 hover:border-[#6EA928]/40 transition-all text-center group cursor-pointer"
-              >
-                <div className="text-xs font-black tracking-wider text-white group-hover:text-[#6EA928] transition-colors">
-                  {bank.code}
-                </div>
-                <div className="text-[9px] text-slate-500 truncate mt-0.5" title={bank.name}>
-                  {bank.name}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* =========================================================================
-            4. STATUTORY REGULATORY DISCLAIMER BANNER
-        ========================================================================= */}
-        <div className="mt-8">
-          <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-amber-500/30 text-amber-300 text-xs flex items-start gap-3 shadow-xl">
-            <span className="text-base mt-0.5 shrink-0">⚠️</span>
-            <div className="space-y-1">
-              <span className="font-extrabold uppercase tracking-wider text-amber-400 text-[10px] block">
-                Statutory Regulatory Notice & Disclaimers
-              </span>
-              <p className="leading-relaxed text-[11px] text-amber-200/90">
-                <strong>VGS Financial Services Private Limited</strong> operates as an independent loan distribution platform and business facilitator connecting borrowers with RBI-licensed Scheduled Commercial Banks and Non-Banking Financial Companies (NBFCs). We do not disburse loans directly or collect advance deposits. All loan sanctions, interest rates, tenures, processing fees, and terms are governed by the respective lender's credit policy and regulatory guidelines.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* =========================================================================
-            5. BOTTOM COPYRIGHT & DEVELOPER CREDITS SUB-FOOTER
-        ========================================================================= */}
-        <div className="mt-10 pt-6 border-t border-slate-800/80 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left text-xs text-slate-500">
+        <div className="mt-14 pt-8 border-t border-slate-800/80 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left text-xs text-slate-500">
           
           {/* Left: Copyright */}
           <div>
