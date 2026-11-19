@@ -426,18 +426,6 @@ export default function DocumentsInfo() {
           </div>
         </div>
 
-        {/* Category Context & Highlight Strip */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-gradient-to-r from-[#041E2B] to-[#0A5C80] text-white px-6 py-3.5 rounded-2xl shadow-md">
-          <div className="flex items-center gap-2.5 text-xs sm:text-sm">
-            <span className="text-base sm:text-lg">{docCategories[activeTab].icon}</span>
-            <span className="font-bold text-white">{docCategories[activeTab].title}:</span>
-            <span className="text-slate-200 text-xs hidden md:inline">{docCategories[activeTab].subtitle}</span>
-          </div>
-          <div className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold text-[#E8F5D4] bg-white/10 border border-white/20 px-3 py-1 rounded-full self-start sm:self-auto">
-            <span>⚡</span>
-            <span>{docCategories[activeTab].highlightTag}</span>
-          </div>
-        </div>
 
         {/* Premium Documents Grid (Glassmorphism & Rich Visual Tiles) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
