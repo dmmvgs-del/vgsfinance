@@ -39,7 +39,7 @@ export default function EligibilityChecker({ onApplyWithEligibleAmount }) {
     <section id="eligibility" className="py-16 bg-slate-50 border-t border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
 
-        <div className="text-left max-w-2xl space-y-2">
+        <div className="text-left max-w-3xl space-y-2">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E8F5D4] border border-[#6EA928]/30 text-[#0A5C80] text-xs font-black tracking-wide uppercase">
             <span>Credit Assessment</span>
           </div>
@@ -51,7 +51,7 @@ export default function EligibilityChecker({ onApplyWithEligibleAmount }) {
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-10 shadow-lg">
+        <div className="w-full bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-10 shadow-lg">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
 
             {/* Input Controls */}

@@ -118,7 +118,7 @@ export default function LoanProcessSteps({ onApplyClick }) {
         </div>
 
         {/* Compact 3-Step V-Shape Process Container */}
-        <div className="relative max-w-4xl mx-auto">
+        <div className="relative max-w-5xl mx-auto">
           
           {/* SVG Connecting V-Path (Soft Light Greenish Tone Matching Logo) */}
           <div className="hidden md:block absolute inset-0 pointer-events-none -z-0">
