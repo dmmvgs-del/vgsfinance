@@ -247,16 +247,6 @@ export default function FinancialCalculatorSuite({ onApplyWithCalculation, onApp
            ========================================================================= */}
         {activeTab === 'emi' && (
           <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 sm:p-7 space-y-6 transition-opacity duration-300">
-            {/* Clean Sub-Header */}
-            <div className="text-center space-y-0.5">
-              <h3 className="text-xl sm:text-2xl font-bold text-[#041E2B] tracking-tight">
-                Calculate EMI Online
-              </h3>
-              <p className="text-xs text-slate-500 font-medium">
-                Accurate loan installment estimation powered by reducing balance formula.
-              </p>
-            </div>
-
             {/* 2-Column Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
               
@@ -572,16 +562,6 @@ export default function FinancialCalculatorSuite({ onApplyWithCalculation, onApp
            ========================================================================= */}
         {activeTab === 'eligibility' && (
           <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 sm:p-7 space-y-5 transition-opacity duration-300">
-            {/* Clean Sub-Header */}
-            <div className="text-center space-y-0.5">
-              <h3 className="text-xl sm:text-2xl font-bold text-[#041E2B] tracking-tight">
-                Check Maximum Loan Eligibility
-              </h3>
-              <p className="text-xs text-slate-500 font-medium">
-                Estimate your maximum borrowing capacity under standard bank 50% FOIR norms.
-              </p>
-            </div>
-
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start w-full">
               {/* Input Controls */}
               <div className="lg:col-span-7 space-y-4">
@@ -802,16 +782,6 @@ export default function FinancialCalculatorSuite({ onApplyWithCalculation, onApp
            ========================================================================= */}
         {activeTab === 'transfer' && (
           <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 sm:p-7 space-y-5 transition-opacity duration-300">
-            {/* Clean Sub-Header */}
-            <div className="text-center space-y-0.5">
-              <h3 className="text-xl sm:text-2xl font-bold text-[#041E2B] tracking-tight">
-                Loan Balance Transfer & Interest Savings Calculator
-              </h3>
-              <p className="text-xs text-slate-500 font-medium">
-                Calculate interest savings by transferring your loan to lower partner bank rates.
-              </p>
-            </div>
-
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start w-full">
               {/* Input Controls */}
               <div className="lg:col-span-7 space-y-4">
