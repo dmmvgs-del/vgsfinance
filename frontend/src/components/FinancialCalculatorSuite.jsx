@@ -297,14 +297,14 @@ export default function FinancialCalculatorSuite({ onApplyWithCalculation, onApp
                     onChange={(e) => setLoanAmount(Number(e.target.value))}
                     className="w-full accent-blue-600 cursor-pointer h-1.5 bg-slate-200 rounded-lg"
                   />
-                  {/* Quick Amount Chips */}
-                  <div className="flex flex-wrap gap-1.5 pt-0.5">
+                  {/* Quick Amount Chips (Single Line) */}
+                  <div className="flex flex-nowrap overflow-x-auto no-scrollbar gap-1 sm:gap-1.5 pt-0.5 w-full">
                     {[100000, 300000, 500000, 1000000, 2500000, 5000000, 10000000].map((amt) => (
                       <button
                         key={amt}
                         type="button"
                         onClick={() => setLoanAmount(amt)}
-                        className={`px-2.5 py-1 rounded-md text-[11px] font-semibold border transition-all cursor-pointer ${
+                        className={`flex-1 min-w-[46px] sm:min-w-0 py-1 px-1 rounded-md text-[11px] font-semibold border transition-all cursor-pointer text-center whitespace-nowrap shrink-0 sm:shrink ${
                           loanAmount === amt
                             ? 'bg-blue-600 text-white border-blue-600 shadow-2xs'
                             : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-200'
@@ -351,8 +351,8 @@ export default function FinancialCalculatorSuite({ onApplyWithCalculation, onApp
                     onChange={(e) => setInterestRate(Number(e.target.value))}
                     className="w-full accent-blue-600 cursor-pointer h-1.5 bg-slate-200 rounded-lg"
                   />
-                  {/* Preset Rates */}
-                  <div className="flex flex-wrap gap-1.5 pt-0.5">
+                  {/* Preset Rates (Single Line) */}
+                  <div className="flex flex-nowrap overflow-x-auto no-scrollbar gap-1 sm:gap-1.5 pt-0.5 w-full">
                     {[
                       { label: 'Home: 8.5%', rate: 8.5 },
                       { label: 'Personal: 9%', rate: 9.0 },
@@ -364,7 +364,7 @@ export default function FinancialCalculatorSuite({ onApplyWithCalculation, onApp
                         key={`${p.rate}-${idx}`}
                         type="button"
                         onClick={() => setInterestRate(p.rate)}
-                        className={`px-2.5 py-1 rounded-md text-[11px] font-semibold border transition-all cursor-pointer ${
+                        className={`flex-1 min-w-[70px] sm:min-w-0 py-1 px-1 rounded-md text-[11px] font-semibold border transition-all cursor-pointer text-center whitespace-nowrap shrink-0 sm:shrink ${
                           interestRate === p.rate
                             ? 'bg-blue-600 text-white border-blue-600 shadow-2xs'
                             : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-200'
@@ -418,8 +418,8 @@ export default function FinancialCalculatorSuite({ onApplyWithCalculation, onApp
                     className="w-full accent-blue-600 cursor-pointer h-1.5 bg-slate-200 rounded-lg"
                   />
 
-                  {/* Quick Tenure Pills (Matching Reference Picture Exactly) */}
-                  <div className="flex flex-wrap gap-1.5 pt-1">
+                  {/* Quick Tenure Pills (Single Line Guaranteed) */}
+                  <div className="flex flex-nowrap overflow-x-auto no-scrollbar gap-1 sm:gap-1.5 pt-1 w-full">
                     {[3, 6, 9, 12, 24, 36, 60].map((m) => (
                       <button
                         key={m}
@@ -428,7 +428,7 @@ export default function FinancialCalculatorSuite({ onApplyWithCalculation, onApp
                           setTenureValue(m);
                           setTenureUnit('months');
                         }}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
+                        className={`flex-1 min-w-[62px] sm:min-w-0 py-1.5 px-1 sm:px-1.5 rounded-lg text-[11px] sm:text-xs font-semibold border transition-all cursor-pointer text-center whitespace-nowrap shrink-0 sm:shrink ${
                           tenureValue === m && tenureUnit === 'months'
                             ? 'border-blue-600 bg-blue-50/90 text-blue-700 font-bold shadow-2xs ring-1 ring-blue-500'
                             : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50'
