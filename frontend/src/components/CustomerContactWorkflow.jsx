@@ -108,12 +108,12 @@ export default function CustomerContactWorkflow({ onSelectProductClick }) {
 
   return (
     <section id="workflow" className="py-20 bg-white border-t border-b border-slate-200/80 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 space-y-12">
         
         {/* Header */}
-        <div className="text-left max-w-3xl space-y-4">
+        <div className="text-left max-w-4xl space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E8F5D4] border border-[#6EA928]/30 text-[#0A5C80] text-xs font-black tracking-wide uppercase">
-            <span>Phase 6 Workflow</span>
+            <span>Workflow</span>
             <span>•</span>
             <span>End-to-End Customer Contact Journey</span>
           </div>
@@ -121,27 +121,6 @@ export default function CustomerContactWorkflow({ onSelectProductClick }) {
           <h2 className="text-3xl sm:text-4xl font-black text-[#041E2B] tracking-tight">
             How Your Loan Journey Moves from <span className="text-[#6EA928]">Enquiry to Bank Disbursement</span>
           </h2>
-
-          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-            Our transparent 6-step lifecycle connects you directly with top banks and NBFCs. Track your loan at every milestone with real-time updates.
-          </p>
-
-          {/* Quick Flow Pipeline Pill Indicator */}
-          <div className="inline-flex flex-wrap items-center justify-start gap-2 pt-2 text-xs font-bold text-slate-700">
-            <span className="px-2.5 py-1 rounded-lg bg-slate-100 border border-slate-200">1. Customer</span>
-            <span className="text-[#6EA928] font-black">➔</span>
-            <span className="px-2.5 py-1 rounded-lg bg-slate-100 border border-slate-200">2. Loan Product</span>
-            <span className="text-[#6EA928] font-black">➔</span>
-            <span className="px-2.5 py-1 rounded-lg bg-slate-100 border border-slate-200">3. Enquiry</span>
-            <span className="text-[#6EA928] font-black">➔</span>
-            <span className="px-2.5 py-1 rounded-lg bg-slate-100 border border-slate-200">4. Admin</span>
-            <span className="text-[#6EA928] font-black">➔</span>
-            <span className="px-2.5 py-1 rounded-lg bg-slate-100 border border-slate-200">5. Follow-up</span>
-            <span className="text-[#6EA928] font-black">➔</span>
-            <span className="px-2.5 py-1 rounded-lg bg-[#E8F5D4] text-[#466E18] border border-[#6EA928]/40">
-              6. Financial Institution Process
-            </span>
-          </div>
         </div>
 
         {/* 6-Step Workflow Cards Grid */}
