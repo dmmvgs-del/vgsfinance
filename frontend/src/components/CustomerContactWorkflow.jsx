@@ -390,14 +390,6 @@ export default function CustomerContactWorkflow({ onSelectProductClick }) {
 
               </div>
 
-              {/* Statutory Indicative Notice */}
-              <div className="p-3.5 rounded-xl bg-amber-50 border border-amber-300 text-amber-900 text-xs flex items-start gap-2.5">
-                <span className="text-sm mt-0.5">⚠️</span>
-                <p className="leading-relaxed text-[11px]">
-                  <strong className="text-amber-950">Important:</strong> EMI calculations and loan information displayed on the website are indicative. Final interest rates, eligibility, approval, sanction, tenure, processing fees and loan terms are subject to the respective lender / financial institution.
-                </p>
-              </div>
-
             </div>
           )}
 
