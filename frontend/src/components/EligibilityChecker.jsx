@@ -93,8 +93,8 @@ export default function EligibilityChecker({ onApplyWithEligibleAmount }) {
         <div className="w-full bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-lg">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-            {/* Column 1: Input Controls (5 Cols on LG) */}
-            <div className="lg:col-span-5 space-y-5">
+            {/* Column 1: Input Controls (7 Cols on LG) */}
+            <div className="lg:col-span-7 space-y-5">
               <div className="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center justify-between border-b border-slate-200 pb-2.5">
                 <span className="flex items-center gap-1.5">
                   <span className="w-5 h-5 rounded-full bg-[#E8F5D4] text-[#466E18] text-xs flex items-center justify-center font-bold">1</span>
@@ -232,10 +232,31 @@ export default function EligibilityChecker({ onApplyWithEligibleAmount }) {
                 </div>
               </div>
 
+              {/* Quick Sample Helper Bar */}
+              <div className="pt-3 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-2">
+                <span className="text-[11px] text-slate-500 font-medium">Test with pre-calculated sample?</span>
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => handleLoadSample('standard')}
+                    className="text-[11px] px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-[#E8F5D4] text-[#0A5C80] font-bold border border-slate-300 hover:border-[#6EA928] transition-all cursor-pointer"
+                  >
+                    ⚡ ₹30K Salary Sample
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleLoadSample('entry')}
+                    className="text-[11px] px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold border border-slate-300 transition-all cursor-pointer"
+                  >
+                    ₹10K Sample
+                  </button>
+                </div>
+              </div>
+
             </div>
 
-            {/* Column 2: Eligibility Result Box (4 Cols on LG) */}
-            <div className="lg:col-span-4 bg-gradient-to-b from-[#E8F5D4]/50 to-white border border-[#6EA928]/40 p-6 rounded-3xl text-center space-y-5 shadow-md flex flex-col justify-between">
+            {/* Column 2: Eligibility Result Box (5 Cols on LG) */}
+            <div className="lg:col-span-5 bg-gradient-to-b from-[#E8F5D4]/50 to-white border border-[#6EA928]/40 p-6 sm:p-7 rounded-3xl text-center space-y-5 shadow-md flex flex-col justify-between">
               
               <div className="space-y-4">
                 <span className="inline-block px-3.5 py-1 rounded-full text-xs font-black bg-[#E8F5D4] text-[#466E18] border border-[#6EA928]/40 uppercase tracking-wide">
@@ -253,12 +274,12 @@ export default function EligibilityChecker({ onApplyWithEligibleAmount }) {
                 </div>
 
                 {/* Mathematical FOIR Step Breakdown */}
-                <div className="bg-white p-3.5 rounded-2xl border border-slate-200/90 text-left space-y-2 text-xs">
+                <div className="bg-white p-4 rounded-2xl border border-slate-200/90 text-left space-y-2 text-xs">
                   <div className="font-bold text-slate-800 text-[11px] uppercase tracking-wider border-b border-slate-100 pb-1.5 flex justify-between">
                     <span>How This is Calculated:</span>
                     <span className="text-[#6EA928]">FOIR 50%</span>
                   </div>
-                  <div className="space-y-1 text-slate-600 text-[11px]">
+                  <div className="space-y-1.5 text-slate-600 text-[11px]">
                     <div className="flex justify-between">
                       <span>Monthly Net Income:</span>
                       <span className="font-semibold text-slate-900">{formatCurrency(income)}</span>
@@ -271,7 +292,7 @@ export default function EligibilityChecker({ onApplyWithEligibleAmount }) {
                       <span>Less: Existing EMIs:</span>
                       <span className="font-semibold">- {formatCurrency(existingEmi)}</span>
                     </div>
-                    <div className="flex justify-between border-t border-slate-100 pt-1 text-[#0A5C80] font-bold">
+                    <div className="flex justify-between border-t border-slate-100 pt-1.5 text-[#0A5C80] font-bold">
                       <span>Available EMI Capacity:</span>
                       <span>{formatCurrency(maxAllowedEmi)} / mo</span>
                     </div>
@@ -292,87 +313,6 @@ export default function EligibilityChecker({ onApplyWithEligibleAmount }) {
                 >
                   <span>Apply with this Eligible Amount</span>
                   <span>➔</span>
-                </button>
-              </div>
-
-            </div>
-
-            {/* Column 3: How to Fill Guide & Live Sample Walkthrough (3 Cols on LG) */}
-            <div className="lg:col-span-3 bg-slate-50 border border-slate-200 p-5 sm:p-6 rounded-3xl space-y-4">
-              
-              <div className="flex items-center justify-between border-b border-slate-200 pb-2.5">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-base">💡</span>
-                  <h3 className="text-xs sm:text-sm font-bold text-[#041E2B] uppercase tracking-wide">
-                    How to Fill & Sample
-                  </h3>
-                </div>
-                <span className="text-[10px] font-bold text-[#0A5C80] bg-[#E8F5D4] px-2 py-0.5 rounded-md">
-                  Guide
-                </span>
-              </div>
-
-              {/* Simple Step-by-Step explanation in English & Telugu */}
-              <div className="space-y-2.5 text-xs text-slate-600">
-                <div className="bg-white p-2.5 rounded-xl border border-slate-200/80 space-y-1">
-                  <strong className="text-slate-900 block text-[11px]">1. Net Income (శాలరీ):</strong>
-                  <p className="text-[11px] text-slate-600 leading-snug">
-                    మీ చేతికి వచ్చే నెట్ నెలసరి జీతం లేదా వ్యాపార లాభాన్ని ఎంటర్ చేయండి.
-                  </p>
-                </div>
-
-                <div className="bg-white p-2.5 rounded-xl border border-slate-200/80 space-y-1">
-                  <strong className="text-slate-900 block text-[11px]">2. Existing EMI (ప్రస్తుత లోన్లు):</strong>
-                  <p className="text-[11px] text-slate-600 leading-snug">
-                    ఇప్పటికే ఉన్న బైక్, కార్ లేదా పర్సనల్ లోన్ల నెలసరి EMI లు. ఏమీ లేకపోతే ₹0 ఉంచండి.
-                  </p>
-                </div>
-
-                <div className="bg-white p-2.5 rounded-xl border border-slate-200/80 space-y-1">
-                  <strong className="text-slate-900 block text-[11px]">3. Tenure (కాలపరిమితి):</strong>
-                  <p className="text-[11px] text-slate-600 leading-snug">
-                    ఎక్కువ కాలపరిమితి (3-5 సం||లు) ఎంచుకుంటే ఎక్కువ లోన్ అమౌంట్ ఎలిజిబిలిటీ వస్తుంది.
-                  </p>
-                </div>
-              </div>
-
-              {/* Sample Calculation Card */}
-              <div className="bg-white p-3 rounded-xl border border-[#0A5C80]/30 shadow-xs space-y-2">
-                <div className="flex justify-between items-center text-[11px] font-bold text-[#0A5C80] border-b border-slate-100 pb-1">
-                  <span>📌 Sample Example:</span>
-                  <span className="text-[#6EA928] font-mono">₹30K Salary</span>
-                </div>
-                <div className="text-[11px] space-y-1 text-slate-600">
-                  <div className="flex justify-between">
-                    <span>Income: ₹30,000</span>
-                    <span>EMI: ₹5,000</span>
-                  </div>
-                  <div className="flex justify-between font-bold text-slate-900">
-                    <span>Available Capacity:</span>
-                    <span className="text-[#0A5C80]">₹10,000/mo</span>
-                  </div>
-                  <div className="flex justify-between font-black text-[#466E18] border-t border-slate-100 pt-1">
-                    <span>Eligible (3 Yrs):</span>
-                    <span>₹ 3,03,374</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* 1-Click Try Sample Buttons */}
-              <div className="space-y-1.5 pt-1">
-                <button
-                  type="button"
-                  onClick={() => handleLoadSample('standard')}
-                  className="w-full py-2 px-3 rounded-xl bg-white hover:bg-[#E8F5D4] border border-[#6EA928]/50 text-[#466E18] text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-1 shadow-xs"
-                >
-                  <span>⚡ Load ₹30K Sample</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleLoadSample('entry')}
-                  className="w-full py-2 px-3 rounded-xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-700 text-xs font-semibold transition-all cursor-pointer flex items-center justify-center gap-1 shadow-xs"
-                >
-                  <span>⚡ Load ₹10K Sample (1 Yr)</span>
                 </button>
               </div>
 
