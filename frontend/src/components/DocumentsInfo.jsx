@@ -6,376 +6,229 @@ export default function DocumentsInfo() {
   const docCategories = {
     salaried: {
       title: 'Salaried Employees',
-      subtitle: 'For IT, Corporate, MNC, and Government professionals',
       icon: '💼',
-      highlightTag: 'Instant 2-Hour Approval with Net Banking PDF',
       docs: [
-        {
-          id: 'pan-aadhaar',
-          name: 'Identity & PAN Verification',
-          badge: 'Mandatory',
-          badgeColor: 'bg-rose-50 text-rose-700 border-rose-200',
-          desc: 'PAN Card (Mandatory for CIBIL check) along with Aadhaar Card, Passport, or Voter ID.',
-          format: 'Digital e-KYC or Clear Color Scan',
-          iconType: 'id'
-        },
-        {
-          id: 'address-proof',
-          name: 'Current Residence Proof',
-          badge: 'Any One',
-          badgeColor: 'bg-sky-50 text-sky-700 border-sky-200',
-          desc: 'Aadhaar Card, latest Electricity bill, Water bill, Gas bill, or Registered Rent Agreement.',
-          format: 'Recent (within last 2 months)',
-          iconType: 'address'
-        },
-        {
-          id: 'salary-slips',
-          name: 'Income Proof (Salary Slips)',
-          badge: 'Income Proof',
-          badgeColor: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-          desc: 'Latest 3 months salary slips with company seal, digital signature, and PF/Tax deductions.',
-          format: 'Official Company PDF',
-          iconType: 'income'
-        },
-        {
-          id: 'bank-statement',
-          name: 'Salary Account Statement',
-          badge: 'Primary Account',
-          badgeColor: 'bg-[#E8F5D4] text-[#466E18] border-[#6EA928]/30',
-          desc: 'Last 6 months salary bank account statement in original PDF (or net banking e-statement).',
-          format: 'Bank Net-Banking PDF (no screenshots)',
-          iconType: 'bank'
-        },
-        {
-          id: 'employment-id',
-          name: 'Employment Proof',
-          badge: 'Company Verified',
-          badgeColor: 'bg-purple-50 text-purple-700 border-purple-200',
-          desc: 'Official Company ID Card, official corporate email ID verification, or latest Appointment Letter.',
-          format: 'Physical Card or HR Offer Letter',
-          iconType: 'employee'
-        },
-        {
-          id: 'tax-form16',
-          name: 'Form 16 / ITR Returns',
-          badge: 'Tax Records',
-          badgeColor: 'bg-amber-50 text-amber-700 border-amber-200',
-          desc: 'Latest Form 16 (Part A & B) or Income Tax Return (ITR) acknowledgment for the last 1 to 2 years.',
-          format: 'TRACES Form 16 PDF or ITR-V',
-          iconType: 'tax'
-        }
+        { id: 'pan', name: 'PAN Card', iconType: 'pan', hint: 'Mandatory ID' },
+        { id: 'aadhaar', name: 'Aadhaar card', iconType: 'aadhaar', hint: 'UIDAI e-KYC' },
+        { id: 'address', name: 'Address Proof', iconType: 'address', hint: 'Electricity / Rent' },
+        { id: 'bank', name: 'Bank Details', iconType: 'bank', hint: 'Last 6M Salary A/C' },
+        { id: 'income', name: 'Salary Slips', iconType: 'salary', hint: 'Latest 3 Months' },
+        { id: 'photo', name: 'Passport size photo', iconType: 'photo', hint: 'Recent 2 Photos' }
       ]
     },
     business: {
       title: 'Business & Self-Employed',
-      subtitle: 'For Traders, Manufacturers, Retailers, and Service Enterprises',
       icon: '🏢',
-      highlightTag: 'Collateral-Free MSME Sanction up to ₹50 Lakhs',
       docs: [
-        {
-          id: 'promoter-kyc',
-          name: 'Promoter & Partner KYC',
-          badge: 'Mandatory',
-          badgeColor: 'bg-rose-50 text-rose-700 border-rose-200',
-          desc: 'PAN Card and Aadhaar Card of all Proprietors, Directors, or Partners in the business entity.',
-          format: 'Color Scan Copy',
-          iconType: 'id'
-        },
-        {
-          id: 'business-reg',
-          name: 'Business Registration Proof',
-          badge: 'Legal Entity',
-          badgeColor: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-          desc: 'GST Certificate, Udyam MSME Registration, Shop & Establishment Act, or Trade License.',
-          format: 'Government Certificate PDF',
-          iconType: 'business'
-        },
-        {
-          id: 'business-itr',
-          name: '3-Year Audited ITR & Balance Sheets',
-          badge: 'Financial Audit',
-          badgeColor: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-          desc: 'Past 2 to 3 years Income Tax Returns with Computation of Income, CA Audited Balance Sheet & P&L.',
-          format: 'CA Certified Copy',
-          iconType: 'tax'
-        },
-        {
-          id: 'current-account',
-          name: '12 Months Current Bank Account',
-          badge: 'Cash Flow',
-          badgeColor: 'bg-[#E8F5D4] text-[#466E18] border-[#6EA928]/30',
-          desc: 'Last 12 months primary operative current account statement reflecting actual business turnover.',
-          format: 'Official Bank Statement PDF',
-          iconType: 'bank'
-        },
-        {
-          id: 'gst-returns',
-          name: 'GST Returns (GSTR-3B & 1)',
-          badge: 'Turnover Check',
-          badgeColor: 'bg-amber-50 text-amber-700 border-amber-200',
-          desc: 'Latest 12 months filed GSTR-3B monthly returns matching with bank credits and sales registers.',
-          format: 'GST Portal Filed Receipts',
-          iconType: 'income'
-        },
-        {
-          id: 'business-address',
-          name: 'Office / Shop Ownership Proof',
-          badge: 'Premises Proof',
-          badgeColor: 'bg-sky-50 text-sky-700 border-sky-200',
-          desc: 'Commercial property tax receipt, electricity bill, or registered commercial lease agreement.',
-          format: 'Recent Utility Bill or Lease',
-          iconType: 'address'
-        }
-      ]
-    },
-    property: {
-      title: 'Home & Mortgage (LAP)',
-      subtitle: 'For Purchase, Construction, Balance Transfer, and Mortgage Loans',
-      icon: '🏠',
-      highlightTag: 'Lowest Interest Rates Starting from 8.40% p.a.',
-      docs: [
-        {
-          id: 'title-deeds',
-          name: 'Registered Title Deed Chain',
-          badge: 'Legal Title',
-          badgeColor: 'bg-rose-50 text-rose-700 border-rose-200',
-          desc: 'Original Sale Deed, Gift Deed, Partition Deed, and complete 30-year antecedent link documents.',
-          format: 'Certified Sub-Registrar Copies',
-          iconType: 'property'
-        },
-        {
-          id: 'ec-certificate',
-          name: 'Encumbrance Certificate (EC)',
-          badge: 'Nil Encumbrance',
-          badgeColor: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-          desc: 'Form 15 & 16 Encumbrance Certificate for past 20 to 30 years reflecting zero outstanding disputes.',
-          format: 'MeeSeva / IGRS Portal EC',
-          iconType: 'tax'
-        },
-        {
-          id: 'approved-plan',
-          name: 'Approved Layout & Building Sanction',
-          badge: 'Govt Approved',
-          badgeColor: 'bg-sky-50 text-sky-700 border-sky-200',
-          desc: 'Municipal Corporation, VMRDA, DTCP, or Gram Panchayat sanctioned building plan blueprint.',
-          format: 'Town Planning Blueprint',
-          iconType: 'business'
-        },
-        {
-          id: 'property-tax',
-          name: 'Latest Property Tax Receipts',
-          badge: 'Clear Dues',
-          badgeColor: 'bg-amber-50 text-amber-700 border-amber-200',
-          desc: 'Paid municipal assessment tax receipts, water tax, and vacant land tax receipts for the current year.',
-          format: 'Official Municipal Tax Receipt',
-          iconType: 'address'
-        },
-        {
-          id: 'applicant-income',
-          name: 'Income & Repayment Track',
-          badge: 'Eligibility',
-          badgeColor: 'bg-[#E8F5D4] text-[#466E18] border-[#6EA928]/30',
-          desc: 'Salary slips, Form 16, or 3-year Business ITR for main applicant and earning co-applicant.',
-          format: 'Last 6 Months Bank Statement',
-          iconType: 'income'
-        },
-        {
-          id: 'possession-cert',
-          name: 'Occupancy / Possession Letter',
-          badge: 'Readiness',
-          badgeColor: 'bg-purple-50 text-purple-700 border-purple-200',
-          desc: 'Occupancy Certificate (OC), Completion Certificate (CC), or Allotment Letter from the builder.',
-          format: 'Builder Letter / Municipal OC',
-          iconType: 'id'
-        }
+        { id: 'pan', name: 'PAN Card', iconType: 'pan', hint: 'Promoter / Firm' },
+        { id: 'aadhaar', name: 'Aadhaar card', iconType: 'aadhaar', hint: 'Promoter KYC' },
+        { id: 'business-reg', name: 'Business Proof', iconType: 'business', hint: 'GST / MSME Udyam' },
+        { id: 'bank', name: 'Bank Details', iconType: 'bank', hint: '12M Current A/C' },
+        { id: 'income', name: 'ITR & P&L', iconType: 'salary', hint: 'Past 2-3 Years' },
+        { id: 'photo', name: 'Passport size photo', iconType: 'photo', hint: 'Recent Photos' }
       ]
     },
     gold: {
       title: 'Gold Loan Applicants',
-      subtitle: 'For Instant 15-Minute Sanction against Gold Jewelry & Ornaments',
       icon: '🪙',
-      highlightTag: 'Sanction Within 15 Minutes • Zero Paperwork Hassle',
       docs: [
-        {
-          id: 'gold-kyc',
-          name: 'Single Identity & Address Proof',
-          badge: 'Mandatory',
-          badgeColor: 'bg-rose-50 text-rose-700 border-rose-200',
-          desc: 'Aadhaar Card, PAN Card (or Form 60 if PAN is unavailable), or Voter ID card.',
-          format: 'Original Card for Spot e-KYC',
-          iconType: 'id'
-        },
-        {
-          id: 'gold-ornaments',
-          name: 'Gold Ornaments (18K to 24K)',
-          badge: 'On-Spot Appraisal',
-          badgeColor: 'bg-amber-50 text-amber-700 border-amber-200',
-          desc: 'Physical presentation of gold jewelry, coins, or ornaments for certified carat meter evaluation.',
-          format: 'Free In-Branch Purity Check',
-          iconType: 'gold'
-        },
-        {
-          id: 'gold-photos',
-          name: 'Passport Size Photographs',
-          badge: 'Applicant Photo',
-          badgeColor: 'bg-sky-50 text-sky-700 border-sky-200',
-          desc: '2 recent passport size color photos or instant digital web camera capture at branch desk.',
-          format: 'Color Photo or Live Camera',
-          iconType: 'employee'
-        },
-        {
-          id: 'gold-bank',
-          name: 'Bank Account Disbursement Proof',
-          badge: 'Instant NEFT',
-          badgeColor: 'bg-[#E8F5D4] text-[#466E18] border-[#6EA928]/30',
-          desc: 'Cancelled bank cheque or bank passbook copy for direct instant credit of funds within 15 minutes.',
-          format: 'Bank Account Passbook / Cheque',
-          iconType: 'bank'
-        }
+        { id: 'pan', name: 'PAN Card', iconType: 'pan', hint: 'Mandatory ID' },
+        { id: 'aadhaar', name: 'Aadhaar card', iconType: 'aadhaar', hint: 'Instant e-KYC' },
+        { id: 'address', name: 'Address Proof', iconType: 'address', hint: 'Current Residence' },
+        { id: 'bank', name: 'Bank Details', iconType: 'bank', hint: 'For Quick Disbursal' },
+        { id: 'gold', name: 'Gold Ornaments', iconType: 'gold', hint: '18K to 22K Purity' },
+        { id: 'photo', name: 'Passport size photo', iconType: 'photo', hint: '2 Passport Photos' }
       ]
     },
-    doctor: {
-      title: 'Doctors & Medical Clinics',
-      subtitle: 'For MBBS, MD, MS, BDS practitioners, diagnostics, and nursing homes',
-      icon: '🩺',
-      highlightTag: 'Collateral-Free Professional Loans up to ₹75 Lakhs',
+    home: {
+      title: 'Home & Mortgage Loans',
+      icon: '🏡',
       docs: [
-        {
-          id: 'medical-reg',
-          name: 'MCI / State Medical Council Registration',
-          badge: 'Mandatory',
-          badgeColor: 'bg-rose-50 text-rose-700 border-rose-200',
-          desc: 'Medical Council of India (MCI) or State Council Registration Certificate proving valid license to practice.',
-          format: 'Council Certificate Copy',
-          iconType: 'id'
-        },
-        {
-          id: 'qualification-degree',
-          name: 'Highest Educational Degree',
-          badge: 'Degree Verified',
-          badgeColor: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-          desc: 'MBBS, MD, MS, BDS, MDS, or super-specialty diploma certificates from recognized universities.',
-          format: 'Convocation / Degree Certificate',
-          iconType: 'employee'
-        },
-        {
-          id: 'clinic-setup',
-          name: 'Clinic / Hospital Proof of Continuity',
-          badge: 'Clinic Setup',
-          badgeColor: 'bg-sky-50 text-sky-700 border-sky-200',
-          desc: 'Clinical Establishment Act registration, pharmacy license, clinic lease deed, or letterhead.',
-          format: 'Clinic Address / Tax Receipt',
-          iconType: 'address'
-        },
-        {
-          id: 'doctor-banking',
-          name: '12 Months Bank Statements',
-          badge: 'Turnover Track',
-          badgeColor: 'bg-[#E8F5D4] text-[#466E18] border-[#6EA928]/30',
-          desc: 'Primary clinic / hospital current account or savings bank statement showing consultation receipts.',
-          format: 'Official Bank Statement PDF',
-          iconType: 'bank'
-        },
-        {
-          id: 'doctor-itr',
-          name: '2 Years ITR & Audit Statement',
-          badge: 'Tax Documents',
-          badgeColor: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-          desc: 'Past 2 years Income Tax Returns with Computation of Income and balance sheets (where applicable).',
-          format: 'ITR-V Acknowledgement',
-          iconType: 'tax'
-        },
-        {
-          id: 'doctor-kyc',
-          name: 'Doctor Personal KYC',
-          badge: 'Identity Proof',
-          badgeColor: 'bg-amber-50 text-amber-700 border-amber-200',
-          desc: 'PAN Card and Aadhaar Card along with 2 passport photographs of the consulting medical practitioner.',
-          format: 'Digital e-KYC Supported',
-          iconType: 'business'
-        }
+        { id: 'pan', name: 'PAN Card', iconType: 'pan', hint: 'All Borrowers' },
+        { id: 'aadhaar', name: 'Aadhaar card', iconType: 'aadhaar', hint: 'Identity Proof' },
+        { id: 'property', name: 'Property Deeds', iconType: 'property', hint: 'Title & EC Copies' },
+        { id: 'bank', name: 'Bank Details', iconType: 'bank', hint: 'Last 12M Statements' },
+        { id: 'income', name: 'Income Proof', iconType: 'salary', hint: 'Salary / 3Y ITR' },
+        { id: 'photo', name: 'Passport size photo', iconType: 'photo', hint: 'Recent Photos' }
+      ]
+    },
+    doctors: {
+      title: 'Doctors & Medical Clinics',
+      icon: '🩺',
+      docs: [
+        { id: 'pan', name: 'PAN Card', iconType: 'pan', hint: 'Doctor Personal ID' },
+        { id: 'aadhaar', name: 'Aadhaar card', iconType: 'aadhaar', hint: 'Identity Proof' },
+        { id: 'doctor-reg', name: 'MCI Registration', iconType: 'doctor', hint: 'Medical Council Reg.' },
+        { id: 'bank', name: 'Bank Details', iconType: 'bank', hint: '12M Clinic A/C' },
+        { id: 'degree', name: 'Medical Degree', iconType: 'business', hint: 'MBBS / MD / BDS' },
+        { id: 'photo', name: 'Passport size photo', iconType: 'photo', hint: 'Passport Photos' }
       ]
     }
   };
 
+  // Render Illustrated Vector Icons matching User Reference Image
   const renderIcon = (type) => {
     switch (type) {
-      case 'id':
+      case 'pan':
         return (
-          <svg className="w-5 h-5 text-[#0A5C80]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="3" y="4" width="18" height="16" rx="3" />
-            <circle cx="9" cy="10" r="2.5" />
-            <path d="M15 8h2" />
-            <path d="M15 12h2" />
-            <path d="M6 16c0-1.5 1.5-2.5 3-2.5s3 1 3 2.5" />
+          <svg className="w-24 h-16 sm:w-28 sm:h-18 drop-shadow-xs" viewBox="0 0 110 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* Card Background */}
+            <rect x="3" y="3" width="104" height="64" rx="10" fill="#F8FAFC" stroke="#93C5FD" strokeWidth="2.5" />
+            {/* Avatar Circle */}
+            <circle cx="26" cy="27" r="12" fill="#DBEAFE" />
+            <circle cx="26" cy="23" r="5" fill="#3B82F6" />
+            <path d="M17 36C17 31 21 29 26 29C31 29 35 31 35 36" fill="#3B82F6" />
+            {/* Card Data Lines */}
+            <rect x="46" y="20" width="46" height="4" rx="2" fill="#BFDBFE" />
+            <rect x="46" y="28" width="32" height="4" rx="2" fill="#E2E8F0" />
+            <rect x="16" y="47" width="38" height="4" rx="2" fill="#E2E8F0" />
+            {/* PAN Label */}
+            <text x="70" y="52" fill="#2563EB" fontSize="13" fontWeight="900" fontFamily="system-ui, sans-serif" letterSpacing="0.5">PAN</text>
           </svg>
         );
+
+      case 'aadhaar':
+        return (
+          <svg className="w-24 h-16 sm:w-28 sm:h-18 drop-shadow-xs" viewBox="0 0 110 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="104" height="64" rx="10" fill="#F8FAFC" stroke="#93C5FD" strokeWidth="2.5" />
+            <circle cx="26" cy="27" r="12" fill="#DBEAFE" />
+            <circle cx="26" cy="23" r="5" fill="#3B82F6" />
+            <path d="M17 36C17 31 21 29 26 29C31 29 35 31 35 36" fill="#3B82F6" />
+            <rect x="46" y="20" width="46" height="4" rx="2" fill="#BFDBFE" />
+            <rect x="46" y="28" width="30" height="4" rx="2" fill="#E2E8F0" />
+            <rect x="16" y="47" width="36" height="4" rx="2" fill="#E2E8F0" />
+            {/* Aadhaar Fingerprint / Sun Emblem */}
+            <g transform="translate(68, 33)">
+              <circle cx="16" cy="11" r="9" fill="#EFF6FF" stroke="#3B82F6" strokeWidth="1.2" />
+              <path d="M16 6C13.5 6 11 8 11 10.5C11 12.5 13 14 16 14C19 14 21 12.5 21 10.5C21 8 18.5 6 16 6Z" stroke="#2563EB" strokeWidth="1.2" strokeLinecap="round" fill="none" />
+              <path d="M16 8C14.5 8 13.5 9 13.5 10.5C13.5 11.5 14.5 12.5 16 12.5C17.5 12.5 18.5 11.5 18.5 10.5" stroke="#3B82F6" strokeWidth="1.2" strokeLinecap="round" fill="none" />
+              <text x="16" y="25" textAnchor="middle" fill="#64748B" fontSize="6.5" fontWeight="bold" fontFamily="system-ui, sans-serif" letterSpacing="0.5">AADHAAR</text>
+            </g>
+          </svg>
+        );
+
       case 'address':
         return (
-          <svg className="w-5 h-5 text-[#0A5C80]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-            <circle cx="12" cy="10" r="3" />
+          <svg className="w-24 h-16 sm:w-28 sm:h-18 drop-shadow-xs" viewBox="0 0 110 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="104" height="64" rx="10" fill="#F8FAFC" stroke="#93C5FD" strokeWidth="2.5" />
+            <circle cx="26" cy="27" r="12" fill="#DBEAFE" />
+            <circle cx="26" cy="23" r="5" fill="#3B82F6" />
+            <path d="M17 36C17 31 21 29 26 29C31 29 35 31 35 36" fill="#3B82F6" />
+            <rect x="46" y="20" width="46" height="4" rx="2" fill="#BFDBFE" />
+            <rect x="46" y="28" width="32" height="4" rx="2" fill="#E2E8F0" />
+            <rect x="16" y="47" width="36" height="4" rx="2" fill="#E2E8F0" />
+            {/* House Badge in bottom right */}
+            <circle cx="82" cy="46" r="14" fill="#3B82F6" />
+            <path d="M82 38L74 44.5V53H79V48H85V53H90V44.5L82 38Z" fill="white" />
           </svg>
         );
-      case 'income':
-        return (
-          <svg className="w-5 h-5 text-[#6EA928]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="2" y="6" width="20" height="12" rx="2" />
-            <circle cx="12" cy="12" r="3" />
-            <path d="M6 12h.01M18 12h.01" />
-          </svg>
-        );
+
       case 'bank':
         return (
-          <svg className="w-5 h-5 text-[#0A5C80]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v4M12 14v4M16 14v4" />
+          <svg className="w-24 h-16 sm:w-28 sm:h-18 drop-shadow-xs" viewBox="0 0 110 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* Classical Bank Pillars & Building */}
+            <path d="M50 14L24 25H76L50 14Z" fill="#93C5FD" />
+            <rect x="23" y="25" width="54" height="4" rx="1" fill="#60A5FA" />
+            {/* 3 Pillars */}
+            <rect x="28" y="31" width="8" height="19" rx="2" fill="#93C5FD" />
+            <rect x="46" y="31" width="8" height="19" rx="2" fill="#93C5FD" />
+            <rect x="64" y="31" width="8" height="19" rx="2" fill="#93C5FD" />
+            {/* Steps Foundation */}
+            <rect x="20" y="52" width="60" height="4" rx="1" fill="#60A5FA" />
+            <rect x="16" y="57" width="68" height="4" rx="1" fill="#93C5FD" />
+            {/* Rupee Circle Badge */}
+            <circle cx="78" cy="48" r="14" fill="#3B82F6" />
+            <text x="78" y="53" textAnchor="middle" fill="white" fontSize="13" fontWeight="900" fontFamily="system-ui, sans-serif">₹</text>
           </svg>
         );
-      case 'employee':
+
+      case 'photo':
         return (
-          <svg className="w-5 h-5 text-[#0A5C80]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-            <circle cx="9" cy="7" r="4" />
-            <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+          <svg className="w-24 h-16 sm:w-28 sm:h-18 drop-shadow-xs" viewBox="0 0 110 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* Back photo frame */}
+            <g transform="translate(26, 8)">
+              <rect x="0" y="0" width="38" height="48" rx="6" fill="#F8FAFC" stroke="#BFDBFE" strokeWidth="2.5" />
+              <circle cx="19" cy="18" r="7" fill="#BFDBFE" />
+              <path d="M8 38C8 30 13 28 19 28C25 28 30 30 30 38" fill="#BFDBFE" />
+            </g>
+            {/* Front photo frame */}
+            <g transform="translate(42, 14)">
+              <rect x="0" y="0" width="38" height="48" rx="6" fill="#FFFFFF" stroke="#93C5FD" strokeWidth="2.5" />
+              <circle cx="19" cy="17" r="7.5" fill="#FCD34D" />
+              <path d="M13 14C13 10 16 7 19 7C22 7 25 10 25 14C23 13 21 13 19 13C17 13 15 13 13 14Z" fill="#1E293B" />
+              <path d="M7 40C7 31 12 28 19 28C26 28 31 31 31 40" fill="#3B82F6" />
+              <polygon points="19,34 16,28 22,28" fill="#FFFFFF" />
+            </g>
           </svg>
         );
-      case 'tax':
+
+      case 'salary':
         return (
-          <svg className="w-5 h-5 text-[#6EA928]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-            <polyline points="14 2 14 8 20 8" />
-            <line x1="16" y1="13" x2="8" y2="13" />
-            <line x1="16" y1="17" x2="8" y2="17" />
-            <polyline points="10 9 9 9 8 9" />
+          <svg className="w-24 h-16 sm:w-28 sm:h-18 drop-shadow-xs" viewBox="0 0 110 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="22" y="8" width="56" height="54" rx="8" fill="#F8FAFC" stroke="#86EFAC" strokeWidth="2.5" />
+            <rect x="30" y="16" width="40" height="4" rx="2" fill="#4ADE80" />
+            <rect x="30" y="24" width="30" height="3" rx="1.5" fill="#CBD5E1" />
+            <rect x="30" y="31" width="34" height="3" rx="1.5" fill="#CBD5E1" />
+            <rect x="30" y="38" width="22" height="3" rx="1.5" fill="#CBD5E1" />
+            <circle cx="76" cy="46" r="14" fill="#22C55E" />
+            <text x="76" y="51" textAnchor="middle" fill="white" fontSize="13" fontWeight="900" fontFamily="system-ui, sans-serif">₹</text>
           </svg>
         );
+
       case 'business':
         return (
-          <svg className="w-5 h-5 text-[#0A5C80]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="4" y="2" width="16" height="20" rx="2" />
-            <path d="M9 22v-4h6v4M8 6h.01M16 6h.01M8 10h.01M16 10h.01M8 14h.01M16 14h.01" />
+          <svg className="w-24 h-16 sm:w-28 sm:h-18 drop-shadow-xs" viewBox="0 0 110 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="18" y="10" width="62" height="50" rx="8" fill="#F8FAFC" stroke="#93C5FD" strokeWidth="2.5" />
+            <rect x="28" y="18" width="42" height="4" rx="2" fill="#60A5FA" />
+            <rect x="28" y="26" width="32" height="3" rx="1.5" fill="#CBD5E1" />
+            <rect x="28" y="33" width="36" height="3" rx="1.5" fill="#CBD5E1" />
+            <circle cx="76" cy="46" r="14" fill="#3B82F6" />
+            <path d="M72 46L75 49L81 43" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
           </svg>
         );
-      case 'property':
-        return (
-          <svg className="w-5 h-5 text-[#6EA928]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-            <polyline points="9 22 9 12 15 12 15 22" />
-          </svg>
-        );
+
       case 'gold':
         return (
-          <svg className="w-5 h-5 text-[#E5A823]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="9" />
-            <path d="M12 7v10M9 9l6 6M15 9l-6 6" />
+          <svg className="w-24 h-16 sm:w-28 sm:h-18 drop-shadow-xs" viewBox="0 0 110 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="35" r="23" stroke="#FDE047" strokeWidth="3" strokeDasharray="3 3" fill="none" />
+            <circle cx="50" cy="35" r="17" fill="#FBBF24" stroke="#F59E0B" strokeWidth="2" />
+            <circle cx="50" cy="35" r="11" fill="#FEF08A" />
+            <text x="50" y="40" textAnchor="middle" fill="#B45309" fontSize="13" fontWeight="900" fontFamily="system-ui, sans-serif">22K</text>
+            <circle cx="76" cy="46" r="12" fill="#EAB308" />
+            <path d="M76 41V51M71 46H81" stroke="white" strokeWidth="2" strokeLinecap="round" />
           </svg>
         );
+
+      case 'property':
+        return (
+          <svg className="w-24 h-16 sm:w-28 sm:h-18 drop-shadow-xs" viewBox="0 0 110 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="22" y="8" width="54" height="54" rx="8" fill="#F8FAFC" stroke="#93C5FD" strokeWidth="2.5" />
+            <rect x="30" y="16" width="38" height="4" rx="2" fill="#60A5FA" />
+            <rect x="30" y="24" width="28" height="3" rx="1.5" fill="#CBD5E1" />
+            <rect x="30" y="31" width="34" height="3" rx="1.5" fill="#CBD5E1" />
+            <circle cx="76" cy="46" r="14" fill="#3B82F6" />
+            <path d="M76 40L69 45.5V52H74V48H78V52H83V45.5L76 40Z" fill="white" />
+          </svg>
+        );
+
+      case 'doctor':
+        return (
+          <svg className="w-24 h-16 sm:w-28 sm:h-18 drop-shadow-xs" viewBox="0 0 110 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="20" y="8" width="58" height="54" rx="8" fill="#F8FAFC" stroke="#93C5FD" strokeWidth="2.5" />
+            <rect x="28" y="16" width="42" height="4" rx="2" fill="#38BDF8" />
+            <rect x="28" y="24" width="28" height="3" rx="1.5" fill="#CBD5E1" />
+            <rect x="28" y="31" width="34" height="3" rx="1.5" fill="#CBD5E1" />
+            <circle cx="76" cy="46" r="14" fill="#0EA5E9" />
+            <path d="M76 39V53M69 46H83" stroke="white" strokeWidth="3" strokeLinecap="round" />
+          </svg>
+        );
+
       default:
         return (
-          <svg className="w-5 h-5 text-[#0A5C80]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="10" />
-            <line x1="12" y1="8" x2="12" y2="12" />
-            <line x1="12" y1="16" x2="12.01" y2="16" />
+          <svg className="w-24 h-16 sm:w-28 sm:h-18 drop-shadow-xs" viewBox="0 0 110 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="104" height="64" rx="10" fill="#F8FAFC" stroke="#93C5FD" strokeWidth="2.5" />
+            <circle cx="55" cy="35" r="14" fill="#DBEAFE" />
+            <path d="M55 27V43M47 35H63" stroke="#3B82F6" strokeWidth="2.5" strokeLinecap="round" />
           </svg>
         );
     }
@@ -385,7 +238,7 @@ export default function DocumentsInfo() {
     <section id="documents" className="py-16 sm:py-20 bg-slate-50 border-t border-b border-slate-200/80 relative overflow-hidden">
       <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 space-y-8 relative z-10">
 
-        {/* Premium Section Header with Live Security Status Pill */}
+        {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 text-left">
           <div className="space-y-2 max-w-4xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E8F5D4] border border-[#6EA928]/30 text-[#0A5C80] text-xs font-black tracking-wide uppercase">
@@ -395,25 +248,25 @@ export default function DocumentsInfo() {
               Required Documents for Loan Processing
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Keep these simple documents ready to experience fast paperless verification and quick loan disbursal across 15+ partner banks.
+              Keep these simple, essential documents ready for instant paperless verification and swift disbursal across 15+ partner banks.
             </p>
           </div>
 
           <div className="hidden sm:inline-flex items-center gap-2 text-xs font-semibold text-slate-700 bg-white px-4 py-2.5 rounded-2xl border border-slate-200 shadow-xs shrink-0 self-start md:self-end">
             <span className="w-2.5 h-2.5 rounded-full bg-[#6EA928] animate-pulse"></span>
-            <span>Digital e-KYC & Paperless Upload Supported</span>
+            <span>Digital e-KYC & Digilocker Upload Supported</span>
           </div>
         </div>
 
-        {/* Premium Segmented Category Tabs (Single Smooth Unified Row - Full Width) */}
-        <div className="bg-white p-2.5 rounded-2xl sm:rounded-3xl border border-slate-200/90 shadow-sm w-full">
+        {/* Category Tabs */}
+        <div className="bg-white p-2 rounded-2xl sm:rounded-3xl border border-slate-200/90 shadow-sm w-full">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
             {Object.entries(docCategories).map(([key, data]) => (
               <button
                 key={key}
                 type="button"
                 onClick={() => setActiveTab(key)}
-                className={`px-4 py-3.5 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 cursor-pointer text-center ${
+                className={`px-4 py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 cursor-pointer text-center ${
                   activeTab === key
                     ? 'bg-gradient-to-r from-[#0A5C80] to-[#0D749E] text-white shadow-md shadow-[#0A5C80]/20 scale-[1.01]'
                     : 'bg-transparent text-slate-600 hover:text-[#0A5C80] hover:bg-slate-50'
@@ -426,60 +279,36 @@ export default function DocumentsInfo() {
           </div>
         </div>
 
-
-        {/* Premium Documents Grid (Full Page Width Grid) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-          {docCategories[activeTab].docs.map((doc, idx) => (
-            <div
-              key={doc.id || idx}
-              className="bg-white border border-slate-200/90 hover:border-[#6EA928] p-6 sm:p-7 rounded-3xl shadow-xs hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative overflow-hidden flex flex-col justify-between group"
-            >
-              {/* Top Accent Gradient Bar on Hover */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0A5C80] to-[#6EA928] opacity-0 group-hover:opacity-100 transition-opacity"></div>
-
-              <div className="space-y-4">
-                {/* Header row: Icon & Status Badge */}
-                <div className="flex items-center justify-between">
-                  <div className="w-11 h-11 rounded-2xl bg-[#E8F5D4] border border-[#6EA928]/30 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:shadow-sm transition-all">
-                    {renderIcon(doc.iconType)}
-                  </div>
-
-                  <div className="flex items-center gap-1.5">
-                    <span className={`text-[10px] font-black uppercase px-2.5 py-1 rounded-full border ${doc.badgeColor}`}>
-                      {doc.badge}
-                    </span>
-                    <span className="text-xs font-bold text-slate-300 group-hover:text-[#6EA928] transition-colors">
-                      0{idx + 1}
-                    </span>
-                  </div>
+        {/* =========================================================================
+            CLEAN MINIMALIST DOCUMENTS ROW (MATCHING USER'S EXACT REFERENCE DESIGN)
+           ========================================================================= */}
+        <div className="bg-white rounded-3xl border border-slate-200/90 p-8 sm:p-12 shadow-sm">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-6 sm:gap-10 items-center justify-items-center">
+            {docCategories[activeTab].docs.map((doc) => (
+              <div
+                key={doc.id}
+                className="flex flex-col items-center text-center group cursor-default transition-all"
+              >
+                {/* Clean Vector Illustrated Document Card */}
+                <div className="w-24 h-18 sm:w-28 sm:h-20 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1">
+                  {renderIcon(doc.iconType)}
                 </div>
 
-                {/* Document Title & Description */}
-                <div className="space-y-1.5">
-                  <h4 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-[#0A5C80] transition-colors tracking-tight">
-                    {doc.name}
-                  </h4>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    {doc.desc}
-                  </p>
-                </div>
-              </div>
+                {/* Bold Document Name Label */}
+                <span className="font-bold text-slate-800 text-xs sm:text-sm sm:text-base mt-3 group-hover:text-[#0A5C80] transition-colors leading-tight">
+                  {doc.name}
+                </span>
 
-              {/* Bottom Format & Checklist Verification Indicator */}
-              <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
-                <span className="flex items-center gap-1.5 text-slate-500 font-medium">
-                  <span className="text-[#6EA928]">✓</span>
-                  <span className="truncate max-w-xs">{doc.format}</span>
-                </span>
-                <span className="text-[10px] text-emerald-600 font-bold bg-emerald-50 px-2.5 py-0.5 rounded-md border border-emerald-200">
-                  Ready
-                </span>
+                {/* Subtle Hint */}
+                {doc.hint && (
+                  <span className="text-[11px] text-slate-400 font-medium mt-0.5">
+                    {doc.hint}
+                  </span>
+                )}
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-
-
 
       </div>
     </section>
