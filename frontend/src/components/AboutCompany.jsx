@@ -57,8 +57,8 @@ export default function AboutCompany() {
   }, [inView]);
 
   return (
-    <section className="py-20 bg-slate-50 border-t border-b border-slate-200/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+    <section className="pt-12 sm:pt-14 pb-8 sm:pb-10 bg-slate-50 border-t border-b border-slate-200/80">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
         
         {/* Main About VGS Finance */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
