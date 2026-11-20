@@ -7,6 +7,76 @@ export default function WhyChooseUs({ onApplyClick }) {
   const [isPaused, setIsPaused] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
+  // Auto-increment / Count-up animation for performance metric banner on scroll up and down
+  const bannerRef = useRef(null);
+  const [inView, setInView] = useState(false);
+  const [counts, setCounts] = useState({
+    capital: 0,
+    borrowers: 0,
+    rate: 0,
+    banks: 0
+  });
+
+  useEffect(() => {
+    const el = bannerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+        } else {
+          // Reset to 0 when user scrolls away (up or down), so it re-increments every time user scrolls to it
+          setInView(false);
+          setCounts({ capital: 0, borrowers: 0, rate: 0, banks: 0 });
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!inView) {
+      setCounts({ capital: 0, borrowers: 0, rate: 0, banks: 0 });
+      return;
+    }
+
+    let startTime = null;
+    let animationFrameId;
+    const duration = 1600; // 1.6s smooth easing duration
+
+    const animate = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      // easeOutCubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+
+      setCounts({
+        capital: Math.round(150 * eased),
+        borrowers: Math.round(12500 * eased),
+        rate: Number((99.2 * eased).toFixed(1)),
+        banks: Math.round(15 * eased)
+      });
+
+      if (progress < 1) {
+        animationFrameId = requestAnimationFrame(animate);
+      } else {
+        setCounts({
+          capital: 150,
+          borrowers: 12500,
+          rate: 99.2,
+          banks: 15
+        });
+      }
+    };
+
+    animationFrameId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [inView]);
+
   const pillars = [
     {
       icon: '🏪',
@@ -249,23 +319,31 @@ export default function WhyChooseUs({ onApplyClick }) {
           ))}
         </div>
 
-        {/* Performance Metric Banner */}
-        <div className="bg-white border border-slate-200/90 rounded-3xl p-8 sm:p-10 shadow-sm">
+        {/* Performance Metric Banner with Auto-Increment on scroll up & down */}
+        <div ref={bannerRef} className="bg-white border border-slate-200/90 rounded-3xl p-8 sm:p-10 shadow-sm transition-all duration-500">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div className="space-y-1">
-              <div className="text-3xl sm:text-4xl font-black text-[#6EA928] font-mono">₹ 150+ Cr</div>
+              <div className="text-3xl sm:text-4xl font-black text-[#6EA928] font-mono tracking-tight tabular-nums">
+                ₹ {counts.capital}+ Cr
+              </div>
               <div className="text-xs sm:text-sm text-slate-600 font-medium">Cumulative Capital Disbursed</div>
             </div>
             <div className="space-y-1">
-              <div className="text-3xl sm:text-4xl font-black text-[#0A5C80] font-mono">12,500+</div>
+              <div className="text-3xl sm:text-4xl font-black text-[#0A5C80] font-mono tracking-tight tabular-nums">
+                {counts.borrowers.toLocaleString('en-IN')}+
+              </div>
               <div className="text-xs sm:text-sm text-slate-600 font-medium">Satisfied Borrowers Across India</div>
             </div>
             <div className="space-y-1">
-              <div className="text-3xl sm:text-4xl font-black text-[#6EA928] font-mono">99.2%</div>
+              <div className="text-3xl sm:text-4xl font-black text-[#6EA928] font-mono tracking-tight tabular-nums">
+                {counts.rate.toFixed(1)}%
+              </div>
               <div className="text-xs sm:text-sm text-slate-600 font-medium">In-Principle Sanction Rate</div>
             </div>
             <div className="space-y-1">
-              <div className="text-3xl sm:text-4xl font-black text-[#0A5C80] font-mono">15+ Banks</div>
+              <div className="text-3xl sm:text-4xl font-black text-[#0A5C80] font-mono tracking-tight tabular-nums">
+                {counts.banks}+ Banks
+              </div>
               <div className="text-xs sm:text-sm text-slate-600 font-medium">Premier Lending Institution Tie-ups</div>
             </div>
           </div>

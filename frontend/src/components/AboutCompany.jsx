@@ -1,4 +1,61 @@
+import { useState, useRef, useEffect } from 'react';
+
 export default function AboutCompany() {
+  const statsRef = useRef(null);
+  const [inView, setInView] = useState(false);
+  const [counts, setCounts] = useState({ capital: 0, borrowers: 0 });
+
+  useEffect(() => {
+    const el = statsRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+        } else {
+          setInView(false);
+          setCounts({ capital: 0, borrowers: 0 });
+        }
+      },
+      { threshold: 0.25 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!inView) {
+      setCounts({ capital: 0, borrowers: 0 });
+      return;
+    }
+
+    let startTime = null;
+    let frameId;
+    const duration = 1600;
+
+    const animate = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+
+      setCounts({
+        capital: Math.round(150 * eased),
+        borrowers: Math.round(12500 * eased)
+      });
+
+      if (progress < 1) {
+        frameId = requestAnimationFrame(animate);
+      } else {
+        setCounts({ capital: 150, borrowers: 12500 });
+      }
+    };
+
+    frameId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frameId);
+  }, [inView]);
+
   return (
     <section className="py-20 bg-slate-50 border-t border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
@@ -22,13 +79,17 @@ export default function AboutCompany() {
               VGS Finance is a customer-first financial technology and loan aggregation platform. We democratize access to formal credit across India by bridging borrowers with over 15+ premier public banks, private lenders, and NBFCs through a unified, paperless marketplace.
             </p>
 
-            <div className="grid grid-cols-2 gap-4 pt-2">
+            <div ref={statsRef} className="grid grid-cols-2 gap-4 pt-2">
               <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
-                <div className="text-2xl font-black text-[#6EA928] font-mono">₹ 150+ Cr</div>
+                <div className="text-2xl font-black text-[#6EA928] font-mono tabular-nums">
+                  ₹ {counts.capital}+ Cr
+                </div>
                 <div className="text-xs text-slate-500 mt-1">Disbursed to Date</div>
               </div>
               <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
-                <div className="text-2xl font-black text-[#0A5C80] font-mono">12,500+</div>
+                <div className="text-2xl font-black text-[#0A5C80] font-mono tabular-nums">
+                  {counts.borrowers.toLocaleString('en-IN')}+
+                </div>
                 <div className="text-xs text-slate-500 mt-1">Happy Borrowers</div>
               </div>
             </div>
