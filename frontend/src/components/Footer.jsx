@@ -8,67 +8,7 @@ export default function Footer() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-48 bg-gradient-to-b from-[#6EA928]/10 via-transparent to-transparent blur-3xl pointer-events-none" />
 
       {/* =========================================================================
-          1. PRE-FOOTER EXPRESS ADVISORY & HOTLINE RIBBON
-      ========================================================================= */}
-      <div className="border-b border-[#0A5C80]/30 bg-gradient-to-r from-[#031B27]/90 via-[#06293B]/90 to-[#031B27]/90 relative z-10 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5 flex flex-col lg:flex-row items-center justify-between gap-4">
-          
-          {/* Left Advisory Prompt */}
-          <div className="flex items-center gap-3 text-center lg:text-left">
-            <div className="relative flex items-center justify-center shrink-0">
-              <span className="w-3.5 h-3.5 rounded-full bg-[#6EA928] animate-ping absolute opacity-75"></span>
-              <span className="w-3.5 h-3.5 rounded-full bg-[#6EA928] relative flex items-center justify-center text-[9px] text-white font-bold">✔</span>
-            </div>
-            <div>
-              <div className="text-xs sm:text-sm font-bold text-white flex items-center gap-2 justify-center lg:justify-start">
-                <span>Looking for the Right Loan Scheme?</span>
-                <span className="text-[10px] uppercase tracking-wider bg-[#6EA928]/20 text-[#8CE22F] px-2 py-0.5 rounded-full border border-[#6EA928]/30 font-extrabold hidden sm:inline-block">
-                  Free Advisory
-                </span>
-              </div>
-              <p className="text-[11px] text-slate-400 mt-0.5">
-                Speak directly with certified financial advisors comparing 15+ banks for instant sanction & zero processing fees.
-              </p>
-            </div>
-          </div>
-
-          {/* Right Action Contact Buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-2.5 shrink-0">
-            <a
-              href="tel:18004259988"
-              className="px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#6EA928]/50 text-white text-xs font-bold transition-all flex items-center gap-2 group"
-            >
-              <span className="text-base group-hover:scale-110 transition-transform">📞</span>
-              <div>
-                <span className="text-[9px] text-slate-400 block font-normal leading-none uppercase">Toll-Free Helpline</span>
-                <span className="text-xs text-[#8CE22F] font-mono font-bold leading-tight">1800-425-9988</span>
-              </div>
-            </a>
-
-            <a
-              href="https://wa.me/919848012345?text=Hello%20VGS%20Finance,%20I%20would%20like%20to%20consult%20about%20a%20loan."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-md flex items-center gap-2 cursor-pointer"
-            >
-              <span className="text-sm">💬</span>
-              <span>WhatsApp Priority Desk</span>
-            </a>
-
-            <a
-              href="#quick-enquiry"
-              className="px-4 py-2 rounded-xl bg-[#6EA928] hover:bg-[#5A8B1F] text-white text-xs font-bold transition-all shadow-md flex items-center gap-1.5 cursor-pointer"
-            >
-              <span>⚡</span>
-              <span>15-Min Callback</span>
-            </a>
-          </div>
-
-        </div>
-      </div>
-
-      {/* =========================================================================
-          2. MAIN FOOTER CONTENT GRID
+          MAIN FOOTER CONTENT GRID
       ========================================================================= */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10">
