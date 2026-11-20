@@ -18,6 +18,22 @@ body {
   color: #0f172a;
 }
 
+/* =========================================================================
+   Universal Justified Typography
+   Aligns all paragraphs, descriptive text, and body copy cleanly to both 
+   left and right margins with natural left-aligned terminal lines.
+   ========================================================================= */
+p,
+.leading-relaxed,
+.prose p,
+article p,
+.text-justify-all {
+  text-align: justify;
+  text-justify: inter-word;
+  -webkit-text-align-last: left;
+  text-align-last: left;
+}
+
 ::selection {
   background-color: #6EA928;
   color: #ffffff;

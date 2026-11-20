@@ -119,7 +119,7 @@ export default function WhyChooseUs({ onApplyClick }) {
             <h2 className="text-3xl sm:text-4xl font-extrabold text-[#041E2B] tracking-tight">
               Why Choose VGS Finance?
             </h2>
-            <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed text-justify">
               We bridge the gap between borrowers and India's premier lending institutions with complete transparency, high speed, and unbiased comparisons.
             </p>
           </div>
@@ -204,7 +204,7 @@ export default function WhyChooseUs({ onApplyClick }) {
                     <h3 className="text-lg font-extrabold text-slate-900 group-hover:text-[#0A5C80] transition-colors tracking-tight">
                       {item.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed text-justify">
                       {item.desc}
                     </p>
                   </div>
