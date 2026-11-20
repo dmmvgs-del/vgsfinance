@@ -543,17 +543,6 @@ export default function FinancialCalculatorSuite({ onApplyWithCalculation, onApp
               </div>
 
             </div>
-
-            {/* Bottom Disclaimer Box */}
-            <div className="p-3 sm:p-3.5 rounded-xl bg-amber-50/70 border border-amber-200/80 text-left space-y-1 mt-4">
-              <div className="flex items-center gap-1.5 text-xs font-bold text-amber-900">
-                <span>⚠️</span>
-                <span>Disclaimer</span>
-              </div>
-              <p className="text-[11px] text-amber-800 leading-normal">
-                The Personal Loan EMI Calculator is a free online tool designed to help users estimate their potential monthly installments based on the loan amount, interest rate, and tenure entered. Results are indicative and not a guarantee of loan approval or final terms from lenders.
-              </p>
-            </div>
           </div>
         )}
 
@@ -763,17 +752,6 @@ export default function FinancialCalculatorSuite({ onApplyWithCalculation, onApp
                 </button>
               </div>
             </div>
-
-            {/* Bottom Disclaimer */}
-            <div className="p-3 sm:p-3.5 rounded-xl bg-amber-50/70 border border-amber-200/80 text-left space-y-1 mt-4">
-              <div className="flex items-center gap-1.5 text-xs font-bold text-amber-900">
-                <span>⚠️</span>
-                <span>Eligibility Disclosure</span>
-              </div>
-              <p className="text-[11px] text-amber-800 leading-normal">
-                Eligibility estimates are based on the standard 50% FOIR banking guideline. Actual sanction amounts depend on your credit bureau CIBIL score (750+ preferred), employer category, income tax returns (ITR), and individual lender underwriting criteria.
-              </p>
-            </div>
           </div>
         )}
 
@@ -912,17 +890,6 @@ export default function FinancialCalculatorSuite({ onApplyWithCalculation, onApp
                   <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center text-xs font-black">➔</span>
                 </a>
               </div>
-            </div>
-
-            {/* Bottom Disclaimer */}
-            <div className="p-3 sm:p-3.5 rounded-xl bg-amber-50/70 border border-amber-200/80 text-left space-y-1 mt-4">
-              <div className="flex items-center gap-1.5 text-xs font-bold text-amber-900">
-                <span>⚠️</span>
-                <span>Balance Transfer Note</span>
-              </div>
-              <p className="text-[11px] text-amber-800 leading-normal">
-                Balance transfer savings are calculated assuming a continuous reducing balance schedule without premature part-prepayments. Processing fees and foreclosure charges (if applicable for non-individual borrowers) may apply per RBI / lender guidelines.
-              </p>
             </div>
           </div>
         )}
