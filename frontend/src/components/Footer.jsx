@@ -1,23 +1,6 @@
-import { useState } from 'react';
 import logoImg from '../assets/Logo.jpeg';
 
-export default function Footer({ onSwitchView }) {
-  const [leadTrackingId, setLeadTrackingId] = useState('');
-  const [trackStatus, setTrackStatus] = useState(null);
-
-  const handleTrackSubmit = (e) => {
-    e.preventDefault();
-    if (!leadTrackingId.trim()) return;
-
-    // Smooth scroll to workflow / enquiry tracker
-    const workflowSection = document.getElementById('workflow');
-    if (workflowSection) {
-      workflowSection.scrollIntoView({ behavior: 'smooth' });
-    }
-    setTrackStatus(`Searching application status for: ${leadTrackingId.trim()}`);
-    setTimeout(() => setTrackStatus(null), 4000);
-  };
-
+export default function Footer() {
   return (
     <footer className="bg-gradient-to-b from-[#02131D] via-[#020E16] to-[#01080D] text-slate-300 font-sans relative border-t border-[#0A5C80]/40 overflow-hidden">
       
@@ -90,8 +73,8 @@ export default function Footer({ onSwitchView }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10">
 
-          {/* Column 1: Brand & Corporate Profile (Span 4) */}
-          <div className="lg:col-span-4 space-y-5">
+          {/* Column 1: Brand & Corporate Profile (Span 5) */}
+          <div className="lg:col-span-5 space-y-5">
             {/* Logo & Corporate Tag */}
             <div className="flex items-center gap-3">
               <img
@@ -259,8 +242,8 @@ export default function Footer({ onSwitchView }) {
             </ul>
           </div>
 
-          {/* Column 4: Regulatory, Legal & Compliance (Span 2) */}
-          <div className="lg:col-span-2 space-y-4">
+          {/* Column 4: Regulatory, Legal & Compliance (Span 3) */}
+          <div className="lg:col-span-3 space-y-4">
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-3.5 rounded-full bg-amber-500"></span>
               <h4 className="text-xs font-black uppercase tracking-wider text-white">Compliance & Legal</h4>
@@ -293,73 +276,20 @@ export default function Footer({ onSwitchView }) {
             </ul>
           </div>
 
-          {/* Column 5: Portals, Tracking & Admin Access (Span 2) */}
-          <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-2">
-              <span className="w-1.5 h-3.5 rounded-full bg-emerald-500"></span>
-              <h4 className="text-xs font-black uppercase tracking-wider text-white">Application Portal</h4>
-            </div>
-
-            {/* Quick Track Box */}
-            <form onSubmit={handleTrackSubmit} className="space-y-2">
-              <label className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">
-                Track Application Status
-              </label>
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Enter Lead ID or Phone"
-                  value={leadTrackingId}
-                  onChange={(e) => setLeadTrackingId(e.target.value)}
-                  className="w-full bg-[#041C29] border border-[#0A5C80]/50 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#6EA928] pr-8"
-                />
-                <button
-                  type="submit"
-                  className="absolute right-1.5 top-1.5 px-2 py-1 bg-[#6EA928] hover:bg-[#5A8B1F] text-white text-[10px] font-bold rounded-lg transition-colors cursor-pointer"
-                  title="Search application"
-                >
-                  ➔
-                </button>
-              </div>
-              {trackStatus && (
-                <div className="text-[10px] text-emerald-400 font-semibold animate-fade-in">
-                  {trackStatus}
-                </div>
-              )}
-            </form>
-
-            {/* Admin Management Login Button */}
-            <div className="pt-2">
-              <div className="text-[10px] uppercase font-bold text-slate-400 mb-1.5 tracking-wider">
-                Internal Management
-              </div>
-              <button
-                onClick={() => onSwitchView && onSwitchView('admin')}
-                className="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-[#0A5C80]/30 to-[#062A3B]/60 hover:from-[#0A5C80]/50 hover:to-[#062A3B]/90 border border-[#0A5C80]/60 hover:border-[#6EA928]/60 text-slate-200 hover:text-white font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer group"
-              >
-                <span className="group-hover:scale-110 transition-transform">🔒</span>
-                <span>Admin Dashboard Login</span>
-              </button>
-              <span className="text-[9px] text-slate-500 block text-center mt-1">
-                For authorized underwriters & officers
-              </span>
-            </div>
-          </div>
-
         </div>
 
         {/* =========================================================================
-            BOTTOM COPYRIGHT & DEVELOPER CREDITS SUB-FOOTER
+            BOTTOM COPYRIGHT & LEGAL MINI-LINKS SUB-FOOTER
         ========================================================================= */}
-        <div className="mt-14 pt-8 border-t border-slate-800/80 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left text-xs text-slate-500">
+        <div className="mt-14 pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left text-xs text-slate-500">
           
           {/* Left: Copyright */}
           <div>
             © 2026 <strong className="text-slate-300">VGS Financial Services Private Limited</strong>. All rights reserved.
           </div>
 
-          {/* Center: Legal Mini-Links */}
-          <div className="flex flex-wrap items-center justify-center gap-3 text-[11px] text-slate-400">
+          {/* Right: Legal Mini-Links */}
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-3 text-[11px] text-slate-400">
             <a href="#privacy" className="hover:text-white transition-colors">Privacy Policy</a>
             <span>•</span>
             <a href="#terms" className="hover:text-white transition-colors">Terms of Service</a>
@@ -367,27 +297,6 @@ export default function Footer({ onSwitchView }) {
             <a href="#security" className="hover:text-white transition-colors">Data Security</a>
             <span>•</span>
             <a href="#sitemap" className="hover:text-white transition-colors">Sitemap</a>
-          </div>
-
-          {/* Right: Technical Architecture & Maintenance by Ascend Media Labs */}
-          <div className="flex flex-wrap items-center justify-center md:justify-end gap-2 text-[11px] text-slate-400">
-            <span>Engineered & Maintained by</span>
-            <a
-              href="https://www.ascendmedialabs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-emerald-400 hover:text-emerald-300 transition-colors underline"
-            >
-              Ascend Media Labs (Visakhapatnam)
-            </a>
-            <span className="hidden sm:inline">•</span>
-            <a href="mailto:reachus@ascendmedialabs.com" className="hover:text-white transition-colors">
-              reachus@ascendmedialabs.com
-            </a>
-            <span className="hidden sm:inline">•</span>
-            <a href="tel:+917675852618" className="hover:text-white font-mono transition-colors">
-              +91 7675852618
-            </a>
           </div>
 
         </div>

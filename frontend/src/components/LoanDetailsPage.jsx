@@ -1378,8 +1378,8 @@ export default function LoanDetailsPage({
                   key={tab.id}
                   onClick={() => setActiveDocTab(tab.id)}
                   className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${activeDocTab === tab.id
-                      ? 'bg-[#0A5C80] text-white shadow-sm'
-                      : 'bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200 border border-slate-200'
+                    ? 'bg-[#0A5C80] text-white shadow-sm'
+                    : 'bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200 border border-slate-200'
                     }`}
                 >
                   {tab.label}
