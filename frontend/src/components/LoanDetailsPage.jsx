@@ -706,15 +706,21 @@ export default function LoanDetailsPage({
   const catKey = (() => {
     const rawCatId = rawProduct.categoryId || rawProduct.catId || '';
     if (rawCatId && categoryLoanProfiles[rawCatId]) return rawCatId;
+    if (rawCatId === 'cat-lap') return 'cat-mortgage';
+    if (rawCatId === 'cat-commercial-vehicle') return 'cat-car';
+    if (rawCatId === 'cat-working-capital') return 'cat-business';
+    if (rawCatId === 'cat-equipment' || rawCatId === 'cat-construction-equipment') return 'cat-business';
+    if (rawCatId === 'cat-professional' || rawCatId === 'cat-sep') return 'cat-doctor';
+
     const nameLower = (rawProduct.name || rawProduct.title || '').toLowerCase();
     if (nameLower.includes('home') || nameLower.includes('house') || nameLower.includes('housing')) return 'cat-home';
-    if (nameLower.includes('business') || nameLower.includes('working capital') || nameLower.includes('msme')) return 'cat-business';
+    if (nameLower.includes('business') || nameLower.includes('working capital') || nameLower.includes('msme') || nameLower.includes('trade')) return 'cat-business';
     if (nameLower.includes('personal')) return 'cat-personal';
-    if (nameLower.includes('education') || nameLower.includes('study')) return 'cat-education';
+    if (nameLower.includes('education') || nameLower.includes('study') || nameLower.includes('student')) return 'cat-education';
     if (nameLower.includes('property') || nameLower.includes('mortgage') || nameLower.includes('lap')) return 'cat-mortgage';
-    if (nameLower.includes('car') || nameLower.includes('vehicle') || nameLower.includes('auto')) return 'cat-car';
-    if (nameLower.includes('gold')) return 'cat-gold';
-    if (nameLower.includes('doctor') || nameLower.includes('medical') || nameLower.includes('health')) return 'cat-doctor';
+    if (nameLower.includes('car') || nameLower.includes('vehicle') || nameLower.includes('auto') || nameLower.includes('truck')) return 'cat-car';
+    if (nameLower.includes('gold') || nameLower.includes('jewelry') || nameLower.includes('jewel')) return 'cat-gold';
+    if (nameLower.includes('doctor') || nameLower.includes('medical') || nameLower.includes('health') || nameLower.includes('clinic') || nameLower.includes('hospital')) return 'cat-doctor';
     return 'cat-doctor';
   })();
 

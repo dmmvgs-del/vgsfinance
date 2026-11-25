@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function PopularCategoriesSection({ categories, onSelectCategory }) {
+export default function PopularCategoriesSection({ categories, products = [], onSelectCategory, onViewDetails }) {
   const [activeFamily, setActiveFamily] = useState('ALL');
 
   const allCategories = [
@@ -195,12 +195,37 @@ export default function PopularCategoriesSection({ categories, onSelectCategory 
     ? allCategories
     : allCategories.filter(c => c.family === activeFamily);
 
-  const handleCardClick = (catId) => {
-    if (onSelectCategory) {
-      onSelectCategory(catId);
+  const handleCardClick = (item) => {
+    // 1. Try finding a concrete product in products list matching this category
+    const matchedProd = products?.find(p => 
+      p.categoryId === item.id || 
+      (p.categoryId && item.id && p.categoryId.toLowerCase() === item.id.toLowerCase()) ||
+      (p.name && item.name && p.name.toLowerCase().includes(item.name.toLowerCase()))
+    );
+
+    // 2. Synthesize or enrich product for full LoanDetailsPage
+    const productData = matchedProd || {
+      id: `prod-${item.id}`,
+      categoryId: item.id,
+      categoryName: item.name,
+      name: item.name.includes('Loan') ? `${item.name} Solutions` : `${item.name} Loan Solutions`,
+      tagline: item.perk,
+      interestRate: parseFloat(item.rate.replace(/[^0-9.]/g, '')) || 9.5,
+      minAmount: 100000,
+      maxAmount: 5000000,
+      minTenure: 12,
+      maxTenure: 84,
+      processingFee: '0.75% + GST',
+      turnaroundTime: '2 - 24 Hours'
+    };
+
+    if (onViewDetails) {
+      onViewDetails(productData);
+    } else if (onSelectCategory) {
+      onSelectCategory(item.id);
+      const el = document.getElementById('products');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
-    const el = document.getElementById('products');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -240,7 +265,7 @@ export default function PopularCategoriesSection({ categories, onSelectCategory 
           {filteredCategories.map((item) => (
             <div
               key={item.id}
-              onClick={() => handleCardClick(item.id)}
+              onClick={() => handleCardClick(item)}
               className="bg-white border border-slate-200/90 hover:border-[#6EA928] p-5 rounded-3xl transition-all duration-300 hover:-translate-y-1.5 shadow-sm hover:shadow-xl hover:shadow-[#6EA928]/10 cursor-pointer flex flex-col justify-between group space-y-4"
             >
               <div className="space-y-3">
@@ -276,7 +301,7 @@ export default function PopularCategoriesSection({ categories, onSelectCategory 
                 </div>
 
                 <div className="flex items-center justify-between text-xs font-bold text-slate-500 group-hover:text-[#6EA928] pt-1">
-                  <span>Explore Loans</span>
+                  <span>View Full Loan Details</span>
                   <span className="transform group-hover:translate-x-1 transition-transform text-xs">➔</span>
                 </div>
               </div>

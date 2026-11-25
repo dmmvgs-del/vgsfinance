@@ -325,6 +325,10 @@ function App() {
         currentView={currentView}
         setCurrentView={handleSwitchView}
         onApplyClick={handleApplyClick}
+        onViewDetails={(prod) => {
+          setDetailedProduct(prod);
+          handleSwitchView('loan-details');
+        }}
       />
 
       {/* Main Home Page Content */}

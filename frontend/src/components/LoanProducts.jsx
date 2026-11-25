@@ -474,7 +474,12 @@ export default function LoanProducts({ products, categories, onSelectProduct, in
               return (
                 <div
                   key={prod.id}
-                  onClick={() => setSelectedLoanType(prod.id)}
+                  onClick={() => {
+                    setSelectedLoanType(prod.id);
+                    if (onViewDetails) {
+                      onViewDetails(prod);
+                    }
+                  }}
                   className={`bg-white rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:shadow-[#6EA928]/10 group relative border cursor-pointer ${isSelected
                       ? 'border-[#6EA928] shadow-lg shadow-[#6EA928]/20 ring-2 ring-[#6EA928]'
                       : 'border-slate-200/90 hover:border-[#6EA928]'

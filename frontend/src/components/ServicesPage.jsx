@@ -61,12 +61,15 @@ export default function ServicesPage({
         currentView="services"
         setCurrentView={handleSwitchView}
         onApplyClick={onApplyClick}
+        onViewDetails={onViewDetails}
       />
 
       {/* 2. SECTION A: EXPLORE ALL 16 CATEGORIES */}
       <PopularCategoriesSection
         categories={categories}
+        products={products}
         onSelectCategory={handleCategorySelect}
+        onViewDetails={onViewDetails}
       />
 
       {/* 4. SECTION B: CENTRALIZED PRODUCT MARKETPLACE & COMPARISON ENGINE */}

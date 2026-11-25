@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import logoImg from '../assets/Logo.jpeg';
 import LoanTrackerModal from './LoanTrackerModal';
 
-export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
+export default function Navbar({ currentView, setCurrentView, onApplyClick, onViewDetails }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [loginDropdownOpen, setLoginDropdownOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
@@ -159,8 +159,28 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
                         key={idx}
                         onClick={() => {
                           setServicesDropdownOpen(false);
-                          setCurrentView('services');
-                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                          if (onViewDetails) {
+                            const nameLower = srv.name.toLowerCase();
+                            const catKey = nameLower.includes('personal') ? 'cat-personal'
+                              : nameLower.includes('business') ? 'cat-business'
+                              : (nameLower.includes('doctor') || nameLower.includes('professional')) ? 'cat-doctor'
+                              : nameLower.includes('home') ? 'cat-home'
+                              : nameLower.includes('gold') ? 'cat-gold'
+                              : nameLower.includes('vehicle') ? 'cat-car'
+                              : (nameLower.includes('mortgage') || nameLower.includes('lap')) ? 'cat-mortgage'
+                              : 'cat-business';
+
+                            onViewDetails({
+                              id: `prod-${catKey}`,
+                              categoryId: catKey,
+                              categoryName: srv.name,
+                              name: `${srv.name} Solutions`,
+                              tagline: `Comprehensive ${srv.name} financing with transparent pricing.`
+                            });
+                          } else {
+                            setCurrentView('services');
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                          }
                         }}
                         className="w-full text-left flex items-center gap-2 px-3 py-2 rounded-xl text-xs text-slate-300 hover:text-white hover:bg-[#0A5C80]/30 transition-colors cursor-pointer"
                       >
