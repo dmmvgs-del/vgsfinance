@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../config/api';
+import quickCallbackAdvisor from '../assets/quick-callback-advisor.jpg';
 
 export default function QuickEnquirySection({ onLeadSubmitted, prefillData, categories }) {
   const [formData, setFormData] = useState({
@@ -164,13 +165,14 @@ export default function QuickEnquirySection({ onLeadSubmitted, prefillData, cate
   };
 
   return (
-    <section id="quick-enquiry" className="py-20 bg-slate-50 border-t border-b border-slate-200/80 relative">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="quick-enquiry" className="py-16 sm:py-20 bg-slate-50 border-t border-b border-slate-200/80 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div className="bg-white border border-slate-200/90 rounded-3xl p-8 sm:p-12 shadow-xl relative overflow-hidden">
+        {/* Master Card with 2-Column Split: Form on Left, Image on Right */}
+        <div className="bg-white border border-slate-200/90 rounded-3xl shadow-2xl relative overflow-hidden">
 
           {submittedLead ? (
-            <div className="text-center py-6 space-y-4">
+            <div className="text-center p-8 sm:p-12 space-y-4">
               <div className="w-16 h-16 rounded-full bg-[#E8F5D4] text-[#466E18] border border-[#6EA928]/40 flex items-center justify-center text-3xl mx-auto">
                 ✔
               </div>
@@ -201,301 +203,370 @@ export default function QuickEnquirySection({ onLeadSubmitted, prefillData, cate
                 </a>
                 <button
                   onClick={() => setSubmittedLead(null)}
-                  className="px-4 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs border border-slate-300"
+                  className="px-4 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs border border-slate-300 cursor-pointer"
                 >
                   Submit Another Enquiry
                 </button>
               </div>
             </div>
           ) : (
-            <div className="space-y-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
 
-              <div className="text-left max-w-2xl space-y-2">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E8F5D4] border border-[#6EA928]/30 text-[#0A5C80] text-xs font-black tracking-wide uppercase">
-                  <span>⚡ Express Assistance Desk</span>
+              {/* =========================================================================
+                  LEFT COLUMN (7 COLS): CLEAN & HIGH-CONVERSION ENQUIRY FORM
+                 ========================================================================= */}
+              <div className="lg:col-span-7 p-6 sm:p-8 lg:p-10 flex flex-col justify-between space-y-6">
+
+                {/* Header */}
+                <div className="text-left space-y-2 border-b border-slate-100 pb-4">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E8F5D4] border border-[#6EA928]/30 text-[#0A5C80] text-xs font-black tracking-wide uppercase">
+                    <span className="w-2 h-2 rounded-full bg-[#6EA928] animate-ping"></span>
+                    <span>⚡ Express Assistance Desk</span>
+                  </div>
+                  <h2 className="text-2xl sm:text-3xl font-black text-[#041E2B] tracking-tight">
+                    Get a Loan Callback in 15 Minutes
+                  </h2>
+                  <p className="text-xs sm:text-sm text-slate-600">
+                    Short on time? Fill out this 30-second form and our senior financial advisor will connect with customized sanction options.
+                  </p>
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-black text-[#041E2B] tracking-tight">
-                  Get a Loan Callback in 15 Minutes
-                </h2>
-                <p className="text-xs sm:text-sm text-slate-600">
-                  Short on time? Fill out this 30-second form and our senior financial advisor will connect with customized sanction options.
-                </p>
-              </div>
 
-              {errorMsg && (
-                <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs text-center font-bold">
-                  {errorMsg}
-                </div>
-              )}
+                {errorMsg && (
+                  <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs text-center font-bold">
+                    {errorMsg}
+                  </div>
+                )}
 
-              {prefillData && (
-                <div className="p-3.5 rounded-2xl bg-[#E8F5D4] border border-[#6EA928]/40 text-xs text-[#0A5C80] flex flex-col sm:flex-row sm:items-center justify-between gap-2 shadow-sm animate-fade-in">
-                  <div className="flex items-center gap-2">
-                    <span className="text-base text-[#6EA928]">⚡</span>
-                    <span>
-                      Pre-filled from Loan Search: <strong>{formData.productName}</strong> for <strong>₹ {Number(formData.requestedAmount).toLocaleString('en-IN')}</strong>. Enter your details below to submit in 1 click!
+                {prefillData && (
+                  <div className="p-3.5 rounded-2xl bg-[#E8F5D4] border border-[#6EA928]/40 text-xs text-[#0A5C80] flex flex-col sm:flex-row sm:items-center justify-between gap-2 shadow-sm animate-fade-in">
+                    <div className="flex items-center gap-2">
+                      <span className="text-base text-[#6EA928]">⚡</span>
+                      <span>
+                        Pre-filled from Loan Search: <strong>{formData.productName}</strong> for <strong>₹ {Number(formData.requestedAmount).toLocaleString('en-IN')}</strong>. Enter details below to submit in 1 click!
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-bold text-[#466E18] uppercase tracking-wider bg-white px-2.5 py-1 rounded-full border border-[#6EA928]/30 shrink-0 self-start sm:self-auto">
+                      Ready to Submit
                     </span>
                   </div>
-                  <span className="text-[10px] font-bold text-[#466E18] uppercase tracking-wider bg-white px-2.5 py-1 rounded-full border border-[#6EA928]/30 shrink-0 self-start sm:self-auto">
-                    Ready to Submit
-                  </span>
-                </div>
-              )}
+                )}
 
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  
+                  {/* 2-Column Responsive Input Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
-                  {/* Full Name */}
-                  <div>
-                    <div className="flex items-center justify-between mb-1.5">
-                      <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-                        Your Full Name *
-                      </label>
-                      {formData.customerName.trim().length >= 3 && !errors.customerName && (
-                        <span className="text-[11px] font-semibold text-emerald-600">✔ Valid</span>
-                      )}
-                    </div>
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. Raghavendra Rao"
-                      value={formData.customerName}
-                      onChange={handleNameChange}
-                      onBlur={() => {
-                        setTouched(prev => ({ ...prev, customerName: true }));
-                        setErrors(prev => ({ ...prev, customerName: validateName(formData.customerName) }));
-                      }}
-                      className={`w-full rounded-xl px-3.5 py-3 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white transition-colors ${
-                        touched.customerName && errors.customerName
-                          ? 'border-2 border-rose-400 bg-rose-50/40 focus:border-rose-500'
-                          : formData.customerName.trim().length >= 3 && !errors.customerName
-                          ? 'border border-emerald-500 bg-emerald-50/20'
-                          : 'border border-slate-300 bg-slate-50 focus:border-[#6EA928]'
-                      }`}
-                    />
-                    {touched.customerName && errors.customerName && (
-                      <p className="mt-1 text-[11px] font-medium text-rose-600 flex items-center gap-1">
-                        <span>⚠️</span> {errors.customerName}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Mobile Number */}
-                  <div>
-                    <div className="flex items-center justify-between mb-1.5">
-                      <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-                        Mobile Number *
-                      </label>
-                      {formData.phone ? (
-                        <span className={`text-[11px] font-bold ${
-                          formData.phone.length === 10 && /^[6-9]\d{9}$/.test(formData.phone)
-                            ? 'text-emerald-600'
-                            : 'text-amber-600'
-                        }`}>
-                          {formData.phone.length === 10 && /^[6-9]\d{9}$/.test(formData.phone)
-                            ? '✔ Valid 10-digit'
-                            : `${formData.phone.length}/10 digits`}
-                        </span>
-                      ) : (
-                        <span className="text-[10px] text-slate-400 font-medium">10 Digits Only</span>
-                      )}
-                    </div>
-                    <div className="relative flex rounded-xl shadow-sm overflow-hidden">
-                      <span className="inline-flex items-center px-3 bg-slate-100 border border-r-0 border-slate-300 text-slate-700 font-bold text-xs select-none gap-1 shrink-0">
-                        <span>🇮🇳</span>
-                        <span>+91</span>
-                      </span>
-                      <input
-                        type="tel"
-                        inputMode="numeric"
-                        pattern="[6-9][0-9]{9}"
-                        maxLength={10}
-                        required
-                        placeholder="98480 12345"
-                        value={formData.phone}
-                        onChange={handlePhoneChange}
-                        onBlur={() => {
-                          setTouched(prev => ({ ...prev, phone: true }));
-                          setErrors(prev => ({ ...prev, phone: validatePhone(formData.phone) }));
-                        }}
-                        className={`w-full rounded-r-xl px-3.5 py-3 text-xs text-slate-900 placeholder-slate-400 font-semibold tracking-wider focus:outline-none focus:bg-white transition-colors ${
-                          touched.phone && errors.phone
-                            ? 'border-2 border-rose-400 bg-rose-50/40 focus:border-rose-500'
-                            : formData.phone.length === 10 && /^[6-9]\d{9}$/.test(formData.phone)
-                            ? 'border border-emerald-500 bg-emerald-50/20 text-emerald-900 font-bold'
-                            : 'border border-slate-300 bg-slate-50 focus:border-[#6EA928]'
-                        }`}
-                      />
-                      {formData.phone.length === 10 && /^[6-9]\d{9}$/.test(formData.phone) && (
-                        <span className="absolute right-3 top-3 text-emerald-600 font-bold text-sm pointer-events-none">
-                          ✔
-                        </span>
-                      )}
-                    </div>
-                    {touched.phone && errors.phone ? (
-                      <p className="mt-1 text-[11px] font-medium text-rose-600 flex items-center gap-1">
-                        <span>⚠️</span> {errors.phone}
-                      </p>
-                    ) : (
-                      <p className="mt-1 text-[10px] text-slate-500">
-                        Only numbers • Starts with 6, 7, 8, or 9
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Required Loan Amount */}
-                  <div>
-                    <div className="flex items-center justify-between mb-1.5">
-                      <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-                        Required Loan Amount (₹) *
-                      </label>
-                      {formData.requestedAmount > 0 && (
-                        <span className="text-[11px] font-bold text-[#466E18]">
-                          {formatLakhsHelper(formData.requestedAmount)}
-                        </span>
-                      )}
-                    </div>
-                    <div className="relative">
-                      <span className="absolute left-3.5 top-3 text-slate-400 font-bold text-xs select-none">₹</span>
+                    {/* Field 1: Full Name */}
+                    <div>
+                      <div className="flex items-center justify-between mb-1.5">
+                        <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                          Your Full Name *
+                        </label>
+                        {formData.customerName.trim().length >= 3 && !errors.customerName && (
+                          <span className="text-[11px] font-semibold text-emerald-600">✔ Valid</span>
+                        )}
+                      </div>
                       <input
                         type="text"
-                        inputMode="numeric"
                         required
-                        placeholder="5,00,000"
-                        value={formData.requestedAmount ? Number(formData.requestedAmount).toLocaleString('en-IN') : ''}
-                        onChange={handleAmountChange}
+                        placeholder="e.g. Raghavendra Rao"
+                        value={formData.customerName}
+                        onChange={handleNameChange}
                         onBlur={() => {
-                          setTouched(prev => ({ ...prev, requestedAmount: true }));
-                          setErrors(prev => ({ ...prev, requestedAmount: validateAmount(formData.requestedAmount) }));
+                          setTouched(prev => ({ ...prev, customerName: true }));
+                          setErrors(prev => ({ ...prev, customerName: validateName(formData.customerName) }));
                         }}
-                        className={`w-full rounded-xl pl-8 pr-3.5 py-3 text-xs text-slate-900 focus:outline-none focus:bg-white font-bold transition-colors ${
-                          touched.requestedAmount && errors.requestedAmount
+                        className={`w-full rounded-xl px-3.5 py-3 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white transition-colors ${
+                          touched.customerName && errors.customerName
+                            ? 'border-2 border-rose-400 bg-rose-50/40 focus:border-rose-500'
+                            : formData.customerName.trim().length >= 3 && !errors.customerName
+                            ? 'border border-emerald-500 bg-emerald-50/20'
+                            : 'border border-slate-300 bg-slate-50 focus:border-[#6EA928]'
+                        }`}
+                      />
+                      {touched.customerName && errors.customerName && (
+                        <p className="mt-1 text-[11px] font-medium text-rose-600 flex items-center gap-1">
+                          <span>⚠️</span> {errors.customerName}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Field 2: Mobile Number */}
+                    <div>
+                      <div className="flex items-center justify-between mb-1.5">
+                        <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                          Mobile Number *
+                        </label>
+                        {formData.phone ? (
+                          <span className={`text-[11px] font-bold ${
+                            formData.phone.length === 10 && /^[6-9]\d{9}$/.test(formData.phone)
+                              ? 'text-emerald-600'
+                              : 'text-amber-600'
+                          }`}>
+                            {formData.phone.length === 10 && /^[6-9]\d{9}$/.test(formData.phone)
+                              ? '✔ Valid 10-digit'
+                              : `${formData.phone.length}/10 digits`}
+                          </span>
+                        ) : (
+                          <span className="text-[10px] text-slate-400 font-medium">10 Digits Only</span>
+                        )}
+                      </div>
+                      <div className="relative flex rounded-xl shadow-sm overflow-hidden">
+                        <span className="inline-flex items-center px-3 bg-slate-100 border border-r-0 border-slate-300 text-slate-700 font-bold text-xs select-none gap-1 shrink-0">
+                          <span>🇮🇳</span>
+                          <span>+91</span>
+                        </span>
+                        <input
+                          type="tel"
+                          inputMode="numeric"
+                          pattern="[6-9][0-9]{9}"
+                          maxLength={10}
+                          required
+                          placeholder="98480 12345"
+                          value={formData.phone}
+                          onChange={handlePhoneChange}
+                          onBlur={() => {
+                            setTouched(prev => ({ ...prev, phone: true }));
+                            setErrors(prev => ({ ...prev, phone: validatePhone(formData.phone) }));
+                          }}
+                          className={`w-full rounded-r-xl px-3.5 py-3 text-xs text-slate-900 placeholder-slate-400 font-semibold tracking-wider focus:outline-none focus:bg-white transition-colors ${
+                            touched.phone && errors.phone
+                              ? 'border-2 border-rose-400 bg-rose-50/40 focus:border-rose-500'
+                              : formData.phone.length === 10 && /^[6-9]\d{9}$/.test(formData.phone)
+                              ? 'border border-emerald-500 bg-emerald-50/20 text-emerald-900 font-bold'
+                              : 'border border-slate-300 bg-slate-50 focus:border-[#6EA928]'
+                          }`}
+                        />
+                        {formData.phone.length === 10 && /^[6-9]\d{9}$/.test(formData.phone) && (
+                          <span className="absolute right-3 top-3 text-emerald-600 font-bold text-sm pointer-events-none">
+                            ✔
+                          </span>
+                        )}
+                      </div>
+                      {touched.phone && errors.phone ? (
+                        <p className="mt-1 text-[11px] font-medium text-rose-600 flex items-center gap-1">
+                          <span>⚠️</span> {errors.phone}
+                        </p>
+                      ) : (
+                        <p className="mt-1 text-[10px] text-slate-500">
+                          Only numbers • Starts with 6, 7, 8, or 9
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Field 3: Required Loan Amount */}
+                    <div>
+                      <div className="flex items-center justify-between mb-1.5">
+                        <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                          Required Loan Amount (₹) *
+                        </label>
+                        {formData.requestedAmount > 0 && (
+                          <span className="text-[11px] font-bold text-[#466E18]">
+                            {formatLakhsHelper(formData.requestedAmount)}
+                          </span>
+                        )}
+                      </div>
+                      <div className="relative">
+                        <span className="absolute left-3.5 top-3 text-slate-400 font-bold text-xs select-none">₹</span>
+                        <input
+                          type="text"
+                          inputMode="numeric"
+                          required
+                          placeholder="5,00,000"
+                          value={formData.requestedAmount ? Number(formData.requestedAmount).toLocaleString('en-IN') : ''}
+                          onChange={handleAmountChange}
+                          onBlur={() => {
+                            setTouched(prev => ({ ...prev, requestedAmount: true }));
+                            setErrors(prev => ({ ...prev, requestedAmount: validateAmount(formData.requestedAmount) }));
+                          }}
+                          className={`w-full rounded-xl pl-8 pr-3.5 py-3 text-xs text-slate-900 focus:outline-none focus:bg-white font-bold transition-colors ${
+                            touched.requestedAmount && errors.requestedAmount
+                              ? 'border-2 border-rose-400 bg-rose-50/40 focus:border-rose-500'
+                              : 'border border-slate-300 bg-slate-50 focus:border-[#6EA928]'
+                          }`}
+                        />
+                      </div>
+                      {touched.requestedAmount && errors.requestedAmount ? (
+                        <p className="mt-1 text-[11px] font-medium text-rose-600 flex items-center gap-1">
+                          <span>⚠️</span> {errors.requestedAmount}
+                        </p>
+                      ) : (
+                        <p className="mt-1 text-[10px] text-slate-500">
+                          Min: ₹25,000 • Max: ₹10 Crores
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Field 4: Loan Category */}
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                        Loan Category *
+                      </label>
+                      <select
+                        value={formData.productName}
+                        onChange={(e) => setFormData({ ...formData, productName: e.target.value })}
+                        className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-3 text-xs text-slate-900 font-semibold focus:outline-none focus:border-[#6EA928] focus:bg-white cursor-pointer"
+                      >
+                        <option value="Personal Loan">Personal Loan (Instant Cash)</option>
+                        <option value="Business Loan">Business Loan (Working Capital)</option>
+                        <option value="Home Loan">Home Loan (Housing Purchase)</option>
+                        <option value="Car Loan">Car Loan (New & Used Automobile)</option>
+                        <option value="Gold Loan">Gold Loan (Doorstep & Lowest Interest)</option>
+                        <option value="Education Loan">Education Loan (Higher Studies)</option>
+                        <option value="Medical Loan">Medical Loan (Healthcare Emergency)</option>
+                        <option value="Emergency Medical Treatment Loan">Emergency Medical Treatment Loan</option>
+                        <option value="Health Insurance & Hospitalization Loan">Health Insurance & Hospitalization Loan</option>
+                        <option value="Doctor & Clinic Practice Loan">Doctor & Clinic Practice Loan</option>
+                        <option value="Medical Equipment & Diagnostic Loan">Medical Equipment & Diagnostic Loan</option>
+                        <option value="Mortgage Loan">Mortgage Loan (Real Estate Backed)</option>
+                        <option value="Loan Against Property">Loan Against Property (LAP)</option>
+                        <option value="Professional Loan">Professional Loan (CA / CS / Architect)</option>
+                        <option value="Commercial Vehicle Loan">Commercial Vehicle Loan</option>
+                        <option value="Working Capital Loan">Working Capital Loan (CC / OD)</option>
+                        <option value="Other Financial Products">Other Financial Products</option>
+                        {/* Fallback for custom prefilled sub-options */}
+                        {![
+                          'Personal Loan', 'Business Loan', 'Home Loan', 'Car Loan', 'Gold Loan',
+                          'Education Loan', 'Medical Loan', 'Emergency Medical Treatment Loan',
+                          'Health Insurance & Hospitalization Loan', 'Doctor & Clinic Practice Loan',
+                          'Medical Equipment & Diagnostic Loan', 'Mortgage Loan', 'Loan Against Property',
+                          'Professional Loan', 'Commercial Vehicle Loan', 'Working Capital Loan', 'Other Financial Products'
+                        ].includes(formData.productName) && (
+                          <option value={formData.productName}>{formData.productName}</option>
+                        )}
+                      </select>
+                    </div>
+
+                    {/* Field 5: City / Location */}
+                    <div>
+                      <div className="flex items-center justify-between mb-1.5">
+                        <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                          Your City / Location *
+                        </label>
+                        {formData.city.trim().length >= 2 && !errors.city && (
+                          <span className="text-[11px] font-semibold text-emerald-600">✔</span>
+                        )}
+                      </div>
+                      <input
+                        type="text"
+                        required
+                        placeholder="e.g. Hyderabad, Vijayawada, Vizag"
+                        value={formData.city}
+                        onChange={handleCityChange}
+                        onBlur={() => {
+                          setTouched(prev => ({ ...prev, city: true }));
+                          setErrors(prev => ({ ...prev, city: validateCity(formData.city) }));
+                        }}
+                        className={`w-full rounded-xl px-3.5 py-3 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white transition-colors ${
+                          touched.city && errors.city
                             ? 'border-2 border-rose-400 bg-rose-50/40 focus:border-rose-500'
                             : 'border border-slate-300 bg-slate-50 focus:border-[#6EA928]'
                         }`}
                       />
-                    </div>
-                    {touched.requestedAmount && errors.requestedAmount ? (
-                      <p className="mt-1 text-[11px] font-medium text-rose-600 flex items-center gap-1">
-                        <span>⚠️</span> {errors.requestedAmount}
-                      </p>
-                    ) : (
-                      <p className="mt-1 text-[10px] text-slate-500">
-                        Min: ₹25,000 • Max: ₹10 Crores
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Loan Product Type */}
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                      Loan Category *
-                    </label>
-                    <select
-                      value={formData.productName}
-                      onChange={(e) => setFormData({ ...formData, productName: e.target.value })}
-                      className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-3 text-xs text-slate-900 font-semibold focus:outline-none focus:border-[#6EA928] focus:bg-white cursor-pointer"
-                    >
-                      <option value="Medical Loan">Medical Loan (Healthcare & Emergency)</option>
-                      <option value="Emergency Medical Treatment Loan">Emergency Medical Treatment Loan (Surgeries / ICU)</option>
-                      <option value="Health Insurance & Hospitalization Loan">Health Insurance & Hospitalization Loan</option>
-                      <option value="Doctor & Clinic Practice Loan">Doctor & Clinic Practice Loan (Doctors/Dentists)</option>
-                      <option value="Medical Equipment & Diagnostic Loan">Medical Equipment & Diagnostic Loan</option>
-                      <option value="Personal Loan">Personal Loan (Instant Cash)</option>
-                      <option value="Business Loan">Business Loan (Working Capital)</option>
-                      <option value="Home Loan">Home Loan (Housing Purchase & Construction)</option>
-                      <option value="Car Loan">Car Loan (New & Used Automobile)</option>
-                      <option value="Gold Loan">Gold Loan (Doorstep & Lowest Interest)</option>
-                      <option value="Education Loan">Education Loan (Global Higher Studies)</option>
-                      <option value="Mortgage Loan">Mortgage Loan (Real Estate Backed)</option>
-                      <option value="Loan Against Property">Loan Against Property (LAP)</option>
-                      <option value="Professional Loan">Professional Loan (CA / CS / Architect)</option>
-                      <option value="Doctor Loan">Doctor Loan (Clinics & Equipment)</option>
-                      <option value="Equipment Loan">Equipment Loan (Machinery & Tools)</option>
-                      <option value="Commercial Vehicle Loan">Commercial Vehicle Loan (Trucks & Fleet)</option>
-                      <option value="Working Capital Loan">Working Capital Loan (CC / OD)</option>
-                      <option value="Self-Employed Professional Loan">Self-Employed Professional Loan</option>
-                      <option value="Construction Equipment Loan">Construction Equipment Loan</option>
-                      <option value="Other Financial Products">Other Financial Products (Debt Consolidation / BT)</option>
-                      {/* Fallback for custom prefilled sub-options */}
-                      {![
-                        'Medical Loan', 'Emergency Medical Treatment Loan', 'Health Insurance & Hospitalization Loan',
-                        'Doctor & Clinic Practice Loan', 'Medical Equipment & Diagnostic Loan',
-                        'Personal Loan', 'Business Loan', 'Home Loan', 'Car Loan', 'Gold Loan', 'Education Loan',
-                        'Mortgage Loan', 'Loan Against Property', 'Professional Loan', 'Doctor Loan', 'Equipment Loan',
-                        'Commercial Vehicle Loan', 'Working Capital Loan', 'Self-Employed Professional Loan',
-                        'Construction Equipment Loan', 'Other Financial Products'
-                      ].includes(formData.productName) && (
-                        <option value={formData.productName}>{formData.productName}</option>
+                      {touched.city && errors.city && (
+                        <p className="mt-1 text-[11px] font-medium text-rose-600 flex items-center gap-1">
+                          <span>⚠️</span> {errors.city}
+                        </p>
                       )}
-                    </select>
-                  </div>
+                    </div>
 
-                  {/* City */}
-                  <div>
-                    <div className="flex items-center justify-between mb-1.5">
-                      <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-                        Your City / Location *
+                    {/* Field 6: Preferred Callback Time */}
+                    <div>
+                      <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                        Preferred Callback Time
                       </label>
-                      {formData.city.trim().length >= 2 && !errors.city && (
-                        <span className="text-[11px] font-semibold text-emerald-600">✔</span>
-                      )}
+                      <select
+                        value={formData.callbackTime}
+                        onChange={(e) => setFormData({ ...formData, callbackTime: e.target.value })}
+                        className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-3 text-xs text-slate-900 focus:outline-none focus:border-[#6EA928] focus:bg-white cursor-pointer"
+                      >
+                        <option value="Immediate (Within 15 Mins)">Immediate (Within 15 Mins)</option>
+                        <option value="Morning (10:00 AM - 1:00 PM)">Morning (10:00 AM - 1:00 PM)</option>
+                        <option value="Afternoon (2:00 PM - 5:00 PM)">Afternoon (2:00 PM - 5:00 PM)</option>
+                        <option value="Evening (5:00 PM - 7:30 PM)">Evening (5:00 PM - 7:30 PM)</option>
+                      </select>
                     </div>
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. Hyderabad, Vijayawada, Vizag"
-                      value={formData.city}
-                      onChange={handleCityChange}
-                      onBlur={() => {
-                        setTouched(prev => ({ ...prev, city: true }));
-                        setErrors(prev => ({ ...prev, city: validateCity(formData.city) }));
-                      }}
-                      className={`w-full rounded-xl px-3.5 py-3 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white transition-colors ${
-                        touched.city && errors.city
-                          ? 'border-2 border-rose-400 bg-rose-50/40 focus:border-rose-500'
-                          : 'border border-slate-300 bg-slate-50 focus:border-[#6EA928]'
-                      }`}
-                    />
-                    {touched.city && errors.city && (
-                      <p className="mt-1 text-[11px] font-medium text-rose-600 flex items-center gap-1">
-                        <span>⚠️</span> {errors.city}
-                      </p>
-                    )}
+
                   </div>
 
-                  {/* Preferred Callback Time */}
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                      Preferred Callback Time
-                    </label>
-                    <select
-                      value={formData.callbackTime}
-                      onChange={(e) => setFormData({ ...formData, callbackTime: e.target.value })}
-                      className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-3 text-xs text-slate-900 focus:outline-none focus:border-[#6EA928] focus:bg-white cursor-pointer"
+                  <div className="pt-2">
+                    <button
+                      type="submit"
+                      disabled={submitting}
+                      className="w-full py-3.5 sm:py-4 rounded-xl font-bold text-xs sm:text-sm bg-[#6EA928] hover:bg-[#5A8B1F] text-white shadow-xl shadow-[#6EA928]/25 cursor-pointer transition-all flex items-center justify-center gap-2"
                     >
-                      <option value="Immediate (Within 15 Mins)">Immediate (Within 15 Mins)</option>
-                      <option value="Morning (10:00 AM - 1:00 PM)">Morning (10:00 AM - 1:00 PM)</option>
-                      <option value="Afternoon (2:00 PM - 5:00 PM)">Afternoon (2:00 PM - 5:00 PM)</option>
-                      <option value="Evening (5:00 PM - 7:30 PM)">Evening (5:00 PM - 7:30 PM)</option>
-                    </select>
+                      {submitting ? 'Registering Enquiry...' : '⚡ Request Free Callback & Indicative Loan Sanction'}
+                    </button>
+                  </div>
+                </form>
+
+                <div className="text-center text-[11px] text-slate-500 pt-1">
+                  🔒 Your privacy is secured with 256-bit encryption. No spam calls. No advance charges.
+                </div>
+
+              </div>
+
+              {/* =========================================================================
+                  RIGHT COLUMN (5 COLS): PROFESSIONAL LOAN ADVISOR PHOTOGRAPH
+                 ========================================================================= */}
+              <div className="lg:col-span-5 relative bg-gradient-to-br from-[#02131D] via-[#041E2B] to-[#0A5C80] min-h-[380px] lg:min-h-full flex flex-col justify-between p-6 sm:p-8 overflow-hidden group">
+                
+                {/* Background Advisor Photograph */}
+                <img
+                  src={quickCallbackAdvisor}
+                  alt="VGS Senior Financial Advisor"
+                  className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                />
+
+                {/* Ambient Dark Gradient Vignette for text contrast */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#020e16]/90 via-[#041E2B]/35 to-black/30 pointer-events-none" />
+
+                {/* Top Floating Badges */}
+                <div className="relative z-10 flex items-center justify-between gap-2">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-md text-[#041E2B] text-xs font-black shadow-lg">
+                    <span className="w-2 h-2 rounded-full bg-[#6EA928] animate-ping" />
+                    <span>⚡ 15-Min Callback Desk</span>
+                  </span>
+                  <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#6EA928] text-white text-[11px] font-bold shadow-md">
+                    <span>★</span>
+                    <span>4.9/5 Rating</span>
+                  </span>
+                </div>
+
+                {/* Bottom Glassmorphism Advisor Trust Card */}
+                <div className="relative z-10 bg-slate-900/85 backdrop-blur-md border border-white/15 rounded-2xl p-4 sm:p-5 text-white space-y-2.5 shadow-2xl">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-9 h-9 rounded-xl bg-[#6EA928]/20 border border-[#6EA928]/40 flex items-center justify-center text-lg text-[#8CE22F] shrink-0">
+                      📞
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-black uppercase tracking-wider text-[#8CE22F]">
+                        Certified Loan Specialists
+                      </div>
+                      <div className="text-xs sm:text-sm font-bold text-white leading-snug">
+                        Instant In-Principle Sanction Guidance
+                      </div>
+                    </div>
                   </div>
 
+                  <p className="text-[11px] text-slate-300 leading-relaxed">
+                    Our advisors negotiate directly with 15+ premier lending institutions to unlock maximum loan eligibility with zero advance fees.
+                  </p>
+
+                  {/* Partner Banks Strip */}
+                  <div className="flex items-center justify-between pt-2 border-t border-white/10 text-[10px] text-slate-300 font-bold uppercase tracking-wider">
+                    <span>SBI</span>
+                    <span>•</span>
+                    <span>HDFC</span>
+                    <span>•</span>
+                    <span>ICICI</span>
+                    <span>•</span>
+                    <span>BAJAJ</span>
+                    <span>•</span>
+                    <span>KOTAK</span>
+                  </div>
                 </div>
 
-                <div className="pt-3">
-                  <button
-                    type="submit"
-                    disabled={submitting}
-                    className="w-full py-4 rounded-xl font-bold text-sm bg-[#6EA928] hover:bg-[#5A8B1F] text-white shadow-xl shadow-[#6EA928]/25 cursor-pointer transition-all flex items-center justify-center gap-2"
-                  >
-                    {submitting ? 'Registering Enquiry...' : '⚡ Request Free Callback & Indicative Loan Sanction'}
-                  </button>
-                </div>
-              </form>
-
-              <div className="text-center text-[11px] text-slate-500">
-                🔒 Your privacy is secured with 256-bit encryption. No spam calls. No advance charges.
               </div>
 
             </div>
@@ -507,4 +578,3 @@ export default function QuickEnquirySection({ onLeadSubmitted, prefillData, cate
     </section>
   );
 }
-
