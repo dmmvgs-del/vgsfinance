@@ -139,61 +139,6 @@ export default function AboutCompany() {
 
         </div>
 
-        {/* Technology & Digital Transformation Partner: Ascend Media Labs */}
-        <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm relative overflow-hidden">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            
-            <div className="space-y-2 max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-[#E8F5D4] border border-[#6EA928]/30 text-[#466E18] text-xs font-bold uppercase tracking-wider">
-                <span>🚀</span> Technology Architecture & Engineering Partner
-              </div>
-              <h3 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
-                Ascend Media Labs — Visakhapatnam
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Enterprise full-stack engineering, cloud infrastructure, algorithmic loan matching engines, and regulatory fintech automation developed and maintained by Ascend Media Labs.
-              </p>
-              
-              <div className="flex flex-wrap gap-4 pt-2 text-xs text-slate-600">
-                <a
-                  href="https://www.ascendmedialabs.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-[#0A5C80] hover:text-[#6EA928] font-bold underline"
-                >
-                  🌐 www.ascendmedialabs.com
-                </a>
-                <a
-                  href="mailto:reachus@ascendmedialabs.com"
-                  className="inline-flex items-center gap-1.5 hover:text-slate-900"
-                >
-                  ✉️ reachus@ascendmedialabs.com
-                </a>
-                <a
-                  href="tel:+917675852618"
-                  className="inline-flex items-center gap-1.5 hover:text-slate-900 font-mono"
-                >
-                  📞 +91 7675852618
-                </a>
-              </div>
-            </div>
-
-            <div className="bg-slate-50 border border-slate-200 p-4 rounded-2xl text-center shrink-0 w-full md:w-auto">
-              <span className="text-xs text-slate-500 block font-medium">Headquarters</span>
-              <span className="text-sm font-bold text-slate-800 block mt-0.5">Visakhapatnam, AP, India</span>
-              <a
-                href="https://www.ascendmedialabs.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-3 px-4 py-2 rounded-xl bg-[#6EA928] hover:bg-[#5A8B1F] text-white font-bold text-xs inline-block shadow-md transition-all"
-              >
-                Visit Ascend Media Labs ➔
-              </a>
-            </div>
-
-          </div>
-        </div>
-
       </div>
     </section>
   );
