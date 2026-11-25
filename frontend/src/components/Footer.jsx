@@ -3,9 +3,6 @@ import {
   Building2,
   PhoneCall,
   Mail,
-  ShieldCheck,
-  Lock,
-  CheckCircle2,
   ChevronRight,
   Scale,
   LifeBuoy,
@@ -110,22 +107,6 @@ export default function Footer() {
                   </a>
                 </div>
               </div>
-            </div>
-
-            {/* Trust Badges with Original Vector Icons */}
-            <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-900/90 border border-slate-800 text-[10px] font-semibold text-slate-300 shadow-sm">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                <span>RBI Co-Lending Aligned</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-900/90 border border-slate-800 text-[10px] font-semibold text-slate-300 shadow-sm">
-                <Lock className="w-3.5 h-3.5 text-sky-400" />
-                <span>256-Bit SSL Encrypted</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-900/90 border border-slate-800 text-[10px] font-semibold text-[#8CE22F] shadow-sm">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#8CE22F]" />
-                <span>Zero Advance Fees</span>
-              </span>
             </div>
 
             {/* Official Social Media Channels (Circular Brand Badges: Facebook, Instagram, LinkedIn, YouTube) */}
