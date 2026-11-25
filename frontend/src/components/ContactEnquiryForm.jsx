@@ -182,14 +182,14 @@ export default function ContactEnquiryForm({ selectedProduct, prefillData, onLea
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
         {/* Section Header */}
-        <div className="text-left max-w-2xl space-y-3">
+        <div className="text-left max-w-5xl space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E8F5D4] border border-[#6EA928]/30 text-[#0A5C80] text-xs font-black tracking-wide uppercase">
             <span>📝</span> <span>Phase 3: Loan Enquiry Workflow</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#041E2B] tracking-tight">
             Customer Loan Enquiry Portal
           </h2>
-          <p className="text-sm text-slate-600">
+          <p className="text-sm text-slate-600 md:whitespace-nowrap">
             Submit your loan requirements below. Your application is directly stored in our secure database for instant review.
           </p>
         </div>
