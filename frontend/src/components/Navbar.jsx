@@ -1,10 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import logoImg from '../assets/Logo.jpeg';
+import LoanTrackerModal from './LoanTrackerModal';
 
 export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [loginDropdownOpen, setLoginDropdownOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [trackerModalOpen, setTrackerModalOpen] = useState(false);
+
+  useEffect(() => {
+    const handleOpenEvent = () => setTrackerModalOpen(true);
+    window.addEventListener('open-loan-tracker', handleOpenEvent);
+    return () => window.removeEventListener('open-loan-tracker', handleOpenEvent);
+  }, []);
 
   const loanServices = [
     { name: 'Personal Loan', href: '#featured-products', icon: '👤' },
@@ -176,6 +184,18 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
                 EMI Calculator
               </a>
 
+              {/* Track Loan Status Button (Opens Real-Time Modal Popup) */}
+              <button
+                type="button"
+                onClick={() => setTrackerModalOpen(true)}
+                className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-[#0A5C80] to-[#6EA928] hover:from-[#094d6b] hover:to-[#5ea020] text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-[#6EA928]/25 transition-all cursor-pointer group"
+                title="Track Loan Application & Bank Underwriting Status in Real-Time"
+              >
+                <span className="text-sm group-hover:scale-110 transition-transform">🔍</span>
+                <span>Track Status</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+              </button>
+
               {/* Login As Dropdown */}
               <div
                 className="relative"
@@ -273,6 +293,20 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
               Services & All Loan Categories
             </button>
             <a href="#emi-calc" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-sm text-slate-300 font-medium">EMI Calculator</a>
+            
+            {/* Mobile Tracker Button */}
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setTrackerModalOpen(true);
+              }}
+              className="w-full text-left py-2 text-sm text-[#6EA928] font-bold hover:underline flex items-center gap-2 cursor-pointer"
+            >
+              <span>🔍</span>
+              <span>Track Loan Status (Real-Time)</span>
+            </button>
+
             <a href="#contact-enquiry" onClick={() => setMobileMenuOpen(false)} className="block py-2 text-sm text-slate-300 font-medium">Contact us</a>
             <div className="pt-2 flex flex-col gap-2">
               <button
@@ -298,6 +332,12 @@ export default function Navbar({ currentView, setCurrentView, onApplyClick }) {
         )}
 
       </header>
+
+      {/* Real-time Phase 6 Loan Application Tracker Modal Popup */}
+      <LoanTrackerModal
+        isOpen={trackerModalOpen}
+        onClose={() => setTrackerModalOpen(false)}
+      />
     </>
   );
 }

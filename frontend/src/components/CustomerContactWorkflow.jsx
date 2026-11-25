@@ -204,6 +204,15 @@ export default function CustomerContactWorkflow({ onSelectProductClick }) {
               >
                 LD-2026-103
               </button>
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new CustomEvent('open-loan-tracker'))}
+                className="text-xs px-3 py-1 rounded-lg bg-gradient-to-r from-[#0A5C80] to-[#6EA928] hover:opacity-95 text-white font-bold cursor-pointer shadow-sm flex items-center gap-1.5 ml-1 transition-all"
+                title="Open tracker in popup dialog"
+              >
+                <span>🔍</span>
+                <span>Open in Popup ↗</span>
+              </button>
             </div>
           </div>
 
